@@ -1,0 +1,194 @@
+#!/bin/sh
+
+###################################################
+### Functions
+###################################################
+
+# append_path() and prepend_path() adapted from Fink's init.sh
+
+# add to end of path
+append_path()
+{
+    if eval test -z "\$$1"
+    then
+        eval "export $1=$2"
+    fi
+
+    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""
+    then
+        eval "export $1=\$$1:$2"
+    fi
+}
+
+# add to beginning of path
+prepend_path()
+{
+    if eval test -z "\$$1"
+    then
+      eval "export $1=$2"
+      return
+    fi
+
+    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""
+    then
+      eval "export $1=$2:\$$1"
+    fi
+}
+
+prepend_path_if_exists()
+{
+    if [ -d "$2" ]
+    then
+        prepend_path $1 $2
+    fi
+}
+
+###################################################
+### PATH-type list variables
+###################################################
+
+prepend_path PATH /usr/local/bin
+prepend_path PATH $HOME/usr/bin
+prepend_path PATH $HOME/bin
+for i in $HOME/opt/*/bin
+do
+    prepend_path_if_exists PATH $i
+done
+prepend_path_if_exists PATH "$HOME/opt/android-sdk-linux_x86-1.5_r1/tools"
+
+# Note to self: as of Python 2.6, there is now support for local
+# site-packages in ~/.local/. See PEP-370.
+# Better yet, just use virtualenv.
+#append_path PYTHONPATH $HOME/.python
+
+append_path LD_LIBRARY_PATH $HOME/lib:$HOME/usr/lib
+
+###################################################
+### Simple variables
+###################################################
+
+if [ -z "$HOST" ]
+then
+    HOST=$(hostname | sed 's/\..*//')
+fi
+
+export EDITOR=vim
+export VISUAL=vim
+
+export LC_COLLATE="POSIX"
+
+if [ "$TERM" == "xterm" ]
+then
+    export TERM="xterm-color"
+fi
+
+# Change the window title of X terminals
+case $TERM in
+    xterm*|rxvt|Eterm|eterm)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+        ;;
+    screen)
+        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+        ;;
+esac
+
+# Python stuff
+export PIP_DOWNLOAD_CACHE="$HOME/.pip"
+
+###################################################
+### Aliases
+###################################################
+
+# My most common typo.
+# Dear Ubuntu, please stop telling me to "sudo apt-get install sl"
+alias sl=ls
+
+alias mv='mv -iv'
+alias cp='cp -iv'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias rgrep='rgrep --color=auto'
+
+alias dj='python ./manage.py runserver 0.0.0.0:8003'
+alias djp='python ./manage.py runserver_plus 0.0.0.0:8003'
+alias djl='python ./manage.py runserver 0.0.0.0:8003 --settings=local-settings'
+alias djpl='python ./manage.py runserver_plus 0.0.0.0:8003 --settings=local-settings'
+alias djc='python ./manage.py runserver 0.0.0.0:8003 --settings=ccg-settings'
+alias djpc='python ./manage.py runserver_plus 0.0.0.0:8003 --settings=ccg-settings'
+alias djs="python ./manage.py shell_plus"
+alias djsc="python ./manage.py shell_plus --settings=ccg-settings"
+
+alias lrz1='ssh -Ax -p 2222 cglendenin@lrz1'
+alias lrz2='ssh -Ax -p 2222 cglendenin@lrz2'
+alias lrz3='ssh -Ax -p 22 ccg@lrz3'
+
+alias hg4='ssh -Ax chadg@hg4'
+alias hg5='ssh -Ax chadg@hg5'
+alias hs2='ssh -Ax ccg@highsite2'
+
+alias attach="$HOME/bin/grabssh ; screen -d -r"
+alias fixssh="source $HOME/bin/fixssh"
+
+###################################################
+### Platform- or system-specific modifications
+###################################################
+
+if [ "$(uname -s)" == "Darwin" ]; then
+    # Mac OS X stuff:
+    alias ls='ls -AFGq'
+    append_path PYTHONPATH ~/Library/Python
+    # Fix Backspace/Delete confusion:
+    stty erase ^?
+    # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
+    # Screw it. Just reset the whole thing, cuz the default works.
+    unset MANPATH
+else
+    alias ls='ls -F --color=auto'
+fi
+
+###################################################
+### virtualenvwrapper
+###################################################
+export WORKON_HOME=$HOME/.virtualenvs
+if [ ! -d $WORKON_HOME ]
+then
+    mkdir -p $WORKON_HOME
+fi
+[ -f ~/.virtualenvwrapper_bashrc ] && source ~/.virtualenvwrapper_bashrc
+
+###################################################
+### git prompt hack
+###################################################
+# http://henrik.nyh.se/2008/12/git-dirty-prompt
+# http://www.simplisticcomplexity.com/2008/03/13/show-your-git-branch-name-in-your-prompt/
+#   username@Machine ~/dev/dir[master]$   # clean working directory
+#   username@Machine ~/dev/dir[master*]$  # dirty working directory
+
+function parse_git_dirty {
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (Git branch: \1$(parse_git_dirty))/"
+}
+
+function active_virtualenv {
+    if [ "$ACTIVE_VIRTUALENV" != "" ]
+    then
+        echo -n " (Virtualenv: $ACTIVE_VIRTUALENV)"
+    fi
+}
+
+function install_pil {
+    cdsitepackages || return 1
+    ln -s "/usr/lib/python2.5/site-packages/PIL" .
+    cd -
+}
+
+# Stolen from Gentoo:
+#PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
+PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
+# Save custom PS1 to restore later
+export CCG_PS1="$PS1"
