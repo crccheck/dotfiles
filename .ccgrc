@@ -111,22 +111,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
 
-alias dj='python ./manage.py runserver 0.0.0.0:8003'
-alias djp='python ./manage.py runserver_plus 0.0.0.0:8003'
-alias djl='python ./manage.py runserver 0.0.0.0:8003 --settings=local-settings'
-alias djpl='python ./manage.py runserver_plus 0.0.0.0:8003 --settings=local-settings'
-alias djc='python ./manage.py runserver 0.0.0.0:8003 --settings=ccg-settings'
-alias djpc='python ./manage.py runserver_plus 0.0.0.0:8003 --settings=ccg-settings'
-alias djs="python ./manage.py shell_plus"
-alias djsc="python ./manage.py shell_plus --settings=ccg-settings"
-
-alias lrz1='ssh -Ax -p 2222 cglendenin@lrz1'
-alias lrz2='ssh -Ax -p 2222 cglendenin@lrz2'
-alias lrz3='ssh -Ax -p 22 ccg@lrz3'
-
-alias hg4='ssh -Ax chadg@hg4'
-alias hg5='ssh -Ax chadg@hg5'
-alias hs2='ssh -Ax ccg@highsite2'
+my_port=8000
+alias dj='python manage.py runserver 0.0.0.0:$my_port'
+alias djp='python manage.py runserver_plus 0.0.0.0:$my_port'
+alias djl='python manage.py runserver 0.0.0.0:$my_port --settings=local-settings'
+alias djpl='python manage.py runserver_plus 0.0.0.0:$my_port --settings=local-settings'
+alias djs="python manage.py shell_plus"
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
@@ -151,12 +141,11 @@ fi
 ###################################################
 ### virtualenvwrapper
 ###################################################
-export WORKON_HOME=$HOME/.virtualenvs
-if [ ! -d $WORKON_HOME ]
-then
+export WORKON_HOME=$HOME/env
+if [ ! -d $WORKON_HOME ]; then
     mkdir -p $WORKON_HOME
 fi
-[ -f ~/.virtualenvwrapper_bashrc ] && source ~/.virtualenvwrapper_bashrc
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 ###################################################
 ### git prompt hack
