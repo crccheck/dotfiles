@@ -1,13 +1,13 @@
-= CRCCHECK dot files
+CRCCHECK dot files
 So like, these are the dot files I like.
 
-== Installation
+# Installation
 
 git clone git@github.com:crccheck/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./dostuff
 
-== Initial Setup
+## Initial Setup
 
 http://help.github.com/msysgit-key-setup/
 
