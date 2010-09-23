@@ -147,6 +147,10 @@ if [ ! -d $WORKON_HOME ]; then
 fi
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
+
+UNCOLOR="\[\033[00m\]"
+COLOR="\[\033[1;36m\]"
+
 ###################################################
 ### git prompt hack
 ###################################################
@@ -162,11 +166,10 @@ function parse_git_dirty {
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (Git branch: \1$(parse_git_dirty))/"
 }
-
 function active_virtualenv {
-    if [ "$ACTIVE_VIRTUALENV" != "" ]
+    if [ -n "$VIRTUAL_ENV" ]
     then
-        echo -n " (Virtualenv: $ACTIVE_VIRTUALENV)"
+        echo -n " (Virtualenv: $COLOR\$(basename "$VIRTUAL_ENV")$UNCOLOR)"
     fi
 }
 
@@ -177,7 +180,11 @@ function install_pil {
 }
 
 # Stolen from Gentoo:
-#PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
-PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
+#PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
+LIGHT_GREEN="\[\033[1;32m\]"
+PS1="$LIGHT_GREEN\u@\h\[\033[01;34m\] \
+\w$UNCOLOR\
+$(active_virtualenv)\
+$(parse_git_branch)\n\$ "
 # Save custom PS1 to restore later
-export CCG_PS1="$PS1"
+#export CCG_PS1="$PS1"
