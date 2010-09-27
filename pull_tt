@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DATABASE_NAME="tribune"
+ECHO "PULL LAST DATABASE BACKUP"
+sudo rsync -avz -e "ssh -i $HOME/.ssh/id_rsa" 72.44.36.129:/mnt/mysql/tribune/ /var/lib/mysql/$DATABASE_NAME/
+echo "RESTART MYSQL"
+sudo service mysql restart
