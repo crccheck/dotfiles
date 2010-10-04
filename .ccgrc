@@ -101,15 +101,15 @@ export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 
 # My most common typo.
 # Dear Ubuntu, please stop telling me to "sudo apt-get install sl"
-alias sl=ls
+alias sl=sl -e
 
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias rgrep='rgrep --color=auto'
+alias grep='grep -I --color=auto'
+alias fgrep='fgrep -I --color=auto'
+alias egrep='egrep -I --color=auto'
+alias rgrep='rgrep -I --color=auto'
 
 my_port=8000
 alias dj='python manage.py runserver 0.0.0.0:$my_port'
