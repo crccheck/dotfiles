@@ -1,3 +1,3 @@
 colorscheme inkpot-niran
-set lines=50
-set columns=90
+set lines=80
+set columns=110

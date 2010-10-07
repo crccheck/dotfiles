@@ -102,6 +102,7 @@ export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 # My most common typo.
 # Dear Ubuntu, please stop telling me to "sudo apt-get install sl"
 alias sl=sl -e
+alias vi=gvim
 
 alias mv='mv -iv'
 alias cp='cp -iv'
