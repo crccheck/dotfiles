@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/niran/code/django-1.2.1/django/db'
 let g:netrw_dirhist_2='/home/niran/code/django-1.2.1/django/db/models'
 let g:netrw_dirhist_3='/home/niran/code/django-1.2.1/django/db'
 let g:netrw_dirhist_4='/home/niran/code/django-1.2.1/django/db/models'
 let g:netrw_dirhist_5='/home/niran/code/django-1.2.1/django/db/models/fields'
 let g:netrw_dirhist_6='/home/crc/.vim/plugin'
+let g:netrw_dirhist_7='/mnt/hgfs/dev/texastribune/content/twitter'
