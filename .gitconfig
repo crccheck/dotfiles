@@ -1,22 +1,24 @@
 [color]
-	branch = auto
-	ui = auto
-	diff = auto
-	status = auto
+    branch = auto
+    ui = auto
+    diff = auto
+    status = auto
 [user]
-	name = crccheck
-	email = c@crccheck.com
+    name = crccheck
+    email = c@crccheck.com
 [color "diff"]
-	whitespace = red reverse
+    whitespace = red reverse
 [core]
-	whitespace=fix,-indent-with-non-tabl,trailing-space,cr-at-eol
-
+    whitespace = fix,-indent-with-non-tabl,trailing-space,cr-at-eol
+[apply]
+    whitespace = nowarn
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	lg = log -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    s = status
+    b = branch
+    ba = branch -ra
+    d = diff -b
+    l = log --decorate --pretty=oneline --abbrev-commit
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    derp = reset --hard HEAD
