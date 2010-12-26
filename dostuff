@@ -20,3 +20,9 @@ for f in $( ls -1Ap | egrep ^\\..*[^\/]$ ); do
         exit 1
     fi
 done
+
+if [ -L ~/.vim ]; then
+    rm ~/.vim
+fi
+ln -s .dotfiles/.vim ~/.vim
+
