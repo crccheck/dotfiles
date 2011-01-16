@@ -60,5 +60,6 @@ autocmd InsertLeave * :let @/=""
 
 
 " with vim 7.3
-"  :set colorcolumn=80
-"  :set rnu
+set colorcolumn=80
+set rnu
+set bs=2
