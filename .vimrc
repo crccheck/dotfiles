@@ -4,6 +4,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+" autoindent
+set ai
+"set nosmartindent
+"set cindent
 
 " search
 set incsearch
@@ -11,9 +15,8 @@ set ignorecase
 set smartcase
 
 " scroll offset for some additional context
-set scrolloff=2
+set scrolloff=3
 
-set ai
 set backup
 set guifont=Monospace\ 8
 " show line numbers

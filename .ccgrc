@@ -118,6 +118,7 @@ alias djp='python manage.py runserver_plus 0.0.0.0:$my_port'
 #alias djpl='python manage.py runserver_plus 0.0.0.0:$my_port --settings=local-settings'
 alias djs="python manage.py shell"
 alias djsp="python manage.py shell_plus"
+alias djsql="python manage.py debugsqlshell"
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
