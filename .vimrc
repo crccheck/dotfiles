@@ -43,12 +43,12 @@ map <F1> <Esc>
 map <F1> <Esc>
 
 " use CMD Up/Down to shift a line up/down
-nnoremap <T-Down> :m+<CR>==
-nnoremap <T-Up> :m-2<CR>==
-inoremap <T-Down> <Esc>:m+<CR>==gi
-inoremap <T-Up> <Esc>:m-2<CR>==gi
-vnoremap <T-Down> :m'>+<CR>gv=gv
-vnoremap <T-Up> :m-2<CR>gv=gv
+nnoremap <T-Down> :m+<CR>
+nnoremap <T-Up> :m-2<CR>
+inoremap <T-Down> <Esc>:m+<CR>gi
+inoremap <T-Up> <Esc>:m-2<CR>gi
+vnoremap <T-Down> :m'>+<CR>gv
+vnoremap <T-Up> :m-2<CR>gv
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>
@@ -64,5 +64,6 @@ autocmd InsertLeave * :let @/=""
 
 " with vim 7.3
 set colorcolumn=80
-set rnu
+" BufAdd
+autocmd BufEnter * set relativenumber
 set bs=2

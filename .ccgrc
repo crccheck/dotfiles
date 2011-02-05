@@ -148,6 +148,7 @@ if [ ! -d $WORKON_HOME ]; then
     mkdir -p $WORKON_HOME
 fi
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 
 #UNCOLOR="\[\033[00m\]"
