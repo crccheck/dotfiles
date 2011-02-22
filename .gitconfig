@@ -16,6 +16,7 @@
     s = status
     b = branch
     ba = branch -ra
+    co = checkout
     d = diff -b
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p

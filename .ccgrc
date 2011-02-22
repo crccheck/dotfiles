@@ -102,6 +102,7 @@ export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 alias sl='sl -e'
 alias vi='vim -g'
 
+alias ack='ack-grep'
 #todo alias rm to move shit to /tmp
 alias mv='mv -iv'
 alias cp='cp -iv'
