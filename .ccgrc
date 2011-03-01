@@ -106,11 +106,17 @@ alias ack='ack-grep'
 #todo alias rm to move shit to /tmp
 alias mv='mv -iv'
 alias cp='cp -iv'
+alias ..='cd ..'
 
 alias grep='grep -I --color=auto'
 alias fgrep='fgrep -I --color=auto'
 alias egrep='egrep -I --color=auto'
 alias rgrep='rgrep -I --color=auto'
+
+alias netstat='netstat -natp'
+alias du='du -kh --max-depth=1'
+alias df='df -kTh'
+
 
 my_port=8000
 alias dj='python manage.py runserver 0.0.0.0:$my_port'
