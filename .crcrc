@@ -129,6 +129,8 @@ alias djsql="python manage.py debugsqlshell"
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
+alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
+alias fb="fab -f ~/scripts/fabfile.py"
 
 ###################################################
 ### Platform- or system-specific modifications

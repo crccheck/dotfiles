@@ -104,4 +104,4 @@ alias install="sudo aptitude install"
 alias upgrade="sudo aptitude safe-upgrade"
 alias remove="sudo aptitude remove"
 
-[ -f ~/.ccgrc ] && source ~/.ccgrc
+[ -f ~/.crcrc ] && source ~/.crcrc

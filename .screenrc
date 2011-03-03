@@ -189,3 +189,12 @@ termcapinfo xterm-color 'vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l'
 #
 #caption always "%{Yb} %D %Y-%02m-%02d %0c %{k}|%{G} %l %{k}|%{W} %-w%{+b}%n %t%{-b}%+w"
 #
+
+# http://en.gentoo-wiki.com/wiki/Screen
+# enable shift pageup/pagedown to scroll
+URxvt*secondaryScroll: true
+# clear screen contents when programs exit
+altscreen on
+
+# disable freezing screen
+bind s
