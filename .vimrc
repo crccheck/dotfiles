@@ -9,6 +9,10 @@ set ai
 "set nosmartindent
 "set cindent
 
+" use <Tab> and <S-Tab> to indent/unindent in visual mode
+:vnoremap <Tab> >gv
+:vnoremap <S-Tab> <gv
+
 " search
 set incsearch
 set ignorecase
@@ -35,11 +39,7 @@ set wildmode=longest,list
 set list listchars=tab:▸-,trail:·
 highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 
-" file completion
-set wildmode=longest,list
-
 " F1 means ESC
-map <F1> <Esc>
 map <F1> <Esc>
 
 " use CMD Up/Down to shift a line up/down
@@ -56,11 +56,15 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 " automatically highlight after a search like notepad++
-" this could use more work
+" this could use more work, sometimes i don't want it to clear
 set hlsearch
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
+" tabs
+" ctrl+shift pgup/pgdown moves tabes like gterm
+nnoremap <silent> <C-S-PageUp> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <C-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
 " with vim 7.3
 set colorcolumn=80
