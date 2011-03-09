@@ -95,6 +95,15 @@ esac
 # Python stuff
 export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 
+function f {
+    if [ -z $1 ]; then
+        fab -l
+    else
+        fab $@
+    fi
+}
+
+
 ###################################################
 ### Aliases
 ###################################################
