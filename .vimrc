@@ -43,12 +43,12 @@ highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 map <F1> <Esc>
 
 " use CMD Up/Down to shift a line up/down
-nnoremap <T-Down> :m+<CR>
-nnoremap <T-Up> :m-2<CR>
-inoremap <T-Down> <Esc>:m+<CR>gi
-inoremap <T-Up> <Esc>:m-2<CR>gi
-vnoremap <T-Down> :m'>+<CR>gv
-vnoremap <T-Up> :m-2<CR>gv
+nnoremap <C-Down> :m+<CR>
+nnoremap <C-Up> :m-2<CR>
+inoremap <C-Down> <Esc>:m+<CR>gi
+inoremap <C-Up> <Esc>:m-2<CR>gi
+vnoremap <C-Down> :m'>+<CR>gv
+vnoremap <C-Up> :m-2<CR>gv
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>
