@@ -17,6 +17,7 @@
     b = branch
     ba = branch -ra
     co = checkout
+    caa = commit -a --amend -C HEAD
     d = diff -b
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p
