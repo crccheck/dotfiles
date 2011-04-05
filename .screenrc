@@ -192,7 +192,7 @@ termcapinfo xterm-color 'vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l'
 
 # http://en.gentoo-wiki.com/wiki/Screen
 # enable shift pageup/pagedown to scroll
-URxvt*secondaryScroll: true
+#URxvt*secondaryScroll: true
 # clear screen contents when programs exit
 altscreen on
 
