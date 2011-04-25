@@ -47,6 +47,7 @@ prepend_path_if_exists()
 ### PATH-type list variables
 ###################################################
 
+prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
 prepend_path PATH /usr/local/bin
 prepend_path PATH $HOME/usr/bin
 prepend_path PATH $HOME/bin
@@ -126,6 +127,8 @@ alias netstat='netstat -natp'
 alias du='du -kh --max-depth=1'
 alias df='df -kTh'
 
+alias wget='wget --no-check-certificate'
+
 
 my_port=8000
 alias dj='python manage.py runserver 0.0.0.0:$my_port'
@@ -139,6 +142,7 @@ alias djsql="python manage.py debugsqlshell"
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
+alias yahoo="ping -i 10 www.yahoo.com"
 alias fb="fab -f ~/scripts/fabfile.py"
 
 ###################################################
