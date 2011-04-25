@@ -51,9 +51,13 @@ function s {
 
 # jump to bookmark
 function g {
-    check_help $1
-    source $SDIRS
-    cd "$(eval $(echo echo $(echo \$DIR_$1)))"
+    if [ -z $1]; then
+        list_bookmarks
+    else
+        check_help $1
+        source $SDIRS
+        cd "$(eval $(echo echo $(echo \$DIR_$1)))"
+    fi
 }
 
 # print bookmark
@@ -87,7 +91,7 @@ function check_help {
 }
 
 # list bookmarks with dirnam
-function gl {
+function list_bookmarks {
     check_help $1
     source $SDIRS
         
