@@ -1,0 +1,3 @@
+[submodule "bashmarks"]
+	path = bashmarks
+	url = git@github.com:crccheck/bashmarks.git

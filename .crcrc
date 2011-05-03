@@ -109,6 +109,7 @@ function f {
 ### Aliases
 ###################################################
 
+alias l='ls -la'
 alias sl='sl -e'
 alias vi='vim -g'
 

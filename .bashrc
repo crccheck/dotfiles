@@ -104,5 +104,5 @@ alias install="sudo aptitude install"
 alias upgrade="sudo aptitude safe-upgrade"
 alias remove="sudo aptitude remove"
 
+[ -d ~/.dotfiles/bashmarks ] && source ~/.dotfiles/bashmarks/bashmarks.sh
 [ -f ~/.crcrc ] && source ~/.crcrc
-[ -f ~/.dotfiles/bashmarks.sh ] && source ~/.dotfiles/bashmarks.sh
