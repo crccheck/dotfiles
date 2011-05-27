@@ -65,6 +65,8 @@ autocmd InsertLeave * :let @/=""
 " ctrl+shift pgup/pgdown moves tabes like gterm
 nnoremap <silent> <C-S-PageUp> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
+inoremap <silent> <C-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>gi
+inoremap <silent> <C-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
 
 " with vim 7.3
 set colorcolumn=80
