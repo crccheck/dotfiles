@@ -24,3 +24,5 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     derp = reset --hard HEAD
+    vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; vi -gp `f`"
+
