@@ -113,7 +113,9 @@ alias l='ls -la'
 alias sl='sl -e'
 alias vi='vim -g'
 
-alias ack='ack-grep'
+
+# to install ack-grep as ack instead of ack-grep:
+# sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 #todo alias rm to move shit to /tmp
 alias mv='mv -iv'
 alias cp='cp -iv'
