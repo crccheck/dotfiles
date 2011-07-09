@@ -101,3 +101,14 @@ endif
 " search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" NERDTree
+
+let NERDTreeMinimalUI=1
+" let NERDTreeWinSize=35
+" let NERDTreeShowBookmarks=1
+
+nnoremap <silent> <C-Tab> :execute 'NERDTreeToggle ' . getcwd()<CR>
+
+" auto start NERDTree
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
