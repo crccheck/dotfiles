@@ -1,6 +1,26 @@
 " crccheck's vimrc
-" pep8 tabs
-set tabstop=4
+"
+" all about maps:
+" map KEY_SEQUENCE OPERATION
+" map <F5> dd
+"
+" map   normal, visual, operator-pending
+" map!  insert, command-line
+" nmap  normal
+" vmap  visual
+" omap  operator-pending
+" cmap  command-line
+" imap  insert
+" lmap  insert, command-line, lang-arg
+"
+" add 'nore' to prevent recursion
+"
+" nnoremap
+" inoremap
+" vnoremap
+" ...
+
+" pep8 tabs set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
@@ -51,9 +71,11 @@ vnoremap <C-Down> :m'>+<CR>gv
 vnoremap <C-Up> :m-2<CR>gv
 
 " Use CTRL-S for saving, also in Insert mode
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
+if has("gui_running")
+    noremap <C-S> :update<CR>
+    vnoremap <C-S> <C-C>:update<CR>
+    inoremap <C-S> <C-O>:update<CR>
+endif
 
 " automatically highlight after a search like notepad++
 " this could use more work, sometimes i don't want it to clear
@@ -69,10 +91,13 @@ inoremap <silent> <C-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2
 inoremap <silent> <C-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
 
 " with vim 7.3
-set colorcolumn=80
-" BufAdd
-autocmd BufEnter * set relativenumber
-set bs=2
+if version >= 730
+    set colorcolumn=80
+    " BufAdd
+    autocmd BufEnter * set relativenumber
+    set bs=2
+endif
 
 " search and replace word under cursor
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
