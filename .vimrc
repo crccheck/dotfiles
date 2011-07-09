@@ -73,3 +73,6 @@ set colorcolumn=80
 " BufAdd
 autocmd BufEnter * set relativenumber
 set bs=2
+
+" search and replace word under cursor
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
