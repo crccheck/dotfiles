@@ -52,6 +52,8 @@ prepend_path PATH /usr/local/bin
 prepend_path PATH $HOME/usr/bin
 prepend_path PATH $HOME/bin
 prepend_path PATH $HOME/local/node/bin
+append_path PATH /var/lib/gems/bin
+
 for i in $HOME/opt/*/bin
 do
     prepend_path_if_exists PATH $i
