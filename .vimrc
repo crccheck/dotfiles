@@ -100,12 +100,17 @@ set bs=2
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " NERDTree
-
+let NERDChristmasTree=1
 let NERDTreeMinimalUI=1
-" let NERDTreeWinSize=35
-" let NERDTreeShowBookmarks=1
-
-nnoremap <silent> <C-Tab> :execute 'NERDTreeToggle ' . getcwd()<CR>
+" single click opens directories
+let NERDTreeMouseMode=2
+let NERDTreeQuitOnOpen=1
+if has("gui_running")
+    let NERDTreeDirArrows=1
+endif
+nnoremap <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
+" nnoremap <silent> <C-S-Tab> :execute 'NERDTreeToggle ' . getcwd()<CR>
+autocmd BufEnter NERD_tree_* NERDTreeFind
 
 " auto start NERDTree
 " autocmd VimEnter * NERDTree
