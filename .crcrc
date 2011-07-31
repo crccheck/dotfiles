@@ -183,6 +183,12 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 #COLOR="\[\033[1;36m\]"
 
 ###################################################
+### RVM
+###################################################
+# This loads RVM into a shell session
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+###################################################
 ### git prompt hack
 ###################################################
 # http://henrik.nyh.se/2008/12/git-dirty-prompt

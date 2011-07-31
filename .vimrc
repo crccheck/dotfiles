@@ -24,8 +24,7 @@
 set shiftwidth=4
 set expandtab
 set smarttab
-" autoindent
-set ai
+set autoindent
 "set nosmartindent
 "set cindent
 
@@ -56,7 +55,7 @@ set nowrap
 set wildmode=longest,list
 "        trailing space for test       
 " identify and color special keys    
-set list listchars=tab:▸-,trail:·
+set list listchars=tab:▸-,trail:·,nbsp:·
 highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 
 " F1 means ESC

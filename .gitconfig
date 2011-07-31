@@ -19,6 +19,7 @@
     co = checkout
     caa = commit -a --amend -C HEAD
     d = diff -b
+    fa = fetch --all
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
