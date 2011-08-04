@@ -114,3 +114,30 @@ autocmd BufEnter NERD_tree_* NERDTreeFind
 " auto start NERDTree
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
+
+" code folding
+" TODO better colors, make fold levels work on whole buffer
+set foldmethod=indent
+set foldminlines=3
+set foldnestmax=4
+set nofoldenable
+" remove all folds
+inoremap <F12> <C-O>zn
+nnoremap <F12> zn
+onoremap <F12> <C-C>zn
+vnoremap <F12> zn
+" fold 1
+inoremap <silent> <F9> :set foldlevel=0<CR><C-O>zA
+nnoremap <silent> <F9> :set foldlevel=0<CR>zA
+onoremap <silent> <F9> :set foldlevel=0<CR><C-C>zA
+vnoremap <silent> <F9> :set foldlevel=0<CR>zA
+" fold 2
+inoremap <silent> <F10> :set foldlevel=1<CR><C-O>zA
+nnoremap <silent> <F10> :set foldlevel=1<CR>zA
+onoremap <silent> <F10> :set foldlevel=1<CR><C-C>zA
+vnoremap <silent> <F10> :set foldlevel=1<CR>zA
+" fold 3
+inoremap <silent> <F11> :set foldlevel=2<CR><C-O>zA
+nnoremap <silent> <F11> :set foldlevel=2<CR>zA
+onoremap <silent> <F11> :set foldlevel=2<CR><C-C>zA
+vnoremap <silent> <F11> :set foldlevel=2<CR>zA
