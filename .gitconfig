@@ -22,6 +22,7 @@
     fa = fetch --all
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p
+    ls = log --stat
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     derp = reset --hard HEAD

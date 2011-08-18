@@ -48,6 +48,7 @@ prepend_path_if_exists()
 ###################################################
 
 prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
+prepend_path PATH $HOME/.gem/ruby/1.8/bin
 prepend_path PATH /usr/local/bin
 prepend_path PATH $HOME/usr/bin
 prepend_path PATH $HOME/bin
