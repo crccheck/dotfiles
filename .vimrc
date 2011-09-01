@@ -58,6 +58,10 @@ set wildmode=longest,list
 set list listchars=tab:▸-,trail:·,nbsp:·
 highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 
+" status line
+set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set laststatus=2
+
 " F1 means ESC
 map <F1> <Esc>
 

@@ -47,13 +47,10 @@ prepend_path_if_exists()
 ### PATH-type list variables
 ###################################################
 
-prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
-prepend_path PATH $HOME/.gem/ruby/1.8/bin
 prepend_path PATH /usr/local/bin
 prepend_path PATH $HOME/usr/bin
 prepend_path PATH $HOME/bin
 prepend_path PATH $HOME/local/node/bin
-append_path PATH /var/lib/gems/bin
 
 for i in $HOME/opt/*/bin
 do
@@ -188,6 +185,16 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 ###################################################
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+
+###################################################
+### Ruby Gems
+###################################################
+
+export GEM_HOME=$HOME/.gem/ruby/1.8
+prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
+prepend_path PATH $GEM_HOME/bin
+append_path PATH /var/lib/gems/bin
 
 ###################################################
 ### git prompt hack
