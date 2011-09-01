@@ -4,3 +4,7 @@ if exists('b:did_indent') && b:did_indent
 endif
 
 setlocal indentexpr=scss_indent#GetIndent(v:lnum)
+
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal tabstop=2
