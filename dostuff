@@ -5,6 +5,7 @@ if [ -z $currentpath ]; then
     exit 1
 fi
 
+# link dotfiles
 for f in $( ls -1Ap | egrep ^\\..*[^\/]$ ); do
     if   [ -L ~/$f ]; then
         echo ".remove existing symlink"
@@ -21,8 +22,18 @@ for f in $( ls -1Ap | egrep ^\\..*[^\/]$ ); do
     fi
 done
 
+# link .vim
 if [ -L ~/.vim ]; then
     rm ~/.vim
 fi
 ln -s .dotfiles/.vim ~/.vim
 
+# install django helper
+dj_path=$HOME/bin/django
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+fi
+if [ -f $dj_path ]; then
+    rm $dj_path
+fi
+ln -s `pwd`/django $dj_path
