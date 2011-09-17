@@ -84,7 +84,7 @@ endif
 nnoremap <Leader>a ggVG"+y<CR><C-o><C-o>
 
 " automatically compile SCSS files on write
-autocmd BufWritePost,FileWritePost *.scss :silent !sass --scss --update --stop-on-error <afile>
+" autocmd BufWritePost,FileWritePost *.scss :silent !sass --scss --update --stop-on-error <afile>
 
 " automatically highlight after a search like notepad++
 " this could use more work, sometimes i don't want it to clear
