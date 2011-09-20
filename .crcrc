@@ -135,13 +135,13 @@ alias wget='wget --no-check-certificate'
 
 
 my_port=8000
-alias dj='python manage.py runserver 0.0.0.0:$my_port'
-alias djp='python manage.py runserver_plus 0.0.0.0:$my_port'
+alias dj='django runserver 0.0.0.0:$my_port'
+alias djp='django runserver_plus 0.0.0.0:$my_port'
 #alias djl='python manage.py runserver 0.0.0.0:$my_port --settings=local-settings'
 #alias djpl='python manage.py runserver_plus 0.0.0.0:$my_port --settings=local-settings'
-alias djs="python manage.py shell"
-alias djsp="python manage.py shell_plus"
-alias djsql="python manage.py debugsqlshell"
+alias djs="django shell"
+alias djsp="django shell_plus"
+alias djsql="django debugsqlshell"
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
