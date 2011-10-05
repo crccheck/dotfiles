@@ -231,3 +231,25 @@ PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$
 # Save custom PS1 to restore later
 #export CCG_PS1="$PS1"
 export PS1
+
+function _pingbaby {
+    # TODO scale=5
+    # TODO delay=10
+    local out=$(ping -q -c 1 $1)
+    local time=$(echo $out | awk -F/ 'END{print $5}')
+    if [ $time ]; then
+        local ticks=$(echo $time / 5 | bc)
+        for i in $(seq $ticks); do echo -n '▄'; done
+        echo " $time"
+    else
+        echo " *  p i n g   t i m e o u t  *"
+    fi
+    sleep 10
+    _pingbaby $1
+}
+
+function pingbaby {
+    local host='www.yahoo.com'
+    echo Pinging $host
+    _pingbaby $host
+}
