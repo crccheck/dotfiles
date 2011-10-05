@@ -118,6 +118,9 @@ if has("gui_running")
     let NERDTreeDirArrows=1
 endif
 nnoremap <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
+inoremap <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
+onoremap <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
+vnoremap <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
 " nnoremap <silent> <C-S-Tab> :execute 'NERDTreeToggle ' . getcwd()<CR>
 autocmd BufEnter NERD_tree_* NERDTreeFind
 
