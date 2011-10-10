@@ -253,3 +253,12 @@ function pingbaby {
     echo Pinging $host
     _pingbaby $host
 }
+
+# mktmpenv doesn't work too well for me
+function tmpenv {
+    deactivate
+    rmvirtualenv tmp
+    mkvirtualenv tmp --no-site-packages
+    workon tmp
+    pip freeze
+}
