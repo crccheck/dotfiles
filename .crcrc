@@ -165,6 +165,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
     # Screw it. Just reset the whole thing, cuz the default works.
     unset MANPATH
+
+    source $HOME/.dotfiles/git-completion.bash
 else
     alias ls='ls -F --color=auto'
 fi

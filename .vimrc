@@ -99,11 +99,13 @@ nnoremap <silent> <C-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 inoremap <silent> <C-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>gi
 inoremap <silent> <C-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
 
-" with vim 7.3
-set colorcolumn=80
-" BufAdd
-autocmd BufEnter * set relativenumber
-set bs=2
+if version >= 730
+    " with vim 7.3
+    set colorcolumn=80
+    " BufAdd
+    autocmd BufEnter * set relativenumber
+    set bs=2
+endif
 
 " search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -154,3 +156,5 @@ inoremap <silent> <F11> :set foldlevel=2<CR><C-O>zA
 nnoremap <silent> <F11> :set foldlevel=2<CR>zA
 onoremap <silent> <F11> :set foldlevel=2<CR><C-C>zA
 vnoremap <silent> <F11> :set foldlevel=2<CR>zA
+
+au BufRead,BufNewFile Vagrantfile set filetype=ruby

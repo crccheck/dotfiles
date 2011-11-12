@@ -10,6 +10,7 @@
     whitespace = red reverse
 [core]
     whitespace = fix,-indent-with-non-tabl,trailing-space,cr-at-eol
+	editor = vi
 [apply]
     whitespace = nowarn
 [alias]
