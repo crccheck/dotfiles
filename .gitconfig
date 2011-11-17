@@ -4,7 +4,7 @@
     diff = auto
     status = auto
 [user]
-    name = crccheck
+	name = crccheck
     email = c@crccheck.com
 [color "diff"]
     whitespace = red reverse

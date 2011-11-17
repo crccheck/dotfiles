@@ -166,7 +166,14 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # Screw it. Just reset the whole thing, cuz the default works.
     unset MANPATH
 
+    # xcode 4 hack, to get pycrypto to install
+    export ARCHFLAGS='-arch i386 -arch x86_64'
+
     source $HOME/.dotfiles/git-completion.bash
+
+    alias vi='mvim'
+    export EDITOR=vi
+    export VISUAL=mvim
 else
     alias ls='ls -F --color=auto'
 fi
