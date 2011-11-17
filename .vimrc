@@ -99,7 +99,8 @@ nnoremap <silent> <C-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 inoremap <silent> <C-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>gi
 inoremap <silent> <C-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
 
-if version >= 730
+" if version >= 730 does not work
+if exists('+colorcolumn')
     " with vim 7.3
     set colorcolumn=80
     " BufAdd
