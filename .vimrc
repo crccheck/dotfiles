@@ -99,6 +99,17 @@ nnoremap <silent> <C-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 inoremap <silent> <C-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>gi
 inoremap <silent> <C-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
 
+
+" hack because on my Mac I have L-Ctrl mapped to Meta
+nnoremap <silent> <M-S-PageUp> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <M-S-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
+inoremap <silent> <M-S-PageUp> <Esc>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>gi
+inoremap <silent> <M-S-PageDown> <Esc>:execute 'silent! tabmove ' . tabpagenr()<CR>gi
+nnoremap <silent> <M-PageUp> :tabp<CR>
+inoremap <silent> <M-PageUp> <Esc> :tabp<CR>gi
+nnoremap <silent> <M-PageDown> :tabn<CR>
+inoremap <silent> <M-PageDown> <Esc> :tabn<CR>gi
+
 " if version >= 730 does not work
 if exists('+colorcolumn')
     " with vim 7.3
