@@ -170,3 +170,6 @@ onoremap <silent> <F11> :set foldlevel=2<CR><C-C>zA
 vnoremap <silent> <F11> :set foldlevel=2<CR>zA
 
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
+
+" vim-unbundle
+runtime bundle/vim-unbundle/unbundle.vim
