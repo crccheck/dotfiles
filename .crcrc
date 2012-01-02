@@ -50,7 +50,6 @@ prepend_path_if_exists()
 prepend_path PATH /usr/local/bin
 prepend_path PATH $HOME/usr/bin
 prepend_path PATH $HOME/bin
-prepend_path PATH $HOME/local/node/bin
 
 for i in $HOME/opt/*/bin
 do
@@ -104,6 +103,10 @@ function f {
         fab $@
     fi
 }
+
+# Node.js
+export NODE_PATH=$HOME/local/node
+prepend_path PATH $HOME/local/node/bin
 
 
 ###################################################
