@@ -41,7 +41,7 @@
 	<key>DimInactiveSplitPanes</key>
 	<true/>
 	<key>DimOnlyText</key>
-	<false/>
+	<true/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
 	<key>EnableGrowl</key>
@@ -288,7 +288,7 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>427 353 214 312 0 0 1920 1058 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>349 232 924 485 0 0 1920 1058 </string>
+	<string>494 166 924 485 0 0 1920 1058 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>598 486 384 129 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -458,7 +458,7 @@
 				<real>0.0</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string></string>
+			<string>/Users/crc/Desktop/gothik_full.jpg</string>
 			<key>Blink Allowed</key>
 			<true/>
 			<key>Blinking Cursor</key>
@@ -1056,15 +1056,15 @@
 				<real>0.0</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string></string>
+			<string>/Users/crc/Desktop/tartan-monochroma-alt.jpg</string>
 			<key>Blink Allowed</key>
-			<false/>
+			<true/>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
 			<false/>
 			<key>Blur Radius</key>
-			<real>2</real>
+			<real>12.442737579345703</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1079,7 +1079,7 @@
 			<key>Close Sessions On End</key>
 			<true/>
 			<key>Columns</key>
-			<integer>80</integer>
+			<integer>100</integer>
 			<key>Command</key>
 			<string></string>
 			<key>Cursor Color</key>
@@ -1126,7 +1126,7 @@
 				<real>0.73333334922790527</real>
 			</dict>
 			<key>Guid</key>
-			<string>3A6112D3-1CF9-4286-9AA3-7ACB7636E559</string>
+			<string>4B996E63-084C-446B-93DD-F65178B6193E</string>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>Idle Code</key>
@@ -1315,7 +1315,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Test</string>
+			<string>Default-vag</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 12</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -1333,7 +1333,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>0</integer>
 			<key>Scrollback With Status Bar</key>
 			<false/>
 			<key>Scrollback in Alternate Screen</key>
@@ -1471,13 +1471,13 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm</string>
+			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
-			<false/>
+			<true/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -1531,7 +1531,7 @@
 	<key>SmartPlacement</key>
 	<true/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.34198719263076782</real>
+	<real>0.44775640964508057</real>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
