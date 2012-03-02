@@ -4,13 +4,13 @@
     diff = auto
     status = auto
 [user]
-	name = crccheck
+    name = crccheck
     email = c@crccheck.com
 [color "diff"]
     whitespace = red reverse
 [core]
     whitespace = fix,-indent-with-non-tabl,trailing-space,cr-at-eol
-	editor = vi
+    editor = vi
 [apply]
     whitespace = nowarn
 [alias]
@@ -28,6 +28,7 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     derp = reset --hard HEAD
     vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; vi -gp `f`"
+    pom = pull --rebase origin master
 
 [merge]
-	tool = meld
+    tool = meld
