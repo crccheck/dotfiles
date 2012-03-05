@@ -277,3 +277,13 @@ function tmpenv {
     workon tmp
     pip freeze
 }
+
+# latest can be downloaded: http://standards.ieee.org/develop/regauth/oui/oui.txt
+function mac {
+    OUI=$HOME/.dotfiles/resources/oui.txt
+    if [ -z $1 ]; then
+        echo "Missing Parameter XX:XX:XX or xxxxxx"
+    else
+        grep -i $1 $OUI
+    fi
+}
