@@ -174,9 +174,9 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     source $HOME/.dotfiles/git-completion.bash
 
-    alias vi='mvim'
     export EDITOR=vi
-    export VISUAL=mvim
+    export VISUAL=subl
+    alias vi=$VISUAL
 else
     alias ls='ls -F --color=auto'
 fi
