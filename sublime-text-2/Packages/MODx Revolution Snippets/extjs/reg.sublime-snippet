@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[Ext.reg('${1:myclass-window-name}', ${2:MyClass.window.Name});]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>extReg</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+</snippet>

@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[${1:${2:Namespace}.${3:window/grid/panel/tree/page/combo/config}.${4:ClassName}} = function (config) {
+	config = config || {};
+	Ext.applyIf(config, {
+		title: ${5:title}
+		${6:,url: ${7:connectorUrl}}
+		${8:,fileUpload: true}
+${9:		,baseParams: {
+			${10:action: ${11:'create'}}
+		\}}
+		,fields: [${12:extText$0}]
+	});
+	${1:${2:Namespace}.${3:window/grid/panel/tree/page/combo/config}.${4:ClassName}}.superclass.constructor.call(this, config);
+};]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>extFun</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+</snippet>

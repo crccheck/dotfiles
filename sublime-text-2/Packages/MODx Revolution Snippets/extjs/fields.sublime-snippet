@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[{
+	xtype: '${1:textfield}'
+	,fieldLabel: '${2:label}'
+	,name: '${3:name}'
+	,anchor: '${4:100%}'
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>extText</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+</snippet>

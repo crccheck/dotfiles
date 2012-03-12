@@ -1,0 +1,18 @@
+{
+	"auto_upgrade_last_run": 1330535333,
+	"installed_packages":
+	[
+		"Djaneiro",
+		"MODx Revolution Snippets",
+		"Package Control",
+		"SCSS",
+		"SublimeBlockCursor",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"VintageEx"
+	],
+	"repositories":
+	[
+		"https://github.com/netpro2k/SublimeBlockCursor"
+	]
+}

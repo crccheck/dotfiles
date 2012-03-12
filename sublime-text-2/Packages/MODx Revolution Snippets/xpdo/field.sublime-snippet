@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[<field key="${1:}" dbtype="${2:varchar}"${3: precision="${4:160}"}${5: attributes="${6:unsigned}"} phptype="${7:string}" null="${8:false}" default="${9:}" />]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>field</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[<composite alias="${1:Alias}" class="${2:ClassName}" local="${3:local}" foreign="${4:id}" cardinality="${5:one|many}" owner="${6:foreign|local}" />]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>composite</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
