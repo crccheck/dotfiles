@@ -68,6 +68,10 @@
     // If true, when the file is saved any errors will appear in a popup list
     "sublimelinter_popup_errors_on_save": false,
 
+    // Javascript linter: "gjslint" to use the closure javascript linter (if available),
+    // or "jshint" to use the built in jshint linter.
+    "javascript_linter": "jshint",
+
     // jshint: options for linting JavaScript. See http://jshint.com/#docs for more info.
     // By deault, eval is allowed.
     "jshint_options":
@@ -79,6 +83,18 @@
         "trailing": true,
         "sub": true
     },
+
+    // A list of command line options to send to gjslint. --nobeep is always sent.
+    "gjslint_options":
+    [
+    ],
+
+    // A list of gjslint error numbers to ignore. The list of error codes is here:
+    // http://closure-linter.googlecode.com/svn/trunk/closure_linter/errors.py
+    "gjslint_ignore":
+    [
+        110  // line too long
+    ],
 
     // A list of pep8 error numbers to ignore. By default "line too long" errors are ignored.
     // The list of error codes is in this file: https://github.com/jcrocholl/pep8/blob/master/pep8.py.
