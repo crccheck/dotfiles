@@ -129,5 +129,11 @@
     "pyflakes_ignore_import_*": true,
 
     // Objective-J: if true, non-ascii characters are flagged as an error.
-    "sublimelinter_objj_check_ascii": false
+    "sublimelinter_objj_check_ascii": false,
+
+    // Set to true to highlight annotations
+    "sublimelinter_notes": false,
+
+    // The set of annotation phrases to highlight
+    "annotations": ["TODO", "README", "FIXME"]
 }

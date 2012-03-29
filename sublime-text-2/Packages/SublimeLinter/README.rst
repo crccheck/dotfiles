@@ -54,12 +54,12 @@ SublimeLinter runs in one of three modes, which is determined by the "sublimelin
 
 Within a file whose language/syntax is supported by SublimeLinter, you can control SublimeLinter via the Command Palette (Command+Shift+P on OS X, Control+Shift+P on Linux/Windows). The available commands are:
 
-* **SublimeLinter: Lint Current File** — Lints the current file, highlights any errors and displays how many errors were found.
-* **SublimeLinter: Show Error List** — Lints the current file, highlights any errors and displays a quick panel with any errors that are found. Selecting an item from the quick panel jumps to that line.
-* **SublimeLinter: Enable Background Linting** — Enables background linting mode for the current view and lints it.
-* **SublimeLinter: Disable Background Linting** — Disables background linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Enable Load-Save Linting** — Enables load-save linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Reset** — Clears all lint errors and sets the linting mode to the value in the SublimeLinter.sublime-settings file.
+* **SublimeLinter: Lint Current File** - Lints the current file, highlights any errors and displays how many errors were found.
+* **SublimeLinter: Show Error List** - Lints the current file, highlights any errors and displays a quick panel with any errors that are found. Selecting an item from the quick panel jumps to that line.
+* **SublimeLinter: Enable Background Linting** - Enables background linting mode for the current view and lints it.
+* **SublimeLinter: Disable Background Linting** - Disables background linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Enable Load-Save Linting** - Enables load-save linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Reset** - Clears all lint errors and sets the linting mode to the value in the SublimeLinter.sublime-settings file.
 
 Depending on the file and the current state of background enabling, some of the commands will not be available.
 
@@ -91,15 +91,15 @@ Linter-specific notes
 ~~~~~~~~~~~~~~~~~~~~~
 Following are notes specific to individual linters that you should be aware of:
 
-* **JavaScript** – If the "javascript_linter" setting is "jshint", this linter runs `jshint <http://jshint.org>`_ using JavaScriptCore on Mac OS X or node.js on other platforms, which can be downloaded from `the node.js site <http://nodejs.org/#download>`. After installation, if node cannot be found by SublimeLinter, you may have to set the path to node in the "sublimelinter\_executable\_map" setting. See "Configuring" below for info on SublimeLinter settings.
+* **JavaScript** - If the "javascript_linter" setting is "jshint", this linter runs `jshint <http://jshint.org>`_ using JavaScriptCore on Mac OS X or node.js on other platforms, which can be downloaded from `the node.js site <http://nodejs.org/#download>`. After installation, if node cannot be found by SublimeLinter, you may have to set the path to node in the "sublimelinter\_executable\_map" setting. See "Configuring" below for info on SublimeLinter settings.
 
   If the "javascript_linter" setting is "gjslint", this linter runs the `closure linter (gjslint) <https://developers.google.com/closure/utilities/docs/linter_howto>`_. After installation, if gjslint cannot be found by SublimeLinter, you may have to set the path to gjslint in the "sublimelinter\_executable\_map" setting.
 
   You may want to modify the options passed to jshint or gjslint. This can be done globally or on a per-project basis by using the **jshint_options** or **gjslint_options** setting. Refer to the jshint.org site or run ``gjslint --help`` for more information on the configuration options available.
 
-* **ruby** – If you are using rvm or rbenv, you will probably have to specify the full path to the ruby you are using in the ``sublimelinter_executable_map`` setting. See "Configuring" below for more info.
+* **ruby** - If you are using rvm or rbenv, you will probably have to specify the full path to the ruby you are using in the ``sublimelinter_executable_map`` setting. See "Configuring" below for more info.
 
-* **java** – Because it uses ``javac`` to do linting, each time you run the linter the entire dependency graph of the current file will be checked. Depending on the number of classes you import, this can be **extremely** slow. Also note that you **must** provide the ``-sourcepath``, ``-classpath``, ``-Xlint`` and ``{filename}`` arguments to ``javac`` in your per-project settings. See "Per-project settings" below for more information.
+* **java** - Because it uses ``javac`` to do linting, each time you run the linter the entire dependency graph of the current file will be checked. Depending on the number of classes you import, this can be **extremely** slow. Also note that you **must** provide the ``-sourcepath``, ``-classpath``, ``-Xlint`` and ``{filename}`` arguments to ``javac`` in your per-project settings. See "Per-project settings" below for more information.
 
 Configuring
 -----------
@@ -128,8 +128,8 @@ SublimeLinter supports per-project/per-language settings. This is useful if a li
 
 Within the "SublimeLinter" object, you can add a settings object for each language. The language name must match the language item in the linter's CONFIG object, which can be found in the linter's source file in the SublimeLinter/sublimelinter/modules folder. Each language can have two settings:
 
-* "working_directory" – If present and a valid absolute directory path, the working directory is set to this path before the linter executes. This is useful if you are providing linter arguments that contain paths and you want to use working directory-relative paths instead of absolute paths.
-* "lint_args" – If present, it must be a sequence of string arguments to pass to the linter. If your linter expects a filename as an argument, use the argument "{filename}" as a placeholder. Note that if you provide this item, you are responsible for passing **all** required arguments to the linter.
+* "working_directory" - If present and a valid absolute directory path, the working directory is set to this path before the linter executes. This is useful if you are providing linter arguments that contain paths and you want to use working directory-relative paths instead of absolute paths.
+* "lint_args" - If present, it must be a sequence of string arguments to pass to the linter. If your linter expects a filename as an argument, use the argument "{filename}" as a placeholder. Note that if you provide this item, you are responsible for passing **all** required arguments to the linter.
 
 For example, let's say we are editing a Java project and want to use the "java" linter, which requires a source path and class path. In addition, we want to ignore serialization errors. Our project settings might look like this::
 

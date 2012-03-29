@@ -60,6 +60,8 @@ ALL_SETTINGS = [
     'pyflakes_ignore',
     'pyflakes_ignore_import_*',
     'sublimelinter_objj_check_ascii',
+    'sublimelinter_notes',
+    'annotations'
 ]
 
 WHITESPACE_RE = re.compile(r'\s+')
@@ -242,6 +244,7 @@ def erase_lint_marks(view):
     view.erase_regions('lint-outlines-illegal')
     view.erase_regions('lint-outlines-violation')
     view.erase_regions('lint-outlines-warning')
+    view.erase_regions('lint-annotations')
 
 
 def get_lint_regions(view, reverse=False, coalesce=False):
@@ -269,6 +272,7 @@ def get_lint_regions(view, reverse=False, coalesce=False):
     outlines = view.get_regions('lint-outlines-illegal')
     outlines.extend(view.get_regions('lint-outlines-violation'))
     outlines.extend(view.get_regions('lint-outlines-warning'))
+    outlines.extend(view.get_regions('lint-annotations'))
 
     # If an outline region contains an underline region, use only the underline
     regions = underlines
@@ -327,14 +331,14 @@ def select_linter(view, ignore_disabled=False):
     lc_syntax = syntax.lower()
     language = None
     linter = None
+    syntaxMap = view.settings().get('sublimelinter_syntax_map', {})
 
-    if lc_syntax in LINTERS:
+    if syntax in syntaxMap:
+        language = syntaxMap[syntax]
+    elif lc_syntax in syntaxMap:
+        language = syntaxMap[lc_syntax]
+    elif lc_syntax in LINTERS:
         language = lc_syntax
-    else:
-        syntaxMap = view.settings().get('sublimelinter_syntax_map', {})
-
-        if syntax in syntaxMap:
-            language = syntaxMap[syntax]
 
     if language:
         if ignore_disabled:

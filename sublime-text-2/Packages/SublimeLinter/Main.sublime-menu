@@ -20,6 +20,11 @@
                                 "args": {"file": "${packages}/SublimeLinter/README.rst"},
                                 "caption": "README"
                             },
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/SublimeLinter/changelog.txt"},
+                                "caption": "Change Log"
+                            },
                             { "caption": "-" },
                             {
                                 "command": "open_file",

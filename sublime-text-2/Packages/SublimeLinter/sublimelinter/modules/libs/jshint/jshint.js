@@ -222,8 +222,8 @@
  send, serialize, sessionStorage, setInterval, setTimeout, setter, setterToken, shift, slice,
  smarttabs, sort, spawn, split, stack, status, start, strict, sub, substr, supernew, shadow,
  supplant, sum, sync, test, toLowerCase, toString, toUpperCase, toint32, token, top, trailing,
- type, typeOf, Uint16Array, Uint32Array, Uint8Array, undef, undefs, unused, urls, validthis,
- value, valueOf, var, version, WebSocket, white, window, Worker, wsh*/
+ type, typeOf, Uint16Array, Uint32Array, Uint8Array, undef, undefs, unsafe, unused, urls, validthis,
+ value, valueOf, var, version, WebSocket, withstmt, white, window, Worker, wsh*/
 
 /*global exports: false */
 
@@ -320,12 +320,24 @@ var JSHINT = (function () {
             supernew    : true, // if `new function () { ... };` and `new Object;`
                                 // should be tolerated
             trailing    : true, // if trailing whitespace rules apply
+            unsafe      : true, // if "unsafe" characters should be allowed
             validthis   : true, // if 'this' inside a non-constructor function is valid.
                                 // This is a function scoped option only.
+            withstmt    : true, // if with statements should be allowed
             white       : true, // if strict whitespace rules apply
             wsh         : true  // if the Windows Scripting Host environment globals
                                 // should be predefined
         },
+
+        // These are the JSHint options that can take any value
+        // (we use this object to detect invalid options)
+        valOptions = {
+            maxlen: false,
+            indent: false,
+            maxerr: false,
+            predef: false
+        },
+
 
         // browser contains a set of global names which are commonly provided by a
         // web browser environment.
@@ -786,6 +798,12 @@ var JSHINT = (function () {
         return Object.prototype.hasOwnProperty.call(object, name);
     }
 
+    function checkOption(name, t) {
+        if (valOptions[name] === undefined && boolOptions[name] === undefined) {
+            warning("Bad option: '" + name + "'.", t);
+        }
+    }
+
 // Provide critical ES5 functions to ES3.
 
     if (typeof Array.isArray !== 'function') {
@@ -896,6 +914,7 @@ var JSHINT = (function () {
 
         if (option.node) {
             combine(predefined, node);
+            option.globalstrict = true;
         }
 
         if (option.devel) {
@@ -1033,18 +1052,21 @@ var JSHINT = (function () {
                 warningAt("Mixed spaces and tabs.", line, at + 1);
 
             s = s.replace(/\t/g, tab);
-            at = s.search(cx);
 
-            if (at >= 0)
-                warningAt("Unsafe character.", line, at);
+            if (!option.unsafe) {
+                at = s.search(cx);
+
+                if (at >= 0)
+                    warningAt("Unsafe character.", line, at);
+            }
 
             if (option.maxlen && option.maxlen < s.length)
                 warningAt("Line too long.", line, s.length);
 
             // Check for trailing whitespaces
-            tw = /\s+$/.test(s);
-            if (option.trailing && tw && !/^\s+$/.test(s)) {
-                warningAt("Trailing whitespace.", line, tw);
+            tw = option.trailing && s.match(/^(.*?)\s+$/);
+            if (tw && !/^\s+$/.test(s)) {
+                warningAt("Trailing whitespace.", line, tw[1].length + 1);
             }
             return true;
         }
@@ -1727,6 +1749,7 @@ klass:                                  do {
 
     function doOption() {
         var b, obj, filter, o = nexttoken.value, t, v;
+
         switch (o) {
         case '*/':
             error("Unbegun comment.");
@@ -1750,6 +1773,7 @@ klass:                                  do {
         default:
             error("What?");
         }
+
         t = lex.token();
 loop:   for (;;) {
             for (;;) {
@@ -1765,13 +1789,20 @@ loop:   for (;;) {
                     o !== '/*members') {
                 error("Bad option.", t);
             }
+
             v = lex.token();
             if (v.id === ':') {
                 v = lex.token();
+
                 if (obj === membersOnly) {
                     error("Expected '{a}' and instead saw '{b}'.",
                             t, '*/', ':');
                 }
+
+                if (o === '/*jshint') {
+                    checkOption(t.value, t);
+                }
+
                 if (t.value === 'indent' && (o === '/*jshint' || o === '/*jslint')) {
                     b = +v.value;
                     if (typeof b !== 'number' || !isFinite(b) || b <= 0 ||
@@ -1922,7 +1953,7 @@ loop:   for (;;) {
 // They are elements of the parsing method called Top Down Operator Precedence.
 
     function expression(rbp, initial) {
-        var left, isArray = false;
+        var left, isArray = false, isObject = false;
 
         if (nexttoken.id === '(end)')
             error("Unexpected early end of program.", token);
@@ -1950,9 +1981,12 @@ loop:   for (;;) {
             }
             while (rbp < nexttoken.lbp) {
                 isArray = token.value === 'Array';
+                isObject = token.value === 'Object';
                 advance();
                 if (isArray && token.id === '(' && nexttoken.id === ')')
                     warning("Use the array literal notation [].", token);
+                if (isObject && token.id === '(' && nexttoken.id === ')')
+                    warning("Use the object literal notation {}.", token);
                 if (token.led) {
                     left = token.led(left);
                 } else {
@@ -2968,9 +3002,6 @@ loop:   for (;;) {
             if (c.identifier) {
                 c['new'] = true;
                 switch (c.value) {
-                case 'Object':
-                    warning("Use the object literal notation {}.", token);
-                    break;
                 case 'Number':
                 case 'String':
                 case 'Boolean':
@@ -3616,7 +3647,24 @@ loop:   for (;;) {
         return this;
     }).labelled = true;
 
-    reserve('with');
+    blockstmt('with', function () {
+        var t = nexttoken;
+        if (directive['use strict']) {
+            error("'with' is not allowed in strict mode.", token);
+        } else if (!option.withstmt) {
+            warning("Don't use 'with'.", token);
+        }
+
+        advance('(');
+        nonadjacent(this, t);
+        nospace();
+        expression(0);
+        advance(')', t);
+        nospace(prevtoken, token);
+        block(true, true);
+
+        return this;
+    });
 
     blockstmt('switch', function () {
         var t = nexttoken,
@@ -4102,6 +4150,14 @@ loop:   for (;;) {
         directive = {};
 
         prevtoken = token = nexttoken = syntax['(begin)'];
+
+        // Check options
+        for (var name in o) {
+            if (is_own(o, name)) {
+                checkOption(name, token);
+            }
+        }
+
         assume();
 
         // combine the passed globals after we've assumed all our options
