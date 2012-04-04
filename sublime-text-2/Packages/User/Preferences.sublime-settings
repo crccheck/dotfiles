@@ -2,7 +2,6 @@
 	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
 	"detect_slow_plugins": false,
 	"fade_fold_buttons": false,
-	"font_size": 11.0,
 	"show_tab_close_buttons": false,
 	"translate_tabs_to_spaces": false,
 	"trim_trailing_white_space_on_save": true,
