@@ -27,6 +27,7 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     derp = reset --hard HEAD
+    ggrreepp = !git grep $@ $(git rev-list --all --max-count=2000) && echo
     vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
     pom = pull --rebase origin master
     p = pull --ff-only
