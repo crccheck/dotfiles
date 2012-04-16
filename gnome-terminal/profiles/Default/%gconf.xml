@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <gconf>
+	<entry name="background_darkness" mtime="1334372481" type="float" value="0"/>
+	<entry name="background_type" mtime="1334372485" type="string">
+		<stringvalue>solid</stringvalue>
+	</entry>
 	<entry name="default_show_menubar" mtime="1334195310" type="bool" value="false"/>
 	<entry name="default_size_rows" mtime="1334195310" type="int" value="30"/>
 	<entry name="default_size_columns" mtime="1334195310" type="int" value="100"/>
