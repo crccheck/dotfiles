@@ -15,7 +15,7 @@
     "font_size": 10,
 
     // Valid options are "no_bold", "no_italic", "no_antialias", "gray_antialias",
-    // "subpixel_antialias" and "no_round" (OS X only)
+    // "subpixel_antialias", "no_round" (OS X only) and "directwrite" (Windows only)
     "font_options": [],
 
     // Characters that are considered to separate words
@@ -37,7 +37,7 @@
     "fade_fold_buttons": true,
 
     // Columns in which to display vertical rulers
-    "rulers": [80],
+    "rulers": [],
 
     // Set to true to turn spell checking on by default
     "spell_check": false,
@@ -101,7 +101,7 @@
     "highlight_line": false,
 
     // Valid values are "smooth", "phase", "blink", "wide" and "solid".
-    "caret_style": "blink",
+    "caret_style": "smooth",
 
     // Set to false to disable underlining the brackets surrounding the caret
     "match_brackets": true,
@@ -234,6 +234,10 @@
     // you'll need to place this line in your user settings to override it.
     "find_selected_text": true,
 
+    // When drag_text is enabled, clicking on selected text will begin a
+    // drag-drop operation
+    "drag_text": true,
+
     //
     // User Interface Settings
     //
@@ -248,7 +252,13 @@
     // Controls side bar animation when expanding or collapsing folders
     "tree_animation_enabled": true,
 
+    // Makes tabs with modified files more visible
+    "highlight_modified_tabs": false,
+
     "show_tab_close_buttons": true,
+
+    // Show folders in the side bar in bold
+    "bold_folder_labels": false,
 
     // OS X 10.7 only: Set to true to disable Lion style full screen support.
     // Sublime Text must be restarted for this to take effect.
@@ -284,10 +294,15 @@
     // changing it here won't modify the behavior.
     "close_windows_when_empty": false,
 
+    // Show the full path to files in the title bar.
+    // On OS X, this value is overridden in the platform specific settings, so
+    // you'll need to place this line in your user settings to override it.
+    "show_full_path": true,
+
     // folder_exclude_patterns and file_exclude_patterns control which files
     // are listed in folders on the side bar. These can also be set on a per-
     // project basis.
-    "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache"],
+    "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS"],
     "file_exclude_patterns": ["*.pyc", "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store", "*.class", "*.psd", "*.db"],
     // These files will still show up in the side bar, but won't be included in
     // Goto Anything or Find in Files
@@ -295,6 +310,5 @@
 
     // List any packages to ignore here. When removing entries from this list,
     // a restart may be required if the package contains plugins.
-    //"ignored_packages": ["Vintage"]
-    "ignored_packages": []
+    "ignored_packages": ["Vintage"]
 }
