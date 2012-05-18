@@ -8,15 +8,15 @@ can be quickly located.
 
 SublimeLinter has built in linters for the following languages:
 
-* CoffeeScript - lint via `coffee.cmd -l`
+* CoffeeScript - lint via `coffee -s -l`
 * CSS - lint via built-in [csslint](http://csslint.net)
-* java - lint via `javac -Xlint`
+* Java - lint via `javac -Xlint`
 * Javascript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
 * Objective-J - lint via built-in [capp_lint](https://github.com/aparajita/capp_lint)
-* perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation checking via `perl -c`
-* php - syntax checking via `php -l`
-* python - native, moderately-complete lint
-* ruby - syntax checking via `ruby -wc`
+* Perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation checking via `perl -c`
+* PHP - syntax checking via `php -l`
+* Python - native, moderately-complete lint
+* Ruby - syntax checking via `ruby -wc`
 
 
 Installing
@@ -59,10 +59,10 @@ Within a file whose language/syntax is supported by SublimeLinter, you can contr
 
 * **SublimeLinter: Lint Current File** - Lints the current file, highlights any errors and displays how many errors were found.
 * **SublimeLinter: Show Error List** - Lints the current file, highlights any errors and displays a quick panel with any errors that are found. Selecting an item from the quick panel jumps to that line.
-* **SublimeLinter: Enable Background Linting** - Enables background linting mode for the current view and lints it.
-* **SublimeLinter: Disable Background Linting** - Disables background linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Enable Load-Save Linting** - Enables load-save linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Enable Save-Only Linting** - Enables save-only linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Background Linting** - Enables background linting mode for the current view and lints it.
+* **SublimeLinter: Disable Linting** - Disables linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Load-Save Linting** - Enables load-save linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Save-Only Linting** - Enables save-only linting mode for the current view and clears all lint errors.
 * **SublimeLinter: Reset** - Clears all lint errors and sets the linting mode to the value in the SublimeLinter.sublime-settings file.
 
 Depending on the file and the current state of background enabling, some of the commands will not be available.
@@ -105,6 +105,8 @@ Following are notes specific to individual linters that you should be aware of:
   If the "javascript_linter" setting is "gjslint", this linter runs the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto). After installation, if gjslint cannot be found by SublimeLinter, you may have to set the path to gjslint in the "sublimelinter\_executable\_map" setting.
 
   You may want to modify the options passed to jshint, jslint, or gjslint. This can be done by using the **jshint_options**, **jslint_options**, or **gjslint_options** setting. Refer to the jshint.org site, the jslint.com site, or run `gjslint --help` for more information on the configuration options available.
+
+  SublimeLinter supports `.jshintrc` files. If using JSHint, SublimeLinter will recursively search the directory tree (from the file location to the file-system root directory). This functionality is specified in the [JSHint README](https://github.com/jshint/node-jshint/#within-your-projects-directory-tree).
 
 * **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a Javascript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
 
@@ -168,6 +170,7 @@ For example, let's say we are editing a Java project and want to use the "java" 
         }
     }
 
+The jshint follows convention set by node-jshint (though node is not required) and will attempt to locate the configuration file for you starting in pwd. (or "present working directory") If this does not yield a .jshintrc file, it will move one level up (..) the directory tree all the way up to the filesystem root. If a file is found, it stops immediately and uses that set of configuration instead of "jshint_options".
 
 ### Customizing colors
 **IMPORTANT** - The theme style names have recently changed. The old and new color

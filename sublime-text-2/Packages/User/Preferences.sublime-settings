@@ -1,11 +1,11 @@
 {
   "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+  "codeintel_disabled_languages": ["css"],
   "detect_slow_plugins": false,
   "fade_fold_buttons": false,
   "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache"],
   "ignored_packages": [],  // enable Vintage
   "rulers": [80],
-  "show_tab_close_buttons": false,
   "translate_tabs_to_spaces": false,
   "trim_trailing_white_space_on_save": true,
   "vintage_start_in_command_mode": true,

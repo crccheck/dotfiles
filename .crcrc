@@ -148,6 +148,7 @@ alias djp='django runserver_plus 0.0.0.0:$my_port'
 alias djs="django shell"
 alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
+export DJANGO_SETTINGS_MODULE="settings"
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
