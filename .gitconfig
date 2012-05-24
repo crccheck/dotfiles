@@ -17,6 +17,7 @@
     s = status
     b = branch
     ba = branch -ra
+    bvv = branch -vv
     co = checkout
     caa = commit -a --amend -C HEAD
     d = diff -b
