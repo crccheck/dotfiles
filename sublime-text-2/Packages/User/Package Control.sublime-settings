@@ -1,5 +1,5 @@
 {
-	"auto_upgrade_last_run": 1337287789,
+	"auto_upgrade_last_run": 1337802177,
 	"installed_packages":
 	[
 		"Djaneiro",
@@ -9,10 +9,12 @@
 		"SublimeBlockCursor",
 		"SublimeCodeIntel",
 		"SublimeLinter",
+		"Theme - Soda",
 		"VintageEx"
 	],
 	"repositories":
 	[
-		"https://github.com/netpro2k/SublimeBlockCursor"
+		"https://github.com/netpro2k/SublimeBlockCursor",
+		"git clone https://github.com/buymeasoda/soda-theme/ \"Theme - Soda\""
 	]
 }
