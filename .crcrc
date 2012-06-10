@@ -156,6 +156,8 @@ alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 alias yahoo="ping -i 10 www.yahoo.com"
 alias fb="fab -f ~/scripts/fabfile.py"
 
+md () { mkdir -p "$@" && cd "$@"; }
+
 ###################################################
 ### Platform- or system-specific modifications
 ###################################################
