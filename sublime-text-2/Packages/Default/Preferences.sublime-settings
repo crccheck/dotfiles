@@ -299,6 +299,14 @@
     // you'll need to place this line in your user settings to override it.
     "show_full_path": true,
 
+    // Shows the Build Results panel when building. If set to false, the Build
+    // Results can be shown via the Tools/Build Results menu.
+    "show_panel_on_build": true,
+
+    // Preview file contents when clicking on a file in the side bar. Double
+    // clicking or editing the preview will open the file and assign it a tab.
+    "preview_on_click": true,
+
     // folder_exclude_patterns and file_exclude_patterns control which files
     // are listed in folders on the side bar. These can also be set on a per-
     // project basis.

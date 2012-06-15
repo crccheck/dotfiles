@@ -270,6 +270,7 @@
 
 	{ "keys": ["f7"], "command": "build" },
 	{ "keys": ["ctrl+b"], "command": "build" },
+	{ "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run"} },
 	{ "keys": ["ctrl+break"], "command": "exec", "args": {"kill": true} },
 
 	{ "keys": ["ctrl+t"], "command": "transpose" },

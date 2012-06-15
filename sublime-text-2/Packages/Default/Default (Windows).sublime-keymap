@@ -98,7 +98,8 @@
 			{ "key": "has_prev_field", "operator": "equal", "operand": true }
 		]
 	},
-	{ "keys": ["escape"], "command": "hide_panel", "context":
+	{ "keys": ["escape"], "command": "hide_panel", "args": {"cancel": true},
+		"context":
 		[
 			{ "key": "panel_visible", "operator": "equal", "operand": true }
 		]
@@ -258,6 +259,7 @@
 
 	{ "keys": ["f7"], "command": "build" },
 	{ "keys": ["ctrl+b"], "command": "build" },
+	{ "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run"} },
 	{ "keys": ["ctrl+break"], "command": "exec", "args": {"kill": true} },
 
 	{ "keys": ["ctrl+t"], "command": "transpose" },

@@ -70,7 +70,8 @@ and don't need to be repeated here. Anything listed here will take precedence, h
 			{ "key": "has_prev_field", "operator": "equal", "operand": true }
 		]
 	},
-	{ "keys": ["escape"], "command": "hide_panel", "context":
+	{ "keys": ["escape"], "command": "hide_panel", "args": {"cancel": true},
+		"context":
 		[
 			{ "key": "panel_visible", "operator": "equal", "operand": true }
 		]
@@ -228,6 +229,7 @@ and don't need to be repeated here. Anything listed here will take precedence, h
 
 	{ "keys": ["f7"], "command": "build" },
 	{ "keys": ["super+b"], "command": "build" },
+	{ "keys": ["super+shift+b"], "command": "build", "args": {"variant": "Run"} },
 
 	{ "keys": ["ctrl+t"], "command": "transpose" },
 
