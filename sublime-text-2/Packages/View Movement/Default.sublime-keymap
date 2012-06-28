@@ -1,0 +1,11 @@
+[
+	{ "keys": ["shift+super+h"], "command": "pane_move", "args": {"direction": "left"}},
+	{ "keys": ["shift+super+l"], "command": "pane_move", "args": {"direction": "right"}},
+	{ "keys": ["shift+super+j"], "command": "pane_move", "args": {"direction": "down"}},
+	{ "keys": ["shift+super+k"], "command": "pane_move", "args": {"direction": "up"}},
+
+	{ "keys": ["ctrl+super+h"], "command": "view_move_relative", "args": {"direction": "left"}},
+	{ "keys": ["ctrl+super+l"], "command": "view_move_relative", "args": {"direction": "right"}},
+	{ "keys": ["ctrl+super+j"], "command": "view_move_relative", "args": {"direction": "down"}},
+	{ "keys": ["ctrl+super+k"], "command": "view_move_relative", "args": {"direction": "up"}}
+]

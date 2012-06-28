@@ -1,15 +1,19 @@
 {
-	"auto_upgrade_last_run": 1339749555,
+	"auto_upgrade_last_run": 1340897993,
 	"installed_packages":
 	[
 		"Djaneiro",
+		"LESS",
+		"LESS-build",
 		"MODx Revolution Snippets",
+		"Origami",
 		"Package Control",
 		"SCSS",
 		"SublimeBlockCursor",
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"Theme - Soda",
+		"View Movement",
 		"VintageEx"
 	],
 	"repositories":

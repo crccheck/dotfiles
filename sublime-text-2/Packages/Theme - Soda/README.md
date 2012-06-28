@@ -41,6 +41,18 @@ To configure Sublime Text 2 to use the theme:
         "theme": "Soda Light.sublime-theme"
     }
 
+## Configurable Features
+
+### Alternate Tab Styles
+
+Soda Theme ships with two alternate UI tab styles.
+
+By default, a square tab style is used. If you'd prefer to use the original curved tab style, add the following custom setting to your `Settings - User` file:
+
+    "soda_classic_tabs": true
+
+![Soda Tab Styles](http://buymeasoda.github.com/soda-theme/images/features/multiple-tab-styles.png)
+
 ## Bonus Options
 
 ### Syntax Highlighting Colour Schemes
@@ -59,7 +71,7 @@ The code font shown in the screenshot is [Meslo](https://github.com/andreberg/Me
 
 ## Release Notes
 
-Soda theme is designed to work with the latest [development build](http://www.sublimetext.com/dev) of Sublime Text 2. ST2 dev builds move quickly and changes can occur with the theme API between releases, so there may be occassions where the theme doesn't quite work with a brand new dev release.
+Soda theme is designed to work with the latest [development build](http://www.sublimetext.com/dev) of Sublime Text 2. ST2 dev builds move quickly and changes can occur with the theme API between releases, so there may be occasions where the theme doesn't quite work with a brand new dev release.
 
 ## Development
 
@@ -71,8 +83,8 @@ Soda Theme is licensed under the [Creative Commons Attribution-ShareAlike 3.0 Li
 
 The following details apply to the Creative Commons license "author specified" components:
 
-* Attribution: Based on Soda Theme by Ian Hill (http://buymeasoda.com/)
+* Attribution example: Based on Soda Theme by Ian Hill (http://buymeasoda.com/)
 
-* Naming: If you create and distribute a derivative theme, please give your theme a unique and original name that does not directly include "Soda Theme" (or a close variant) in the main project title, repo name or Package Control name.
+* Naming guidelines: If you create and distribute a derivative theme, please give your theme a unique and original name that does not directly include "Soda Theme" (or a close variant) in the main project title, repo name or Package Control name.
 
 The theme contains some icons from the excellent [Pictos](http://pictos.drewwilson.com/) series by Drew Wilson which I have a license for. Any use of these icons, other than for the purpose of the theme itself, would need to comply with Drew's [icon licensing agreement](http://stockart.drewwilson.com/license/).

@@ -1,19 +1,19 @@
 [
 
 //
-// TABS
+// TABS (REGULAR)
 //
 
     // Tab set
     {
         "class": "tabset_control",
         "layer0.texture": "Theme - Soda/Soda Light/tabset-background.png",
-        "layer0.inner_margin": [1, 2],
+        "layer0.inner_margin": [1, 6],
         "layer0.opacity": 1.0,
         "content_margin": [-3, 0, -3, 3],
         "tab_overlap": 3,
         "tab_width": 180,
-        "tab_min_width": 40,
+        "tab_min_width": 50,
         "tab_height": 25,
         "mouse_wheel_switch": false
     },
@@ -32,25 +32,85 @@
         "layer0.inner_margin": [4, 4],
         "layer0.opacity": 1.0
     },
+    // Tab close state
     {
-        // Tab close state
         "class": "tab_control",
         "settings": ["show_tab_close_buttons"],
         "content_margin": [12, 3, 7, 3]
     },
+    // Tab hover state
     {
-        // Hover tab state
         "class": "tab_control",
         "attributes": ["hover"],
         "layer0.texture": "Theme - Soda/Soda Light/tab-hover.png"
     },
+    // Tab active state
     {
-        // Active tab state
         "class": "tab_control",
         "attributes": ["selected"],
         "layer0.texture": "Theme - Soda/Soda Light/tab-active.png"
     },
-    // Tab labels
+    // Tab dirty state (close button hidden)
+    {
+        "class": "tab_control",
+        "settings": ["!show_tab_close_buttons", "highlight_modified_tabs"],
+        "attributes": ["dirty"],
+        "content_margin": [12, 3, 7, 3]
+    },
+
+//
+// TABS (CLASSIC)
+//
+
+    // Tab set
+    {
+        "class": "tabset_control",
+        "settings": ["soda_classic_tabs"],
+        "content_margin": [3, 4, 3, 3],
+        "tab_overlap": 24,
+        "tab_height": 28
+    },
+    // Tab element
+    {
+        "class": "tab_control",
+        "settings": ["soda_classic_tabs"],
+        "content_margin": [22, 6, 22, 4],
+        "hit_test_level": 0.5,
+        "layer0.texture": "Theme - Soda/Soda Light/classic/tab-inactive.png",
+        "layer0.inner_margin": [18, 4]
+    },
+    // Tab close state
+    {
+        "class": "tab_control",
+        "settings": ["soda_classic_tabs", "show_tab_close_buttons"],
+        "content_margin": [22, 6, 15, 4]
+    },
+    // Tab hover state
+    {
+        "class": "tab_control",
+        "settings": ["soda_classic_tabs"],
+        "attributes": ["hover"],
+        "layer0.texture": "Theme - Soda/Soda Light/classic/tab-hover.png"
+    },
+    // Tab active state
+    {
+        "class": "tab_control",
+        "settings": ["soda_classic_tabs"],
+        "attributes": ["selected"],
+        "layer0.texture": "Theme - Soda/Soda Light/classic/tab-active.png"
+    },
+    // Tab dirty state (close button hidden)
+    {
+        "class": "tab_control",
+        "settings": ["soda_classic_tabs", "!show_tab_close_buttons", "highlight_modified_tabs"],
+        "attributes": ["dirty"],
+        "content_margin": [22, 6, 15, 4]
+    },
+
+//
+// TAB LABELS
+//
+    
     {
         "class": "tab_label",
         "fade": true,
@@ -70,53 +130,51 @@
         "fg": [0, 0, 0],
         "shadow_color": [255, 255, 255]
     },
-    // Tab buttons
+
+//
+// TAB BUTTONS
+//
+    
+    // Tab close button
     {
-        // Tab close button
         "class": "tab_close_button",
         "content_margin": [0, 0],
         "layer0.texture": "Theme - Soda/Soda Light/tab-close.png",
         "layer0.opacity": 1.0,
         "layer0.inner_margin": 0
     },
+    // Tab button size
     {
-        // Tab button size
         "class": "tab_close_button",
         "settings": ["show_tab_close_buttons"],
         "content_margin": [8, 8]
     },
+    // Tab dirty button
     {
-        // Tab dirty state (close button hidden)
-        "class": "tab_control",
-        "settings": ["!show_tab_close_buttons", "highlight_modified_tabs"],
-        "attributes": ["dirty"],
-        "content_margin": [12, 3, 7, 3]
+        "class": "tab_close_button",
+        "settings": ["highlight_modified_tabs"],
+        "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+        "layer0.texture": "Theme - Soda/Soda Light/tab-dirty.png"
     },
+    // Tab close button hover
     {
-        // Tab dirty button (close button hidden)
+        "class": "tab_close_button",
+        "attributes": ["hover"],
+        "layer0.texture": "Theme - Soda/Soda Light/tab-close-hover.png"
+    },
+    // Tab close button pressed
+    {
+        "class": "tab_close_button",
+        "attributes": ["pressed"],
+        "layer0.texture": "Theme - Soda/Soda Light/tab-close-pressed.png"
+    },
+    // Tab dirty button (close button hidden)
+    {
         "class": "tab_close_button",
         "settings": ["!show_tab_close_buttons", "highlight_modified_tabs"],
         "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
         "content_margin": [8, 8],
         "layer0.texture": "Theme - Soda/Soda Light/tab-dirty.png"
-    },
-    {
-        // Tab dirty button
-        "class": "tab_close_button",
-        "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-        "layer0.texture": "Theme - Soda/Soda Light/tab-dirty.png"
-    },
-    {
-        // Tab close button hover
-        "class": "tab_close_button",
-        "attributes": ["hover"],
-        "layer0.texture": "Theme - Soda/Soda Light/tab-close-hover.png"
-    },
-    {
-        // Tab close button pressed
-        "class": "tab_close_button",
-        "attributes": ["pressed"],
-        "layer0.texture": "Theme - Soda/Soda Light/tab-close-pressed.png"
     },
 
 //
@@ -283,7 +341,7 @@
     {
         "class": "grid_layout_control",
         "border_size": 1,
-        "border_color": [165, 165, 165]
+        "border_color": [189, 189, 189]
     },
 
 //
@@ -292,7 +350,7 @@
 
     {
         "class": "minimap_control",
-        "viewport_color": [0, 0, 0, 30]
+        "viewport_color": [0, 0, 0, 35]
     },
 
 //
@@ -658,28 +716,26 @@
 
     {
         "class": "popup_control",
-        "content_margin": [0, 0]
-    },
-    {
-        "class": "auto_complete",
-        "row_padding": [2, 2],
+        "content_margin": [2, 2],
         "layer0.tint": [255, 255, 255],
         "layer0.opacity": 1.0
     },
     {
+        "class": "auto_complete",
+        "row_padding": [4, 2]
+    },
+    {
         "class": "auto_complete_label",
-        "fg": [0, 0, 0],
+        "fg": [51, 51, 51],
         "match_fg": [0, 0, 0],
-        "bg": [255, 255, 255],
-        "selected_fg": [255, 255, 255],
-        "selected_match_fg": [255, 255, 255],
-        "selected_bg": [56, 117, 215]
+        "selected_fg": [205, 226, 243],
+        "selected_match_fg": [255, 255, 255]
     },
     {
         "class": "table_row",
-        "layer0.texture": "Theme - Soda/Soda Light/code-completion-row-selected.png",
+        "layer0.texture": "Theme - Soda/Soda Light/autocomplete-row-selected.png",
         "layer0.opacity": 0.0,
-        "layer0.inner_margin": [1, 1]
+        "layer0.inner_margin": [3, 1]
     },
     {
         "class": "table_row",
