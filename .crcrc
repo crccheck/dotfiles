@@ -165,6 +165,7 @@ md () { mkdir -p "$@" && cd "$@"; }
 if [ "$(uname -s)" == "Darwin" ]; then
     # Mac OS X stuff:
     alias ls='ls -AFGq'
+    prepend_path_if_exists PATH /usr/local/share/python
     append_path PYTHONPATH ~/Library/Python
     # Fix Backspace/Delete confusion:
     stty erase ^?
