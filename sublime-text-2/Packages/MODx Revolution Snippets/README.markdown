@@ -38,6 +38,8 @@ trigger: extFun
 		});
 		Namespace.window/grid/panel/tree/page/combo/config.ClassName.superclass.constructor.call(this, config);
 	};
+	Ext.extend(Namespace.window/grid/panel/tree/page/combo/config.ClassName, Ext/MODX.Class});
+	Ext.reg('namespace-window/grid/panel/tree/page/combo/config-classname', Namespace.window/grid/panel/tree/page/combo/config.ClassName);
 
 #### xPDO - text.xml
 
@@ -52,6 +54,18 @@ trigger: composite
 trigger: field
 	
 	<field key="name" dbtype="varchar" precision="160" attributes="unsigned" phptype="string" null="false" default="" />
+
+trigger: field.int
+	
+	<field key="name" dbtype="int" precision="11" attributes="unsigned" phptype="integer" null="false" default="" />
+
+trigger: field.enum
+	
+	<field key="name" dbtype="enum" precision="'db','cookie','redis'" phptype="string" null="false" default="" />
+
+trigger: field.float
+	
+	<field key="name" dbtype="float" precision="8,2" phptype="float" null="false" default="" />
 
 trigger: model
 

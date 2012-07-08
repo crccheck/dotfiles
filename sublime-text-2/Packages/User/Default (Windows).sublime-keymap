@@ -1,2 +1,4 @@
 [
+	{ "keys": ["ctrl+tab"], "command": "toggle_side_bar" },
+	{ "keys": ["shift+alt+r"], "command": "reveal_in_side_bar"}
 ]

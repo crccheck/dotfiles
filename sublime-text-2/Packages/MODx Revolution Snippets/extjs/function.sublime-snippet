@@ -11,7 +11,9 @@ ${9:		,baseParams: {
 		,fields: [${12:extText$0}]
 	});
 	${1:${2:Namespace}.${3:window/grid/panel/tree/page/combo/config}.${4:ClassName}}.superclass.constructor.call(this, config);
-};]]></content>
+};
+Ext.extend(${1:${2:Namespace}.${3:window/grid/panel/tree/page/combo/config}.${4:ClassName}}, ${13:ClassToExtend}${15:, {\}});
+Ext.reg('${14:myclass-window-name}', ${1:${2:Namespace}.${3:window/grid/panel/tree/page/combo/config}.${4:ClassName}});]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>extFun</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
