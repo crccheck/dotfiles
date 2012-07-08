@@ -1,3 +1,4 @@
 .netrwhist
 *.pyc
 *.cache
+.DS_Store
