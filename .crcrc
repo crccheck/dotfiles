@@ -47,9 +47,8 @@ prepend_path_if_exists()
 ### PATH-type list variables
 ###################################################
 
-prepend_path PATH /usr/local/bin
-prepend_path PATH $HOME/usr/bin
-prepend_path PATH $HOME/bin
+prepend_path_if_exists PATH $HOME/usr/bin
+prepend_path_if_exists PATH $HOME/bin
 
 for i in $HOME/opt/*/bin
 do
@@ -93,9 +92,7 @@ case $TERM in
         ;;
 esac
 
-# Python stuff
-export PIP_DOWNLOAD_CACHE="$HOME/.pip"
-
+# Fabric cheat
 function f {
     if [ -z $1 ]; then
         fab -l
@@ -106,7 +103,7 @@ function f {
 
 # Node.js
 export NODE_PATH=$HOME/local/node
-prepend_path PATH $HOME/local/node/bin
+prepend_path_if_exists PATH $HOME/local/node/bin
 
 
 ###################################################
@@ -115,7 +112,7 @@ prepend_path PATH $HOME/local/node/bin
 
 alias l='ls -la'
 alias sl='sl -e'
-alias vi='vim -g'
+# alias vi='vim -g'
 
 
 # to install ack-grep as ack instead of ack-grep:
@@ -128,10 +125,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias grep='grep -I --color=auto'
-alias fgrep='fgrep -I --color=auto'
-alias egrep='egrep -I --color=auto'
-alias rgrep='rgrep -I --color=auto'
+export GREP_OPTIONS='--color=auto'
+alias grep='grep -I'
+alias fgrep='fgrep -I'
+alias egrep='egrep -I'
+alias rgrep='rgrep -I'
 
 alias netstat='netstat -natp'
 alias du='du -kh --max-depth=1'
@@ -166,6 +164,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # Mac OS X stuff:
     alias ls='ls -AFGq'
     prepend_path_if_exists PATH /usr/local/share/python
+    prepend_path_if_exists PATH /usr/local/bin
     append_path PYTHONPATH ~/Library/Python
     # Fix Backspace/Delete confusion:
     stty erase ^?
@@ -188,12 +187,16 @@ fi
 if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
     # Windows stuff:
     alias subl='/c/Program\ Files/Sublime\ Text\ 2/sublime_text.exe'
+    export GREP_OPTIONS=''
+    export PATH=$PATH:/c/Python27
+    export PATH=$PATH:/c/Python27/Scripts
 fi
 
 ###################################################
-### virtualenv(wrapper)
+### PYTHON, virtualenv(wrapper)
 ###################################################
 export VIRTUALENV_DISTRIBUTE=true
+export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=$HOME/env
 if [ ! -d $WORKON_HOME ]; then
     mkdir -p $WORKON_HOME
@@ -203,6 +206,7 @@ if [ ! -d $PROJECT_HOME ]; then
     mkdir -p $PROJECT_HOME
 fi
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 
@@ -220,10 +224,12 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 ### Ruby Gems
 ###################################################
 
-export GEM_HOME=$HOME/.gem/ruby/1.8
-prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
-prepend_path PATH $GEM_HOME/bin
-append_path PATH /var/lib/gems/bin
+if [ -d /var/lib/gems ]; then
+    export GEM_HOME=$HOME/.gem/ruby/1.8
+    prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
+    prepend_path PATH $GEM_HOME/bin
+    append_path PATH /var/lib/gems/bin
+fi
 
 ###################################################
 ### git prompt hack
@@ -240,7 +246,6 @@ function parse_git_dirty {
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (Git branch: \1$(parse_git_dirty))/"
 }
-VIRTUAL_ENV_DISABLE_PROMPT="True"
 function active_virtualenv {
     if [ -n "$VIRTUAL_ENV" ]
     then
