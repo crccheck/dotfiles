@@ -1,10 +1,11 @@
 {
-	"auto_upgrade_last_run": 1341733147,
+	"auto_upgrade_last_run": 1341760588,
 	"installed_packages":
 	[
 		"Djaneiro",
 		"LESS",
 		"LESS-build",
+		"LineEndings",
 		"MODx Revolution Snippets",
 		"Origami",
 		"Package Control",

@@ -191,18 +191,19 @@ if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
 fi
 
 ###################################################
-### virtualenvwrapper
+### virtualenv(wrapper)
 ###################################################
+export VIRTUALENV_DISTRIBUTE=true
 export WORKON_HOME=$HOME/env
 if [ ! -d $WORKON_HOME ]; then
     mkdir -p $WORKON_HOME
 fi
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-export PROJECT_HOME=$HOME/dev
+export PROJECT_HOME=$HOME/projects
 if [ ! -d $PROJECT_HOME ]; then
     mkdir -p $PROJECT_HOME
 fi
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 
 #UNCOLOR="\[\033[00m\]"
