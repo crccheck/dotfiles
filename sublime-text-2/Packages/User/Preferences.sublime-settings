@@ -9,7 +9,6 @@
   "highlight_line": true,
   "ignored_packages": [],  // enable Vintage
   "rulers": [80],
-  "show_panel_on_build": false,
   "theme": "Soda Dark.sublime-theme",
   "translate_tabs_to_spaces": false,
   "trim_trailing_white_space_on_save": true,

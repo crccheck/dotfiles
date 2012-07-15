@@ -59,7 +59,7 @@ class AsyncProcess(object):
     def kill(self):
         if not self.killed:
             self.killed = True
-            self.proc.kill()
+            self.proc.terminate()
             self.listener = None
 
     def poll(self):
@@ -180,7 +180,7 @@ class ExecCommand(sublime_plugin.WindowCommand, ProcessListener):
         try:
             str = data.decode(self.encoding)
         except:
-            str = "[Decode error - output not " + self.encoding + "]"
+            str = "[Decode error - output not " + self.encoding + "]\n"
             proc = None
 
         # Normalize newlines, Sublime Text always uses a single \n separator

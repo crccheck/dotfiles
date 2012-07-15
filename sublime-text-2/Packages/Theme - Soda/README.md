@@ -20,7 +20,9 @@ If you are using Will Bond's excellent [Sublime Package Control](http://wbond.ne
 
 Alternatively, if you are a git user, you can install the theme and keep up to date by cloning the repo directly into your `Packages` directory in the Sublime Text 2 application settings area.
 
-Go to your Sublime Text 2 `Packages` directory and clone the theme repository using the command below:
+You can locate your Sublime Text 2 `Packages` directory by using the menu item `Preferences -> Browse Packages...`.
+
+While inside the `Packages` directory, clone the theme repository using the command below:
 
     git clone https://github.com/buymeasoda/soda-theme/ "Theme - Soda"
 
@@ -43,7 +45,7 @@ To configure Sublime Text 2 to use the theme:
         "theme": "Soda Light.sublime-theme"
     }
 
-## Configurable Features
+## Additional Features
 
 ### Alternate Tab Styles
 
@@ -54,6 +56,12 @@ By default, a square tab style is used. If you'd prefer to use the original curv
     "soda_classic_tabs": true
 
 ![Soda Tab Styles](http://buymeasoda.github.com/soda-theme/images/features/multiple-tab-styles.png)
+
+### Retina Resolution UI
+
+Soda Light has been designed to take advantage of retina resolution (high-dpi) displays. Retina support for Soda Dark is coming soon.
+
+![Soda Retina](http://buymeasoda.github.com/soda-theme/images/features/soda-retina.png)
 
 ## Bonus Options
 
@@ -86,3 +94,5 @@ The following details apply to the Creative Commons license "author specified" c
 * Attribution example: Based on Soda Theme by Ian Hill (http://buymeasoda.com/)
 
 * Naming guidelines: If you create and distribute a derivative theme, please give your theme a unique and original name that does not directly include "Soda Theme" (or a close variant) in the main project title, repo name or Package Control name.
+
+The Soda Dark theme contains some icons from the excellent [Pictos](http://pictos.drewwilson.com/) series by Drew Wilson which I have a license for. Any use of these icons, other than for the purpose of the theme itself, would need to comply with Drew's [icon licensing agreement](http://stockart.drewwilson.com/license/).
