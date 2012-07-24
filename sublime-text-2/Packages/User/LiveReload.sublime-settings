@@ -1,0 +1,4 @@
+{
+  "delay_ms" : 1000,
+  "compass_css_dir" : false //set to false if you have problems with livereload
+}
