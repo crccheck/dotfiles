@@ -21,7 +21,7 @@
     co = checkout
     caa = commit -a --amend -C HEAD
     d = diff -b
-    fa = fetch --all
+    fa = !git fetch --all &
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p
     ls = log --stat
