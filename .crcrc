@@ -210,6 +210,12 @@ fi
 export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
+# helper for generating codeintel config files
+function mkcodeintelconfig {
+    # TODO make sure you're in a virtualenv
+    mkdir -p .codeintel
+    eval "echo \"$(cat ~/.dotfiles/codeintel)\"" > .codeintel/config
+}
 
 #UNCOLOR="\[\033[00m\]"
 #COLOR="\[\033[1;36m\]"
