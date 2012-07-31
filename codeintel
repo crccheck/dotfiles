@@ -1,9 +1,9 @@
 {
-    "Python": {
-        "python": "$(which python)",
-        "pythonExtraPaths": [
-        	"$(cdsitepackages && pwd)",
-        	"$VIRTUAL_ENV/src"
-        ]
-    }
+  \"Python\": {
+    \"python\": \"$(which python)\",
+    \"pythonExtraPaths\": [
+      \"$(cdsitepackages && pwd)\",
+      \"$VIRTUAL_ENV/src\"
+    ]
+  }
 }
