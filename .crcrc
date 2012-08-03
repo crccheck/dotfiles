@@ -136,7 +136,7 @@ alias du='du -kh --max-depth=1'
 alias df='df -kTh'
 
 alias wget='wget --no-check-certificate'
-sssh () { ssh -t $@ "screen -r"; }
+sssh () { ssh -t $@ "screen -rx"; }
 
 
 my_port=8000
