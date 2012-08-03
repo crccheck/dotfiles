@@ -413,6 +413,33 @@ class ExCopy(sublime_plugin.TextCommand):
         self.view.sel().add(sublime.Region(cursor_dest, cursor_dest))
 
 
+class ExOnly(sublime_plugin.TextCommand):
+    """ Command: :only
+    """
+    def run(self, edit, forced=False):
+        if not forced:
+            if is_any_buffer_dirty(self.view.window()):
+                ex_error.display_error(ex_error.ERR_OTHER_BUFFER_HAS_CHANGES)
+                return
+
+        w = self.view.window()
+        current_id = self.view.id()
+        for v in w.views():
+            if v.id() != current_id:
+                if forced and v.is_dirty():
+                    v.set_scratch(True)
+                w.focus_view(v)
+                w.run_command('close')
+
+
+class ExDoubleAmpersand(sublime_plugin.TextCommand):
+    """ Command :&&
+    """
+    def run(self, edit, range='.', flags='', count=''):
+        self.view.run_command('ex_substitute', {'range': range,
+                                                'pattern': flags + count})
+
+
 class ExSubstitute(sublime_plugin.TextCommand):
     most_recent_pat = None
     most_recent_flags = ''
@@ -430,9 +457,10 @@ class ExSubstitute(sublime_plugin.TextCommand):
         # :s g 100 | :s/ | :s// | s:/foo/bar/g 100 | etc.
         else:
             try:
-                parts = substitute.SubstituteCommandParser(pattern).parse()
+                parts = substitute.split(pattern)
             except SyntaxError, e:
                 sublime.status_message("VintageEx: (substitute) %s" % e)
+                print "VintageEx: (substitute) %s" % e
                 return
             else:
                 if len(parts) == 4:
@@ -455,7 +483,12 @@ class ExSubstitute(sublime_plugin.TextCommand):
 
         computed_flags = 0
         computed_flags |= re.IGNORECASE if (flags and 'i' in flags) else 0
-        pattern = re.compile(pattern, flags=computed_flags)
+        try:
+            pattern = re.compile(pattern, flags=computed_flags)
+        except Exception, e:
+            sublime.status_message("VintageEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern))
+            print "VintageEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern)
+            return
 
         if count and range == '.':
             range = '.,.+%d' % int(count)

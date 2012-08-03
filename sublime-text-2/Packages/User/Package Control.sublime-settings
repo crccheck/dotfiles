@@ -1,8 +1,9 @@
 {
-	"auto_upgrade_last_run": 1343748413,
+	"auto_upgrade_last_run": 1343840366,
 	"installed_packages":
 	[
 		"Djaneiro",
+		"Git",
 		"LESS",
 		"LESS-build",
 		"LineEndings",
