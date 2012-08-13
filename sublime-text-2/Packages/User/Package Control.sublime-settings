@@ -1,8 +1,9 @@
 {
-	"auto_upgrade_last_run": 1344112749,
+	"auto_upgrade_last_run": 1344874120,
 	"installed_packages":
 	[
 		"Djaneiro",
+		"Format SQL",
 		"Git",
 		"LESS",
 		"LESS-build",
