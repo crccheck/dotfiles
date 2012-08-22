@@ -289,6 +289,9 @@
     // dock icon, this controls if a new window is created or not.
     "open_files_in_new_window": true,
 
+    // OS X only: This controls if an empty window is created at startup or not.
+    "create_window_at_startup": true,
+
     // Set to true to close windows as soon as the last file is closed, unless
     // there's a folder open within the window. This is always enabled on OS X,
     // changing it here won't modify the behavior.
