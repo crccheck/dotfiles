@@ -1,7 +1,9 @@
 {
-	"auto_upgrade_last_run": 1346255231,
+	"auto_upgrade_last_run": 1348005793,
 	"installed_packages":
 	[
+		"CoffeeCompile",
+		"CoffeeScript",
 		"Djaneiro",
 		"Format SQL",
 		"Git",

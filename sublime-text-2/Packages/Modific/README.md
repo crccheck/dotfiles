@@ -44,7 +44,7 @@ Features / Usage
 **Highlight changes** *(automatically: on save or when window gets focus)*
 [![Highlight changes](http://i.imgur.com/FgpyRl.jpg)](http://i.imgur.com/FgpyR.jpg)
 
-**Show diff** `Ctrl+Alt+D` on Linux/Windows, `Ctlr+Super+D` on OS X
+**Show diff** `Ctrl+Alt+D` on Linux/Windows and OS X
 [![Show diff](http://i.imgur.com/csCw7l.jpg)](http://i.imgur.com/csCw7.jpg)
 
 **Preview of the commited code for current line** `Ctrl+Alt+C` on Linux/Windows, `Ctlr+Super+C` on OS X
@@ -61,6 +61,8 @@ This command reverts modifications if your cursor stays on modified line (or if 
 
 For those who expected to see a clone of Netbeans feature - unfortunately, with existing ST2 API that is impossible :(
 
+[Discussion on the forum](http://www.sublimetext.com/forum/viewtopic.php?f=5&t=7468)
+
 Configuring
 -----------
 
@@ -71,6 +73,8 @@ If you want to change something, don't do it in this file. Open `Preferences -> 
 You can configure is a type of icon (dot, circle or bookmark) and path for your VCS binaries (or leave them as is, if you have them in your PATH). It's also possible to set priority for VCS used (when you have more than one simultaneously) by reordering their definitions.
 
 If some sacred punishment has been bestowed upon you, and you have no other choice but to use OS, where console has non-UTF8 encoding, you can set console_encoding parameter to the name of your beloved encoding. This parameter is specifically designed for Windows XP users, who have their git repositories in folders with cyrillic path. Since russian XP uses CP1251 as default encoding (including console), VCS diff commands will be encoded appropriately, when using this parameter.
+
+If you use different than the default theme, you can customize colors of bullets on the gutter by adding [this](https://gist.github.com/3692073) chunk of code to your theme.
 
 Known issues
 ------------
