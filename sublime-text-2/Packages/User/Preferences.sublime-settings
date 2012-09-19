@@ -16,7 +16,7 @@
 		"CVS",
 		".sass-cache"
 	],
-	"font_size": 8.0,
+	"font_size": 12.0,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
