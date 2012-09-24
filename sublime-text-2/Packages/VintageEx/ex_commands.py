@@ -14,13 +14,15 @@ from vintage import g_registers
 
 from plat.windows import get_oem_cp
 from plat.windows import get_startup_info
-import ex_error
-import ex_range
-import shell
-from vex import substitute
-from vex import global_command
+from vex import ex_error
+from vex import ex_range
+from vex import shell
+from vex import parsers
 
 GLOBAL_RANGES = []
+
+CURRENT_LINE_RANGE = {'left_ref': '.', 'left_offset': 0, 'left_search_offsets': [],
+                      'right_ref': None, 'right_offset': 0, 'right_search_offsets': []}
 
 
 def is_any_buffer_dirty(window):
@@ -71,7 +73,7 @@ def gather_buffer_info(v):
     return [leaf, path]
 
 
-def get_region_by_range(view, text_range, split_visual=False):
+def get_region_by_range(view, line_range=None, split_visual=False):
     # If GLOBAL_RANGES exists, the ExGlobal command has been run right before
     # the current command, and we know we must process these lines.
     # XXX move this further down into the range parsing?
@@ -81,7 +83,8 @@ def get_region_by_range(view, text_range, split_visual=False):
         GLOBAL_RANGES = []
         return rv
 
-    regions = ex_range.calculate_range(view, text_range)
+    if line_range:
+        regions = ex_range.new_calculate_range(view, line_range)
     lines = []
     for region in regions:
         a, b = region
@@ -103,11 +106,11 @@ def ensure_line_block(view, r):
 
 
 class ExGoto(sublime_plugin.TextCommand):
-    def run(self, edit, range=''):
-        if not range:
+    def run(self, edit, line_range=None):
+        if not line_range['text_range']:
             # No-op: user issued ":".
             return
-        a, b = ex_range.calculate_range(self.view, range, is_only_range=True)[0]
+        a, b = ex_range.new_calculate_range(self.view, line_range)[0]
         self.view.run_command('vi_goto_line', {'repeat': b})
         self.view.show(self.view.sel()[0])
 
@@ -118,12 +121,12 @@ class ExShellOut(sublime_plugin.TextCommand):
     Run cmd in a system's shell or filter selected regions through external
     command.
     """
-    def run(self, edit, range='', shell_cmd=''):
+    def run(self, edit, line_range=None, shell_cmd=''):
         try:
-            if range:
+            if line_range['text_range']:
                 shell.filter_thru_shell(
                                 view=self.view,
-                                regions=get_region_by_range(self.view, range),
+                                regions=get_region_by_range(self.view, line_range=line_range),
                                 cmd=shell_cmd)
             else:
                 shell.run_and_wait(shell_cmd)
@@ -155,10 +158,10 @@ class ExShell(sublime_plugin.TextCommand):
 
 
 class ExReadShellOut(sublime_plugin.TextCommand):
-    def run(self, edit, range='', name='', plusplus_args='', forced=False):
+    def run(self, edit, line_range=None, name='', plusplus_args='', forced=False):
         target_line = self.view.line(self.view.sel()[0].begin())
-        if range:
-            range = max(ex_range.calculate_range(self.view, range)[0])
+        if line_range['text_range']:
+            range = max(ex_range.calculate_range(self.view, line_range=line_range)[0])
             target_line = self.view.line(self.view.text_point(range, 0))
         target_point = min(target_line.b + 1, self.view.size())
 
@@ -257,7 +260,7 @@ class ExPrintWorkingDir(sublime_plugin.TextCommand):
 
 class ExWriteFile(sublime_plugin.TextCommand):
     def run(self, edit,
-                range=None,
+                line_range=None,
                 forced=False,
                 file_name='',
                 plusplus_args='',
@@ -271,7 +274,8 @@ class ExWriteFile(sublime_plugin.TextCommand):
 
         appending = operator == '>>'
         # FIXME: reversed? -- what's going on here!!
-        content = get_region_by_range(self.view, range) if range else \
+        a_range = line_range['text_range']
+        content = get_region_by_range(self.view, line_range=line_range) if a_range else \
                         [sublime.Region(0, self.view.size())]
 
         if target_redirect or file_name:
@@ -286,7 +290,7 @@ class ExWriteFile(sublime_plugin.TextCommand):
         if appending or target_redirect or file_name:
             for frag in reversed(content):
                 target.insert(edit, start, prefix + self.view.substr(frag) + '\n')
-        elif range:
+        elif a_range:
             start_deleting = 0
             for frag in content:
                 text = self.view.substr(frag) + '\n'
@@ -351,20 +355,24 @@ class ExFile(sublime_plugin.TextCommand):
 
 
 class ExMove(sublime_plugin.TextCommand):
-    def run(self, edit, range='.', forced=False, address=''):
-        address = ex_range.calculate_address(self.view, address)
+    def run(self, edit, line_range=None, forced=False, address=''):
+        # make sure we have a default range
+        if not line_range['text_range']:
+            line_range['text_range'] = '.'
+        address_parser = parsers.cmd_line.AddressParser(address)
+        parsed_address = address_parser.parse()
+        address = ex_range.calculate_address(self.view, parsed_address)
         if address is None:
             ex_error.display_error(ex_error.ERR_INVALID_ADDRESS)
             return
 
         line_block = []
-        for r in get_region_by_range(self.view, range):
+        for r in get_region_by_range(self.view, line_range=line_range):
             ss = ensure_line_block(self.view, r)
             line_block.append(ss)
 
         offset = 0
-        for r in reversed(get_region_by_range(self.view,
-                                                range, split_visual=True)):
+        for r in reversed(get_region_by_range(self.view, line_range, split_visual=True)):
             if self.view.rowcol(r.begin())[0] + 1 < address:
                 offset +=  1
             self.view.erase(edit, self.view.full_line(r))
@@ -387,14 +395,17 @@ class ExMove(sublime_plugin.TextCommand):
 
 
 class ExCopy(sublime_plugin.TextCommand):
-    def run(self, edit, range='.', forced=False, address=''):
-        address = ex_range.calculate_address(self.view, address)
+    # todo: do null ranges always default to '.'?
+    def run(self, edit, line_range=CURRENT_LINE_RANGE, forced=False, address=''):
+        address_parser = parsers.cmd_line.AddressParser(address)
+        parsed_address = address_parser.parse()
+        address = ex_range.calculate_address(self.view, parsed_address)
         if address is None:
             ex_error.display_error(ex_error.ERR_INVALID_ADDRESS)
             return
 
         line_block = []
-        for r in get_region_by_range(self.view, range):
+        for r in get_region_by_range(self.view, line_range=line_range):
             ss = ensure_line_block(self.view, r)
             line_block.append(ss)
 
@@ -435,8 +446,8 @@ class ExOnly(sublime_plugin.TextCommand):
 class ExDoubleAmpersand(sublime_plugin.TextCommand):
     """ Command :&&
     """
-    def run(self, edit, range='.', flags='', count=''):
-        self.view.run_command('ex_substitute', {'range': range,
+    def run(self, edit, line_range=None, flags='', count=''):
+        self.view.run_command('ex_substitute', {'line_range': line_range,
                                                 'pattern': flags + count})
 
 
@@ -445,8 +456,7 @@ class ExSubstitute(sublime_plugin.TextCommand):
     most_recent_flags = ''
     most_recent_replacement = ''
 
-    def run(self, edit, range='.', pattern=''):
-        range = range or '.'
+    def run(self, edit, line_range=None, pattern=''):
 
         # :s
         if not pattern:
@@ -457,7 +467,7 @@ class ExSubstitute(sublime_plugin.TextCommand):
         # :s g 100 | :s/ | :s// | s:/foo/bar/g 100 | etc.
         else:
             try:
-                parts = substitute.split(pattern)
+                parts = parsers.s_cmd.split(pattern)
             except SyntaxError, e:
                 sublime.status_message("VintageEx: (substitute) %s" % e)
                 print "VintageEx: (substitute) %s" % e
@@ -490,15 +500,7 @@ class ExSubstitute(sublime_plugin.TextCommand):
             print "VintageEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern)
             return
 
-        if count and range == '.':
-            range = '.,.+%d' % int(count)
-        elif count:
-            a, b = ex_range.calculate_range(self.view, range)[0]
-            if not a and b:
-                b = max(a, b)
-            range = "%d,%d+%d" % (b, b, int(count))
-
-        target_region = get_region_by_range(self.view, range)
+        target_region = get_region_by_range(self.view, line_range=line_range)
         replace_count = 0 if (flags and 'g' in flags) else 1
         for r in reversed(target_region):
             # be explicit about replacing the line, because we might be looking
@@ -513,9 +515,9 @@ class ExSubstitute(sublime_plugin.TextCommand):
 
 
 class ExDelete(sublime_plugin.TextCommand):
-    def run(self, edit, range='.', register='', count=''):
+    def run(self, edit, line_range=None, register='', count=''):
         # XXX somewhat different to vim's behavior
-        rs = get_region_by_range(self.view, range)
+        rs = get_region_by_range(self.view, line_range=line_range)
         self.view.sel().clear()
 
         to_store = []
@@ -561,11 +563,15 @@ class ExGlobal(sublime_plugin.TextCommand):
         :g!/DON'T TOUCH THIS/delete
     """
     most_recent_pat = None
-    def run(self, edit, range='%', forced=False, pattern=''):
+    def run(self, edit, line_range=None, forced=False, pattern=''):
+
+        if not line_range['text_range']:
+            line_range['text_range'] = '%'
+            line_range['left_ref'] = '%'
         try:
-            global_pattern, subcmd = global_command.split(pattern)
+            global_pattern, subcmd = parsers.g_cmd.split(pattern)
         except ValueError:
-            msg = "VintageEx: Bad :global pattern. (:%sglobal%s)" % (range, pattern)
+            msg = "VintageEx: Bad :global pattern. (%s)" % pattern
             sublime.status_message(msg)
             print msg
             return
@@ -578,7 +584,7 @@ class ExGlobal(sublime_plugin.TextCommand):
         # Vim does too.
         subcmd = subcmd or 'print'
 
-        rs = get_region_by_range(self.view, range)
+        rs = get_region_by_range(self.view, line_range=line_range)
 
         for r in rs:
             try:
@@ -591,6 +597,9 @@ class ExGlobal(sublime_plugin.TextCommand):
             if (match and not forced) or (not match and forced):
                 GLOBAL_RANGES.append(r)
 
+        # don't do anything if we didn't found any target ranges
+        if not GLOBAL_RANGES:
+            return
         self.view.window().run_command('vi_colon_input',
                               {'cmd_line': ':' +
                                     str(self.view.rowcol(r.a)[0] + 1) +
@@ -598,10 +607,10 @@ class ExGlobal(sublime_plugin.TextCommand):
 
 
 class ExPrint(sublime_plugin.TextCommand):
-    def run(self, edit, range='.', count='1', flags=''):
+    def run(self, edit, line_range=None, count='1', flags=''):
         if not count.isdigit():
             flags, count = count, ''
-        rs = get_region_by_range(self.view, range)
+        rs = get_region_by_range(self.view, line_range=line_range)
         to_display = []
         for r in rs:
             for line in self.view.lines(r):
@@ -636,7 +645,7 @@ class ExQuitCommand(sublime_plugin.WindowCommand):
           Although ST's window command 'exit' would take care of this, it
           displays a modal dialog, so spare ourselves that.
     """
-    def run(self, range='.', forced=False, count=1, flags=''):
+    def run(self, forced=False, count=1, flags=''):
         v = self.window.active_view()
         if forced:
             v.set_scratch(True)
@@ -655,7 +664,7 @@ class ExQuitAllCommand(sublime_plugin.WindowCommand):
 
     If there are dirty buffers, exit only if :qall!.
     """
-    def run(self, range='.', forced=False):
+    def run(self, forced=False):
         if forced:
             for v in self.window.views():
                 if v.is_dirty():
@@ -673,7 +682,7 @@ class ExWriteAndQuitCommand(sublime_plugin.TextCommand):
 
     Write and then close the active buffer.
     """
-    def run(self, edit, range='.', forced=False):
+    def run(self, edit, line_range=None, forced=False):
         # TODO: implement this
         if forced:
             ex_error.handle_not_implemented()

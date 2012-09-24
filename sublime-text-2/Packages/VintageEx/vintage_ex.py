@@ -1,9 +1,9 @@
 import sublime
 import sublime_plugin
 
-from ex_command_parser import parse_command
-from ex_command_parser import EX_COMMANDS
-import ex_error
+from vex.ex_command_parser import parse_command
+from vex.ex_command_parser import EX_COMMANDS
+from vex import ex_error
 
 
 COMPLETIONS = sorted([x[0] for x in EX_COMMANDS.keys()])
@@ -56,8 +56,8 @@ class ViColonInput(sublime_plugin.WindowCommand):
             ex_error.display_error(ex_cmd.parse_errors[0])
             return
         if ex_cmd and ex_cmd.name:
-            if ex_cmd.range:
-                ex_cmd.args['range'] = ex_cmd.range
+            if ex_cmd.can_have_range:
+                ex_cmd.args["line_range"] = ex_cmd.line_range
             if ex_cmd.forced:
                 ex_cmd.args['forced'] = ex_cmd.forced
             self.window.run_command(ex_cmd.command, ex_cmd.args)
