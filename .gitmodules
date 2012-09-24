@@ -1,6 +1,6 @@
 [submodule "bashmarks"]
 	path = bashmarks
-	url = git@github.com:crccheck/bashmarks.git
+	url = https://github.com/crccheck/bashmarks.git
 [submodule ".vim/bundle/vim-unbundle"]
 	path = .vim/bundle/vim-unbundle
 	url = https://github.com/sunaku/vim-unbundle.git
