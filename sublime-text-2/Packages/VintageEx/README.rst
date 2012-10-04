@@ -12,12 +12,8 @@ This whole package is distributed under the MIT license (see LICENSE.txt).
 Compatibility
 =============
 
-* Windows (good)
-* Linux (less good)
-* OSX (worst)
-
-VintageEx aims at full cross-platform compatibility. Presently, most commands
-will work fine on all three OSes as long as they don't interact with shells.
+VintageEx aims at full cross-platform compatibility. Howerver, I cannot test
+under OS X, so patches and feedback are welcome.
 
 Installation
 ============
@@ -50,3 +46,25 @@ VintageEx offers tab completion of top-level commands, so you can type a letter
 and press `Tab` to cycle through available commands.
 
 To see the implemented commands, you can look through ``ex_commands.py``.
+
+Configuration
+=============
+
+These settings should be stored in your personal preferences (*Packages/User/Preferences.sublime-settings*).
+
+**vintageex_linux_shell** 
+
+The name of the shell through which commands should be executed (``bash``, ``ksh``, etc.).
+If empty, the ``$SHELL`` variable will be read when a shell is needed.
+
+**vintageex_linux_terminal**
+
+The name of the preferred terminal emulator (``gnome-terminal``, ``xterm``, etc.). If empty,
+the variables ``$COLORTERM`` and ``$TERM`` will be read in turn when a terminal is needed.
+
+Donations
+=========
+
+If you want to show your appreciation, you can tip me through Gittip: guillermooo_.
+
+.. _guillermooo: http://www.gittip.com/guillermooo/
