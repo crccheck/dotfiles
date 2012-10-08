@@ -3,5 +3,6 @@
     "cmd": ["./build.sh"],
     "working_dir": "$file_path/..",
     // "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
-    "selector": "source.scss"
+    "selector": "source.scss, source.sass",
+    "path": "$HOME/.gem/ruby/1.8/bin/"
 }
