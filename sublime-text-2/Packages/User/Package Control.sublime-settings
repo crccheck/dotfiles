@@ -1,5 +1,5 @@
 {
-	"auto_upgrade_last_run": 1348510782,
+	"auto_upgrade_last_run": 1349661536,
 	"installed_packages":
 	[
 		"CoffeeCompile",
@@ -15,6 +15,7 @@
 		"MODx Revolution Snippets",
 		"Origami",
 		"Package Control",
+		"Sass",
 		"SCSS",
 		"SublimeBlockCursor",
 		"SublimeCodeIntel",
