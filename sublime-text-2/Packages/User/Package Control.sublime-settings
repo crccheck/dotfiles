@@ -1,5 +1,5 @@
 {
-	"auto_upgrade_last_run": 1349661536,
+	"auto_upgrade_last_run": 1349719914,
 	"installed_packages":
 	[
 		"CoffeeCompile",
@@ -7,6 +7,7 @@
 		"Djaneiro",
 		"Format SQL",
 		"Git",
+		"Indent XML",
 		"LESS",
 		"LESS-build",
 		"LineEndings",
