@@ -25,6 +25,13 @@ CURRENT_LINE_RANGE = {'left_ref': '.', 'left_offset': 0, 'left_search_offsets': 
                       'right_ref': None, 'right_offset': 0, 'right_search_offsets': []}
 
 
+class VintageExState(object):
+    # When repeating searches, determines which search term to use: the current
+    # word or the latest search term.
+    # Values: find_under, search_pattern
+    search_buffer_type = 'find_under'
+
+
 def is_any_buffer_dirty(window):
     for v in window.views():
         if v.is_dirty():
@@ -83,14 +90,21 @@ def get_region_by_range(view, line_range=None, split_visual=False):
         GLOBAL_RANGES = []
         return rv
 
+    regions = []
     if line_range:
-        regions = ex_range.new_calculate_range(view, line_range)
+        regions, visual_regions = ex_range.new_calculate_range(view, line_range)
     lines = []
     for region in regions:
         a, b = region
         r = sublime.Region(view.text_point(a - 1, 0),
-                           view.full_line(view.text_point(b - 1, 0)).end())
-        lines.extend(view.split_by_newlines(r))
+                           view.line(view.text_point(b - 1, 0)).end())
+        if not visual_regions or split_visual:
+            lines.extend(view.split_by_newlines(r))
+        else:
+            if view.substr(r)[-1] == "\n":
+                if r.begin() != r.end():
+                    r = sublime.Region(r.begin(), r.end() - 1)
+            lines.append(r)
 
     return lines
 
@@ -110,7 +124,8 @@ class ExGoto(sublime_plugin.TextCommand):
         if not line_range['text_range']:
             # No-op: user issued ":".
             return
-        a, b = ex_range.new_calculate_range(self.view, line_range)[0]
+        ranges, _ = ex_range.new_calculate_range(self.view, line_range)
+        a, b = ranges[0]
         self.view.run_command('vi_goto_line', {'repeat': b})
         self.view.show(self.view.sel()[0])
 
@@ -218,19 +233,11 @@ class ExReadShellOut(sublime_plugin.TextCommand):
                 ex_error.handle_not_implemented()
         # Read a file into the current view.
         else:
-            # Read the current buffer's contents and insert below current line.
-            if not name:
-                new_contents = self.view.substr(
-                                        sublime.Region(0, self.view.size()))
-                if self.view.substr(target_line.b) != '\n':
-                    new_contents = '\n' + new_contents
-                self.view.insert(edit, target_point, new_contents)
-                return
-            # XXX read file "name"
-            # we need proper filesystem autocompletion here
-            else:
-                ex_error.handle_not_implemented()
-                return
+            # According to Vim's help, :r should read the current file's content
+            # if no file name is given, but Vim doesn't do that.
+            # TODO: implement reading a file into the buffer.
+            ex_error.handle_not_implemented()
+            return
 
 
 class ExPromptSelectOpenFile(sublime_plugin.TextCommand):
@@ -756,11 +763,21 @@ class ExCquit(sublime_plugin.TextCommand):
 
 
 class ExExit(sublime_plugin.TextCommand):
-    def run(self, edit):
+    """Ex command(s): :x[it], :exi[t]
+
+    Like :wq, but write only when changes have been made.
+
+    TODO: Support ranges, like :w.
+    """
+    def run(self, edit, line_range=None):
         w = self.view.window()
-        w.run_command('save')
+
+        if w.active_view().is_dirty():
+            w.run_command('save')
+
         w.run_command('close')
-        if len(self.window.views()) == 0:
+
+        if len(w.views()) == 0:
             w.run_command('close')
 
 
@@ -779,3 +796,28 @@ class ExListRegisters(sublime_plugin.TextCommand):
         if idx == -1:
             return
         g_registers['"'] = g_registers.values()[idx]
+
+
+class ExNew(sublime_plugin.TextCommand):
+    """Ex command(s): :new
+
+    Create a new buffer.
+
+    TODO: Create new buffer by splitting the screen.
+    """
+    def run(self, edit, line_range=None):
+        self.view.window().run_command('new_file')
+
+
+class ExYank(sublime_plugin.TextCommand):
+    """Ex command(s): :y[ank]
+    """
+    
+    def run(self, edit, line_range, register=None, count=None):
+        if not register:
+            register = '"'
+        regs = get_region_by_range(self.view, line_range)
+        text = '\n'.join([self.view.substr(line) for line in regs])
+        g_registers[register] = text
+        if register == '"':
+            g_registers['0'] = text
