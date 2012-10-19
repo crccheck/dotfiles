@@ -131,6 +131,8 @@ alias fgrep='fgrep -I'
 alias egrep='egrep -I'
 alias rgrep='rgrep -I'
 
+alias grepenv='env | grep'
+
 alias netstat='netstat -natp'
 alias du='du -kh --max-depth=1'
 alias df='df -kTh'
