@@ -101,6 +101,11 @@ function f {
     fi
 }
 
+
+function tth {
+    ssh root@$1 -i ~/scripts/id_ttdev
+}
+
 # Node.js
 export NODE_PATH=$HOME/local/node
 prepend_path_if_exists PATH $HOME/local/node/bin
