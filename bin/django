@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+"""
+
+makes sure django settings dir is in the path.
+
+also has shortcuts for environment based settings.
+
+"""
 import os
 import sys
 
@@ -13,7 +20,6 @@ def in_django_project(some_path):
 
 
 def find_project_dir(path=os.getcwd()):
-    # original_path = path
     path_split = os.path.split(path)
     while path_split[1]:
         if in_django_project(path):
@@ -22,15 +28,39 @@ def find_project_dir(path=os.getcwd()):
         path_split = os.path.split(path)
     # we ran out of parents
     return None
-    # return original_path
 
 
 project_dir = find_project_dir(os.getcwd())
 if project_dir and project_dir not in sys.path:
     sys.path.insert(0, project_dir)
 
-
 if __name__ == "__main__":
     from django.core.management import execute_from_command_line
 
+    old_env = os.environ.get('ENVIRONMENT', None)  # remember old env
+
+    # Auto set environemtn
+    if 'migration' in sys.argv:
+        os.environ['ENVIRONMENT'] = 'migration'
+        print "**** Going into `migration` env ****"
+    if 'test' in sys.argv:
+        os.environ['ENVIRONMENT'] = 'test'
+        print "**** Going into `test` env ****"
+
+    balls = None
+    if 'balls' in sys.argv:
+        balls = True
+        sys.argv.remove('balls')
+        print "**** USE PRODUCTION DB ****"
+        os.environ['USE_PRODUCTION_DB'] = '1'
+
     execute_from_command_line(sys.argv)
+
+    # cleanup
+    if old_env is not None:
+        if os.environ['ENVIRONMENT'] != old_env:
+            print "**** UNSETTING ENV FROM `%s` to `%s` ****" % (os.environ['ENVIRONMENT'], old_env)
+        os.environ['ENVIRONMENT'] = old_env
+    if balls:
+        print "**** PRODUCTION DB BYE BYE ****"
+        os.environ.pop('USE_PRODUCTION_DB')
