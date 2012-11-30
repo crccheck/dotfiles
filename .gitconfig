@@ -14,24 +14,25 @@
 [apply]
     whitespace = nowarn
 [alias]
-    s = status
     b = branch
     ba = branch -ra
     bvv = branch -vv
-    co = checkout
     caa = commit -a --amend -C HEAD
+    co = checkout
     d = diff -b
+    derp = reset --hard HEAD
     fa = !git fetch --all &
+    ggrreepp = !git grep $@ $(git rev-list --all --max-count=2000) && echo
     l = log --decorate --pretty=oneline --abbrev-commit
     lg = log -p
-    ls = log --stat
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    derp = reset --hard HEAD
-    ggrreepp = !git grep $@ $(git rev-list --all --max-count=2000) && echo
-    vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
-    pom = pull --rebase origin master
+    ls = log --stat
     p = pull --ff-only
+    pom = pull --rebase origin master
+    s = status
+    vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
+    whoami = config --get user.name
 
 [merge]
     tool = meld
