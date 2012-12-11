@@ -1,3 +1,6 @@
+--follow
+
+--type-add=sass=.sass,.scss
+
 --ignore-dir=migrations
 --ignore-dir=vendor
---ignore-dir=static
