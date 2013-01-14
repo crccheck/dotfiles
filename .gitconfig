@@ -23,10 +23,9 @@
     derp = reset --hard HEAD
     fa = !git fetch --all &
     ggrreepp = !git grep $@ $(git rev-list --all --max-count=2000) && echo
-    l = log --decorate --pretty=oneline --abbrev-commit
+    l = log --graph --decorate --pretty=oneline --abbrev-commit
+    la = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg = log -p
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = log --stat
     p = pull --ff-only
     pom = pull --rebase origin master
