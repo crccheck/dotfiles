@@ -129,6 +129,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias col50="printf '=%.0s' {1..50}"  # 50 column ruler
+alias col72="printf '=%.0s' {1..72}"  # 72 column ruler
+alias col80="printf '=%.0s' {1..80}"  # 80 column ruler
 
 export GREP_OPTIONS='--color=auto'
 alias grep='grep -I'
