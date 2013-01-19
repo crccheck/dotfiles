@@ -1,0 +1,14 @@
+#
+# $IPYTHONDIR is typically something like /Users/crc/env/tt/.ipython
+#
+if [ -z $IPYTHONDIR ]; then
+    echo "IPYTHONDIR is not set"
+    exit 1
+fi
+
+DST=$IPYTHONDIR/profile_default
+SRC=$HOME/.dotfiles/.ipython/ipython_config.py
+echo "Linking ipython config $DST -> $SRC"
+mkdir -p $DST
+cd $DST
+ln -s -f $SRC
