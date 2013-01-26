@@ -36,13 +36,3 @@ if [ -L ~/.vim ]; then
     rm ~/.vim
 fi
 ln -s .dotfiles/.vim ~/.vim
-
-
-# personal ~/bin
-echo "* install ~/bin"
-cd
-mkdir -p bin
-cd bin
-for f in $currentpath/bin/*; do
-    ln -s $f
-done
