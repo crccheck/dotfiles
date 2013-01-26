@@ -164,7 +164,6 @@ alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 alias yahoo="ping -i 10 www.yahoo.com"
 alias fb="fab -f ~/scripts/fabfile.py"
 
-vipostactivate () { [[ -n "$VIRTUAL_ENV" ]] && "$VISUAL" "$VIRTUAL_ENV/bin/postactivate"; }
 md () { mkdir -p "$@" && cd "$@"; }
 
 ###################################################
