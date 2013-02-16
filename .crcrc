@@ -73,7 +73,7 @@ then
 fi
 
 export EDITOR=vim
-export VISUAL=vim
+export VISUAL=subl
 
 export LC_COLLATE="POSIX"
 
@@ -187,9 +187,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     source $HOME/.dotfiles/git-completion.bash
 
-    export EDITOR=vi
+    export EDITOR=vim
     export VISUAL=subl
-    alias vi=$VISUAL
 else
     alias ls='ls -F --color=auto'
 fi
