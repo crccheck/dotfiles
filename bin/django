@@ -39,12 +39,13 @@ if __name__ == "__main__":
 
     old_env = os.environ.get('ENVIRONMENT', None)  # remember old env
 
-    # Auto set environemtn
+    # Tweak env variables according to the command
     if 'migrate' in sys.argv:
         os.environ['ENVIRONMENT'] = 'migration'
         print "**** Going into `migration` env ****"
     if 'test' in sys.argv:
         os.environ['ENVIRONMENT'] = 'test'
+        os.environ['ROOT_LOGGING_LEVEL'] = 'CRITICAL'
         print "**** Going into `test` env ****"
 
     balls = None
