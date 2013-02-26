@@ -241,7 +241,6 @@ function mkcodeintelconfig {
 
 if [ -d /var/lib/gems ]; then
     export GEM_HOME=$HOME/.gem/ruby/1.8
-    prepend_path PATH /var/lib/gems/1.8/gems/s3-sync-1.2.7/bin
     prepend_path PATH $GEM_HOME/bin
     append_path PATH /var/lib/gems/bin
 fi
