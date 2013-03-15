@@ -2,4 +2,6 @@
 # This hook is run after this virtualenv is deactivated.
 
 unset IPYTHONDIR
+unset DATABASE_URL
 unalias vivirtualenv
+
