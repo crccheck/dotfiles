@@ -161,7 +161,6 @@ alias djsql="django debugsqlshell"
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
-alias yahoo="ping -i 10 www.yahoo.com"
 alias fb="fab -f ~/scripts/fabfile.py"
 
 md () { mkdir -p "$@" && cd "$@"; }
@@ -293,7 +292,7 @@ function _pingbaby {
 }
 
 function pingbaby {
-    local host='www.yahoo.com'
+    local host='www.google.com'
     echo Pinging $host
     _pingbaby $host
 }
