@@ -162,6 +162,7 @@ alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 alias fb="fab -f ~/scripts/fabfile.py"
+alias befs="bundle exec foreman start"
 
 md () { mkdir -p "$@" && cd "$@"; }
 
