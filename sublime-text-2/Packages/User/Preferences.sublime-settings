@@ -3,7 +3,7 @@
 	[
 		"css"
 	],
-	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+	"color_scheme": "Packages/Boron Color Scheme/Boron.tmTheme",
 	"default_line_ending": "unix",
 	"detect_slow_plugins": false,
 	"ensure_newline_at_eof_on_save": true,

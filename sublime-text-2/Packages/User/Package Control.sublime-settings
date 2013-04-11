@@ -2,6 +2,7 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"Boron Color Scheme",
 		"CoffeeCompile",
 		"CoffeeScript",
 		"Djaneiro",
@@ -28,7 +29,8 @@
 		"Theme - Soda",
 		"View Movement",
 		"VintageEx",
-		"Wrap Plus"
+		"Wrap Plus",
+		"zenburn"
 	],
 	"repositories":
 	[
