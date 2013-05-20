@@ -176,6 +176,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
     prepend_path_if_exists PATH /usr/local/share/python
     prepend_path_if_exists PATH /usr/local/bin
     append_path PYTHONPATH ~/Library/Python
+
+    alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
     # Fix Backspace/Delete confusion:
     stty erase ^?
     # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
