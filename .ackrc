@@ -4,3 +4,4 @@
 
 --ignore-dir=migrations
 --ignore-dir=vendor
+--ignore-dir=.coverage
