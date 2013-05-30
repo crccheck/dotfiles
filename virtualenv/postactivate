@@ -2,4 +2,4 @@
 # This hook is run after this virtualenv is activated.
 
 export IPYTHONDIR=$VIRTUAL_ENV/.ipython
-alias vivirtualenv="$VISUAL $VIRTUAL_ENV/bin/postactivate"
+alias vivirtualenv="$VISUAL $VIRTUAL_ENV/bin/postactivate $VIRTUAL_ENV/bin/postdeactivate"
