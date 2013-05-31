@@ -163,6 +163,7 @@ alias fixssh="source $HOME/bin/fixssh"
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 alias fb="fab -f ~/scripts/fabfile.py"
 alias befs="bundle exec foreman start"
+alias damnds="find . -name '.DS_Store' -delete"
 
 md () { mkdir -p "$@" && cd "$@"; }
 
