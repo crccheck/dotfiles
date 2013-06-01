@@ -72,6 +72,23 @@
     "pad9:ctrl;cmd": move.topRight
   });
 
+  // App specific logic
+  // Sublime Text
+  S.bind('pad+:ctrl;cmd', function(win){
+    var appName = win.app().name();
+    if (appName === "Sublime Text 2"){
+      win.doOperation(S.operation("move", {
+        x: "screenOriginX+screenSizeX*3/10",
+        y: "screenOriginY",
+        width: "screenSizeX*7/10",
+        height: "screenSizeY"
+      }));
+    } else {
+      S.log(appName);
+    }
+  });
+
+
   // Log that we're done configuring
   S.log("[SLATE] -------------- Finished Loading Config --------------");
 })(slate);
