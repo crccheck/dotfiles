@@ -10,6 +10,27 @@
     // "orderScreensLeftToRight" : true
   });
 
+  // magic to toggle between several widths
+  var counter = 0;
+  var dynWidth = function(){
+    var widths = ["screenSizeX/2", "screenSizeX*11/20", "screenSizeX*9/20"];
+    var width = widths[counter];
+    counter = (counter + 1) % widths.length;
+    return width;
+  };
+  // the appropriate X that corresponds with the dynamic width
+  var dynX = function(){
+    return [
+      'screenOriginX+screenSizeX/2',
+      'screenOriginX+screenSizeX*9/20',
+      'screenOriginX+screenSizeX*11/20'
+    ][counter];
+  };
+  // reset the counter every time we change focus
+  S.on('appActivated', function(){
+    counter = 0;
+  });
+
   // Operations
   var baseMove = S.operation("move", {
         x: "screenOriginX",
@@ -27,8 +48,8 @@
       },
       move = {
         full: baseMove,
-        left: baseMove.dup({width: "screenSizeX/2"}),
-        right: baseMove.dup({x: positions.center, width: "screenSizeX/2"}),
+        left: baseMove.dup({width: dynWidth}),
+        right: baseMove.dup({x: dynX, width: dynWidth}),
         top: baseMove.dup({height: "screenSizeY/2"}),
         bottom: baseMove.dup({y: positions.middle, height: "screenSizeY/2"}),
         topLeft: baseMove.dup({width: "screenSizeX/2", height: "screenSizeY/2"}),
