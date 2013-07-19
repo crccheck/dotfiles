@@ -288,6 +288,7 @@ function _pingbaby {
         local ticks=$(echo $time / 5 | bc)
         for i in `jot - 1 $ticks`; do echo -n '▄'; done
         echo " $time"
+        echo -en "\033]0;$time \a"
     else
         echo " *  p i n g   t i m e o u t  *"
     fi
