@@ -32,6 +32,7 @@
     s = status
     vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
     whoami = config --get user.name
+    t = for-each-ref --sort='authordate' --format='%(authordate:short)\t%(refname:short)' refs/tags
 
 [merge]
     tool = meld
