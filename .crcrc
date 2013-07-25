@@ -242,6 +242,10 @@ function mkcodeintelconfig {
 ### Ruby Gems
 ###################################################
 
+if [ -d $HOME/.rvm ]; then
+    append_path PATH $HOME/.rvm/bin
+fi
+
 if [ -d /var/lib/gems ]; then
     export GEM_HOME=$HOME/.gem/ruby/1.8
     prepend_path PATH $GEM_HOME/bin
