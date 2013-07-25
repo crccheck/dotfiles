@@ -237,14 +237,14 @@ function mkcodeintelconfig {
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+if [ -d $HOME/.rvm ]; then
+    append_path PATH $HOME/.rvm/bin
+fi
+
 
 ###################################################
 ### Ruby Gems
 ###################################################
-
-if [ -d $HOME/.rvm ]; then
-    append_path PATH $HOME/.rvm/bin
-fi
 
 if [ -d /var/lib/gems ]; then
     export GEM_HOME=$HOME/.gem/ruby/1.8
