@@ -287,10 +287,12 @@ function _pingbaby {
     # TODO scale=5
     # TODO delay=10
     local out=$(ping -q -c 1 $1)
+    # is there a way to pass default args?
+    local seq=$2
     local time=$(echo $out | awk -F/ 'END{print $5}')
     if [ $time ]; then
         local ticks=$(echo $time / 5 | bc)
-        for i in `jot - 1 $ticks`; do echo -n '▄'; done
+        for i in `$seq $ticks`; do echo -n '▄'; done
         echo " $time"
         echo -en "\033]0;$time \a"
     else
@@ -304,7 +306,11 @@ function pingbaby {
     set -e
     local host='www.google.com'
     echo Pinging $host
-    _pingbaby $host
+    if [ "$(uname -s)" == "Darwin" ]; then
+        _pingbaby $host 'jot - 1'
+    else
+        _pingbaby $host seq
+    fi
 }
 
 # mktmpenv doesn't work too well for me
