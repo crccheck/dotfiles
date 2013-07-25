@@ -247,9 +247,13 @@ fi
 ###################################################
 
 if [ -d /var/lib/gems ]; then
-    export GEM_HOME=$HOME/.gem/ruby/1.8
+    # export GEM_HOME=$HOME/.gem/ruby/1.8
     prepend_path PATH $GEM_HOME/bin
     append_path PATH /var/lib/gems/bin
+fi
+
+if [ -d /usr/local/heroku/bin ]; then
+    prepend_path PATH /usr/local/heroku/bin
 fi
 
 ###################################################
