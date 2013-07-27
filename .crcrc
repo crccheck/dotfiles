@@ -228,18 +228,13 @@ function mkcodeintelconfig {
     eval "echo \"$(cat ~/.dotfiles/codeintel)\"" > .codeintel/config
 }
 
-#UNCOLOR="\[\033[00m\]"
-#COLOR="\[\033[1;36m\]"
-
 ###################################################
 ### RVM
 ###################################################
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-if [ -d $HOME/.rvm ]; then
-    append_path PATH $HOME/.rvm/bin
-fi
+prepend_path_if_exists $HOME/.rvm/bin
 
 
 ###################################################
@@ -255,6 +250,10 @@ fi
 if [ -d /usr/local/heroku/bin ]; then
     prepend_path PATH /usr/local/heroku/bin
 fi
+
+CYAN="\[\033[1;36m\]"
+LIGHT_GREEN="\[\033[1;32m\]"
+UNCOLOR="\[\033[0;00m\]"
 
 ###################################################
 ### git prompt hack
@@ -279,17 +278,12 @@ function parse_git_branch {
 function active_virtualenv {
     if [ -n "$VIRTUAL_ENV" ]
     then
-        #echo -n " (Virtualenv: $COLOR\$(basename "$VIRTUAL_ENV")$UNCOLOR)"
-        echo -n " (Virtualenv: $(basename "$VIRTUAL_ENV"))"
+        echo -n " (Virtualenv: $CYAN$(basename "$VIRTUAL_ENV")$UNCOLOR)"
+        # echo -n " (Virtualenv: $(basename "$VIRTUAL_ENV"))"
     fi
 }
 
-# Stolen from Gentoo:
-PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
-#LIGHT_GREEN="\[\033[1;32m\]"
-#PS1="$LIGHT_GREEN\u@\h\[\033[01;34m\] \w$UNCOLOR$(active_virtualenv)$(parse_git_branch)\n\$ "
-# Save custom PS1 to restore later
-#export CCG_PS1="$PS1"
+PS1="\n$LIGHT_GREEN\u@\h\[\033[01;34m\] \w$UNCOLOR$(active_virtualenv)\$(parse_git_branch)\n\$ "
 export PS1
 
 function _pingbaby {
