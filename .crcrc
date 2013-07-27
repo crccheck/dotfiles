@@ -287,19 +287,20 @@ PS1="\n$LIGHT_GREEN\u@\h\[\033[01;34m\] \w$UNCOLOR$(active_virtualenv)\$(parse_g
 export PS1
 
 function _pingbaby {
-    # TODO scale=5
-    # TODO delay=10
+    local scale=5
+    local delay=10
     local out=$(ping -q -c 1 $1)
     local time=$(echo $out | awk -F/ 'END{print $5}')
     if [ $time ]; then
-        local ticks=$(echo $time / 5 | bc)
-        for i in `jot $ticks - 1`; do echo -n '▄'; done
+        local ticks=$(echo $time / $scale + 1 | bc)
+        jot -b '' -s '▄' -n $ticks
         echo " $time"
-        echo -en "\033]0;$time \a"
+        # send time to titlebar
+        echo -en "\033]0;${time}ms $1 \a"
     else
         echo " *  p i n g   t i m e o u t  *"
     fi
-    sleep 10
+    sleep $delay
     _pingbaby $1
 }
 
