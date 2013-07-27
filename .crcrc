@@ -263,9 +263,14 @@ fi
 # http://www.simplisticcomplexity.com/2008/03/13/show-your-git-branch-name-in-your-prompt/
 #   username@Machine ~/dev/dir[master]$   # clean working directory
 #   username@Machine ~/dev/dir[master*]$  # dirty working directory
-
+#
+# https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
 function parse_git_dirty {
-    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+    # 0    clean
+    # 1    dirty
+    # 129  not in git
+    git diff --no-ext-diff --quiet --exit-code 2> /dev/null
+    [[ $? -eq 1 ]] && echo "*"
 }
 
 function parse_git_branch {
