@@ -251,9 +251,13 @@ if [ -d /usr/local/heroku/bin ]; then
     prepend_path PATH /usr/local/heroku/bin
 fi
 
+GREEN="\[\033[1;32m\]"
+BLUE="\[\033[1;34m\]"
 CYAN="\[\033[1;36m\]"
-LIGHT_GREEN="\[\033[1;32m\]"
-UNCOLOR="\[\033[0;00m\]"
+UNCOLOR="\[\033[00m\]"
+
+eCYAN="\x1b[1;36m"
+eUNCOLOR="\x1b[0m"
 
 ###################################################
 ### git prompt hack
@@ -278,12 +282,13 @@ function parse_git_branch {
 function active_virtualenv {
     if [ -n "$VIRTUAL_ENV" ]
     then
-        echo -n " (Virtualenv: $CYAN$(basename "$VIRTUAL_ENV")$UNCOLOR)"
+        echo -en " (Virtualenv: $eCYAN$(basename "$VIRTUAL_ENV")$eUNCOLOR)"
         # echo -n " (Virtualenv: $(basename "$VIRTUAL_ENV"))"
     fi
 }
 
-PS1="\n$LIGHT_GREEN\u@\h\[\033[01;34m\] \w$UNCOLOR$(active_virtualenv)\$(parse_git_branch)\n\$ "
+# PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
+PS1="\n$GREEN\u@\h$BLUE \w$UNCOLOR\$(active_virtualenv)\$(parse_git_branch)\n\$ "
 export PS1
 
 function _pingbaby {
