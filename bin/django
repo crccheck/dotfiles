@@ -40,7 +40,7 @@ if __name__ == "__main__":
     old_env = os.environ.get('ENVIRONMENT', None)  # remember old env
 
     # Tweak env variables according to the command
-    if 'migrate' in sys.argv:
+    if 'migrate' in sys.argv or 'schemamigration' in sys.argv:
         os.environ['ENVIRONMENT'] = 'migration'
         print "**** Going into `migration` env ****"
     if 'test' in sys.argv:
