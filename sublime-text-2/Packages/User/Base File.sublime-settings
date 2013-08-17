@@ -8,6 +8,9 @@
     "codeintel_disabled_languages":
     ["CoffeeScript",
      "JSON",
+     "HTML",
+     "HTML (Django)",
+     "JavaScript",
      "Sass"
     ]
 
