@@ -11,10 +11,12 @@
 	"folder_exclude_patterns":
 	[
 		"*.egg-info",
+		".coverage",
 		".git",
 		".hg",
 		".sass-cache",
 		".svn",
+		"coverage",
 		"CVS",
 		"node_modules"
 	],
