@@ -7,3 +7,4 @@
 --ignore-dir=node_modules
 --ignore-dir=.coverage
 --ignore-dir=coverage
+--ignore-dir=.tox
