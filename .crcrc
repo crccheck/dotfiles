@@ -165,10 +165,6 @@ alias fb="fab -f ~/scripts/fabfile.py"
 alias befs="bundle exec foreman start"
 alias dsdamn="find . -name '.DS_Store' -delete"
 
-# docker.io shortcuts
-dbash() { docker run -i -t $1 /bin/bash $2-; }
-dipaddr() { docker inspect $@ | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'; }
-
 md () { mkdir -p "$@" && cd "$@"; }
 
 ###################################################
