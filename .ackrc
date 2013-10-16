@@ -2,9 +2,11 @@
 
 --type-add=sass=.sass,.scss
 
---ignore-dir=migrations
---ignore-dir=vendor
---ignore-dir=node_modules
 --ignore-dir=.coverage
---ignore-dir=coverage
+--ignore-dir=.sass-cache
 --ignore-dir=.tox
+--ignore-dir=coverage
+--ignore-dir=migrations
+--ignore-dir=node_modules
+--ignore-dir=static_root
+--ignore-dir=vendor
