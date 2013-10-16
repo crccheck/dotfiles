@@ -3,6 +3,8 @@
 # notes:
 # use backslash before commonly aliased commands
 
+set -e
+
 case "$1" in
 
 # filter out untagged images
@@ -11,6 +13,23 @@ images)
     ;;
 
 # custom commands
+
+# build a tagged container image based on a *path*
+#
+# To make an image called `mysql` located at ./mysql:
+#
+#     $ dockr b mysql/
+#
+# You can also use relative paths, or leave it blank to use the current working
+# directory.
+#
+# TODO: pass options (`-rm` looks promising)
+b)
+    dockerfile_location=${2:-"."}
+    name=$(cd $dockerfile_location && echo ${PWD##*/})
+    docker build -t $name $dockerfile_location
+    ;;
+
 
 # log into a container/image
 #
