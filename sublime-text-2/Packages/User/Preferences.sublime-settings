@@ -19,7 +19,8 @@
 		".svn",
 		"coverage",
 		"CVS",
-		"node_modules"
+		"node_modules",
+		"static_root"
 	],
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
