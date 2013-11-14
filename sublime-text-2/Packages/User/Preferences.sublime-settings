@@ -1,5 +1,5 @@
 {
-    "auto_complete_commit_on_tab": true,
+	"auto_complete_commit_on_tab": true,
 	"codeintel_disabled_languages":
 	[
 		"css"
