@@ -1,6 +1,9 @@
 (function(S){
   "use strict";
 
+  // move / resize / push / nudge / throw ...
+  // https://github.com/jigish/slate/wiki/Operations
+
   // Configs
   S.configAll({
     "defaultToCurrentScreen" : true
@@ -69,11 +72,14 @@
     "pad6:ctrl;cmd": move.right,
     "pad7:ctrl;cmd": move.topLeft,
     "pad8:ctrl;cmd": move.top,
-    "pad9:ctrl;cmd": move.topRight
+    "pad9:ctrl;cmd": move.topRight,
+    'pad4:ctrl;alt': S.operation('throw', {screen: 'left'}),
+    'pad6:ctrl;alt': S.operation('throw', {screen: 'right'})
   });
 
   // App specific logic
   // Sublime Text
+  // should this be a layout?
   S.bind('pad+:ctrl;cmd', function(win){
     var appName = win.app().name();
     if (appName === "Sublime Text 2"){
