@@ -11,6 +11,7 @@
 		"Format SQL",
 		"Git",
 		"Indent XML",
+		"Jedi - Python autocompletion",
 		"LESS",
 		"LESS-build",
 		"LineEndings",
@@ -36,6 +37,6 @@
 	"repositories":
 	[
 		"https://github.com/netpro2k/SublimeBlockCursor",
-		"git clone https://github.com/buymeasoda/soda-theme/ \"Theme - Soda\""
+		"https://github.com/buymeasoda/soda-theme/"
 	]
 }
