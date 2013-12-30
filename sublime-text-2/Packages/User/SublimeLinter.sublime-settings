@@ -1,5 +1,10 @@
 
 {
+    // An array of linter names to disable. Names should be lowercase.
+    "sublimelinter_disable":
+    [
+        "html"
+    ],
     // CSSLint options:
     // Each rule can have three values: error|warning|true|false
     // false => rule is disabled.
