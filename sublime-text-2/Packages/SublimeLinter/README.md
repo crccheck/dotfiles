@@ -1,6 +1,25 @@
 SublimeLinter
 =============
 
+## SublimeLinter 3 has landed!
+
+SublimeLinter for Sublime Text 3 is [here](https://github.com/SublimeLinter/SublimeLinter3), and it’s soooooo much better than before! Install it from Package Control and enjoy!
+
+Unless someone else comes forward, SublimeLinter for Sublime Text 2 will no longer be supported. I strongly encourage everyone to upgrade to Sublime Text 3 and SublimeLinter 3 — you’ll be glad you did! Take a look at the [extensive documentation](https://github.com/SublimeLinter/SublimeLinter.github.io/wiki) to see the great new features in SublimeLinter 3.
+
+## Share the love!
+
+I spent hundreds of hours writing and documenting SublimeLinter 3 to make it the best it can be — easy to use, easy to configure, easy to update, easy to extend. If you use SublimeLinter and feel it is making your coding life better and easier, please consider making a donation to help fund development and support. Thank you!
+
+To donate: https://github.com/SublimeLinter/SublimeLinter3#share-the-love
+
+Thank you for your support!
+
+---
+
+SublimeLinter v1.7 Overview
+---------
+
 SublimeLinter is a plugin that supports "lint" programs (known as "linters"). SublimeLinter highlights
 lines of code the linter deems to contain (potential) errors. It also
 supports highlighting special annotations (for example: TODO) so that they
@@ -15,15 +34,23 @@ SublimeLinter has built in linters for the following languages:
 * Haml - syntax check via `haml -c`
 * HTML - lint via `tidy` (actually [tidy for HTML5](http://w3c.github.com/tidy-html5/))
 * Java - lint via `javac -Xlint`
-* Javascript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
+* JavaScript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
 * Lua - syntax check via `luac`
 * Objective-J - lint via built-in [capp_lint](https://github.com/aparajita/capp_lint)
-* Perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation check via `perl -c`
+* Perl - lint via [Perl::Critic](http://perlcritic.com/) or syntax+deprecation check via `perl -c`
 * PHP - syntax check via `php -l`
 * Puppet - syntax check via `puppet parser validate`
 * Python - native, moderately-complete lint
 * Ruby - syntax check via `ruby -wc`
 * XML - lint via `xmllint`
+
+Quickstart
+------------
+
+* Install using [Package Control ST2 plugin](http://wbond.net/sublime_packages/package_control/installation).
+* `SublimeLinter` runs in the background (by default), linting files for style and potential errors.
+* Season to taste (edit configuration) by editing `Preferences->Package Settings->SublimeLinter->Settings - User`.
+* Produce better code!
 
 
 Installing
@@ -53,19 +80,67 @@ The "Packages" directory is located at:
 
         %APPDATA%/Sublime Text 2/Packages/
 
-### Javascript-based linters
-If you plan to edit files that use a Javascript-based linter (Javascript, CSS), your system
-must have a Javascript engine installed. Mac OS X comes with a preinstalled Javascript engine called
+### JavaScript-based linters
+If you plan to edit files that use a JavaScript-based linter (JavaScript, CSS), your system
+must have a JavaScript engine installed. Mac OS X comes with a preinstalled JavaScript engine called
 JavaScriptCore, which is used if Node.js is not installed. On Windows, you **must** install the
-Javascript engine Node.js, which can be downloaded from [the Node.js site](http://nodejs.org/#download).
+JavaScript engine Node.js, which can be downloaded from [the Node.js site](http://nodejs.org/#download).
 
-On Mac OS X, you **must** install Node.js if you plan to edit Javascript or CSS files that
+On Mac OS X, you **must** install Node.js if you plan to edit JavaScript or CSS files that
 use non-ASCII characters in strings or comments, because JavaScriptCore is not Unicode-aware.
 
 After installing Node.js, if the Node.js executable ("node" on Mac OS X, "node.exe" on Windows)
 cannot be found by SublimeLinter, you may have to set the path to the executable in the
 "sublimelinter\_executable\_map" setting. See the "Configuring" section below for info on
 SublimeLinter settings.
+
+
+Using
+-----
+SublimeLinter runs in one of three modes, which is determined by the "sublimelinter" user setting:
+
+* **Background mode (the default)** - When the "sublimelinter" setting is true, linting is performed in the background as you modify a file (if the relevant linter supports it). If you like instant feedback, this is the best way to use SublimeLinter. If you want feedback, but not instantly, you can try another mode or set a minimum queue delay with the "sublimelinter_delay" setting, so that the linter will only run after a certain amount of idle time.
+* **Load-save mode** - When the "sublimelinter" setting is "load-save", linting is performed only when a file is loaded and after saving. Errors are cleared as soon as the file is modified.
+* **Save-only mode** - When the "sublimelinter" setting is "save-only", linting is performed only after a file is saved. Errors are cleared as soon as the file is modified.
+* **On demand mode** - When the "sublimelinter" setting is false, linting is performed only when initiated by you. Use the `Control+Command+L` (OS X) or `Control+Alt+L` (Linux/Windows) key equivalent or the Command Palette to lint the current file. If the current file has no associated linter, the command will not be available.
+
+Within a file whose language/syntax is supported by SublimeLinter, you can control SublimeLinter via the Command Palette (`Command+Shift+P` on OS X, `Control+Shift+P` on Linux/Windows). The available commands are:
+
+* **SublimeLinter: Lint Current File** - Lints the current file, highlights any errors and displays how many errors were found.
+* **SublimeLinter: Show Error List** - Lints the current file, highlights any errors and displays a quick panel with any errors that are found. Selecting an item from the quick panel jumps to that line.
+* **SublimeLinter: Background Linting** - Enables background linting mode for the current view and lints it.
+* **SublimeLinter: Disable Linting** - Disables linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Load-Save Linting** - Enables load-save linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Save-Only Linting** - Enables save-only linting mode for the current view and clears all lint errors.
+* **SublimeLinter: Reset** - Clears all lint errors and sets the linting mode to the value in the SublimeLinter.sublime-settings file.
+
+Depending on the file and the current state of background enabling, some of the commands will not be available.
+
+When an error is highlighted by the linter, putting the cursor on the offending line will result in the error message being displayed on the status bar.
+
+If you want to be shown a popup list of all errors whenever a file is saved, modify the user setting:
+
+    "sublimelinter_popup_errors_on_save": true
+
+If there are errors in the file, a quick panel will appear which shows the error message, line number and source code for each error. The starting location of all errors on the line are marked with "^". Selecting an error in the quick panel jumps directly to the location of the first error on that line.
+
+While editing a file, you can quickly move to the next/previous lint error with the following key equivalents:
+
+* **OS X**:
+
+        next: Control+Command+E
+        prev: Control+Command+Shift+E
+
+* **Linux, Windows**:
+
+        next: Control+Alt+E
+        prev: Control+Alt+Shift+E
+
+By default the search will wrap. You can turn wrapping off with the user setting:
+
+    "sublimelinter_wrap_find": false
+
+Please note: these key commands may conflict with other important cmds (such as generating the € character - this was discussed in issue [#182](https://github.com/SublimeLinter/SublimeLinter/issues/182)). If these controls are problematic, you may always adjust your settings by copying the defaults stored in `Preferences->Package Settings->SublimeLinter->Key Bindings - Default` into `Preferences->Key Bindings - User` and then modifying the values appropriately.
 
 Configuring
 -----------
@@ -92,7 +167,7 @@ Following are notes specific to individual linters that you should be aware of:
         "c_cpplint": "/Users/[my username]/Desktop/cpplint.py"
       }
 
-* **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a Javascript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
+* **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a JavaScript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
 
   By default all CSSLint settings are turned on. You may customize CSSLint behavior with the "csslint_options" setting. Please select `Preferences->Package Settings->SublimeLinter->Settings - Default` for more information on turning off or adjusting severity of tests. For more information about options available to CSSLint, see https://github.com/stubbornella/csslint/wiki/Rules.
 
@@ -100,7 +175,7 @@ Following are notes specific to individual linters that you should be aware of:
 
 * **Java** - Because it uses `javac` to do linting, each time you run the linter the entire dependency graph of the current file will be checked. Depending on the number of classes you import, this can be **extremely** slow. Also note that you **must** provide the `-sourcepath`, `-classpath`, `-Xlint` and `{filename}` arguments to `javac` in your per-project settings. See "Per-project settings" below for more information.
 
-* **JavaScript** - If the "javascript_linter" setting is "jshint" or "jslint", this linter runs [jshint](http://jshint.org) (or [jslint](http://jslint.com) respectively) using Node.js. See "Javascript-based linters" above for information on how to install Node.js.
+* **JavaScript** - If the "javascript_linter" setting is "jshint" or "jslint", this linter runs [jshint](http://jshint.org) (or [jslint](http://jslint.com) respectively) using Node.js. See "JavaScript-based linters" above for information on how to install Node.js.
 
   If the "javascript_linter" setting is "gjslint", this linter runs the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto). After installation, if gjslint cannot be found by SublimeLinter, you may have to set the path to gjslint in the "sublimelinter\_executable\_map" setting.
 
@@ -133,7 +208,7 @@ SublimeLinter supports per-project/per-language settings. This is useful if a li
 Within the "SublimeLinter" object, you can add a settings object for each language. The language name must match the language item in the linter's CONFIG object, which can be found in the linter's source file in the SublimeLinter/sublimelinter/modules folder. Each language can have two settings:
 
 * "working_directory" - If present and a valid absolute directory path, the working directory is set to this path before the linter executes. This is useful if you are providing linter arguments that contain paths and you want to use working directory-relative paths instead of absolute paths.
-* "lint_args" - If present, it must be a sequence of string arguments to pass to the linter. If your linter expects a filename as an argument, use the argument "{filename}" as a placeholder. Note that if you provide this item, you are responsible for passing **all** required arguments to the linter.
+* "lint_args" - If present, it must be a sequence of string arguments to pass to the linter. If your linter expects a filename as an argument, use the argument "{filename}" as a placeholder. If it expects stdin, use "-". Note that if you provide this item, you are responsible for passing **all** required arguments to the linter, as it will override default arguments.
 
 For example, let's say we are editing a Java project and want to use the "java" linter, which requires a source path and class path. In addition, we want to ignore serialization errors. Our project settings might look like this:
 
@@ -148,7 +223,7 @@ For example, let's say we are editing a Java project and want to use the "java" 
         {
             "SublimeLinter":
             {
-                "java":
+                "Java":
                 {
                     "working_directory": "/Users/aparajita/Projects/foo",
 
@@ -298,53 +373,6 @@ to your theme (adapting the color to your liking):
         </dict>
     </dict>
 
-Using
------
-SublimeLinter runs in one of three modes, which is determined by the "sublimelinter" user setting:
-
-* **Background mode (the default)** - When the "sublimelinter" setting is true, linting is performed in the background as you modify a file (if the relevant linter supports it). If you like instant feedback, this is the best way to use SublimeLinter. If you want feedback, but not instantly, you can try another mode or set a minimum queue delay with the "sublimelinter_delay" setting, so that the linter will only run after a certain amount of idle time.
-* **Load-save mode** - When the "sublimelinter" setting is "load-save", linting is performed only when a file is loaded and after saving. Errors are cleared as soon as the file is modified.
-* **Save-only mode** - When the "sublimelinter" setting is "save-only", linting is performed only after a file is saved. Errors are cleared as soon as the file is modified.
-* **On demand mode** - When the "sublimelinter" setting is false, linting is performed only when initiated by you. Use the `Control+Command+L` (OS X) or `Control+Alt+L` (Linux/Windows) key equivalent or the Command Palette to lint the current file. If the current file has no associated linter, the command will not be available.
-
-Within a file whose language/syntax is supported by SublimeLinter, you can control SublimeLinter via the Command Palette (`Command+Shift+P` on OS X, `Control+Shift+P` on Linux/Windows). The available commands are:
-
-* **SublimeLinter: Lint Current File** - Lints the current file, highlights any errors and displays how many errors were found.
-* **SublimeLinter: Show Error List** - Lints the current file, highlights any errors and displays a quick panel with any errors that are found. Selecting an item from the quick panel jumps to that line.
-* **SublimeLinter: Background Linting** - Enables background linting mode for the current view and lints it.
-* **SublimeLinter: Disable Linting** - Disables linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Load-Save Linting** - Enables load-save linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Save-Only Linting** - Enables save-only linting mode for the current view and clears all lint errors.
-* **SublimeLinter: Reset** - Clears all lint errors and sets the linting mode to the value in the SublimeLinter.sublime-settings file.
-
-Depending on the file and the current state of background enabling, some of the commands will not be available.
-
-When an error is highlighted by the linter, putting the cursor on the offending line will result in the error message being displayed on the status bar.
-
-If you want to be shown a popup list of all errors whenever a file is saved, modify the user setting:
-
-    "sublimelinter_popup_errors_on_save": true
-
-If there are errors in the file, a quick panel will appear which shows the error message, line number and source code for each error. The starting location of all errors on the line are marked with "^". Selecting an error in the quick panel jumps directly to the location of the first error on that line.
-
-While editing a file, you can quickly move to the next/previous lint error with the following key equivalents:
-
-* **OS X**:
-
-        next: Control+Command+E
-        prev: Control+Command+Shift+E
-
-* **Linux, Windows**:
-
-        next: Control+Alt+E
-        prev: Control+Alt+Shift+E
-
-By default the search will wrap. You can turn wrapping off with the user setting:
-
-    "sublimelinter_wrap_find": false
-
-Please note: these key commands may conflict with other important cmds (such as generating the € character - this was discussed in issue [#182](https://github.com/SublimeLinter/SublimeLinter/issues/182)). If these controls are problematic, you may always adjust your settings by copying the defaults stored in `Preferences->Package Settings->SublimeLinter->Key Bindings - Default` into `Preferences->Key Bindings - User` and then modifying the values appropriately.
-
 Troubleshooting
 ---------------
 If a linter does not seem to be working, you can check the ST2 console to see if it was enabled. When SublimeLinter is loaded, you will see messages in the console like this:
@@ -382,7 +410,7 @@ If you wish to create a new linter to support a new language, SublimeLinter make
 
 * Override `parse_errors()` and process the errors. If your linter overrides `built_in_check()`, `parse_errors()` will receive the result of that method. If your linter uses an external executable, `parse_errors()` receives the raw output of the executable, stripped of leading and trailing whitespace.
 
-* If you linter is powered via Javascript (eg. Node.js), there are few steps that will simplify the integration.
+* If you linter is powered via JavaScript (eg. Node.js), there are few steps that will simplify the integration.
 
   Create a folder matching your linter name in the `SublimeLinter/sublimelinter/modules/lib` directory. This folder should include the linting library JS file (eg. jshint.js, csslint-Node.js) and a **linter.js** file. The **linter.js** file should `require()` the actual linter library file and export a `lint()` function. The `lint()` function should return a list of errors back to the python language handler file (via the `errors` parameter to the `parse_errors()` method).
 

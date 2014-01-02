@@ -47,6 +47,7 @@ Snippets for Django templates
  regroup         ``{% regroup by as %}``
  spaceless       ``{% spaceless %} {% endspaceless %}``
  ssi             ``{% ssi %}``
+ static          ``{% static %}``
  templatetag     ``{% templatetag %}``
  url             ``{% url %}``
  widthratio      ``{% widthratio %}``
@@ -65,7 +66,7 @@ Snippets for Django templates
  extrastyle      ``{% block extrastyle %} {% endblock extrastyle %}``
  var		     ``{{ }}``
  tag		     ``{% %}``
- static          ``{{ STATIC_URL }}``
+ staticu         ``{{ STATIC_URL }}``
  media           ``{{ MEDIA_URL }}``
 =============== ======================================================
 
@@ -136,6 +137,21 @@ Snippets for Django form fields
  ftmuchoice     ``forms.TypedMultipleChoiceField()``
  furl           ``forms.URLField()``
 =============== ======================================================
+
+Snippets for Django Views
+--------------------------------
+=================== ======================================================
+ Abbreviation                        Tag
+=================== ======================================================
+ view               ``Function Based View``
+ createview         ``Generic Create View``
+ deleteview         ``Generic Delete View``
+ detailview         ``Generic Detail View``
+ listview           ``Generic List View``
+ templateview       ``Generic Template View``
+ dispatch           ``dispatch method for CBVs``
+ get_context_data   ``get_context_data method for CBVs``
+=================== ======================================================
 
 Completions
 ------------

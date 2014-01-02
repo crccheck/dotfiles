@@ -2643,19 +2643,30 @@ var walker, tokens = [], isOp, isNameChar, isDigit;
             conf = getConf();    
      
         cnext = w.nextChar();
-        
-        if (cnext !== '*') {
+
+        if (cnext === '/') {
+            // inline comment in SCSS and such
+            token += cnext;
+            var pk = w.peek();
+            while (pk && pk !== '\n') {
+                token += cnext;
+                cnext = w.nextChar();
+                pk = w.peek();
+            }
+        } else if (cnext === '*') {
+            // multiline CSS commment
+            while (!(c === "*" && cnext === "/")) {
+                token += cnext;
+                c = cnext;
+                cnext = w.nextChar();        
+            }            
+        } else {
             // oops, not a comment, just a /
             conf.charend = conf['char'];
             conf.lineend = conf.line;
             return tokener(token, token, conf);
         }
-    
-        while (!(c === "*" && cnext === "/")) {
-            token += cnext;
-            c = cnext;
-            cnext = w.nextChar();        
-        }
+        
         token += cnext;
         w.nextChar();
         tokener(token, 'comment', conf);
@@ -5315,7 +5326,7 @@ emmet.define('editorUtils', function(require, _) {
 			return  {
 				/** @memberOf outputInfo */
 				syntax: String(syntax || editor.getSyntax()),
-				profile: profile ? String(profile) : null,
+				profile: profile || null,
 				content: String(editor.getContent())
 			};
 		},
@@ -5497,21 +5508,20 @@ emmet.define('actionUtils', function(require, _) {
 				var tag = require('htmlMatcher').find(content, editor.getCaretPos());
 				
 				if (tag && tag.type == 'tag') {
-					var reAttr = /([\w\-:]+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g;
 					var startTag = tag.open;
-					var tagAttrs = startTag.range.substring(content).replace(/^<[\w\-\:]+/, '');
-//					var tagAttrs = startTag.full_tag.replace(/^<[\w\-\:]+/, '');
 					var contextNode = {
 						name: startTag.name,
 						attributes: []
 					};
 					
 					// parse attributes
-					var m;
-					while (m = reAttr.exec(tagAttrs)) {
-						contextNode.attributes.push({
-							name: m[1],
-							value: m[2]
+					var tagTree = require('xmlEditTree').parse(startTag.range.substring(content));
+					if (tagTree) {
+						contextNode.attributes = _.map(tagTree.getAll(), function(item) {
+							return {
+								name: item.name(),
+								value: item.value()
+							};
 						});
 					}
 					
@@ -6820,7 +6830,7 @@ emmet.define('filters', function(require, _) {
  */
 emmet.define('elements', function(require, _) {
 	var factories = {};
-	var reAttrs = /([\w\-]+)\s*=\s*(['"])(.*?)\2/g;
+	var reAttrs = /([\w\-:]+)\s*=\s*(['"])(.*?)\2/g;
 	
 	var result = {
 		/**

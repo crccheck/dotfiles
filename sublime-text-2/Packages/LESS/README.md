@@ -1,6 +1,19 @@
-# LESS syntax package for Sublime Text 2
+# LESS syntax for Sublime Text
 
-Provides syntax highlighting for `.less` files + support for comment-toggle commands.
+Provides syntax highlighting for `.less` files, along with snippets and completions.
+
+## Changelog
+
+**2013-10-01**
+
+* Added a setting to enable auto-insertion of semicolons (default: false).
+
+**2013-08-15**
+
+* Complete refactor based on Sublime's default CSS package.
+* Scope is now: `source.less`. Please update user snippets/binds accordingly.
+* Added CSS completions, while retaining same-file completions.
+* Added snippets for LESS and CSS functions.
 
 ## Installing
 
@@ -23,6 +36,19 @@ The "Packages" directory is located at:
 * Windows:
     `%APPDATA%/Sublime Text 2/Packages/`
 
+## Settings
+
+Settings may be accessed through the main Sublime menu:
+
+`Preferences > Package Settings > LESS`
+
+```js
+{
+  // Boolean setting to auto-insert a semicolon after a ":" is typed.
+  "auto_insert_semicolon": false
+}
+```
+
 ## Color Scheme
 
 Some snippets to use in your favorite `.tmTheme` file.
@@ -32,7 +58,7 @@ Some snippets to use in your favorite `.tmTheme` file.
   <key>name</key>
   <string>css.id</string>
   <key>scope</key>
-  <string>meta.selector.css entity.other.attribute-name.id</string>
+  <string>entity.other.attribute-name.id.css</string>
   <key>settings</key>
   <dict>
     <key>foreground</key>
@@ -63,6 +89,17 @@ Some snippets to use in your favorite `.tmTheme` file.
 </dict>
 <dict>
   <key>name</key>
+  <string>less.variable</string>
+  <key>scope</key>
+  <string>variable.declaration.less</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#FEB55A</string>
+  </dict>
+</dict>
+<dict>
+  <key>name</key>
   <string>css.element</string>
   <key>scope</key>
   <string>keyword.control.html.elements</string>
@@ -76,7 +113,7 @@ Some snippets to use in your favorite `.tmTheme` file.
   <key>name</key>
   <string>css.string</string>
   <key>scope</key>
-  <string>meta.attribute-selector.css string</string>
+  <string>meta.attribute-selector.css</string>
   <key>settings</key>
   <dict>
     <key>foreground</key>

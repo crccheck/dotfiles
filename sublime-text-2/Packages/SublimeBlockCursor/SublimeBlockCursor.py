@@ -19,9 +19,13 @@ class SublimeBlockCursor(sublime_plugin.EventListener):
             view.erase_regions('SublimeBlockCursorListener')
 
     def on_selection_modified(self, view):
-        if view.settings().get('is_widget') or not("Vintage" in view.settings().get('ignored_packages') or view.settings().get('command_mode')):
+        is_vintage_mode = "Vintage" not in view.settings().get('ignored_packages', [])
+        command_mode = view.settings().get('command_mode')
+
+        if view_is_widget(view) or (is_vintage_mode and not command_mode):
             view.erase_regions('SublimeBlockCursorListener')
             return
+
         self.show_block_cursor(view)
 
     def on_deactivated(self, view):

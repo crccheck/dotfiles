@@ -1,14 +1,14 @@
-Prettify JSON plugin for Sublime Text 2
+Prettify JSON plugin for Sublime Text 2 & 3
 
 ## Installation
-Install this repository via [Package Control](http://wbond.net/sublime_packages/package_control)
+Install this sublime text package via [Package Control](http://wbond.net/sublime_packages/package_control)
 
 ## Usage
 To prettify JSON, make selection of json and press keys:
 
-- Linux: `ctrl+alt+j`
-- Windows: `ctrl+alt+j`
-- OS X: `cmd+ctrl+j`
+- Linux: <kbd>ctrl+alt+j</kbd>
+- Windows: <kbd>ctrl+alt+j</kbd>
+- OS X: <kbd>cmd+ctrl+j</kbd>
 
 If selection is empty and configuration entry **use_entire_file_if_no_selection** is true, tries to prettify whole file.
 
@@ -29,10 +29,12 @@ If JSON is not valid it will be displayed in status bar of sublime.
 You can change configuration key **indent** to string value "\t" or any other string.
 
 ```
-"indent_size" : "\t",
+"indent" : "\t",
 ```
 
 Be sure "Indent Using Spaces" is unchecked otherwise you will not see effect and ST2 will convert it back to spaces.
 
 ## Thanks
-https://github.com/the3rdhbtaylor
+
+- @the3rdhbtaylor https://github.com/the3rdhbtaylor
+- @crcastle https://github.com/crcastle

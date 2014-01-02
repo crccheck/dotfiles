@@ -1,17 +1,53 @@
 {
     /**
-     * Where your `node` executable lives. If this is not specified, then
-     * it is expected to be on Sublime's path.
+     * REQUIRED
+     *
+     * The type of compiler you want to use. The `executable` compiler is
+     * the recommended choice.
+     *
+     * Choices are:
+     *
+     * 1. vanilla-executable
+     *
+     *    Use your `coffee` executable. If this option is selected, you must
+     *    set the `coffee_path` setting.
+     *
+     *
+     * 2. vanilla-module
+     *
+     *    This will the `coffee-script` NodeJS module. Node will try to find
+     *    the module based on the working directory of the file you're editing.
+     *
      */
-     "coffee_path": ""
+     "compiler": "vanilla-executable"
+
 
     /**
+     * REQUIRED
+     *
      * Where your `node` executable lives. If this is not specified, then
      * it is expected to be on Sublime's path.
+     *
+     * On OSX, for example:
+     * `/usr/local/bin`
      */
 ,    "node_path": ""
 
+
     /**
+     * REQUIRED ONLY IF USING `executable` COMPILER
+     *
+     * Where your `coffee` executable lives.
+     *
+     * On OSX, for example:
+     * `/usr/local/share/npm/lib/node_modules/coffee-script/bin`
+     */
+,    "coffee_path": ""
+
+
+    /**
+     * OPTIONAL
+     *
      * How should the plugin invoke your coffee executable.
      *
      * This can be the name of the executable if its in your path,
@@ -32,18 +68,5 @@
      * Compile without a top-level function wrapper.
      */
 ,   "bare": false
-
-
-    /**
-     * Enables support for the CoffeeScriptRedux compiler. Experimental feature!
-     */
-,   "coffee_script_redux": false
-
-
-    /**
-     * The location of your CoffeeScriptRedux compiler. This option does nothing
-     * if the `coffee_script_redux` flag is off.
-     */
-,   "redux_coffee_path": ""
 
 }

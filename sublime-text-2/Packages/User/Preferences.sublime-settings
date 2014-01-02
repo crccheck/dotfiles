@@ -26,7 +26,12 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"LiveReload"
+		"Tomorrow Color Schemes",
+		"zenburn",
+		"LiveReload",
+		"View Movement",
+		"VintageEx",
+		"Wrap Plus"
 	],
 	"rulers":
 	[

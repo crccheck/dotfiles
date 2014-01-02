@@ -5,6 +5,7 @@ class Pref:
 	def load(self):
 		Pref.show_line_endings_on_status_bar          = s.get('show_line_endings_on_status_bar', True)
 		Pref.alert_when_line_ending_is                = s.get('alert_when_line_ending_is', [])
+		Pref.auto_convert_line_endings_to             = s.get('auto_convert_line_endings_to', '')
 
 Pref = Pref()
 Pref.load()
@@ -22,6 +23,14 @@ class StatusBarLineEndings(sublime_plugin.EventListener):
 		if Pref.show_line_endings_on_status_bar:
 			self.show(view)
 
+	def on_pre_save(self, view):
+		if Pref.auto_convert_line_endings_to != '' and view.line_endings() != Pref.auto_convert_line_endings_to:
+			view.run_command('set_line_ending', {"type":Pref.auto_convert_line_endings_to})
+
+	def on_post_save(self, view):
+		if Pref.show_line_endings_on_status_bar:
+			self.show(view)
+
 	def show(self, view):
 		if view is not None:
 			if view.is_loading():
@@ -33,20 +42,28 @@ class StatusBarLineEndings(sublime_plugin.EventListener):
 class SetLineEndingWindowCommand(sublime_plugin.TextCommand):
 
 	def run(self, view, type):
+		active_view = sublime.active_window().active_view()
 		for view in sublime.active_window().views():
+			sublime.active_window().focus_view(view);
 			view.run_command('set_line_ending', {"type":type})
+			view.set_status('line_endings', view.line_endings())
+		sublime.active_window().focus_view(active_view);
 
 	def is_enabled(self):
-		return len(sublime.active_window().views())
+		return len(sublime.active_window().views()) > 0
 
 class ConvertIndentationWindowCommand(sublime_plugin.TextCommand):
 
 	def run(self, view, type):
+		active_view = sublime.active_window().active_view()
 		for view in sublime.active_window().views():
+			sublime.active_window().focus_view(view);
 			if type == 'spaces':
 				view.run_command('expand_tabs', {"set_translate_tabs":True})
 			else:
 				view.run_command('unexpand_tabs', {"set_translate_tabs":True})
+		sublime.active_window().focus_view(active_view);
+
 
 	def is_enabled(self):
-		return len(sublime.active_window().views())
+		return len(sublime.active_window().views()) > 0
