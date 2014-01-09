@@ -1,10 +1,37 @@
+from __future__ import print_function
 import sublime, sublime_plugin
 import textwrap
 import re
-import comment
+import time
+try:
+    import Default.comment as comment
+except ImportError:
+    import comment
 
 def is_quoted_string(scope_r, scope_name):
     return 'quoted' in scope_name
+
+debug_enabled = False
+time_start = 0
+last_time = 0
+def debug_start():
+    if debug_enabled:
+        global time_start, last_time
+        time_start = time.time()
+        last_time = time_start
+
+def debug(msg, *args):
+    if debug_enabled:
+        global last_time
+        t = time.time()
+        d = t-time_start
+        print('%.3f (+%.3f)' % (d, t-last_time), end='')
+        last_time = t
+        print(msg % args)
+
+def debug_end():
+    if debug_enabled:
+        print('Total time: %.3f' % (time.time()-time_start))
 
 class PrefixStrippingView(object):
     """View that strips out prefix characters, like comments.
@@ -29,7 +56,7 @@ class PrefixStrippingView(object):
         self.max = max
 
     def _is_c_comment(self, scope_name):
-        if not 'comment' in scope_name:
+        if not 'comment' in scope_name and not 'block' in scope_name:
             return False
         for start, end, disable_indent in self.bc:
             if start == '/*' and end == '*/':
@@ -50,7 +77,7 @@ class PrefixStrippingView(object):
         line_strp = line.strip()
         if not line_strp:
             # Empty line, nothing to do.
-            # print 'Empty line, no comment characters found.'
+            debug('Empty line, no comment characters found.')
             return
         # XXX: What is disable_indent?
         for start, disable_indent in lc:
@@ -67,13 +94,14 @@ class PrefixStrippingView(object):
         if m:
             self.required_comment_prefix = m.group()
             self.required_comment_pattern = email_quote_pattern
-            # print 'doing email style quoting'
+            debug('doing email style quoting')
 
         scope_r = self.view.extract_scope(pt)
         scope_name = self.view.scope_name(pt)
+        debug('scope=%r range=%r', scope_name, scope_r)
 
-        # Check for crazy C style commenting.
         if self._is_c_comment(scope_name):
+            # Check for C-style commenting with each line starting with an asterisk.
             first_star_prefix = None
             lines = self.view.lines(scope_r)
             for line_r in lines[1:-1]:
@@ -87,11 +115,15 @@ class PrefixStrippingView(object):
                     break
             if first_star_prefix:
                 self.required_comment_prefix = first_star_prefix
-            # Narrow the scope.
-            self.min = max(self.min, self.view.line(scope_r.begin()).begin())
-            self.max = min(self.max, self.view.line(scope_r.end()).end())
+            # Narrow the scope to just the comment contents.
+            if (self.view.substr(sublime.Region(scope_r.begin(), scope_r.begin()+2)) == '/*' and
+                self.view.substr(sublime.Region(scope_r.end()-2, scope_r.end())) == '*/'
+               ):
+                self.min = max(self.min, scope_r.begin()+2)
+                self.max = min(self.max, scope_r.end()-2)
+            debug('Scope narrowed to %i:%i', self.min, self.max)
 
-        # print 'required_comment_prefix determined to be %r' % (self.required_comment_prefix,)
+        debug('required_comment_prefix determined to be %r', self.required_comment_prefix,)
 
         # Narrow the min/max range if inside a "quoted" string.
         if is_quoted_string(scope_r, scope_name):
@@ -106,15 +138,15 @@ class PrefixStrippingView(object):
         """
         line_r = self.view.line(where)
         if line_r.begin() < self.min:
-            # print 'line min increased'
+            debug('line min increased')
             line_r = sublime.Region(self.min, line_r.end())
         if line_r.end() > self.max:
-            # print 'line max lowered'
+            debug('line max lowered')
             line_r = sublime.Region(line_r.begin(), self.max)
         line = self.view.substr(line_r)
-        # print 'line=%r' % line
+        debug('line=%r' % line)
         if self.required_comment_prefix:
-            # print 'checking required comment prefix %r' % self.required_comment_prefix
+            debug('checking required comment prefix %r' % self.required_comment_prefix)
             if line.startswith(self.required_comment_prefix):
                 # Check for an insufficient prefix.
                 if self.required_comment_pattern:
@@ -141,10 +173,10 @@ class PrefixStrippingView(object):
 
     def next_line(self, where):
         l_r = self.view.line(where)
-        # print 'next line region=%r' % l_r
+        debug('next line region=%r' % l_r)
         pt = l_r.end()+1
         if pt >= self.max:
-            # print 'past max at %r' % self.max
+            debug('past max at %r' % self.max)
             return None, None
         return self.line(pt)
 
@@ -163,7 +195,7 @@ def CONCAT(*args):
 blank_line_pattern = re.compile("^[\\t \\n]*$")
 
 # This doesn't always work, but seems decent.
-numbered_list = '(?:(?:[0-9#]+[.)]?)+[\\t ])'
+numbered_list = '(?:(?:[0-9#]+[.)])+[\\t ])'
 lettered_list = '(?:[\w][.)][\\t ])'
 bullet_list = '(?:[*+#-]+[\\t ])'
 list_pattern = re.compile('^[ \\t]*' + OR(numbered_list, lettered_list, bullet_list) + '[ \\t]*')
@@ -171,9 +203,8 @@ latex_hack = '(:?\\\\)'
 rest_directive = '(:?\\.\\.)'
 field_start = '(?:[:@])'  # rest, javadoc, jsdoc, etc.
 new_paragraph_pattern = re.compile('^[\\t ]*' +
-    CONCAT(OR(numbered_list, lettered_list, bullet_list,
-              field_start), '.*') +
-    '$')
+    OR(numbered_list, lettered_list, bullet_list,
+              field_start))
 space_prefix_pattern = re.compile('^[ \\t]*')
 # XXX: Does not handle escaped colons in field name.
 fields = OR(':[^:]+:', '@[a-zA-Z]+ ')
@@ -213,7 +244,7 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
         """
         if self._is_blank_line(line): return True
         scope_name = self.view.scope_name(line_r.begin())
-        # print 'scope_name=%r (%r)' % (scope_name, line_r)
+        debug('scope_name=%r (%r)', scope_name, line_r)
         if 'heading' in scope_name:
             return True
         if pure:
@@ -231,22 +262,26 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
         """
         view = self._strip_view
         current_line_r, current_line = view.line(pt)
+        debug('is_paragraph_break?')
         if self._is_paragraph_break(current_line_r, current_line):
             return current_line_r, current_line
+        debug('no')
         while 1:
             # Check if this line is the start of a paragraph.
+            debug('start?')
             if self._is_paragraph_start(current_line_r, current_line):
-                # print 'current_line is paragraph start: %r' % (current_line,)
+                debug('current_line is paragraph start: %r', current_line,)
                 break
             # Check if the previous line is a "break" separator.
+            debug('break?')
             prev_line_r, prev_line = view.prev_line(current_line_r)
             if prev_line_r == None:
                 # current_line is as far up as we're allowed to go.
                 break
             if self._is_paragraph_break(prev_line_r, prev_line):
-                # print 'prev line %r is a paragraph break' % (prev_line,)
+                debug('prev line %r is a paragraph break', prev_line,)
                 break
-            # print 'prev_line %r is part of the paragraph' % (prev_line,)
+            debug('prev_line %r is part of the paragraph', prev_line,)
             # Previous line is a part of this paragraph.  Add it, and loop
             # around again.
             current_line_r = prev_line_r
@@ -264,7 +299,7 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
         :returns: A list of (region, lines, comment_prefix) of each paragraph.
         """
         result = []
-        # print 'find paragraphs sr=%r' % (sr,)
+        debug('find paragraphs sr=%r', sr,)
         if sr.empty():
             is_empty = True
             min = 0
@@ -279,27 +314,27 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
         # Loop for each paragraph (only loops once if sr is empty).
         paragraph_start_pt = sr.begin()
         while 1:
-            # print 'paragraph scanning start %r.' % (paragraph_start_pt,)
+            debug('paragraph scanning start %r.', paragraph_start_pt,)
             view.set_comments(self._lc, self._bc, paragraph_start_pt)
             lines = []
             if is_empty:
                 # Find the beginning of this paragraph.
-                # print 'empty sel finding paragraph start.'
+                debug('empty sel finding paragraph start.')
                 current_line_r, current_line = self._find_paragraph_start(paragraph_start_pt)
-                # print 'empty sel paragraph start determined to be %r %r' % (current_line_r, current_line)
+                debug('empty sel paragraph start determined to be %r %r', current_line_r, current_line)
             else:
                 # The selection defines the beginning.
                 current_line_r, current_line = view.line(paragraph_start_pt)
-                # print 'sel beggining = %r %r' % (current_line_r, current_line)
+                debug('sel beggining = %r %r', current_line_r, current_line)
 
             # Skip blank and unambiguous break lines.
             while 1:
-                # print 'skip blank line'
+                debug('skip blank line')
                 if not self._is_paragraph_break(current_line_r, current_line, pure=True):
-                    # print 'not paragraph break'
+                    debug('not paragraph break')
                     break
                 if is_empty:
-                    # print 'empty sel on paragraph break %r' % (current_line,)
+                    debug('empty sel on paragraph break %r', current_line,)
                     return []
                 current_line_r, current_line = view.next_line(current_line_r)
 
@@ -308,20 +343,20 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
             paragraph_end_pt = current_line_r.end()
             # current_line_r now points to the beginning of the paragraph.
             # Move down until the end of the paragraph.
-            # print 'Scan until end of paragraph.'
+            debug('Scan until end of paragraph.')
             while 1:
-                # print 'current_line_r=%r max=%r' % (current_line_r, view.max)
+                debug('current_line_r=%r max=%r', current_line_r, view.max)
                 current_line_r, current_line = view.next_line(current_line_r)
                 if current_line_r == None:
                     # Line is outside of our range.
-                    # print 'Out of range, stopping.'
+                    debug('Out of range, stopping.')
                     break
-                # print 'current_line = %r %r' % (current_line_r, current_line)
+                debug('current_line = %r %r', current_line_r, current_line)
                 if self._is_paragraph_break(current_line_r, current_line):
-                    # print 'current line is a break, stopping.'
+                    debug('current line is a break, stopping.')
                     break
                 if self._is_paragraph_start(current_line_r, current_line):
-                    # print 'current line is a paragraph start, stopping.'
+                    debug('current line is a paragraph start, stopping.')
                     break
                 lines.append(current_line)
                 paragraph_end_pt = current_line_r.end()
@@ -334,7 +369,7 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
 
             # Skip over blank lines and break lines till the next paragraph
             # (or end of range).
-            # print 'skip over blank lines'
+            debug('skip over blank lines')
             while current_line_r != None:
                 if self._is_paragraph_start(current_line_r, current_line):
                     break
@@ -346,7 +381,7 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
             if current_line_r == None:
                 break
 
-            # print 'next_paragraph_start is %r %r' % (current_line_r, current_line)
+            debug('next_paragraph_start is %r %r', current_line_r, current_line)
             paragraph_start_pt = current_line_r.begin()
             if paragraph_start_pt >= max:
                 break
@@ -372,6 +407,10 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
         # Value of 0 means "automatic".
         if width == 0:
             width = 78
+        else:
+            width -= self.view.settings().get("WrapPlus.wrap_col_diff", 0)
+        debug('width is %i', width)
+
         self._width = width
 
     def _determine_tab_size(self):
@@ -459,7 +498,7 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
             true_first_line = self.view.substr(true_first_line_r)
             if true_first_line_r.begin() <= scope_r.begin():
                 m = space_prefix_pattern.match(true_first_line)
-                # print 'single line quoted string triggered'
+                debug('single line quoted string triggered')
                 if m:
                     subsequent_prefix = m.group() + subsequent_prefix
 
@@ -471,22 +510,24 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
                 line = line[len(subsequent_prefix):]
             new_lines.append(line.strip())
 
-        # print 'initial_prefix=%r subsequent_prefix=%r' % (initial_prefix, subsequent_prefix)
+        debug('initial_prefix=%r subsequent_prefix=%r', initial_prefix, subsequent_prefix)
 
         return (required_comment_prefix+initial_prefix,
                 required_comment_prefix+subsequent_prefix,
                 new_lines)
 
     def run(self, edit, width=0):
-        # print '#########################################################################'
+        debug_start()
+        debug('#########################################################################')
         self._determine_width(width)
-        # print 'determined width to be %r' % self._width
+        debug('determined width to be %r' % self._width)
         self._determine_tab_size()
         self._determine_comment_style()
 
+        # paragraphs is a list of (region, lines, comment_prefix) tuples.
         paragraphs = []
         for s in self.view.sel():
-            # print 'examine %r' % s
+            debug('examine %r' % s)
             paragraphs.extend(self._find_paragraphs(s))
 
         if paragraphs:
@@ -495,6 +536,8 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
             for r, l, p in paragraphs:
                 self.view.sel().add(r)
 
+            # Regions fetched from view.sel() will shift appropriately with
+            # the calls to replace().
             for i, s in enumerate(self.view.sel()):
                 paragraph_r, paragraph_lines, required_comment_prefix = paragraphs[i]
                 break_long_words = self.view.settings().get('WrapPlus.break_long_words', True)
@@ -526,9 +569,9 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
                     if init_prefix != orig_subsequent_prefix or subsequent_prefix != orig_subsequent_prefix:
                         lines = txt.splitlines()
                         if init_prefix != orig_init_prefix:
-                            # print 'fix tabs %r' % lines[0]
+                            debug('fix tabs %r' % lines[0])
                             lines[0] = orig_init_prefix + lines[0][len(init_prefix):]
-                            # print 'new line is %r' % lines[0]
+                            debug('new line is %r' % lines[0])
                         if subsequent_prefix != orig_subsequent_prefix:
                             for i, line in enumerate(lines[1:]):
                                 lines[i+1] = orig_subsequent_prefix + lines[i+1][len(subsequent_prefix):]
@@ -540,17 +583,19 @@ class WrapLinesPlusCommand(sublime_plugin.TextCommand):
                 # file as modified), or if it's better to include a "non-
                 # change" in the undo stack.
                 self.view.replace(edit, s, txt)
-                # if replaced_txt != txt:
-                    # print 'replaced text not the same:\noriginal=%r\nnew=%r' % (replaced_txt, txt)
-                # else:
-                    # print 'replaced text is the same'
+                if replaced_txt != txt:
+                    debug('replaced text not the same:\noriginal=%r\nnew=%r', replaced_txt, txt)
+                else:
+                    debug('replaced text is the same')
 
         # Move cursor below the last paragraph.
-        end = self.view.sel()[-1].end()
+        s = self.view.sel()
+        end = s[len(s)-1].end()
         line = self.view.line(end)
         end = min(self.view.size(), line.end()+1)
         self.view.sel().clear()
         r = sublime.Region(end)
         self.view.sel().add(r)
         self.view.show(r)
+        debug_end()
 

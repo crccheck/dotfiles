@@ -2,6 +2,7 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"Block Cursor Everywhere",
 		"Boron Color Scheme",
 		"CoffeeCompile",
 		"CoffeeScript",
