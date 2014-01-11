@@ -1,9 +1,5 @@
 {
 	"auto_complete_commit_on_tab": true,
-	"codeintel_disabled_languages":
-	[
-		"css"
-	],
 	"color_scheme": "Packages/Boron Color Scheme/Boron.tmTheme",
 	"default_line_ending": "unix",
 	"detect_slow_plugins": false,
@@ -26,12 +22,6 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Tomorrow Color Schemes",
-		"zenburn",
-		"LiveReload",
-		"View Movement",
-		"VintageEx",
-		"Wrap Plus"
 	],
 	"rulers":
 	[

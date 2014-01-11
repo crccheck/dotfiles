@@ -1,6 +1,6 @@
 Origami
 ======
-Origami is a new way of thinking about panes in Sublime Text: you tell Sublime Text where you want a new pane, and it makes one for you.
+Origami is a new way of thinking about panes in Sublime Text 2 and 3: you tell Sublime Text where you want a new pane, and it makes one for you. It works seamlessly alongside the built-in layout commands.
 
 Ordinarily one uses the commands under View>Layout, or if one is quite intrepid a custom keyboard shortcut can be made to give a specific layout, but both of these solutions were unsatisfactory to me. Perhaps they were to you too! That's what this plugin is for.
 
@@ -18,28 +18,20 @@ Origami is driven by keyboard shortcuts. By default, these keyboard shortcuts ar
 
 These keyboard shortcuts are designed to make it really easy to modify the layout of your editor.
 
-(Note: Windows uses `ctrl` instead of `super`.)
+Additionally, Origami allows one to zoom the current pane, making it take up a large portion of the window. As above, first press `super+k`, then press:
+
+* `super+z`: Zoom the current pane so it takes up 90% of the screen (the fraction is changeable in the keybindings)
+* `shift+super+z`: Unzoom: equally space all panes
+
+(Note: Windows and Linux use `ctrl` instead of `super`.)
+
+Automation
+----------
+You can have Origami automatically zoom the active pane by setting `origami_auto_zoom_on_focus` in your user preferences. Set it to `true` for the default zoom, or set it to a user-definable fraction of the screen, such as `0.75`.
+
+Origami can also automatically close a pane for you once you've closed the last file in it. Just set `origami_auto_close_empty_panes` to true in your user preferences.
 
 Install
 -------
 
-This plugin is available through Package Control, which is available here:
-
-    http://wbond.net/sublime_packages/package_control
-
-Manual Install
---------------
-
-Go to your Packages subdirectory under ST2's data directory:
-
-* Windows: %APPDATA%\Sublime Text 2
-* OS X: ~/Library/Application Support/Sublime Text 2
-* Linux: ~/.config/sublime-text-2
-* Portable Installation: Sublime Text 2/Data
-
-Then clone this repository:
-
-    git clone https://github.com/SublimeText/Origami.git
-
-That's it!
-
+Search for Origami on [Package Control](https://sublime.wbond.net/)!
