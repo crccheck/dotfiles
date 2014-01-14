@@ -214,6 +214,19 @@
       </dict>
     </dict>
 
+    <dict>
+      <key>name</key>
+      <string>Block Cursor</string>
+      <key>scope</key>
+      <string>block_cursor</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#212121</string>
+        <key>background</key>
+        <string>#82DB30</string>
+      </dict>
+    </dict>
   </array>
   <key>uuid</key>
   <string>4e4cdb00-2fb2-11e2-81c1-0800200c9a66</string>
