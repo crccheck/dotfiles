@@ -4,7 +4,7 @@
 
 Colorful, dark color scheme based on the excellent Jellybeans color scheme for Vim.
 
-![Screenshot](http://mj.io/assets/misc/boron_theme_screenshot.png)
+![Screenshot](http://i.imgur.com/Bb1cijk.png)
 
 ## Installation
 

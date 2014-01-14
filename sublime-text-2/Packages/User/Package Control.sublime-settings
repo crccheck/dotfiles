@@ -2,7 +2,6 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
-		"Block Cursor Everywhere",
 		"Boron Color Scheme",
 		"CoffeeScript",
 		"CSSFormat",
@@ -13,7 +12,6 @@
 		"Indent XML",
 		"Jedi - Python autocompletion",
 		"LESS",
-		"LESS-build",
 		"LineEndings",
 		"Modific",
 		"MODx Revolution Snippets",
