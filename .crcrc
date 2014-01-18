@@ -170,6 +170,8 @@ alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 alias fb="fab -f ~/scripts/fabfile.py"
 alias befs="bundle exec foreman start"
 alias dsdamn="find . -name '.DS_Store' -delete"
+# reset and clear
+alias cls='printf "\ec"'
 
 md () { mkdir -p "$@" && cd "$@"; }
 
