@@ -173,6 +173,10 @@ alias dsdamn="find . -name '.DS_Store' -delete"
 # reset and clear
 alias cls='printf "\ec"'
 
+alias wow='git status'
+alias such=git
+alias very=git
+
 md () { mkdir -p "$@" && cd "$@"; }
 
 ###################################################
