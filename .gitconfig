@@ -23,6 +23,7 @@
     d = diff -b
     derp = reset --hard HEAD
     initempty = !git init && git commit -m 'initial commit (empty)' --allow-empty
+    f = fetch
     fa = !git fetch --all &
     ggrreepp = !git grep $@ $(git rev-list --all --max-count=2000) && echo
     l = log --graph --decorate --pretty=oneline --abbrev-commit
