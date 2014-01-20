@@ -110,7 +110,7 @@ class PaneCommand(sublime_plugin.WindowCommand):
 	
 	def carry_file_to_pane(self, direction):
 		view = self.window.active_view()
-		if not view:
+		if view == None:
 			# If we're in an empty group, there's no active view
 			return
 		window = self.window
@@ -120,7 +120,7 @@ class PaneCommand(sublime_plugin.WindowCommand):
 	def clone_file_to_pane(self, direction):
 		window = self.window
 		view = window.active_view()
-		if not view:
+		if view == None:
 			# If we're in an empty group, there's no active view
 			return
 		group, original_index = window.get_view_index(view)
@@ -141,10 +141,6 @@ class PaneCommand(sublime_plugin.WindowCommand):
 		
 		self.carry_file_to_pane(direction)
 	
-	def create_pane_with_file(self,direction):
-		self.create_pane(direction)
-		self.carry_file_to_pane(direction)
-
 	def zoom_pane(self, fraction):
 		if fraction == None:
 			fraction = .9
@@ -330,7 +326,9 @@ class CloneFileToPaneCommand(PaneCommand):
 
 class CreatePaneWithFileCommand(PaneCommand):
 	def run(self, direction):
-		self.create_pane_with_file(direction)
+		self.create_pane(direction)
+		self.carry_file_to_pane(direction)
+
 
 class ZoomPaneCommand(PaneCommand):
 	def run(self, fraction=None):
