@@ -5,6 +5,7 @@
     [
         "html"
     ],
+    "sublimelinter_mark_style": "outline",
     // CSSLint options:
     // Each rule can have three values: error|warning|true|false
     // false => rule is disabled.
@@ -44,5 +45,6 @@
         // "universal-selector": "warning",
         // "vendor-prefix": true,
         // "zero-units": "warning"
-    }
+    },
+    "sublimelinter_notes": true
 }
