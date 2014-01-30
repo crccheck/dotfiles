@@ -107,6 +107,14 @@ function f {
     fi
 }
 
+# Invoke cheat
+function inv {
+    if [ -z $1 ]; then
+        invoke --list
+    else
+        invoke $@
+    fi
+}
 
 function tth {
     ssh root@$1 -i ~/scripts/id_ttdev
