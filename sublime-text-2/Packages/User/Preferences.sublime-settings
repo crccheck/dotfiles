@@ -13,6 +13,8 @@
 		".hg",
 		".sass-cache",
 		".svn",
+		".tox",
+		"__pycache__",
 		"coverage",
 		"CVS",
 		"node_modules",
