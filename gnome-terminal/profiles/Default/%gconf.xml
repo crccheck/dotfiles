@@ -4,8 +4,8 @@
 	<entry name="default_size_columns" mtime="1390773082" type="int" value="124"/>
 	<entry name="use_custom_default_size" mtime="1390773082" type="bool" value="true"/>
 	<entry name="use_theme_colors" mtime="1381601899" type="bool" value="true"/>
-	<entry name="font" mtime="1390773082" type="string">
-		<stringvalue>Monospace 10</stringvalue>
+	<entry name="font" mtime="1391221843" type="string">
+		<stringvalue>Monospace 9</stringvalue>
 	</entry>
 	<entry name="use_system_font" mtime="1390773082" type="bool" value="false"/>
 	<entry name="scrollback_lines" mtime="1390773082" type="int" value="3000"/>
