@@ -253,13 +253,29 @@ function mkcodeintelconfig {
 }
 
 ###################################################
-### RVM
+### rbenv
 ###################################################
-# This loads RVM into a shell session
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-prepend_path_if_exists $HOME/.rvm/bin
+# based on:
+# eval "$(rbenv init -)"
+if [ -f $HOME/.rbenv ]; then
+    prepend_path PATH $HOME/.rbenv/shims
+    source "/usr/lib/rbenv/libexec/../completions/rbenv.bash"
+    rbenv rehash 2>/dev/null
+    rbenv() {
+      command="$1"
+      if [ "$#" -gt 0 ]; then
+        shift
+      fi
 
+      case "$command" in
+      shell)
+        eval `rbenv "sh-$command" "$@"`;;
+      *)
+        command rbenv "$command" "$@";;
+      esac
+    }
+fi
 
 ###################################################
 ### Ruby Gems
