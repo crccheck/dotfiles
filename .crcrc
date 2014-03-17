@@ -158,6 +158,7 @@ alias egrep='egrep -I'
 alias rgrep='rgrep -I'
 
 alias grepenv='env | grep'
+alias grepdat='env | grep DATABASE'
 
 alias netstat='netstat -natp'
 alias du='du -kh --max-depth=1'
