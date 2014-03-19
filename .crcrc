@@ -168,11 +168,9 @@ alias wget='wget --no-check-certificate'
 sssh () { ssh -t $@ "screen -rx -S crc"; }
 
 
-my_port=8000
-alias dj='echo -en "\033]0;dj :$my_port\a"; django runserver 0.0.0.0:$my_port'
-alias djp='django runserver_plus 0.0.0.0:$my_port'
-#alias djl='python manage.py runserver 0.0.0.0:$my_port --settings=local-settings'
-#alias djpl='python manage.py runserver_plus 0.0.0.0:$my_port --settings=local-settings'
+PORT=8000
+alias dj='echo -en "\033]0;dj :$PORT\a"; django runserver 0.0.0.0:$PORT'
+alias djp='django runserver_plus 0.0.0.0:$PORT'
 alias djs="django shell"
 alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
