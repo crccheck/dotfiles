@@ -1,0 +1,3 @@
+{
+	"last_test_run": "ENVIRONMENT=test /Users/crc/env/tribtalk/bin/python manage.py test tribtalk.apps.talkcomments.tests.test_views"
+}
