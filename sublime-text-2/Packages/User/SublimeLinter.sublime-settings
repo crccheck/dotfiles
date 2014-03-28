@@ -3,7 +3,9 @@
     // An array of linter names to disable. Names should be lowercase.
     "sublimelinter_disable":
     [
-        "html"
+        "html",
+        "javascript",
+        "python"
     ],
     "sublimelinter_mark_style": "outline",
     // CSSLint options:
