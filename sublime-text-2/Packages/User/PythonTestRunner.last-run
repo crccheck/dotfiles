@@ -1,3 +1,3 @@
 {
-	"last_test_run": "ENVIRONMENT=test /Users/crc/env/tribtalk/bin/python manage.py test tribtalk.apps.content.tests.test_views.CreateArticleTestCase.test_article_creation_with_image"
+	"last_test_run": "ENVIRONMENT=test /Users/crc/env/tribtalk/bin/python manage.py test tribtalk.apps.content.tests.test_forms.ArticleFormsTestCase.test_cant_publish_without_a_category"
 }
