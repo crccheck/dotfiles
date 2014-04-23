@@ -6,7 +6,7 @@
   "esnext": true,
   "globals": {},
   "globalstrict": true,
-  "quotmark": true,
+  "quotmark": false,
   "smarttabs": true,
   "trailing": true,
   "undef": true,

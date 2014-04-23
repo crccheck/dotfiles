@@ -1,3 +1,0 @@
-{
-	"last_test_run": "ENVIRONMENT=test /home/kurol/env/lobbying/bin/python example_project/manage.py test tx_lobbying.tests.test_models.InterestTest.test_make_stats_for_year_is_accurate"
-}
