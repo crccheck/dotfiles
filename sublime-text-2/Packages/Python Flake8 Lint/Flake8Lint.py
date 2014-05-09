@@ -64,10 +64,15 @@ def skip_line(line):
     Check if we need to skip line check.
     Line must ends with '# noqa' or '# NOQA' comment.
     """
-    if line.strip().lower().endswith('# noqa'):
+    def _noqa(line):
+        return line.strip().lower().endswith('# noqa')
+    skip = _noqa(line)
+    if not skip:
+        i = line.rfind(' #')
+        skip = _noqa(line[:i]) if i > 0 else False
+    if skip:
         debug("skip line '{0}'".format(line))
-        return True
-    return False
+    return skip
 
 
 def get_current_line(view):
@@ -159,6 +164,46 @@ def filename_match(filename, patterns):
         if any(fnmatch(path_part, pattern) for pattern in patterns):
             return True
     return False
+
+
+class Flake8NextErrorCommand(sublime_plugin.TextCommand):
+    """
+    Jump to next lint error command.
+    """
+    def run(self, edit):
+        """
+        Jump to next lint error.
+        """
+        debug("jump to next lint error")
+
+        view_errors = ERRORS_IN_VIEWS.get(self.view.id())
+        if not view_errors:
+            debug("no view errors found")
+            return
+
+        # get view selection (exit if no selection)
+        view_selection = self.view.sel()
+        if not view_selection:
+            return
+
+        current_line = get_current_line(self.view)
+        if current_line is None:
+            return
+
+        next_line = None
+        for i, error_line in enumerate(sorted(view_errors.keys())):
+            if i == 0:
+                next_line = error_line
+            if error_line > current_line:
+                next_line = error_line
+                break
+
+        debug("jump to line {0}".format(next_line))
+
+        point = self.view.text_point(next_line, 0)
+        self.view.sel().clear()
+        self.view.sel().add(sublime.Region(point))
+        self.view.show(point)
 
 
 class Flake8LintCommand(sublime_plugin.TextCommand):
@@ -423,6 +468,14 @@ class Flake8LintBackground(sublime_plugin.EventListener):
         super(Flake8LintBackground, self).__init__(*args, **kwargs)
         self._last_selected_line = None
 
+    def _view_is_preview(self, view):
+        """
+        Returns True if view is in preview mode (e.g. "Goto Anything").
+        """
+        window_views = (window_view.id()
+                        for window_view in sublime.active_window().views())
+        return bool(view.id() not in window_views)
+
     def _lintOnLoad(self, view, retry=False):
         """
         Some code to lint file on load.
@@ -443,6 +496,10 @@ class Flake8LintBackground(sublime_plugin.EventListener):
         if view.window().active_view().id() != view.id():
             debug("view is not active anymore, forget about lint")
             return  # not active anymore, don't lint it!
+
+        if self._view_is_preview(view):
+            sublime.set_timeout(lambda: self._lintOnLoad(view, True), 300)
+            return  # wait before view will became normal
 
         view.run_command("flake8_lint")
 
