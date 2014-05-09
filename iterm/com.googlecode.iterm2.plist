@@ -295,9 +295,9 @@
 	<key>NSToolbar Configuration Terminal Toolbar</key>
 	<dict>
 		<key>TB Display Mode</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>TB Icon Size Mode</key>
-		<integer>1</integer>
+		<integer>2</integer>
 		<key>TB Is Shown</key>
 		<integer>0</integer>
 		<key>TB Item Identifiers</key>
@@ -319,11 +319,11 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>427 353 214 312 0 0 1920 1058 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>290 431 924 485 0 0 1920 1058 </string>
+	<string>290 431 605 485 0 0 1920 1058 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>-1152 713 384 129 -1920 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1080 0 0 1920 1058 </string>
+	<string>-1920 540 960 540 -1920 0 1920 1080 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1711,7 +1711,7 @@
 	<key>PromptOnClose</key>
 	<false/>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
 	<key>RightCommand</key>
