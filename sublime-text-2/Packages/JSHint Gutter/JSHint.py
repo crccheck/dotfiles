@@ -107,20 +107,16 @@ following the instructions at:\n"""
         except:
           continue
 
-        symbolname = re.match("('[^']+')", description)
-
-        text_point = self.view.text_point(int(lineNo) - 1, int(columnNo) - 1)
-        region = self.view.word(text_point)
-
-        if symbolname:
-          region = self.view.word(text_point)
+        symbolName = re.match("('[^']+')", description)
+        hintPoint = self.view.text_point(int(lineNo) - 1, int(columnNo) - 1)
+        if symbolName:
+          hintRegion = self.view.word(hintPoint)
         else:
-          region = self.view.line(text_point)
+          hintRegion = self.view.line(hintPoint)
 
         menuitems.append(lineNo + ":" + columnNo + " " + description)
-
-        regions.append(region)
-        JshintListener.errors.append((region, description))
+        regions.append(hintRegion)
+        JshintListener.errors.append((hintRegion, description))
 
       if show_regions:
         self.add_regions(regions)
@@ -136,14 +132,12 @@ following the instructions at:\n"""
         sublime.DRAW_EMPTY |
         sublime.DRAW_NO_FILL |
         sublime.DRAW_NO_OUTLINE |
-        sublime.DRAW_SQUIGGLY_UNDERLINE |
-        sublime.HIDE_ON_MINIMAP)
+        sublime.DRAW_SQUIGGLY_UNDERLINE)
     else:
       icon = ".." + os.path.sep + packageName + os.path.sep + "warning"
       self.view.add_regions("jshint_errors", regions, "keyword", icon,
         sublime.DRAW_EMPTY |
-        sublime.DRAW_OUTLINED |
-        sublime.HIDE_ON_MINIMAP)
+        sublime.DRAW_OUTLINED)
 
   def on_chosen(self, index):
     if index == -1:
