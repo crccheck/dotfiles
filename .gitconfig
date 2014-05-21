@@ -40,3 +40,5 @@
 
 [merge]
     tool = meld
+[push]
+	default = matching
