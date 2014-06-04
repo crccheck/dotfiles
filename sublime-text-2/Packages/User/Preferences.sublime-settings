@@ -1,4 +1,5 @@
 {
+    // "auto_complete": false,
 	"auto_complete_commit_on_tab": true,
 	"color_scheme": "Packages/Boron Color Scheme/Boron.tmTheme",
 	"default_line_ending": "unix",

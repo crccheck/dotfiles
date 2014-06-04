@@ -16,42 +16,77 @@ def get_settings():
 
 
 def get_vcs_settings():
-    return get_settings().get('vcs', [
-        ["git", "git"],
-        ["svn", "svn"],
-        ["bzr", "bzr"],
-        ["hg", "hg"]
-    ])
-
-
-def vcs_root(directory):
     """
-    Determines root directory for VCS
+    Returns list of dictionaries
+    each dict. represents settings for VCS
     """
 
-    vcs_check = [(lambda vcs: lambda dir: os.path.exists(os.path.join(dir, '.' + vcs))
-                 and {'root': dir, 'name': vcs})(vcs) for vcs, _ in get_vcs_settings()]
+    default = [
+        {"name": "git", "dir": ".git", "cmd": "git"},
+        {"name": "svn", "dir": ".svn", "cmd": "svn"},
+        {"name": "bzr", "dir": ".bzr", "cmd": "bzr"},
+        {"name": "hg",  "dir": ".hg",  "cmd": "hg"},
+        {"name": "tf",  "dir": "$tf",  "cmd": "C:/Program Files (x86)/Microsoft Visual Studio 11.0/Common7/IDE/TF.exe"}
+    ]
+    settings = get_settings().get('vcs', default)
 
-    while directory:
-        available = list(filter(lambda x: x, [check(directory) for check in vcs_check]))
-        if available:
-            return directory, available[0]
+    # re-format settings array if user has old format of settings
+    if type(settings[0]) == list:
+        settings = [dict(name=name, cmd=cmd, dir='.'+name) for name, cmd in settings]
 
-        parent = os.path.realpath(os.path.join(directory, os.path.pardir))
-        if parent == directory:
-            # /.. == /
-            return None, None
-        directory = parent
-    return None, None
+    return settings
+
+
+def get_user_command(vcs_name):
+    """
+    Returns command that user specified for vcs_name
+    """
+
+    try:
+        return [vcs['cmd'] for vcs in get_vcs_settings() if vcs.get('name') == vcs_name][0]
+    except IndexError:
+        return None
+
+
+def tfs_root(directory):
+    try:
+        tf_cmd = get_user_command('tf') or 'tf'
+        command = [tf_cmd, 'workfold', directory]
+        p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                             shell=True, universal_newlines=True)
+        out, err = p.communicate()
+        m = re.search(r"^ \$\S+: (\S+)$", out, re.MULTILINE)
+        if m:
+            return {'root': m.group(1), 'name': 'tf', 'cmd': tf_cmd}
+    except:
+        return None
 
 
 def get_vcs(directory):
     """
-    Determines, which of VCS systems we should use for given folder.
-    Currently, uses priority of definitions in get_vcs_settings()
+    Determines root directory for VCS and which of VCS systems should be used for a given directory
+
+    Returns dictionary {name: .., root: .., cmd: .., dir: ..}
     """
-    root_dir, vcs = vcs_root(directory)
-    return vcs
+
+    vcs_check = [(lambda vcs: lambda dir: os.path.exists(os.path.join(dir, vcs.get('dir', False)))
+                 and vcs)(vcs) for vcs in get_vcs_settings()]
+
+    start_directory = directory
+    while directory:
+        available = list(filter(bool, [check(directory) for check in vcs_check]))
+        if available:
+            available[0]['root'] = directory
+            return available[0]
+
+        parent = os.path.realpath(os.path.join(directory, os.path.pardir))
+        if parent == directory:  # /.. == /
+            # try TFS as a last resort
+            # I'm not sure why we need to do this. Seems like it should find root for TFS in the main loop
+            return tfs_root(start_directory)
+        directory = parent
+
+    return None
 
 
 def main_thread(callback, *args, **kwargs):
@@ -102,6 +137,14 @@ class CommandThread(threading.Thread):
             # Per http://bugs.python.org/issue8557 shell=True is required to
             # get $PATH on Windows. Yay portable code.
             shell = os.name == 'nt'
+
+            # Do not use universal newlines for OS X
+            try:
+                is_osx = os.uname()[0] == 'Darwin'
+            except:
+                is_osx = False
+            universal_newlines = not is_osx
+
             if self.working_dir != "":
                 os.chdir(self.working_dir)
 
@@ -111,7 +154,7 @@ class CommandThread(threading.Thread):
             proc = subprocess.Popen(self.command,
                                     stdout=self.stdout, stderr=subprocess.STDOUT,
                                     stdin=subprocess.PIPE,
-                                    shell=shell, universal_newlines=True)
+                                    shell=shell, universal_newlines=universal_newlines)
             output = proc.communicate(self.stdin)[0]
             if not output:
                 output = ''
@@ -243,9 +286,6 @@ class VcsCommand(object):
             return bool(get_vcs(self.get_working_dir()))
         return False
 
-    def get_user_command(self, vcs_name):
-        return dict(get_vcs_settings()).get(vcs_name, False)
-
 
 class DiffCommand(VcsCommand):
     """ Here you can define diff commands for your VCS
@@ -269,10 +309,10 @@ class DiffCommand(VcsCommand):
 
     def git_diff_command(self, file_name):
         vcs_options = self.settings.get('vcs_options', {}).get('git') or ['--no-color', '--no-ext-diff']
-        return [self.get_user_command('git') or 'git', 'diff'] + vcs_options + ['--', file_name]
+        return [get_user_command('git') or 'git', 'diff'] + vcs_options + ['--', file_name]
 
     def svn_diff_command(self, file_name):
-        params = [self.get_user_command('svn') or 'svn', 'diff']
+        params = [get_user_command('svn') or 'svn', 'diff']
         params.extend(self.settings.get('vcs_options', {}).get('svn', []))
 
         if '--internal-diff' not in params and self.settings.get('svn_use_internal_diff', True):
@@ -289,11 +329,15 @@ class DiffCommand(VcsCommand):
 
     def bzr_diff_command(self, file_name):
         vcs_options = self.settings.get('vcs_options', {}).get('bzr', [])
-        return [self.get_user_command('bzr') or 'bzr', 'diff'] + vcs_options + [file_name]
+        return [get_user_command('bzr') or 'bzr', 'diff'] + vcs_options + [file_name]
 
     def hg_diff_command(self, file_name):
         vcs_options = self.settings.get('vcs_options', {}).get('hg', [])
-        return [self.get_user_command('hg') or 'hg', 'diff'] + vcs_options + [file_name]
+        return [get_user_command('hg') or 'hg', 'diff'] + vcs_options + [file_name]
+
+    def tf_diff_command(self, file_name):
+        vcs_options = self.settings.get('vcs_options', {}).get('tf') or ['-format:unified']
+        return [get_user_command('tf') or 'tf', 'diff'] + vcs_options + [file_name]
 
 
 class ShowDiffCommand(DiffCommand, sublime_plugin.TextCommand):
@@ -584,22 +628,56 @@ class UncommittedFilesCommand(VcsCommand, sublime_plugin.WindowCommand):
                 return folder
 
     def run(self):
-        self.root, self.vcs = vcs_root(self.get_working_dir())
+        self.vcs = get_vcs(self.get_working_dir())
         status_command = getattr(self, '{0}_status_command'.format(self.vcs['name']), None)
         if status_command:
-            self.run_command(status_command(), self.status_done, working_dir=self.root)
+            self.run_command(status_command(), self.status_done, working_dir=self.vcs['root'])
 
     def git_status_command(self):
-        return [self.get_user_command('git') or 'git', 'status', '--porcelain']
+        return [get_user_command('git') or 'git', 'status', '--porcelain']
 
     def svn_status_command(self):
-        return [self.get_user_command('svn') or 'svn', 'status', '--quiet']
+        return [get_user_command('svn') or 'svn', 'status', '--quiet']
 
     def bzr_status_command(self):
-        return [self.get_user_command('bzr') or 'bzr', 'status', '-S', '--no-pending', '-V']
+        return [get_user_command('bzr') or 'bzr', 'status', '-S', '--no-pending', '-V']
 
     def hg_status_command(self):
-        return [self.get_user_command('hg') or 'hg', 'status']
+        return [get_user_command('hg') or 'hg', 'status']
+
+    def tf_status_command(self):
+        return [get_user_command('tf') or 'tf', 'status']
+
+    def filter_unified_status(self, result):
+        return list(filter(lambda x: len(x) > 0 and not x.lstrip().startswith('>'),
+                    result.rstrip().split('\n')))
+
+    def git_filter_status(self, result):
+        return self.filter_unified_status(result)
+
+    def svn_filter_status(self, result):
+        return self.filter_unified_status(result)
+
+    def bzr_filter_status(self, result):
+        return self.filter_unified_status(result)
+
+    def hg_filter_status(self, result):
+        return self.filter_unified_status(result)
+
+    def tf_filter_status(self, result):
+        filtered = []
+        can_add = False
+        for line in result.split('\n'):
+            if line.startswith('$'):
+                can_add = True
+                continue
+            if line == '':
+                can_add = False
+                continue
+            if can_add:
+                filtered.append(line)
+
+        return filtered
 
     def git_status_file(self, file_name):
         # first 2 characters are status codes, the third is a space
@@ -614,9 +692,16 @@ class UncommittedFilesCommand(VcsCommand, sublime_plugin.WindowCommand):
     def hg_status_file(self, file_name):
         return file_name[2:]
 
+    def tf_status_file(self, file_name):
+        try:
+            # assume that file name should always contain colon
+            return re.findall(r'\s+(\S+:.+)$', file_name)[0]
+        except:
+            return None
+
     def status_done(self, result):
-        self.results = list(filter(lambda x: len(x) > 0 and not x.lstrip().startswith('>'),
-                            result.rstrip().split('\n')))
+        filter_status = getattr(self, '{0}_filter_status'.format(self.vcs['name']), None)
+        self.results = filter_status(result)
         if len(self.results):
             self.show_status_list()
         else:
@@ -634,7 +719,7 @@ class UncommittedFilesCommand(VcsCommand, sublime_plugin.WindowCommand):
             self.open_file(get_file(picked_file))
 
     def open_file(self, picked_file):
-        if os.path.isfile(os.path.join(self.root, picked_file)):
-            self.window.open_file(os.path.join(self.root, picked_file))
+        if os.path.isfile(os.path.join(self.vcs['root'], picked_file)):
+            self.window.open_file(os.path.join(self.vcs['root'], picked_file))
         else:
             sublime.status_message("File doesn't exist")

@@ -3,12 +3,15 @@
   // Example: https://github.com/jshint/jshint/blob/master/examples/.jshintrc
   // Documentation: http://www.jshint.com/docs/
   "browser": true,
+  "node": true,
   "esnext": true,
   "globals": {},
   "globalstrict": true,
   "quotmark": true,
   "smarttabs": true,
+  "strict": false,
   "trailing": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "-W110": true
 }
