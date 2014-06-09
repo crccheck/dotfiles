@@ -15,15 +15,9 @@ Install Read-only:
     ./dostuff
 
     source ~/.bashrc
+    make
 
-## Initial Setup
-
-Create SSH keypair
-
-    cd ~/.ssh
-    ssh-keygen -t rsa -C "COMMENTGOESHERE"
-
-Add it to Github, then go back and redo dotfiles config
+Re-adding the remote after github has my pub key:
 
     cd ~/.dotfiles
     git remote rm origin
@@ -31,3 +25,7 @@ Add it to Github, then go back and redo dotfiles config
     git submodule update
     git push -u origin master
     s dot
+
+## Initial Setup
+
+See `bootstrap.sh`
