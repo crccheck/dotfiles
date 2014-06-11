@@ -30,6 +30,7 @@
     la = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg = log -p
     ls = log --stat
+    lp = log --decorate --pretty=oneline --abbrev-commit --first-parent
     p = pull --ff-only
     pom = pull --rebase origin master
     s = status
