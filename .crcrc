@@ -192,6 +192,12 @@ alias very=git
 
 md () { mkdir -p "$@" && cd "$@"; }
 
+
+# Grunt js shell tab auto-completion
+# http://gruntjs.com/frequently-asked-questions#how-do-i-enable-shell-tab-auto-completion
+[ -f /usr/local/bin/grunt ] && eval "$(grunt --completion=bash)"
+
+
 ###################################################
 ### Platform- or system-specific modifications
 ###################################################
