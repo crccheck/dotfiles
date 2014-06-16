@@ -98,6 +98,11 @@ sudo gem install heroku lolcat bundler
 heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 
+# # Autoenv
+sudo pip install autoenv
+touch ~/.autoenv_authorized
+
+
 # # More python stuff
 #
 # if this gives you trouble, you need to add a `deb-src` line to your sources.list
