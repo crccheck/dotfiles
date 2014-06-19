@@ -99,7 +99,10 @@ heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 
 # # Autoenv
-sudo pip install autoenv
+#
+# Install from `master` because packaged versions are too old and don't support
+# foreman compatible .env files.
+git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 touch ~/.autoenv_authorized
 
 
