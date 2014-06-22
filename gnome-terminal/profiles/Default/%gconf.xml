@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <gconf>
 	<entry name="default_size_rows" mtime="1381887694" type="int" value="24"/>
-	<entry name="default_size_columns" mtime="1403020673" type="int" value="124"/>
-	<entry name="use_custom_default_size" mtime="1403020673" type="bool" value="true"/>
+	<entry name="default_size_columns" mtime="1403403880" type="int" value="124"/>
+	<entry name="use_custom_default_size" mtime="1403403880" type="bool" value="true"/>
 	<entry name="use_theme_colors" mtime="1381601899" type="bool" value="true"/>
-	<entry name="font" mtime="1403020673" type="string">
+	<entry name="font" mtime="1403403880" type="string">
 		<stringvalue>Monospace 9</stringvalue>
 	</entry>
-	<entry name="use_system_font" mtime="1403020673" type="bool" value="false"/>
-	<entry name="scrollback_lines" mtime="1403020673" type="int" value="3000"/>
-	<entry name="palette" mtime="1403020673" type="string">
+	<entry name="use_system_font" mtime="1403403880" type="bool" value="false"/>
+	<entry name="scrollback_lines" mtime="1403403880" type="int" value="3000"/>
+	<entry name="palette" mtime="1403403880" type="string">
 		<stringvalue>#000000000000:#AAAA00000000:#0000AAAA0000:#AAAA55550000:#20204A4A8787:#AAAA0000AAAA:#0000AAAAAAAA:#AAAAAAAAAAAA:#555555555555:#FFFF55555555:#5555FFFF5555:#FFFFFFFF5555:#55555555FFFF:#FFFF5555FFFF:#5555FFFFFFFF:#FFFFFFFFFFFF</stringvalue>
 	</entry>
-	<entry name="alternate_screen_scroll" mtime="1403020673" type="bool" value="true"/>
-	<entry name="background_color" mtime="1403020673" type="string">
+	<entry name="alternate_screen_scroll" mtime="1403403880" type="bool" value="true"/>
+	<entry name="background_color" mtime="1403403880" type="string">
 		<stringvalue>#FFFFFFFFDDDD</stringvalue>
 	</entry>
-	<entry name="visible_name" mtime="1403020673" type="string">
+	<entry name="visible_name" mtime="1403403880" type="string">
 		<stringvalue>Default</stringvalue>
 	</entry>
-	<entry name="bold_color" mtime="1403020673" type="string">
+	<entry name="bold_color" mtime="1403403880" type="string">
 		<stringvalue>#000000000000</stringvalue>
 	</entry>
-	<entry name="foreground_color" mtime="1403020673" type="string">
+	<entry name="foreground_color" mtime="1403403880" type="string">
 		<stringvalue>#000000000000</stringvalue>
 	</entry>
 </gconf>
