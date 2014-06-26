@@ -124,3 +124,9 @@ sudo ln -s i386-linux-gnu/libfreetype.so.6 .
 # gconf settings
 # gconf-editor
 # apps/metacity/window_keybindings
+
+
+# TODO
+
+# inotify helps other programs watch files
+install inotify-tools
