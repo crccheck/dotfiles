@@ -52,7 +52,7 @@ if __name__ == "__main__":
     if 'balls' in sys.argv:
         balls = True
         sys.argv.remove('balls')
-        print "**** USE PRODUCTION DB ****"
+        sys.stderr.write("**** USE PRODUCTION DB ****\n")
         os.environ['USE_PRODUCTION_DB'] = '1'
 
     execute_from_command_line(sys.argv)
