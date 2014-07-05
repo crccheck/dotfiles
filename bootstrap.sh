@@ -130,3 +130,10 @@ sudo ln -s i386-linux-gnu/libfreetype.so.6 .
 
 # inotify helps other programs watch files
 install inotify-tools
+
+
+# for virtualbox
+
+install unity-tweak-tool -y
+# disable Window Animations
+
