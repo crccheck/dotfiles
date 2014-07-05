@@ -2,10 +2,23 @@ cd
 mkdir --mode=700 .ssh && cd .ssh
 ssh-keygen -t rsa -C "crc@crc-changethis"
 
+# ----
+
+sudo apt-get install aptitude git -y
+
+cd
+git clone git://github.com/crccheck/dotfiles.git .dotfiles
+cd .dotfiles
+git submodule init
+git submodule update
+./dostuff
+
+source ~/.bashrc
+make
+
+
 sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
 sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
-# sudo add-apt-repository ppa:chromium-daily/dev -y
-# sudo add-apt-repository ppa:ubuntu-mozilla-daily/firefox-aurora -y
 
 # disable ubuntu's annoying "System Program Problem Detected"...
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
@@ -16,15 +29,16 @@ remove brasero libreoffice-core thunderbird banshee -y
 
 # other stuff
 update
-install curl athena-jot -y
-install sublime-text vim-gnome ttf-mscorefonts chromium-browser  -y
-# get old/new versions of python
-install python2.6 python3.3 python3.4 -y
+install -y curl athena-jot \
+  sublime-text vim-gnome chromium-browser \
+  python2.6 python3.3 python3.4
 
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or ctrl+alt+up/down won't work
 
 # use my sublime text config instead of default
-cd ~/.config/sublime-text-2
+cd
+mkdir -p .config/sublime-text-2
+cd .config/sublime-text-2
 rm -rf Packages
 ln -s ~/.dotfiles/sublime-text-2/Packages
 
@@ -58,13 +72,13 @@ sudo service docker restart
 
 
 # # ack and ag
-install ack-grep silversearcher-ag -y
+sudo apt-get install ack-grep silversearcher-ag -y
 sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 
 # set up virtualenv and python stuff
 #
-install python-pip libmysqlclient-dev libpq-dev python-dev -y
+sudo apt-get install python-pip libmysqlclient-dev libpq-dev python-dev -y
 
 sudo pip install virtualenvwrapper csvkit
 source ~/.bashrc  # setup virtualenv env variables
@@ -79,7 +93,9 @@ sudo chown -R $USER /usr/local
 
 # # node
 #
-install nodejs nodejs-legacy
+sudo apt-get install nodejs nodejs-legacy npm -y
+
+# ----
 
 # now open a new terminal for path
 
@@ -129,7 +145,7 @@ sudo ln -s i386-linux-gnu/libfreetype.so.6 .
 # TODO
 
 # inotify helps other programs watch files
-install inotify-tools
+apt-get install inotify-tools -y
 
 
 # for virtualbox
