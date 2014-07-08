@@ -1,21 +1,4 @@
-cd
-mkdir --mode=700 .ssh && cd .ssh
-ssh-keygen -t rsa -C "crc@crc-changethis"
-
-# ----
-
-sudo apt-get install aptitude git -y
-
-cd
-git clone git://github.com/crccheck/dotfiles.git .dotfiles
-cd .dotfiles
-git submodule init
-git submodule update
-./dostuff
-
-source ~/.bashrc
-make
-
+sudo apt-get install aptitude -y
 
 sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
 sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
@@ -24,12 +7,12 @@ sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 
 # uninstall pre-installs I never use
-remove brasero libreoffice-core thunderbird banshee -y
+sudo apt-get remove brasero libreoffice-core thunderbird banshee -y
 
 
 # other stuff
 update
-install -y curl athena-jot \
+sudo apt-get install -y curl athena-jot \
   sublime-text vim-gnome chromium-browser \
   python2.6 python3.3 python3.4
 
@@ -52,7 +35,7 @@ sudo sh -c "curl https://get.docker.io/gpg | apt-key add -"
 # Add the Docker repository to your apt sources list.
 sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 update
-install lxc-docker -y
+sudo apt-get install lxc-docker -y
 sudo pip install fig
 
 # Giving non-root access
@@ -83,7 +66,6 @@ sudo apt-get install python-pip libmysqlclient-dev libpq-dev python-dev -y
 
 sudo pip install virtualenvwrapper csvkit
 source ~/.bashrc  # setup virtualenv env variables
-# sudo rm ~/.pip
 
 
 # # Take ownership of `/usr/local`
@@ -92,33 +74,11 @@ source ~/.bashrc  # setup virtualenv env variables
 sudo chown -R $USER /usr/local
 
 
-# # node
-#
-sudo apt-get install nodejs nodejs-legacy npm -y
-
-# ----
-
-# now open a new terminal for path
-
-sudo npm install -g grunt-cli jshint n
-n --stable
-npm update -g
-
-# # ruby
-#
-# use rbenv instead of rvm because rvm overwrites `cd`
-# install rbenv ruby-build -y
-# mkdir ~/.rbenv
-# use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
-# install a recent version of ruby without intalling directly from github
-sudo gem install heroku lolcat bundler
-heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
-
-
 # # Autoenv
 #
 # Install from `master` because packaged versions are too old and don't support
 # foreman compatible .env files.
+cd
 git clone git://github.com/crccheck/autoenv.git ~/.autoenv
 touch ~/.autoenv_authorized
 
@@ -138,19 +98,39 @@ sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
 # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
 
 
-# gconf settings
-# gconf-editor
-# apps/metacity/window_keybindings
-
-
-# TODO
+# # ruby
+#
+# use rbenv instead of rvm because rvm overwrites `cd`
+# install rbenv ruby-build -y
+# mkdir ~/.rbenv
+# use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
+# install a recent version of ruby without intalling directly from github
+sudo gem install heroku lolcat bundler
+heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 # inotify helps other programs watch files
-apt-get install inotify-tools -y
+sudo apt-get install inotify-tools -y
+
+# # node
+#
+sudo apt-get install nodejs nodejs-legacy npm -y
+
+# ----
+
+# now open a new terminal for path
+
+sudo npm install -g grunt-cli jshint n
+n --stable
+npm update -g
 
 
 # for virtualbox
 
-install unity-tweak-tool -y
+# install unity-tweak-tool -y
 # disable Window Animations
+
+# gconf settings
+# gconf-editor
+# apps/metacity/window_keybindings
+
 

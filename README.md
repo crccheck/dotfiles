@@ -17,6 +17,12 @@ Install Read-only:
     source ~/.bashrc
     make
 
+Hey, make a ssh key!
+
+    cd
+    mkdir --mode=700 .ssh && cd .ssh
+    ssh-keygen -t rsa -C "crc@crc-changethis"
+
 Re-adding the remote after github has my pub key:
 
     cd ~/.dotfiles
