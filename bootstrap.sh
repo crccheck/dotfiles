@@ -53,6 +53,7 @@ sudo sh -c "curl https://get.docker.io/gpg | apt-key add -"
 sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 update
 install lxc-docker -y
+sudo pip install fig
 
 # Giving non-root access
 #
@@ -118,7 +119,7 @@ heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 #
 # Install from `master` because packaged versions are too old and don't support
 # foreman compatible .env files.
-git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+git clone git://github.com/crccheck/autoenv.git ~/.autoenv
 touch ~/.autoenv_authorized
 
 
@@ -128,13 +129,13 @@ touch ~/.autoenv_authorized
 sudo apt-get build-dep lxml -y
 
 # unfuck PIL
-install libjpeg-dev -y
-cd /usr/lib
-sudo ln -s i386-linux-gnu/libz.so .
-sudo ln -s i386-linux-gnu/libjpeg.so .
-sudo ln -s i386-linux-gnu/libjpeg.so.8 .
-sudo ln -s i386-linux-gnu/libjpeg.so.62 .
-sudo ln -s i386-linux-gnu/libfreetype.so.6 .
+sudo apt-get build-dep pillow -y
+sudo apt-get install libjpeg-dev -y
+sudo ln -s /usr/lib/`uname -i`-linux-gnu/libz.so /usr/lib
+sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
+# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.8 /usr/lib
+# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.62 /usr/lib
+# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
 
 
 # gconf settings
