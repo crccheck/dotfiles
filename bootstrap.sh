@@ -65,7 +65,7 @@ sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 #
 sudo apt-get install python-pip libmysqlclient-dev libpq-dev python-dev -y
 
-sudo pip install virtualenvwrapper csvkit
+sudo pip install virtualenvwrapper csvkit awscli
 source ~/.bashrc  # setup virtualenv env variables
 
 

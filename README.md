@@ -5,7 +5,7 @@ So like, these are the dot files I like.
 
 Install Read-only:
 
-    aptitude install git
+    sudo apt-get install git -y
 
     cd
     git clone git://github.com/crccheck/dotfiles.git .dotfiles
@@ -16,6 +16,7 @@ Install Read-only:
 
     source ~/.bashrc
     make
+    s dot
 
 Hey, make a ssh key!
 
@@ -30,7 +31,6 @@ Re-adding the remote after github has my pub key:
     git remote add origin git@github.com:crccheck/dotfiles.git
     git submodule update
     git push -u origin master
-    s dot
 
 ## Initial Setup
 
