@@ -6,8 +6,9 @@ sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
 # disable ubuntu's annoying "System Program Problem Detected"...
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 
-# uninstall pre-installs I never use
-sudo apt-get remove brasero libreoffice-core thunderbird banshee -y
+# uninstall bundled packages I never use
+sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
+  thunderbird banshee gnome-sudoku
 
 
 # other stuff
