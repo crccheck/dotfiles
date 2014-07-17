@@ -117,11 +117,11 @@ function inv {
 }
 
 function tth {
-    ssh root@$1 -i ~/scripts/id_ttdev
+    ssh root@$1 -i ~/scripts/id_ttdev.pem
 }
 
 function ttth {
-    ssh rightscale@$1 -i ~/scripts/id_ttdev
+    ssh rightscale@$1 -i ~/scripts/id_ttdev.pem
 }
 
 # Node.js
@@ -176,6 +176,7 @@ alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
 alias ipynb='ipython notebook'
+alias ipynbinstall='pip install pyzmq jinja2 tornado'
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
