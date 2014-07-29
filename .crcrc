@@ -177,6 +177,7 @@ alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
 alias ipynb='ipython notebook'
 alias ipynbinstall='pip install pyzmq jinja2 tornado'
+alias work='workon $(basename $PWD)'
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
