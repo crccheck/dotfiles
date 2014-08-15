@@ -13,7 +13,7 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 
 # other stuff
 update
-sudo apt-get install -y curl athena-jot \
+sudo apt-get install -y curl athena-jot jq \
   sublime-text vim-gnome chromium-browser \
   python2.6 python3.3 python3.4
 
