@@ -20,3 +20,7 @@ virtualenv:
 		cd $$WORKON_HOME && ln -s -f $(PWD)/$(file) && echo "linking $(file)";)
 
 .PHONY: all bin virtualenv
+
+.PHONY: resources/oui.txt
+resources/oui.txt:
+	curl http://standards.ieee.org/develop/regauth/oui/oui.txt > $@
