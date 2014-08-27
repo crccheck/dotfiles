@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+function _pingbaby {
+    local scale=5
+    local delay=10
+    local out=$(ping -q -c 1 $1)
+    local time=$(echo $out | awk -F/ 'END{print $5}')
+    if [ $time ]; then
+        local ticks=$(echo $time / $scale + 1 | bc)
+        jot -b '' -s '▄' -n $ticks
+        echo " $time"
+        # send time to titlebar
+        echo -en "\033]0;${time}ms $1 \a"
+    else
+        echo " *  p i n g   t i m e o u t  *"
+    fi
+    sleep $delay
+    _pingbaby $1
+}
+
+set -e
+host='www.google.com'
+echo Pinging $host
+_pingbaby $host
