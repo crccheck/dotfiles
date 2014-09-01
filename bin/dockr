@@ -7,59 +7,70 @@ set -e
 
 case "$1" in
 
-# filter out untagged images
+# Build a tagged container image based on a *path*
+# TODO: pass options
+b)
+    namespace=${DOCKER_NAMESPACE:-$USER}
+    dockerfile_location=${2:-"."}
+    name=$(cd $dockerfile_location && echo ${PWD##*/})
+    # TODO let you build an image without a namespace
+    docker build -t "$namespace/$name" $dockerfile_location
+    ;;
+
+
+# Log into a image and throw away the container
+bash)
+    docker run --rm -i -t ${@:2} /bin/bash
+    ;;
+
+# Delete all untagged containers
+clean)
+    docker rm $(docker ps -a | tail -n+2 | awk '{print $1"\t"$2'} | \grep -v ':' | cut -f1)
+    ;;
+
+# Delete all untagged images
+#
+# based on https://github.com/dotcloud/docker/issues/928#issuecomment-36481177
+cleani)
+    docker rmi $(docker images | awk '/^<none>/ { print $3 }')
+    ;;
+
+# List images, filtering out untagged images
 images)
     docker images | \grep -v ^\<
     ;;
 
-# custom commands
-
-# build a tagged container image based on a *path*
-#
-# To make an image called `mysql` located at ./mysql:
-#
-#     $ dockr b mysql/
-#
-# You can also use relative paths, or leave it blank to use the current working
-# directory.
-#
-# TODO: pass options (`-rm` looks promising)
-b)
-    dockerfile_location=${2:-"."}
-    name=$(cd $dockerfile_location && echo ${PWD##*/})
-    docker build -t $name $dockerfile_location
-    ;;
-
-
-# log into a container/image
-#
-#     $ dockr bash ubuntu:precise
-#     $ dockr bash c4f3
-#     $ dockr bash -v ~/tmp:/mnt/data c4f3
-bash)
-    docker run -i -t ${@:2} /bin/bash
-    ;;
-
-# delete all untagged containers
-clean)
-    docker rm $(docker ps -a | awk '{print $1"\t"$2'} | \grep -v ':' | cut -f1)
-    ;;
-
-# delete all untagged images
-cleani)
-    docker rmi $(docker images | awk '{print $2"\t"$3}' | \grep ^\< | cut -f2)
-    ;;
-
-# get the ip address of a container
+# Get the IP address of a running container
 ip)
-    docker inspect $2 | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'
+    docker inspect --format '{{.NetworkSettings.IPAddress}}' $2
     ;;
 
+# Delete the latest container
+oops)
+    # http://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias
+    docker ps -l
+    read -r -p "Are you sure? [y/N] " response
+    response=${response,,}    # tolower
+    if [[ $response =~ ^(yes|y)$ ]]; then
+        docker rm $(docker ps -l -q)
+    else
+        echo 'Nevermind then'
+    fi
+    ;;
+
+# Stop and remove a running container
+# I may just wrap `rm` and stop running containers
+smite)
+    docker stop $2
+    docker rm $2
+    ;;
+
+# Stop all running containers
 stopall)
     docker stop $(docker ps -q)
     ;;
 
-# pass everything else through
+# Anything else you try gets passed directly to `docker`
 *)
     docker $@
     ;;
