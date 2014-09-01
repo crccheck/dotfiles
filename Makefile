@@ -1,8 +1,10 @@
 PWD:=$(PWD)
 BIN:=$(HOME)/bin
 
-.PHONY: all
-all: bin virtualenv
+all: dotfiles bin virtualenv
+
+dotfiles:
+	@./dostuff
 
 # setup my personal global helper scripts
 .PHONY: bin

@@ -12,9 +12,7 @@ Install Read-only:
     cd .dotfiles
     git submodule init
     git submodule update
-    ./dostuff
 
-    source ~/.bashrc
     make
     s dot
 
