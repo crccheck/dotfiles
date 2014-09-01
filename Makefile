@@ -1,25 +1,25 @@
 PWD:=$(PWD)
 BIN:=$(HOME)/bin
 
-all:
-	@$(MAKE) -s bin
-	@$(MAKE) -s virtualenv
+.PHONY: all
+all: bin virtualenv
 
 # setup my personal global helper scripts
+.PHONY: bin
 bin:
-	@echo "* make $(MAKECMDGOALS)"
+	@echo "* linking personal bin/..."
 	@mkdir -p $(BIN)
 	@$(foreach file, $(wildcard bin/*), \
-		cd $(BIN) && ln -s -f $(PWD)/$(file) && echo "linking $(file)";)
+	  cd $(BIN) && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
 
 # setup virtualenv bin
+.PHONY: virtualenv
 virtualenv:
-	@echo "* make $(MAKECMDGOALS)"
+	@echo "* Setting up virtualenv hooks..."
 	@if [ -z "$$WORKON_HOME" ]; then echo "missing \$$WORKON_HOME"; exit 1; fi
 	@$(foreach file, $(wildcard virtualenv/*), \
-		cd $$WORKON_HOME && ln -s -f $(PWD)/$(file) && echo "linking $(file)";)
+	  cd $$WORKON_HOME && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
 
-.PHONY: all bin virtualenv
 
 .PHONY: resources/oui.txt
 resources/oui.txt:
