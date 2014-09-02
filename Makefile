@@ -21,7 +21,7 @@ bin:
 	@echo "* Linking personal bin/..."
 	@mkdir -p $(BIN)
 	@$(foreach file, $(wildcard bin/*), \
-	  cd $(BIN) && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
+	  cd $(BIN) && ln -s $(PWD)/$(file) 2> /dev/null && echo "linking $(file)" || echo "skipping $(file)";)
 
 # setup virtualenv bin
 .PHONY: virtualenv
