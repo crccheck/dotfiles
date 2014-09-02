@@ -21,18 +21,3 @@ for f in $( ls -1Ap | egrep ^\\..*[^\/]$ ); do
         exit 1
     fi
 done
-
-# link gnome terminal config
-if [ -d ~/.gconf/apps/gnome-terminal ]; then
-    rm -rf ~/.gconf/apps/gnome-terminal
-elif [ -L ~/.gconf/apps/gnome-terminal ]; then
-    rm ~/.gconf/apps/gnome-terminal
-fi
-echo ".. Linking gnome terminal settings"
-ln -s ~/.dotfiles/gnome-terminal ~/.gconf/apps/gnome-terminal
-
-# link .vim
-if [ -L ~/.vim ]; then
-    rm ~/.vim
-fi
-ln -s .dotfiles/.vim ~/.vim
