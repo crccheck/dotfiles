@@ -41,9 +41,15 @@ gterm:
 	fi
 	@ln -s $(PWD)/gnome-terminal ~/.gconf/apps/gnome-terminal
 
+# Make sure to do this after sublime text is installed
+st2:
+	@echo "* Linking my Sublime Text config"
+	@cd ~/.config/sublime-text-2 && rm -rf Packages && \
+	  ln -sf $(PWD)/sublime-text-2/Packages
+
 .PHONY: vim
 vim:
-	@echo "* Linking vim config $(PWD)"
+	@echo "* Linking vim config"
 	@cd $(HOME) && ln -sf $(PWD)/.vim
 
 
