@@ -6,7 +6,7 @@ DOTFILES := $(wildcard .*)
 # TODO use target specific variables to reduce duplication
 SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
 
-all: dotfiles bin virtualenv gterm vim
+all: dotfiles bin virtualenv vim gterm
 
 basic: dotfiles bin
 
@@ -32,6 +32,7 @@ virtualenv:
 	  cd $$WORKON_HOME && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
 
 # link gnome terminal config
+# TODO skip if gnome-terminal does not exist
 gterm:
 	@echo "* Linking gnome terminal settings"
 	@if [ -d ~/.gconf/apps/gnome-terminal ]; then \
