@@ -2,15 +2,23 @@ PWD:=$(PWD)
 # Where I keep local binaries
 BIN:=$(HOME)/bin
 
+DOTFILES := $(wildcard .*)
+# TODO use target specific variables to reduce duplication
+SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
+
 all: dotfiles bin virtualenv gterm vim
 
+basic: dotfiles bin
+
 dotfiles:
-	@./dostuff
+	@echo "* Linking dotfiles"
+	@$(foreach file, $(SRCS), \
+	  ln -sf $(PWD)/$(file) ~/$(file); echo "linking $(file)";)
 
 # setup my personal global helper scripts
 .PHONY: bin
 bin:
-	@echo "* linking personal bin/..."
+	@echo "* Linking personal bin/..."
 	@mkdir -p $(BIN)
 	@$(foreach file, $(wildcard bin/*), \
 	  cd $(BIN) && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
@@ -35,11 +43,8 @@ gterm:
 
 .PHONY: vim
 vim:
-	@echo "* Linking vim config"
-	@if [ -L ~/.vim ]; then \
-	  rm ~/.vim; \
-	fi
-	@ln -s $(PWD)/.vim ~/.vim
+	@echo "* Linking vim config $(PWD)"
+	@cd $(HOME) && ln -sf $(PWD)/.vim
 
 
 .PHONY: resources/oui.txt
