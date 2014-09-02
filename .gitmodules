@@ -1,9 +1,6 @@
 [submodule "bashmarks"]
 	path = bashmarks
 	url = https://github.com/crccheck/bashmarks.git
-[submodule ".vim/bundle/vim-unbundle"]
-	path = .vim/bundle/vim-unbundle
-	url = https://github.com/sunaku/vim-unbundle.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
