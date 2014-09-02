@@ -50,3 +50,8 @@ vim:
 .PHONY: resources/oui.txt
 resources/oui.txt:
 	curl http://standards.ieee.org/develop/regauth/oui/oui.txt > $@
+
+
+# These remotes are needed for git subtree
+subtree:
+	git subtree add --prefix .vim/bundle/vim-unbundle https://github.com/sunaku/vim-unbundle.git master --squash
