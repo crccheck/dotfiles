@@ -3,5 +3,7 @@
 
 unset IPYTHONDIR
 unset DATABASE_URL
+unset ENVIRONMENT
+unset DEBUG
 unalias vivirtualenv
 
