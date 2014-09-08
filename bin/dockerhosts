@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Messy hack to give all docker containers a *.docker host name locally
+
+set -e
+
+# Backup existing hosts file
+sudo cp /etc/hosts /etc/hosts.backup
+# Strip old .docker hosts out
+sudo sh -c 'cat /etc/hosts.backup | sudo grep -v \.docker > /etc/hosts'
+
+# Get all runninging docker containers
+#
+# docker ps: get all running containers
+# tail -n+2: skip the first line
+# awk '{print $NF}': get the last column
+# awk -F "," '{print $1}' : get the first name separated by comma
+docker_hosts=$(docker ps | tail -n+2 | awk '{print $NF}' | awk -F "," '{print $1}')
+
+# Append hosts entry
+for i in $docker_hosts; do
+    line="$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $i)\t$i.docker"
+    sudo line="$line" sh -c 'echo $line >> /etc/hosts'
+done
+
+echo "******* NEW HOSTS *******"
+cat /etc/hosts
+
