@@ -5,11 +5,13 @@
 	"detect_slow_plugins": false,
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
+	"binary_file_patterns": [
+		".coverage"
+	],
 	"folder_exclude_patterns":
 	[
 		"*.egg-info",
 		".ipynb_checkpoints",
-		".coverage",
 		".git",
 		".hg",
 		".sass-cache",
