@@ -1,13 +1,14 @@
 {
 	"auto_complete_commit_on_tab": true,
+	"binary_file_patterns":
+	[
+		".coverage"
+	],
 	"color_scheme": "Packages/Boron Color Scheme/Boron.tmTheme",
 	"default_line_ending": "unix",
 	"detect_slow_plugins": false,
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
-	"binary_file_patterns": [
-		".coverage"
-	],
 	"folder_exclude_patterns":
 	[
 		"*.egg-info",
