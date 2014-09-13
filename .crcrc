@@ -222,9 +222,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export ARCHFLAGS='-arch i386 -arch x86_64'
 
     source $HOME/.dotfiles/git-completion.bash
-
-    export EDITOR=vim
-    export VISUAL=subl
 else
     alias ls='ls -F --color=auto'
 fi
