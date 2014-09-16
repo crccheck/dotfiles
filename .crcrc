@@ -109,11 +109,20 @@ function f {
 
 # Invoke cheat
 function inv {
-    if [ -z $1 ]; then
-        invoke --list
-    else
-        invoke $@
-    fi
+  # if no parameters, then assume we want to list tasks
+  if [ -z $1 ]; then
+    invoke --list
+  else
+    # invoke expects --help to be first, so move it if it isn't
+    local numargs=$#
+    for ((i=2; i <= numargs ; i++))
+    do
+      if [ ${@:$i:1} == "--help" ]; then
+        set -- "--help" ${@:1:$i - 1} ${@:$i + 1}
+      fi
+    done
+    invoke $@
+  fi
 }
 
 function tth {
