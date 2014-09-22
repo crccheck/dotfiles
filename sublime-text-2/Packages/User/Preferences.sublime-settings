@@ -2,7 +2,10 @@
 	"auto_complete_commit_on_tab": true,
 	"binary_file_patterns":
 	[
-		".coverage"
+		".coverage",
+		"*.gif",
+		"*.gz",
+		"*.png"
 	],
 	"color_scheme": "Packages/Boron Color Scheme/Boron.tmTheme",
 	"default_line_ending": "unix",
@@ -19,6 +22,7 @@
 		".svn",
 		".tox",
 		"__pycache__",
+		"bower_modules",
 		"coverage",
 		"CVS",
 		"node_modules",
