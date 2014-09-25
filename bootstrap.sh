@@ -52,8 +52,8 @@ sudo service docker restart
 # install mysql-client-core-5.5
 
 # install postgresql libpq-dev postgresql-server-dev-9.2 -y
-# for GIS
-# install lib-geos-dev
+# for postgres and GIS
+sudo apt-get install -y libgeos-dev libpq-dev
 
 
 # # ack and ag
