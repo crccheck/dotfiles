@@ -125,6 +125,10 @@ n --stable
 npm update -g
 
 
+sudo apt-add-repository -y ppa:jon-severinsson/ffmpeg
+sudo apt-get update
+sudo apt-get install -y ffmpeg
+
 # # Virtualbox
 
 sudo apt-get install -y virtualbox vagrant
