@@ -102,8 +102,9 @@ sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
 # # ruby
 #
 # use rbenv instead of rvm because rvm overwrites `cd`
-# install rbenv ruby-build -y
-# mkdir ~/.rbenv
+install rbenv -y
+mkdir ~/.rbenv/plugins
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 # use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
 # install a recent version of ruby without intalling directly from github
 sudo gem install heroku lolcat bundler
