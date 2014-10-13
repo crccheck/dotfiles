@@ -47,6 +47,7 @@ prepend_path_if_exists()
 ### PATH-type list variables
 ###################################################
 
+prepend_path_if_exists PATH $HOME/anaconda3/bin
 prepend_path_if_exists PATH $HOME/usr/bin
 prepend_path_if_exists PATH $HOME/bin
 
