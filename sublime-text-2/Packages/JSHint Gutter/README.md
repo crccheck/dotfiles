@@ -31,7 +31,7 @@ These are for Sublime Text 3:
 `git clone https://github.com/victorporof/Sublime-JSHint.git ~/.config/sublime-text-3/Packages/Sublime-JSHint`
 
 #### Windows
-`git clone https://github.com/victorporof/Sublime-JSHint.git %APPDATA%/Sublime\ Text\ 3/Packages/Sublime-JSHint`
+`git clone https://github.com/victorporof/Sublime-JSHint.git "%APPDATA%/Sublime Text 3/Packages/Sublime-JSHint"`
 
 ## Usage
 Tools -> Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and type `jshint`.
@@ -55,11 +55,6 @@ If you get an error `sh: node: command not found` or similar, you don't have `no
 
 * `Ctrl+Shift+P` or `Cmd+Shift+P` in Linux/Windows/OS X
 * type `jshint`, select `Set node Path`
-
-This means from:
-`"node_path": "/usr/local/bin/node"`
-change to
-`"node_path": "/your/absolute/path/to/node"`
 
 Simply using `node` without specifying a path sometimes doesn't work :(
 
@@ -92,8 +87,6 @@ These are the default options used by this plugin:
   "globals": {},
   "globalstrict": true,
   "quotmark": true,
-  "smarttabs": true,
-  "trailing": true,
   "undef": true,
   "unused": true
 }
@@ -116,13 +109,13 @@ And here's how a `.jshintrc` file in your home folder could look like:
 
 See the documentation at [jshint.com](http://www.jshint.com/docs/) and a few examples [here](https://github.com/jshint/jshint/blob/master/examples/.jshintrc).
 
-## Alternative for NPM packages
-Alternatively for an NPM package, you can omit the `.jshintrc` file and instead place your jshint options in your `package.json` file as the property `jshintConfig`<sup>[1](http://jshint.com/blog/2013-08-02/npm/)</sup>.
-Check an example [here](https://github.com/jshint/jshint/blob/master/package.json#L51).
-
 A few persistent options are always applied from a `.jshintrc` file located in the same directory as the plugin, if not overwritten by your own `.jshintrc` file. Those are defined [here](https://github.com/victorporof/Sublime-JSHint/blob/master/.jshintrc). You can safely add stuff to that json file if you want:
 
 * `Ctrl+Shift+P` or `Cmd+Shift+P` in Linux/Windows/OS X
 * type `jshint`, select `Set Linting Preferences`
+
+## Alternative for NPM packages
+Alternatively for an NPM package, you can omit the `.jshintrc` file and instead place your jshint options in your `package.json` file as the property `jshintConfig`<sup>[1](http://jshint.com/blog/2013-08-02/npm/)</sup>.
+Check an example [here](https://github.com/jshint/jshint/blob/master/package.json).
 
 Thank you!
