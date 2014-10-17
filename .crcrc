@@ -202,6 +202,8 @@ alias wow='git status'
 alias such=git
 alias very=git
 
+alias xoff='xset dpms force off'
+
 md () { mkdir -p "$@" && cd "$@"; }
 
 
