@@ -107,7 +107,9 @@ mkdir ~/.rbenv/plugins
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 # use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
 # install a recent version of ruby without intalling directly from github
-sudo gem install heroku lolcat bundler
+sudo gem install lolcat bundler
+# install toolbelt otherwise heroku complains it wasn't installed via toolbelt
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 # inotify helps other programs watch files
