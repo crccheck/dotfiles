@@ -1,4 +1,4 @@
-" crccheck's vimrc
+﻿" crccheck's vimrc
 "
 " all about maps:
 " map KEY_SEQUENCE OPERATION
