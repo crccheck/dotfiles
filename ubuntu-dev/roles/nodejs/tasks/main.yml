@@ -1,13 +1,15 @@
----
+- name: Node.js
+  apt: name=nodejs state=installed
+  apt: name=npm state=installed
 
-- name: Node.js | Install prerequisites
-  action: apt pkg=python-software-properties state=installed
+- name: For some fucking reason this needs to be separate
+  apt: name=nodejs-legacy state=installed
 
-- name: Node.js | Add the node.js PPA
-  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/chris-lea-node_js-precise.list
+- npm: name=n global=yes
 
-- name: Node.js | Update the apt cache for the new repository
-  action: apt update-cache=yes
+- file: path=/usr/local owner={{ ansible_ssh_user }} recurse=yes
 
-- name: Node.js | Install node
-  action: apt pkg=nodejs state=installed
+- shell: n --stable
+
+- npm: name=grunt=cli global=yes
+  npm: name=jshint global=yes

@@ -58,12 +58,6 @@ sudo pip install csvkit awscli ansible
 source ~/.bashrc  # setup virtualenv env variables
 
 
-# # Take ownership of `/usr/local`
-#
-# ref: http://howtonode.org/introduction-to-npm
-sudo chown -R $USER /usr/local
-
-
 # # Autoenv
 #
 # Install from `master` because packaged versions are too old and don't support
@@ -104,16 +98,7 @@ heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 # inotify helps other programs watch files
 sudo apt-get install inotify-tools -y
 
-# # node
-#
-sudo apt-get install nodejs nodejs-legacy npm -y
 
-# ----
-
-# now open a new terminal for path
-
-sudo npm install -g grunt-cli jshint n
-n --stable
 npm update -g
 
 
