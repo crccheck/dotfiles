@@ -1,0 +1,5 @@
+---
+
+- name: Chromium | Install Chromium
+  apt: pkg=chromium-browser state=installed
+  tags: chromium

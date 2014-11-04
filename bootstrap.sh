@@ -1,6 +1,3 @@
-sudo apt-get install aptitude -y
-
-sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
 sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
 
 # disable ubuntu's annoying "System Program Problem Detected"...
@@ -14,8 +11,7 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 # other stuff
 update
 sudo apt-get install -y curl athena-jot jq \
-  sublime-text vim-gnome chromium-browser \
-  python2.6 python3.3 python3.4
+  sublime-text vim-gnome
 
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or ctrl+alt+up/down won't work
 
@@ -63,9 +59,9 @@ sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 # set up virtualenv and python stuff
 #
-sudo apt-get install python-pip libmysqlclient-dev libpq-dev python-dev -y
+sudo apt-get install libmysqlclient-dev libpq-dev -y
 
-sudo pip install virtualenvwrapper csvkit awscli ansible
+sudo pip install csvkit awscli ansible
 source ~/.bashrc  # setup virtualenv env variables
 
 

@@ -1,0 +1,5 @@
+- name: I need this
+  apt: name=git state=installed
+
+- git: repo=https://github.com/crccheck/dotfiles.git
+       dest=~/.dotfiles

@@ -1,0 +1,10 @@
+---
+
+- name: Build Essentials | Install build-essentials pkg
+  apt: name=build-essential state=installed
+
+- name: GCC | Install GNU Compiler Collection
+  apt: name=gcc state=installed
+
+- name: Kernal | Install linux-headers-*-generic
+  action: shell apt-get install -y linux-headers-$(uname -r)

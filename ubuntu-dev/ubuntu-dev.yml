@@ -1,0 +1,15 @@
+---
+# Your /etc/ansible/hosts
+# [test]
+# test  ansible_ssh_user=myusername
+
+- name: Ubuntu Development Environment
+  hosts: test
+  sudo: yes
+
+  roles:
+    # - linux-dev
+    # - nodejs
+    - mine
+    - browsers
+    - python
