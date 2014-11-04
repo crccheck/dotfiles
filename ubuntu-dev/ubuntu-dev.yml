@@ -10,5 +10,6 @@
   roles:
     # - linux-dev
     # - nodejs
+    - mine
     - browsers
     - python
