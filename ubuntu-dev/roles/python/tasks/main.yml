@@ -16,3 +16,7 @@
 
 - name: Install Python tools
   pip: name=virtualenvwrapper
+  pip: name=csvkit
+  pip: name=awscli
+  pip: name=postdoc
+  pip: name=ansible

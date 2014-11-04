@@ -20,22 +20,16 @@ sudo pip install fig
 # # databases
 #
 # install mysql-client-core-5.5
-
-# install postgresql libpq-dev postgresql-server-dev-9.2 -y
-# for postgres and GIS
-sudo apt-get install -y libgeos-dev libpq-dev
+# install postgresql postgresql-server-dev-9.2 -y
 
 
 # # ack and ag
-sudo apt-get install ack-grep silversearcher-ag -y
 sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 
 # set up virtualenv and python stuff
 #
-sudo apt-get install libmysqlclient-dev libpq-dev -y
 
-sudo pip install csvkit awscli ansible
 source ~/.bashrc  # setup virtualenv env variables
 
 

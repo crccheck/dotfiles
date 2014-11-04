@@ -1,13 +1,19 @@
 - name: I need this
-  apt: name=git state=present
-  apt: name=curl state=present
-  apt: name=athena-jot state=present
-  apt: name=jq state=present
-  apt: name=vim-gnome state=present
+  apt: name=git
+  apt: name=curl
+  apt: name=athena-jot
+  apt: name=jq
+  apt: name=vim-gnome
+  apt: name=ack-grep
+  # TODO sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+  apt: name=silversearcher-ag
+  apt: name=libmysqlclient-dev  # MySQL
+  apt: name=libgeos-dev         # GEOS for PostGIS
+  apt: name=libpq-dev           # Postgres
 
 - apt_repository: repo='ppa:webupd8team/sublime-text-2'
 
-- apt: name=sublime-text state=present
+- apt: name=sublime-text
 
 - name: uninstall junk
   apt: name=banshee state=absent
