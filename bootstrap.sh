@@ -2,10 +2,6 @@
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 
 
-# other stuff
-update
-sudo apt-get install -y curl athena-jot jq vim-gnome
-
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or ctrl+alt+up/down won't work
 
 # use my sublime text config instead of default
@@ -17,23 +13,8 @@ ln -s ~/.dotfiles/sublime-text-2/Packages
 
 
 # # Docker.io
-#
-# http://docs.docker.io/en/latest/installation/ubuntulinux/
-# Add the Docker repository key to your local keychain
-# using apt-key finger you can check the fingerprint matches 36A1 D786 9245 C895 0F96 6E92 D857 6A8B A88D 21E9
-sudo sh -c "curl https://get.docker.io/gpg | apt-key add -"
-# Add the Docker repository to your apt sources list.
-sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
-update
-sudo apt-get install lxc-docker -y
 sudo pip install fig
 
-# Giving non-root access
-#
-# http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit
-sudo groupadd docker
-sudo gpasswd -a ${USER} docker
-sudo service docker restart
 
 
 # # databases

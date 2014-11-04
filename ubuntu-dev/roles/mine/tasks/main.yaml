@@ -1,9 +1,13 @@
 - name: I need this
-  apt: name=git state=installed
+  apt: name=git state=present
+  apt: name=curl state=present
+  apt: name=athena-jot state=present
+  apt: name=jq state=present
+  apt: name=vim-gnome state=present
 
 - apt_repository: repo='ppa:webupd8team/sublime-text-2'
 
-- apt: name=sublime-text state=installed
+- apt: name=sublime-text state=present
 
 - name: uninstall junk
   apt: name=banshee state=absent
