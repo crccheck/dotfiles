@@ -1,0 +1,4 @@
+---
+
+- name: Go | Install go
+  apt: name=golang state=installed

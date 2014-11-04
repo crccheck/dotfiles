@@ -1,0 +1,10 @@
+---
+
+- name: Virtualbox | Add repository
+  apt_repository: repo='deb http://download.virtualbox.org/virtualbox/debian saucy contrib' state=present
+
+- name: Virtualbox | Add key
+  apt_key: url='http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc' state=present
+
+- name: Virtualbox | Install Virtualbox v4.3.x
+  apt: name=virtualbox-4.3 state=installed force=yes

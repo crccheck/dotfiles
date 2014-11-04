@@ -1,0 +1,24 @@
+---
+
+- name: Ubuntu Development Environment
+  hosts: 127.0.0.1
+  user: pcoffey
+  sudo: yes
+
+  roles:
+    - linux-dev
+    - web
+    - nodejs
+    - ruby
+    - php
+    - mysql
+    - meteor
+    - go
+    - redis
+    - drupal
+    - frontend
+    - dotfiles
+    - browsers
+    - vm
+    - misc
+    - fourkitchens
