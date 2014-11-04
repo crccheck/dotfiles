@@ -8,6 +8,7 @@
   sudo: yes
 
   roles:
-    - linux-dev
+    # - linux-dev
     # - nodejs
     - browsers
+    - python
