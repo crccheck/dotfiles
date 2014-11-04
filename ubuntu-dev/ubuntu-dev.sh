@@ -11,4 +11,6 @@ apt-get install ansible
 
 # Run ansible-playbook
 cd ~/ubuntu-dev
-ansible-playbook -K ubuntu-dev.yml
+ansible-playbook -kK ubuntu-dev.yml
+# -k   ask for ssh password
+# -K, --ask-sudo-pass  ask for sudo password

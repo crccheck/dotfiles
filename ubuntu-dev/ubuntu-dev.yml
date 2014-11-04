@@ -1,8 +1,10 @@
 ---
+# Your /etc/ansible/hosts
+# [test]
+# test  ansible_ssh_user=myusername
 
 - name: Ubuntu Development Environment
-  hosts: 127.0.0.1
-  user: pcoffey
+  hosts: test
   sudo: yes
 
   roles:
