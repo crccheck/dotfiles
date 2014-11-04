@@ -1,5 +1,16 @@
 - name: I need this
   apt: name=git state=installed
 
-- git: repo=https://github.com/crccheck/dotfiles.git
-       dest=~/.dotfiles
+- apt_repository: repo='ppa:webupd8team/sublime-text-2'
+
+- apt: name=sublime-text state=installed
+
+- name: uninstall junk
+  apt: name=banshee state=absent
+  apt: name=brasero state=absent
+  apt: name=gnome-sudoku state=absent
+  apt: name=libreoffice-common state=absent
+  apt: name=libreoffice-core state=absent
+  apt: name=thunderbird state=absent
+  apt: name=xchat state=absent
+

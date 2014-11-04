@@ -1,17 +1,10 @@
-sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
-
 # disable ubuntu's annoying "System Program Problem Detected"...
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
-
-# uninstall bundled packages I never use
-sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
-  thunderbird banshee gnome-sudoku
 
 
 # other stuff
 update
-sudo apt-get install -y curl athena-jot jq \
-  sublime-text vim-gnome
+sudo apt-get install -y curl athena-jot jq vim-gnome
 
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or ctrl+alt+up/down won't work
 
@@ -124,13 +117,13 @@ n --stable
 npm update -g
 
 
-sudo apt-add-repository -y ppa:jon-severinsson/ffmpeg
-sudo apt-get update
-sudo apt-get install -y ffmpeg
+# sudo apt-add-repository -y ppa:jon-severinsson/ffmpeg
+# sudo apt-get update
+# sudo apt-get install -y ffmpeg
 
 # # Virtualbox
 
-sudo apt-get install -y virtualbox vagrant
+# sudo apt-get install -y virtualbox vagrant
 
 
 
