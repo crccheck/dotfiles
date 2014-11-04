@@ -1,8 +1,0 @@
----
-
-- name: Mysql | Install mysql
-  apt: pkg=mysql-server state=installed
-  tags: mysql
-
-- name: Mysql | Install MySql Workbench
-  apt: pkg=mysql-workbench state=latest
