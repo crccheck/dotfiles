@@ -15,6 +15,7 @@
     whitespace = nowarn
 [alias]
     b = branch
+    bd = for-each-ref --sort='-authordate' --format='%(authordate:iso8601)%09%(refname:short)' refs/heads
     ba = branch -ra
     bvv = branch -vv
     caa = commit -a --amend -C HEAD
