@@ -4,7 +4,7 @@
   // http://nodejs.org/#download
   "node_path": {
     "windows": "C:/Program Files/nodejs/node.exe",
-    "linux": "/usr/bin/nodejs",
+    "linux": "/usr/local/bin/node",
     "osx": "/usr/local/bin/node"
   },
 
@@ -18,7 +18,7 @@
   "lint_on_load": false,
 
   // Automatically lint when a file is saved.
-  "lint_on_save": false,
+  "lint_on_save": true,
 
   // Highlight problematic regions when selected.
   "highlight_selected_regions": false,
