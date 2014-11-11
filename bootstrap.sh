@@ -1,6 +1,10 @@
 # disable ubuntu's annoying "System Program Problem Detected"...
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 
+# disable ubuntu's annoying mlocate hog
+sudo chmod -x /etc/cron.daily/mlocate
+
+
 
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or ctrl+alt+up/down won't work
 
