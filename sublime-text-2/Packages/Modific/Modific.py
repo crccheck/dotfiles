@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+from __future__ import print_function
+
 import sublime
 import sublime_plugin
 import os
@@ -6,7 +9,7 @@ import threading
 import subprocess
 import functools
 import re
-
+from copy import copy
 
 IS_ST3 = sublime.version().startswith('3')
 
@@ -117,7 +120,26 @@ def do_when(conditional, callback, *args, **kwargs):
     sublime.set_timeout(functools.partial(do_when, conditional, callback, *args, **kwargs), 50)
 
 
+def log(*args, **kwargs):
+    """
+    @param *args: string arguments that should be logged to console
+    @param debug=True: debug log mode
+    @param settings=None: instance of sublime.Settings
+    """
+    debug = kwargs.get('debug', True)
+    settings = kwargs.get('settings', None)
+
+    if not settings:
+        settings = get_settings()
+
+    if debug and not settings.get('debug', False):
+        return
+
+    print('Modific:', *args)
+
+
 class CommandThread(threading.Thread):
+
     def __init__(self, command, on_done, working_dir="", fallback_encoding="", console_encoding="", **kwargs):
         threading.Thread.__init__(self)
         self.command = command
@@ -138,12 +160,8 @@ class CommandThread(threading.Thread):
             # get $PATH on Windows. Yay portable code.
             shell = os.name == 'nt'
 
-            # Do not use universal newlines for OS X
-            try:
-                is_osx = os.uname()[0] == 'Darwin'
-            except:
-                is_osx = False
-            universal_newlines = not is_osx
+            # Use universal newlines only for Windows
+            universal_newlines = os.name == 'nt'
 
             if self.working_dir != "":
                 os.chdir(self.working_dir)
@@ -198,6 +216,9 @@ class VcsCommand(object):
         self.settings = get_settings()
         super(VcsCommand, self).__init__(*args, **kwargs)
 
+    def log(self, *args, **kwargs):
+        return log(settings=self.settings, *args, **kwargs)
+
     def run_command(self, command, callback=None, show_status=False,
                     filter_empty_args=True, **kwargs):
         if filter_empty_args:
@@ -214,6 +235,7 @@ class VcsCommand(object):
         if not callback:
             callback = self.generic_done
 
+        log('run command:', ' '.join(command))
         thread = CommandThread(command, callback, **kwargs)
         thread.start()
 
@@ -222,6 +244,7 @@ class VcsCommand(object):
             sublime.status_message(message + 'wef')
 
     def generic_done(self, result):
+        self.log('generic_done', result)
         if self.may_change_files and self.active_view() and self.active_view().file_name():
             if self.active_view().is_dirty():
                 result = "WARNING: Current view is dirty.\n\n"
@@ -230,7 +253,8 @@ class VcsCommand(object):
                 print("reverting")
                 position = self.active_view().viewport_position()
                 self.active_view().run_command('revert')
-                do_when(lambda: not self.active_view().is_loading(), lambda: self.active_view().set_viewport_position(position, False))
+                do_when(lambda: not self.active_view().is_loading(),
+                        lambda: self.active_view().set_viewport_position(position, False))
 
         if not result.strip():
             return
@@ -305,7 +329,7 @@ class DiffCommand(VcsCommand):
             self.run_command(get_command(filename), self.diff_done)
 
     def diff_done(self, result):
-        pass
+        self.log('diff_done', result)
 
     def git_diff_command(self, file_name):
         vcs_options = self.settings.get('vcs_options', {}).get('git') or ['--no-color', '--no-ext-diff']
@@ -339,9 +363,26 @@ class DiffCommand(VcsCommand):
         vcs_options = self.settings.get('vcs_options', {}).get('tf') or ['-format:unified']
         return [get_user_command('tf') or 'tf', 'diff'] + vcs_options + [file_name]
 
+    def join_lines(self, lines):
+        """
+        Join lines using os.linesep.join(), unless another method is specified in ST settings
+        """
+        le = self.view.settings().get('default_line_ending')
+        if self.settings.get('debug'):
+            print("use line endings:", le)
+
+        if le == 'windows':
+            return "\r\n".join(lines)
+        elif le == 'unix':
+            return "\n".join(lines)
+
+        return os.linesep.join(lines)
+
 
 class ShowDiffCommand(DiffCommand, sublime_plugin.TextCommand):
     def diff_done(self, result):
+        self.log('on show_diff', result)
+
         if not result.strip():
             return
 
@@ -479,6 +520,8 @@ class HlChangesCommand(DiffCommand, sublime_plugin.TextCommand):
         self.view.add_regions(hl_key, regions, "markup.%s.diff" % hl_key, icon, sublime.HIDDEN | sublime.DRAW_EMPTY)
 
     def diff_done(self, diff):
+        self.log('on hl_changes:', diff)
+
         if diff and '@@' not in diff:
             # probably this is an error message
             # if print raise UnicodeEncodeError, try to encode string to utf-8 (issue #35)
@@ -490,8 +533,10 @@ class HlChangesCommand(DiffCommand, sublime_plugin.TextCommand):
         diff_parser = DiffParser(diff)
         (inserted, changed, deleted) = diff_parser.get_lines_to_hl()
 
-        if self.settings.get('debug'):
-            print(inserted, changed, deleted)
+        self.log('new lines:', inserted)
+        self.log('modified lines:', changed)
+        self.log('deleted lines:', deleted)
+
         self.hl_lines(inserted, 'inserted')
         self.hl_lines(deleted, 'deleted')
         self.hl_lines(changed, 'changed')
@@ -506,7 +551,7 @@ class ShowOriginalPartCommand(DiffCommand, sublime_plugin.TextCommand):
         (row, col) = self.view.rowcol(self.view.sel()[0].begin())
         (lines, start, replace_lines) = diff_parser.get_original_part(row + 1)
         if lines is not None:
-            self.panel(os.linesep.join(lines))
+            self.panel(self.join_lines(lines))
 
 
 class ReplaceModifiedPartCommand(DiffCommand, sublime_plugin.TextCommand):
@@ -523,7 +568,7 @@ class ReplaceModifiedPartCommand(DiffCommand, sublime_plugin.TextCommand):
             print('replace', (lines, current, replace_lines))
         if lines is not None:
             begin = self.view.text_point(current - 1, 0)
-            content = os.linesep.join(lines)
+            content = self.join_lines(lines)
             if replace_lines:
                 end = self.view.line(self.view.text_point(replace_lines + current - 2, 0)).end()
                 region = sublime.Region(begin, end)
@@ -720,18 +765,25 @@ class UncommittedFilesCommand(VcsCommand, sublime_plugin.WindowCommand):
             sublime.status_message("Nothing to show")
 
     def show_status_list(self):
-        self.get_window().show_quick_panel(self.results, self.panel_done, sublime.MONOSPACE_FONT)
+        options = copy(self.results)
+        options.insert(0, " - Open All")
+        self.get_window().show_quick_panel(options, self.panel_done, sublime.MONOSPACE_FONT)
 
     def panel_done(self, picked):
-        if 0 > picked < len(self.results):
+        if picked == 0:
+            self.open_files(*self.results)
             return
-        picked_file = self.results[picked]
-        get_file = getattr(self, '{0}_status_file'.format(self.vcs['name']), None)
-        if (get_file):
-            self.open_file(get_file(picked_file))
+        elif 0 > picked < len(self.results):
+            return
+        picked_file = self.results[picked - 1]
+        self.open_files(picked_file)
 
-    def open_file(self, picked_file):
-        if os.path.isfile(os.path.join(self.vcs['root'], picked_file)):
-            self.window.open_file(os.path.join(self.vcs['root'], picked_file))
-        else:
-            sublime.status_message("File doesn't exist")
+    def open_files(self, *files):
+        for f in files:
+            get_file = getattr(self, '{0}_status_file'.format(self.vcs['name']), None)
+            if get_file:
+                fname = get_file(f)
+                if os.path.isfile(os.path.join(self.vcs['root'], fname)):
+                    self.window.open_file(os.path.join(self.vcs['root'], fname))
+                else:
+                    sublime.status_message("File '{0}' doesn't exist".format(fname))
