@@ -10,7 +10,7 @@ Installation
 1. Clone this repo
 2. Put the contents of this repo directly inside:
 
- - OS X: ~/Library/Application Support/Sublime Text 2/Packages/
+ - OS X: ~/Library/Application\\ Support/Sublime\\ Text\\ 2/Packages
  - Windows: %APPDATA%/Sublime Text 2/Packages/
  - Linux: ~/.config/sublime-text-2/Packages
 
@@ -149,6 +149,9 @@ Snippets for Django Views
  detailview         ``Generic Detail View``
  listview           ``Generic List View``
  templateview       ``Generic Template View``
+ adminview          ``Generic Admin View``
+ tabularinline      ``Tabular Inline View``
+ stackedinline      ``Stacked Inline View``
  dispatch           ``dispatch method for CBVs``
  get_context_data   ``get_context_data method for CBVs``
 =================== ======================================================
