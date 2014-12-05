@@ -4,7 +4,11 @@
 <dict>
 	<key>AFRStrokeThickness</key>
 	<real>0.0</real>
+	<key>AdjustWindowForFontSizeChange</key>
+	<true/>
 	<key>AdvancedFontRendering</key>
+	<false/>
+	<key>AllowClipboardAccess</key>
 	<false/>
 	<key>AnimateDimming</key>
 	<true/>
@@ -14,6 +18,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AutoHideTmuxClientSession</key>
+	<false/>
 	<key>CheckTestRelease</key>
 	<false/>
 	<key>ClosingHotkeySwitchesSpaces</key>
@@ -166,6 +172,8 @@
 	<false/>
 	<key>HideActivityIndicator</key>
 	<false/>
+	<key>HideMenuBarInFullscreen</key>
+	<true/>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
@@ -200,135 +208,29 @@
 	<true/>
 	<key>MinimumContrast</key>
 	<real>0.0</real>
-	<key>NSColorPanelMode</key>
-	<string>4</string>
-	<key>NSColorPanelVisibleSwatchRows</key>
-	<integer>10</integer>
-	<key>NSColorPickerSlidersDefaults</key>
-	<string>3</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~/.dotfiles/iterm</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{628, 579}</string>
+	<string>{712, 470}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
-	<key>NSTableView Columns NSNavOutlineColumnSettings.v1</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErC2Rpc3BsYXlOYW1lhg==
-		</data>
-		<string>350</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErB21vZERhdGWG
-		</data>
-		<string>88</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDGNyZWF0aW9uRGF0ZYY=
-		</data>
-		<string>95</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDmxhc3RPcGVuZWREYXRlhg==
-		</data>
-		<string>95</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErE2tpbmRXaXRob3V0UGxhdGZvcm2G
-		</data>
-		<string>62</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDHNob3J0VmVyc2lvboY=
-		</data>
-		<string>62</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErCWxhYmVsTmFtZYY=
-		</data>
-		<string>62</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDHBoeXNpY2FsU2l6ZYY=
-		</data>
-		<string>60</string>
-	</array>
-	<key>NSTableView Hidden Columns NSNavOutlineColumnSettings.v1</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDGNyZWF0aW9uRGF0ZYY=
-		</data>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDmxhc3RPcGVuZWREYXRlhg==
-		</data>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErE2tpbmRXaXRob3V0UGxhdGZvcm2G
-		</data>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDHNob3J0VmVyc2lvboY=
-		</data>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErCWxhYmVsTmFtZYY=
-		</data>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErDHBoeXNpY2FsU2l6ZYY=
-		</data>
-	</array>
-	<key>NSTableView Sort Ordering NSNavOutlineColumnSettings.v1</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErC2Rpc3BsYXlOYW1lhg==
-		</data>
-		<true/>
-	</array>
-	<key>NSToolbar Configuration Terminal Toolbar</key>
-	<dict>
-		<key>TB Display Mode</key>
-		<integer>3</integer>
-		<key>TB Icon Size Mode</key>
-		<integer>2</integer>
-		<key>TB Is Shown</key>
-		<integer>0</integer>
-		<key>TB Item Identifiers</key>
-		<array>
-			<string>New</string>
-			<string>Info</string>
-			<string>NSToolbarSeparatorItem</string>
-			<string>NSToolbarCustomizeToolbarItem</string>
-			<string>Close</string>
-			<string>NSToolbarSeparatorItem</string>
-			<string>Command</string>
-			<string>Profiles</string>
-		</array>
-		<key>TB Size Mode</key>
-		<integer>1</integer>
-		<key>TB Visibility Priority Values</key>
-		<dict/>
-	</dict>
-	<key>NSWindow Frame NSColorPanel</key>
-	<string>427 353 214 312 0 0 1920 1058 </string>
+	<key>NSScrollAnimationEnabled</key>
+	<false/>
 	<key>NSWindow Frame Preferences</key>
-	<string>290 431 605 485 0 0 1920 1058 </string>
-	<key>NSWindow Frame SUStatusFrame</key>
-	<string>-1152 713 384 129 -1920 0 1920 1080 </string>
+	<string>671 209 924 485 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1920 540 960 540 -1920 0 1920 1080 </string>
+	<string>0 529 960 528 0 0 1920 1057 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>0 81 960 488 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>Allow Title Reporting</key>
+			<false/>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -488,8 +390,12 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Background Image Is Tiled</key>
+			<false/>
 			<key>Background Image Location</key>
 			<string>/Users/crc/Desktop/gothik_full.jpg</string>
+			<key>Blend</key>
+			<real>0.30000001192092896</real>
 			<key>Blink Allowed</key>
 			<true/>
 			<key>Blinking Cursor</key>
@@ -560,6 +466,8 @@
 			</dict>
 			<key>Guid</key>
 			<string>6E292A1F-40DF-4A1C-87B9-5B799F80DFC8</string>
+			<key>Hide After Opening</key>
+			<false/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>Idle Code</key>
@@ -1086,6 +994,10 @@
 			<true/>
 			<key>Use Bright Bold</key>
 			<true/>
+			<key>Use Canonical Parser</key>
+			<false/>
+			<key>Use Italic Font</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1694,7 +1606,7 @@
 			<string>/Users/crc</string>
 		</dict>
 	</array>
-	<key>NoSyncNeverRemindPrefsChangesLost</key>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
 	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
@@ -1702,12 +1614,47 @@
 	<true/>
 	<key>OpenBookmark</key>
 	<false/>
+	<key>OpenTmuxWindowsIn</key>
+	<integer>0</integer>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
 	<true/>
+	<key>PointerActions</key>
+	<dict>
+		<key>Button,1,1,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kContextMenuPointerAction</string>
+		</dict>
+		<key>Button,2,1,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kPasteFromClipboardPointerAction</string>
+		</dict>
+		<key>Gesture,ThreeFingerSwipeDown,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kPrevWindowPointerAction</string>
+		</dict>
+		<key>Gesture,ThreeFingerSwipeLeft,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kPrevTabPointerAction</string>
+		</dict>
+		<key>Gesture,ThreeFingerSwipeRight,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kNextTabPointerAction</string>
+		</dict>
+		<key>Gesture,ThreeFingerSwipeUp,,</key>
+		<dict>
+			<key>Action</key>
+			<string>kNextWindowPointerAction</string>
+		</dict>
+	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/crc/.dotfiles/iterm</string>
+	<string>/Users/cchang/.dotfiles/iterm</string>
 	<key>PromptOnClose</key>
 	<false/>
 	<key>PromptOnQuit</key>
@@ -1719,18 +1666,20 @@
 	<key>RightOption</key>
 	<integer>3</integer>
 	<key>SUEnableAutomaticChecks</key>
-	<false/>
+	<true/>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.googlecode.com/svn/trunk/appcasts/final.xml</string>
+	<string>http://iterm2.com/appcasts/final.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-05-31T22:33:50Z</date>
+	<date>2014-12-04T19:49:46Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
+	<true/>
+	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
 	<true/>
@@ -1743,6 +1692,10 @@
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>
+	<false/>
+	<key>TmuxDashboardLimit</key>
+	<integer>10</integer>
+	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>URLHandlersByGuid</key>
 	<dict/>
@@ -2611,6 +2564,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20111020</string>
+	<string>2.0</string>
 </dict>
 </plist>

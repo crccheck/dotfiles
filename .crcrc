@@ -223,6 +223,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     prepend_path_if_exists PATH /usr/local/bin
     append_path PYTHONPATH ~/Library/Python
 
+    prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
     alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
     # Fix Backspace/Delete confusion:
     stty erase ^?
@@ -234,6 +235,10 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export ARCHFLAGS='-arch i386 -arch x86_64'
 
     source $HOME/.dotfiles/git-completion.bash
+
+    export DOCKER_HOST=tcp://192.168.59.103:2376
+    export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
+    export DOCKER_TLS_VERIFY=1
 else
     alias ls='ls -F --color=auto'
 fi
@@ -273,27 +278,7 @@ function mkcodeintelconfig {
 ###################################################
 ### rbenv
 ###################################################
-
-# based on:
-# eval "$(rbenv init -)"
-if [ -f $HOME/.rbenv ]; then
-    prepend_path PATH $HOME/.rbenv/shims
-    source "/usr/lib/rbenv/libexec/../completions/rbenv.bash"
-    rbenv rehash 2>/dev/null
-    rbenv() {
-      command="$1"
-      if [ "$#" -gt 0 ]; then
-        shift
-      fi
-
-      case "$command" in
-      shell)
-        eval `rbenv "sh-$command" "$@"`;;
-      *)
-        command rbenv "$command" "$@";;
-      esac
-    }
-fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ###################################################
 ### Ruby Gems
