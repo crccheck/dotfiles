@@ -23,4 +23,3 @@
   apt: name=libreoffice-core state=absent
   apt: name=thunderbird state=absent
   apt: name=xchat state=absent
-

@@ -83,6 +83,7 @@ shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export LC_COLLATE="POSIX"
+export DOCKER_NAMESPACE=crccheck  # my docker username
 
 if [ "$TERM" == "xterm" ]
 then
