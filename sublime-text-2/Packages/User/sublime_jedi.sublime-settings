@@ -1,0 +1,6 @@
+{
+    // "all" - insert all function arguments on autocomplete
+    // "required" - insert arguments that dont have default value (e.g. required)
+    // "" - dont insert any arguments
+    "auto_complete_function_params": ""
+}
