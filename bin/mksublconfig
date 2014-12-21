@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Helper for generating a sublime text project for the current Python project.
+# Test command is specific to some Django projects for now.
+#
+# Usage:
+#   mksublconfig > ~/Documents/name.sublime-project
+
+# HACK substitute for virtualenvwrapper_get_site_packages_dir to get around
+# "command not found"
+site_packages=$("$VIRTUAL_ENV/bin/python" -c "import distutils; print(distutils.sysconfig.get_python_lib())")
+
+cat << EOF
+{
+    "folders":
+    [
+        {
+            "path": "$PWD"
+        }
+    ],
+    "settings": {
+        "python_interpreter_path": "`which python`",
+        "python_package_paths": [
+            "$site_packages"
+        ],
+        "python_test_runner": {
+            "test_delimeter": ".",
+            "test_command": "ENVIRONMENT=test `which python` manage.py test "
+        }
+    }
+}
+EOF
