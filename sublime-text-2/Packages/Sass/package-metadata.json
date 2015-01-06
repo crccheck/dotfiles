@@ -1,1 +1,1 @@
-{"url": "https://github.com/nathos/sass-textmate-bundle", "version": "2014.04.28.20.41.40", "description": "Sass support for TextMate & Sublime Text 2"}
+{"description": "Sass support for TextMate & Sublime Text (2 & 3)", "url": "https://github.com/nathos/sass-textmate-bundle", "platforms": ["*"], "version": "2015.01.06.16.00.00", "sublime_text": "*", "dependencies": []}

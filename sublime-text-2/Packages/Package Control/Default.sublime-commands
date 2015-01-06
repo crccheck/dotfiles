@@ -8,8 +8,8 @@
         "command": "add_channel"
     },
     {
-        "caption": "Package Control: Create Binary Package File",
-        "command": "create_binary_package"
+        "caption": "Package Control: Advanced Install Package",
+        "command": "advanced_install_package"
     },
     {
         "caption": "Package Control: Create Package File",
@@ -40,8 +40,20 @@
         "command": "list_packages"
     },
     {
+        "caption": "Package Control: Remove Channel",
+        "command": "remove_channel"
+    },
+    {
+        "caption": "Package Control: List Unmanaged Packages",
+        "command": "list_unmanaged_packages"
+    },
+    {
         "caption": "Package Control: Remove Package",
         "command": "remove_package"
+    },
+    {
+        "caption": "Package Control: Remove Repository",
+        "command": "remove_repository"
     },
     {
         "caption": "Package Control: Upgrade Package",
@@ -50,6 +62,10 @@
     {
         "caption": "Package Control: Upgrade/Overwrite All Packages",
         "command": "upgrade_all_packages"
+    },
+    {
+        "caption": "Package Control: Satisfy Dependencies",
+        "command": "satisfy_dependencies"
     },
     {
         "caption": "Preferences: Package Control Settings – Default",
@@ -64,5 +80,9 @@
         {
             "file": "${packages}/User/Package Control.sublime-settings"
         }
+    },
+    {
+        "caption": "Package Control: Tests",
+        "command": "package_control_tests"
     }
 ]

@@ -1,10 +1,10 @@
 {
-	"schema_version": "2.0",
+	"schema_version": "3.0.0",
 
-	// All repositories must be an HTTP or HTTPS URL. HTTPS is vastly superior
-	// since verification of the source server is performed on SSL certificates.
+	// All repositories must be an HTTPS URL. SSL certificates help prevent
+	// unauthorized code being loaded onto users' machines.
 	"repositories": [
-		"http://sublime.wbond.net/packages.json",
+		"https://packagecontrol.io/packages.json",
 		"https://github.com/buymeasoda/soda-theme",
 		"https://github.com/SublimeText"
 	],
@@ -16,7 +16,7 @@
 	"packages_cache": {
 
 		// The first level keys are the repository URLs
-		"http://sublime.wbond.net/packages.json": [
+		"https://packagecontrol.io/packages.json": [
 
 			// Each repository has an array of packages with their fully
 			// expanded info. This means that the "details" key must be expanded
@@ -29,7 +29,7 @@
 				"releases": [
 					{
 						"version": "2.0.0",
-						"url": "https://sublime.wbond.net/Alignment.sublime-package",
+						"url": "https://packagecontrol.io/Alignment.sublime-package",
 						"date": "2011-09-18 20:12:41"
 					}
 				]
@@ -37,28 +37,29 @@
 		]
 	},
 
-	// Package Control ships with the SSL Certificate Authority (CA) cert for the
-	// SSL certificate that secures and identifies sublime.wbond.net. After this
-	// initial connection is made, the channel server provides a list of CA certs
-	// for the various URLs that Package Control need to connect to. This way the
-	// default channel (https://sublime.wbond.net/channel.json) can provide
-	// real-time updates to CA certs in the case that a CA is compromised. The
-	// CA certs are extracted from openssl, and the server runs on an LTS version
-	// of Ubuntu, which automatically applies security patches from the official
-	// Ubuntu repositories. This architecture helps to ensure that the packages
-	// being downloaded are from the source listed and that users are very
-	// unlikely to be the subject of the man-in-the-middle attack.
-	"certs": {
+	// The "dependencies_cache" is just like "packages_cache", but for
+	// dependencies
+	"dependencies_cache": {
+		"https://packagecontrol.io/packages.json": [
 
-		// All certs have the domain they apply to as the key
-		"sublime.wbond.net": [
-			// The value is an array of two elements, the first being an md5
-			// hash of the contents of the certificate. This helps in detecting
-			// CA cert changes. The second element is the URL where the cert
-			// can be downloaded, if it is not already installed on the user’s
-			// copy of Sublime Text.
-			"7f4f8622b4fd001c7f648e09aae7edaa",
-			"https://sublime.wbond.net/certs/7f4f8622b4fd001c7f648e09aae7edaa"
+			// Like with packages, dependency info must be fully resolved,
+			// which for packages means releases must have "url", "version",
+			// "sublime_text" and "platforms" keys instead of "base" and "tags".
+			{
+				"name": "bz2",
+				"load_order": "02",
+				"description": "Python bz2 module",
+				"author": "wbond",
+				"issues": "https://github.com/wbond/package_control/issues",
+				"releases": [
+					{
+						"version": "1.0.0",
+						"url": "https://codeload.github.com/codexns/sublime-bz2/zip/1.0.0",
+						"sublime_text": "*",
+						"platforms": ["*"]
+					}
+				]
+			}
 		]
 	}
 }

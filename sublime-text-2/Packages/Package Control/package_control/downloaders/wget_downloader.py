@@ -10,13 +10,13 @@ from .non_http_error import NonHttpError
 from .non_clean_exit_error import NonCleanExitError
 from .rate_limit_exception import RateLimitException
 from .downloader_exception import DownloaderException
-from .cert_provider import CertProvider
+from ..ca_certs import get_ca_bundle_path
 from .decoding_downloader import DecodingDownloader
 from .limiting_downloader import LimitingDownloader
 from .caching_downloader import CachingDownloader
 
 
-class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDownloader, CachingDownloader):
+class WgetDownloader(CliDownloader, DecodingDownloader, LimitingDownloader, CachingDownloader):
     """
     A downloader that uses the command line program wget
 
@@ -62,7 +62,6 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
             If a cached version should be returned instead of trying a new request
 
         :raises:
-            NoCaCertException: when no CA certs can be found for the url
             RateLimitException: when a rate limit is hit
             DownloaderException: when any other download error occurs
 
@@ -77,14 +76,18 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
 
         self.tmp_file = tempfile.NamedTemporaryFile().name
         command = [self.wget, '--connect-timeout=' + str(int(timeout)), '-o',
-            self.tmp_file, '-O', '-', '-U', self.settings.get('user_agent')]
+            self.tmp_file, '-O', '-', '--secure-protocol=TLSv1']
+
+        user_agent = self.settings.get('user_agent')
+        if user_agent:
+            command.extend(['-U', user_agent])
 
         request_headers = {
             # Don't be alarmed if the response from the server does not select
             # one of these since the server runs a relatively new version of
             # OpenSSL which supports compression on the SSL layer, and Apache
             # will use that instead of HTTP-level encoding.
-            'Accept-Encoding': 'gzip,deflate'
+            'Accept-Encoding': self.supported_encodings()
         }
         request_headers = self.add_conditional_headers(url, request_headers)
 
@@ -94,7 +97,7 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
         secure_url_match = re.match('^https://([^/]+)', url)
         if secure_url_match != None:
             secure_domain = secure_url_match.group(1)
-            bundle_path = self.check_certs(secure_domain, timeout)
+            bundle_path = get_ca_bundle_path(self.settings)
             command.append(u'--ca-certificate=' + bundle_path)
 
         if self.debug:
@@ -132,10 +135,9 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
             try:
                 result = self.execute(command)
 
-                general, headers = self.parse_output()
+                general, headers = self.parse_output(True)
                 encoding = headers.get('content-encoding')
-                if encoding:
-                    result = self.decode_response(encoding, result)
+                result = self.decode_response(encoding, result)
 
                 result = self.cache_result('get', url, general['status'],
                     headers, result)
@@ -145,7 +147,7 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
             except (NonCleanExitError) as e:
 
                 try:
-                    general, headers = self.parse_output()
+                    general, headers = self.parse_output(False)
                     self.handle_rate_limit(headers, url)
 
                     if general['status'] == 304:
@@ -192,9 +194,15 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
 
         return True
 
-    def parse_output(self):
+    def parse_output(self, clean_run):
         """
         Parses the wget output file, prints debug information and returns headers
+
+        :param clean_run:
+            If wget executed with a successful exit code
+
+        :raises:
+            NonHttpError - when clean_run is false and an error is detected
 
         :return:
             A tuple of (general, headers) where general is a dict with the keys:
@@ -271,7 +279,7 @@ class WgetDownloader(CliDownloader, CertProvider, DecodingDownloader, LimitingDo
                 if line[0:2] == '  ':
                     header_lines.append(line.lstrip())
 
-        if error:
+        if not clean_run and error:
             raise NonHttpError(error)
 
         return self.parse_headers(header_lines)

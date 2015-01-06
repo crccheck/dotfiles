@@ -36,11 +36,11 @@ mods_load_order = [
     '.sys_path',
     '.cache',
     '.http_cache',
-    '.ca_certs',
     '.clear_directory',
     '.cmd',
     '.console_write',
-    '.preferences_filename',
+    '.processes',
+    '.settings',
     '.show_error',
     '.unicode',
     '.thread_progress',
@@ -49,6 +49,7 @@ mods_load_order = [
     '.versions',
 
     '.http',
+    '.http.x509',
     '.http.invalid_certificate_exception',
     '.http.debuggable_http_response',
     '.http.debuggable_https_response',
@@ -57,6 +58,26 @@ mods_load_order = [
     '.http.debuggable_http_handler',
     '.http.validating_https_connection',
     '.http.validating_https_handler',
+
+    '.ca_certs',
+
+    '.downloaders',
+    '.downloaders.downloader_exception',
+    '.downloaders.rate_limit_exception',
+    '.downloaders.binary_not_found_error',
+    '.downloaders.non_clean_exit_error',
+    '.downloaders.non_http_error',
+    '.downloaders.caching_downloader',
+    '.downloaders.decoding_downloader',
+    '.downloaders.limiting_downloader',
+    '.downloaders.urllib_downloader',
+    '.downloaders.cli_downloader',
+    '.downloaders.curl_downloader',
+    '.downloaders.wget_downloader',
+    '.downloaders.wininet_downloader',
+    '.downloaders.background_downloader',
+
+    '.download_manager',
 
     '.clients',
     '.clients.client_exception',
@@ -68,30 +89,12 @@ mods_load_order = [
     '.providers',
     '.providers.provider_exception',
     '.providers.bitbucket_repository_provider',
-    '.providers.channel_provider',
     '.providers.github_repository_provider',
     '.providers.github_user_provider',
-    '.providers.repository_provider',
+    '.providers.schema_compat',
     '.providers.release_selector',
-
-    '.download_manager',
-
-    '.downloaders',
-    '.downloaders.downloader_exception',
-    '.downloaders.rate_limit_exception',
-    '.downloaders.binary_not_found_error',
-    '.downloaders.non_clean_exit_error',
-    '.downloaders.non_http_error',
-    '.downloaders.caching_downloader',
-    '.downloaders.decoding_downloader',
-    '.downloaders.limiting_downloader',
-    '.downloaders.cert_provider',
-    '.downloaders.urllib_downloader',
-    '.downloaders.cli_downloader',
-    '.downloaders.curl_downloader',
-    '.downloaders.wget_downloader',
-    '.downloaders.wininet_downloader',
-    '.downloaders.background_downloader',
+    '.providers.channel_provider',
+    '.providers.repository_provider',
 
     '.upgraders',
     '.upgraders.vcs_upgrader',
@@ -103,28 +106,41 @@ mods_load_order = [
     '.package_installer',
     '.package_renamer',
 
+    '.loader',
+    '.bootstrap',
+
+    '.tests',
+    '.tests.clients',
+    '.tests.providers',
+
     '.commands',
     '.commands.add_channel_command',
     '.commands.add_repository_command',
-    '.commands.create_binary_package_command',
     '.commands.create_package_command',
     '.commands.disable_package_command',
     '.commands.discover_packages_command',
     '.commands.enable_package_command',
     '.commands.existing_packages_command',
-    '.commands.grab_certs_command',
     '.commands.install_package_command',
     '.commands.list_packages_command',
-    '.commands.package_message_command',
+    '.commands.list_unmanaged_packages_command',
+    '.commands.remove_channel_command',
     '.commands.remove_package_command',
+    '.commands.remove_repository_command',
     '.commands.upgrade_all_packages_command',
     '.commands.upgrade_package_command',
+    '.commands.package_control_insert_command',
+    '.commands.satisfy_dependencies_command',
+    '.commands.package_control_tests_command',
 
-    '.package_cleanup',
-    '.automatic_upgrader'
+    '.automatic_upgrader',
+    '.package_cleanup'
 ]
 
 for suffix in mods_load_order:
     mod = mod_prefix + suffix
     if mod in reload_mods:
-        reload(sys.modules[mod])
+        try:
+            reload(sys.modules[mod])
+        except (ImportError):
+            pass # Upgrade issues from PC 2.0 -> 3.0

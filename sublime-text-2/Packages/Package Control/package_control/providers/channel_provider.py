@@ -4,20 +4,21 @@ import re
 
 try:
     # Python 3
-    from urllib.parse import urlparse
+    from urllib.parse import urljoin
 except (ImportError):
     # Python 2
-    from urlparse import urlparse
+    from urlparse import urljoin
 
 from ..console_write import console_write
-from .release_selector import ReleaseSelector
 from .provider_exception import ProviderException
+from .schema_compat import platforms_to_releases
 from ..downloaders.downloader_exception import DownloaderException
 from ..clients.client_exception import ClientException
-from ..download_manager import downloader
+from ..download_manager import downloader, update_url
+from ..versions import version_sort
 
 
-class ChannelProvider(ReleaseSelector):
+class ChannelProvider():
     """
     Retrieves a channel and provides an API into the information
 
@@ -41,15 +42,14 @@ class ChannelProvider(ReleaseSelector):
           `proxy_username`,
           `proxy_password`,
           `query_string_params`
-          `install_prereleases`
     """
 
     def __init__(self, channel, settings):
         self.channel_info = None
-        self.schema_version = 0.0
+        self.schema_version = '0.0'
+        self.schema_major_version = 0
         self.channel = channel
         self.settings = settings
-        self.unavailable_packages = []
 
     @classmethod
     def match_url(cls, channel):
@@ -108,12 +108,29 @@ class ChannelProvider(ReleaseSelector):
             raise ProviderException(u'%s the "schema_version" JSON key is missing.' % schema_error)
 
         try:
-            self.schema_version = float(channel_info.get('schema_version'))
+            self.schema_version = channel_info.get('schema_version')
+            if isinstance(self.schema_version, int):
+                self.schema_version = float(self.schema_version)
+            if isinstance(self.schema_version, float):
+                self.schema_version = str(self.schema_version)
         except (ValueError):
             raise ProviderException(u'%s the "schema_version" is not a valid number.' % schema_error)
 
-        if self.schema_version not in [1.0, 1.1, 1.2, 2.0]:
-            raise ProviderException(u'%s the "schema_version" is not recognized. Must be one of: 1.0, 1.1, 1.2 or 2.0.' % schema_error)
+        if self.schema_version not in ['1.0', '1.1', '1.2', '2.0', '3.0.0']:
+            raise ProviderException(u'%s the "schema_version" is not recognized. Must be one of: 1.0, 1.1, 1.2, 2.0 or 3.0.0.' % schema_error)
+
+        version_parts = self.schema_version.split('.')
+        self.schema_major_version = int(version_parts[0])
+
+        # Fix any out-dated repository URLs in the package cache
+        debug =  self.settings.get('debug')
+        packages_key = 'packages_cache' if self.schema_major_version >= 2 else 'packages'
+        if packages_key in channel_info:
+            original_cache = channel_info[packages_key]
+            new_cache = {}
+            for repo in original_cache:
+                new_cache[update_url(repo, debug)] = original_cache[repo]
+            channel_info[packages_key] = new_cache
 
         self.channel_info = channel_info
 
@@ -129,7 +146,7 @@ class ChannelProvider(ReleaseSelector):
 
         self.fetch()
 
-        if self.schema_version >= 2.0:
+        if self.schema_major_version >= 2:
             return {}
 
         return self.channel_info.get('package_name_map', {})
@@ -146,8 +163,16 @@ class ChannelProvider(ReleaseSelector):
 
         self.fetch()
 
-        if self.schema_version >= 2.0:
-            return {}
+        if self.schema_major_version >= 2:
+            output = {}
+            for repo in self.channel_info['packages_cache']:
+                for package in self.channel_info['packages_cache'][repo]:
+                    previous_names = package.get('previous_names', [])
+                    if not isinstance(previous_names, list):
+                        previous_names = [previous_names]
+                    for previous_name in previous_names:
+                        output[previous_name] = package['name']
+            return output
 
         return self.channel_info.get('renamed_packages', {})
 
@@ -168,67 +193,36 @@ class ChannelProvider(ReleaseSelector):
 
         # Determine a relative root so repositories can be defined
         # relative to the location of the channel file.
-        if re.match('https?://', self.channel, re.I):
-            url_pieces = urlparse(self.channel)
-            domain = url_pieces.scheme + '://' + url_pieces.netloc
-            path = '/' if url_pieces.path == '' else url_pieces.path
-            if path[-1] != '/':
-                path = os.path.dirname(path)
-            relative_base = domain + path
+        if re.match('https?://', self.channel, re.I) is None:
+            relative_base = os.path.dirname(self.channel)
+            is_http = False
         else:
-            relative_base = os.path.dirname(self.channel) + '/'
+            is_http = True
 
+        debug = self.settings.get('debug')
         output = []
         repositories = self.channel_info.get('repositories', [])
         for repository in repositories:
             if re.match('^\./|\.\./', repository):
-                repository = os.path.normpath(relative_base + repository)
-            output.append(repository)
+                if is_http:
+                    repository = urljoin(self.channel, repository)
+                else:
+                    repository = os.path.join(relative_base, repository)
+                    repository = os.path.normpath(repository)
+            output.append(update_url(repository, debug))
 
         return output
 
-    def get_certs(self):
+    def get_sources(self):
         """
-        Provides a secure way for distribution of SSL CA certificates
-
-        Unfortunately Python does not include a bundle of CA certs with urllib
-        to perform SSL certificate validation. To circumvent this issue,
-        Package Control acts as a distributor of the CA certs for all HTTPS
-        URLs of package downloads.
-
-        The default channel scrapes and caches info about all packages
-        periodically, and in the process it checks the CA certs for all of
-        the HTTPS URLs listed in the repositories. The contents of the CA cert
-        files are then hashed, and the CA cert is stored in a filename with
-        that hash. This is a fingerprint to ensure that Package Control has
-        the appropriate CA cert for a domain name.
-
-        Next, the default channel file serves up a JSON object of the domain
-        names and the hashes of their current CA cert files. If Package Control
-        does not have the appropriate hash for a domain, it may retrieve it
-        from the channel server. To ensure that Package Control is talking to
-        a trusted authority to get the CA certs from, the CA cert for
-        sublime.wbond.net is bundled with Package Control. Then when downloading
-        the channel file, Package Control can ensure that the channel file's
-        SSL certificate is valid, thus ensuring the resulting CA certs are
-        legitimate.
-
-        As a matter of optimization, the distribution of Package Control also
-        includes the current CA certs for all known HTTPS domains that are
-        included in the channel, as of the time when Package Control was
-        last released.
-
-        :raises:
-            ProviderException: when an error occurs with the channel contents
-            DownloaderException: when an error occurs trying to open a URL
+        Return a list of current URLs that are directly referenced by the
+        channel
 
         :return:
-            A dict of {'Domain Name': ['cert_file_hash', 'cert_file_download_url']}
+            A list of URLs and/or file paths
         """
 
-        self.fetch()
-
-        return self.channel_info.get('certs', {})
+        return self.get_repositories()
 
     def get_packages(self, repo):
         """
@@ -250,11 +244,15 @@ class ChannelProvider(ReleaseSelector):
                     'author': author,
                     'homepage': homepage,
                     'last_modified': last modified date,
-                    'download': {
-                        'url': url,
-                        'date': date,
-                        'version': version
-                    },
+                    'releases': [
+                        {
+                            'sublime_text': '*',
+                            'platforms': ['*'],
+                            'url': url,
+                            'date': date,
+                            'version': version
+                        }, ...
+                    ],
                     'previous_names': [old_name, ...],
                     'labels': [label, ...],
                     'readme': url,
@@ -268,9 +266,11 @@ class ChannelProvider(ReleaseSelector):
 
         self.fetch()
 
+        repo = update_url(repo, self.settings.get('debug'))
+
         # The 2.0 channel schema renamed the key cached package info was
         # stored under in order to be more clear to new users.
-        packages_key = 'packages_cache' if self.schema_version >= 2.0 else 'packages'
+        packages_key = 'packages_cache' if self.schema_major_version >= 2 else 'packages'
 
         if self.channel_info.get(packages_key, False) == False:
             return {}
@@ -286,27 +286,83 @@ class ChannelProvider(ReleaseSelector):
             # about all available releases. These include "version" and
             # "platforms" keys that are used to pick the download for the
             # current machine.
-            if self.schema_version >= 2.0:
-                copy = self.select_release(copy)
+            if self.schema_major_version < 2:
+                copy['releases'] = platforms_to_releases(copy, self.settings.get('debug'))
+                del copy['platforms']
             else:
-                copy = self.select_platform(copy)
+                last_modified = None
+                for release in copy.get('releases', []):
+                    date = release.get('date')
+                    if not last_modified or (date and date > last_modified):
+                        last_modified = date
+                copy['last_modified'] = last_modified
 
-            if not copy:
-                self.unavailable_packages.append(package['name'])
-                continue
+            defaults = {
+                'buy': None,
+                'issues': None,
+                'labels': [],
+                'previous_names': [],
+                'readme': None,
+                'donate': None
+            }
+            for field in defaults:
+                if field not in copy:
+                    copy[field] = defaults[field]
+
+            copy['releases'] = version_sort(copy['releases'], 'platforms', reverse=True)
 
             output[copy['name']] = copy
 
         return output
 
-    def get_unavailable_packages(self):
+    def get_dependencies(self, repo):
         """
-        Provides a list of packages that are unavailable for the current
-        platform/architecture that Sublime Text is running on.
+        Provides access to the dependency info that is cached in a channel
 
-        This list will be empty unless get_packages() is called first.
+        :param repo:
+            The URL of the repository to get the cached info of
 
-        :return: A list of package names
+        :raises:
+            ProviderException: when an error occurs with the channel contents
+            DownloaderException: when an error occurs trying to open a URL
+
+        :return:
+            A dict in the format:
+            {
+                'Dependency Name': {
+                    'name': name,
+                    'load_order': two digit string,
+                    'description': description,
+                    'author': author,
+                    'issues': URL,
+                    'releases': [
+                        {
+                            'sublime_text': '*',
+                            'platforms': ['*'],
+                            'url': url,
+                            'date': date,
+                            'version': version,
+                            'sha256': hex_hash
+                        }, ...
+                    ]
+                },
+                ...
+            }
         """
 
-        return self.unavailable_packages
+        self.fetch()
+
+        repo = update_url(repo, self.settings.get('debug'))
+
+        if self.channel_info.get('dependencies_cache', False) == False:
+            return {}
+
+        if self.channel_info['dependencies_cache'].get(repo, False) == False:
+            return {}
+
+        output = {}
+        for dependency in self.channel_info['dependencies_cache'][repo]:
+            dependency['releases'] = version_sort(dependency['releases'], 'platforms', reverse=True)
+            output[dependency['name']] = dependency
+
+        return output
