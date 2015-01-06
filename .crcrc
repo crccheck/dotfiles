@@ -220,6 +220,7 @@ md () { mkdir -p "$@" && cd "$@"; }
 if [ "$(uname -s)" == "Darwin" ]; then
     # Mac OS X stuff:
     alias ls='ls -AFGq'
+    alias sed=gsed
     prepend_path_if_exists PATH /usr/local/share/python
     prepend_path_if_exists PATH /usr/local/bin
     append_path PYTHONPATH ~/Library/Python
