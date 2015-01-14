@@ -1,7 +1,0 @@
-<snippet>
-    <content>if ($1) {
-  $2
-}</content>
-    <tabTrigger>if</tabTrigger>
-    <scope>source.varnish.vcl</scope>
-</snippet>

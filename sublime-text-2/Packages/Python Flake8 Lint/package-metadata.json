@@ -1,1 +1,0 @@
-{"description": "ST2 & ST3 plugin / check Python files with flake8 (PEP8, pyflake and mccabe)", "url": "https://github.com/dreadatour/Flake8Lint", "platforms": ["*"], "version": "1.3.0", "sublime_text": "*", "dependencies": []}

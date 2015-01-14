@@ -1,5 +1,0 @@
-<snippet>
-    <content>return (deliver);</content>
-    <tabTrigger>deliver</tabTrigger>
-    <scope>source.varnish.vcl</scope>
-</snippet>

@@ -1,5 +1,0 @@
-<snippet>
-    <content>return (restart);</content>
-    <tabTrigger>restart</tabTrigger>
-    <scope>source.varnish.vcl</scope>
-</snippet>

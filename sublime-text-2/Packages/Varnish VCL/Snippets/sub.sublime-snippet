@@ -1,7 +1,0 @@
-<snippet>
-    <content>sub ${1:sub_name} {
-  $2
-}</content>
-    <tabTrigger>sub</tabTrigger>
-    <scope>source.varnish.vcl</scope>
-</snippet>

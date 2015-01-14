@@ -1,5 +1,0 @@
-<snippet>
-    <content>std.log("$1");</content>
-    <tabTrigger>log</tabTrigger>
-    <scope>source.varnish.vcl</scope>
-</snippet>

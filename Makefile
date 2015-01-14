@@ -45,8 +45,8 @@ gterm:
 # Make sure to do this after sublime text is installed
 st2:
 	@echo "* Linking my Sublime Text config"
-	@cd ~/.config/sublime-text-2 && rm -rf Packages && \
-	  ln -sf $(PWD)/sublime-text-2/Packages
+	@cd ~/.config/sublime-text-2/Packages && rm -rf User && \
+	  ln -sf $(PWD)/sublime-text-2/User
 
 .PHONY: vim
 vim:
