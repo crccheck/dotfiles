@@ -43,6 +43,8 @@ gterm:
 	@ln -s $(PWD)/gnome-terminal ~/.gconf/apps/gnome-terminal
 
 # Make sure to do this after sublime text is installed
+# for OSX, the directory will be cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/
+# https://packagecontrol.io/docs/syncing
 st2:
 	@echo "* Linking my Sublime Text config"
 	@cd ~/.config/sublime-text-2/Packages && rm -rf User && \
