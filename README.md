@@ -16,6 +16,9 @@ Install Read-only:
     make
     s dot
 
+For OSX, `make` won't do my sublime text config, follow instructions in
+https://packagecontrol.io/docs/syncing for that.
+
 Hey, make a ssh key!
 
     cd
