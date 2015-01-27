@@ -79,9 +79,6 @@ export HISTCONTROL=ignoredups:erasedups
 # append history (defaults to append anyways)
 shopt -s histappend
 
-# After each command, save and reload history
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 export LC_COLLATE="POSIX"
 export DOCKER_NAMESPACE=crccheck  # my docker username
 
@@ -92,13 +89,23 @@ fi
 
 # Change the window title of X terminals
 case $TERM in
-    xterm*|rxvt|Eterm|eterm)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-        ;;
+    # xterm*|rxvt|Eterm|eterm)
+    #     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+    #     ;;
     screen)
         PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
         ;;
 esac
+
+# After each command, save and reload history
+# nevermind, this is too confusing
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# quick way for me to change my titles
+function tit {
+    echo -e "\033];$@\007"
+}
+
 
 # Fabric cheat
 function f {
