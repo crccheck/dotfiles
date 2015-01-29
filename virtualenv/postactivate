@@ -3,3 +3,6 @@
 
 export IPYTHONDIR=$VIRTUAL_ENV/.ipython
 alias vivirtualenv="$VISUAL $VIRTUAL_ENV/bin/postdeactivate $VIRTUAL_ENV/bin/postactivate"
+
+# change my title, alias in my .crcrc
+tit $(basename $VIRTUAL_ENV)
