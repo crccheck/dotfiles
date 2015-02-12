@@ -102,7 +102,7 @@ sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
 # # ruby
 #
 # use rbenv instead of rvm because rvm overwrites `cd`
-install rbenv -y
+sudo apt-get install rbenv ruby-dev -y
 mkdir ~/.rbenv/plugins
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 # use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
