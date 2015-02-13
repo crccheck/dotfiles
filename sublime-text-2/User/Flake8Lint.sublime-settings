@@ -1,4 +1,4 @@
 {
     "popup": false,
-    "ignore": ["E128"]
+    "ignore": ["E128", "E501"]
 }
