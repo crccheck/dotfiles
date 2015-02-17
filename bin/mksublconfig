@@ -30,3 +30,5 @@ cat << EOF
     }
 }
 EOF
+>&2 echo -e "\033[0;35mTo save, run this like:"
+>&2 echo -e "\033[0;36mmksublconfig > ~/Documents/$(basename $PWD).sublime-project\033[0m"
