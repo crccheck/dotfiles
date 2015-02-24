@@ -32,7 +32,6 @@
     ls = log --stat
     lp = log --decorate --pretty=oneline --abbrev-commit --first-parent
     p = pull --ff-only
-    pom = pull --rebase origin master
     s = status
     vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
     whoami = config --get user.name

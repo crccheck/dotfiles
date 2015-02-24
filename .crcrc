@@ -103,7 +103,8 @@ esac
 
 # quick way for me to change my titles
 function tit {
-    echo -e "\033];$@\007"
+    local title=${@-$(basename $PWD)}
+    echo -e "\033];$title\007"
 }
 
 
