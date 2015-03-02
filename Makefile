@@ -50,6 +50,11 @@ st2:
 	@cd ~/.config/sublime-text-2/Packages && rm -rf User && \
 	  ln -sf $(PWD)/sublime-text-2/User
 
+st2osx:
+	cd ~/bin && ln -sf /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl
+	cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages && rm -rf User && \
+	  ln -sf $(PWD)/sublime-text-2/User
+
 .PHONY: vim
 vim:
 	@echo "* Linking vim config"

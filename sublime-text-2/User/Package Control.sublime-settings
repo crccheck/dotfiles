@@ -3,10 +3,6 @@
 	"in_process_packages":
 	[
 	],
-	"installed_dependencies":
-	[
-		"bz2"
-	],
 	"installed_packages":
 	[
 		"Block Cursor Everywhere",
