@@ -196,7 +196,7 @@ alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
 alias ipynb='ipython notebook'
-alias ipynbinstall='pip install pyzmq jinja2 tornado'
+alias ipynbinstall='pip install ipython pyzmq jinja2 tornado jsonschema'
 alias work='workon $(basename $PWD)'
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
@@ -234,6 +234,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     prepend_path_if_exists PATH /usr/local/bin
     append_path PYTHONPATH ~/Library/Python
 
+    prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.4/bin'
     prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
     alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
     # Fix Backspace/Delete confusion:
