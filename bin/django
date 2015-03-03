@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 """
-
 makes sure django settings dir is in the path.
 
 also has shortcuts for environment based settings.
-
 """
 import os
 import sys
@@ -19,7 +17,7 @@ def in_django_project(some_path):
                 os.path.exists(os.path.join(joined, '__init__.py'))
 
 
-def find_project_dir(path=os.getcwd()):
+def find_project_dir(path):
     path_split = os.path.split(path)
     while path_split[1]:
         if in_django_project(path):
@@ -31,13 +29,15 @@ def find_project_dir(path=os.getcwd()):
 
 
 project_dir = find_project_dir(os.getcwd())
+print project_dir
 if project_dir and project_dir not in sys.path:
     sys.path.insert(0, project_dir)
+else:
+    print 'hi', os.getcwd()
+    sys.path.insert(0, os.getcwd())
 
 if __name__ == "__main__":
     from django.core.management import execute_from_command_line
-
-    old_env = os.environ.get('ENVIRONMENT', None)  # remember old env
 
     # Tweak env variables according to the command
     if 'migrate' in sys.argv or 'schemamigration' in sys.argv:
@@ -45,7 +45,7 @@ if __name__ == "__main__":
         print "**** Going into `migration` env ****"
     if 'test' in sys.argv:
         os.environ['ENVIRONMENT'] = 'test'
-        os.environ['ROOT_LOGGING_LEVEL'] = 'CRITICAL'
+        # os.environ['ROOT_LOGGING_LEVEL'] = 'CRITICAL'
         print "**** Going into `test` env ****"
 
     balls = None
@@ -53,8 +53,6 @@ if __name__ == "__main__":
         balls = True
         sys.argv.remove('balls')
         sys.stderr.write("**** USE PRODUCTION DB ****\n")
-        os.environ['USE_PRODUCTION_DB'] = '1'
+        # os.environ['USE_PRODUCTION_DB'] = '1'
 
     execute_from_command_line(sys.argv)
-
-    # os.environ gets reset so cleanup not necessary
