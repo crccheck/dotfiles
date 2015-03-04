@@ -37,7 +37,7 @@ sudo sh -c "curl https://get.docker.io/gpg | apt-key add -"
 sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 update
 sudo apt-get install lxc-docker -y
-sudo pip install fig
+sudo pip install docker-compose
 
 # Giving non-root access
 #

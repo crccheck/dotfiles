@@ -185,6 +185,11 @@ alias du='du -kh --max-depth=1'
 alias df='df -kTh'
 
 alias wget='wget --no-check-certificate'
+
+alias dphd="phd --postdoc-dry-run"
+alias qphd="phd --postdoc-quiet"
+alias fig="docker-compose"
+
 sssh () { ssh -t $@ "screen -rx -S crc"; }
 
 

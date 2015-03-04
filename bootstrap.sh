@@ -20,7 +20,7 @@ ln -s ~/.dotfiles/sublime-text-2/Packages
 
 
 # # Docker.io
-sudo pip install fig
+sudo pip install docker-compose
 
 
 
