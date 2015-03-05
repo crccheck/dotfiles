@@ -180,9 +180,7 @@ alias grepenv='env | grep'
 alias grepdat='env | grep DATABASE'
 alias greprl='env | grep URL'
 
-alias netstat='netstat -natp'
 alias du='du -kh --max-depth=1'
-alias df='df -kTh'
 
 alias wget='wget --no-check-certificate'
 
@@ -270,7 +268,10 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
     export DOCKER_TLS_VERIFY=1
 else
+    # aliases that don't work in OSX
     alias ls='ls -F --color=auto'
+    alias netstat='netstat -natp'
+    alias df='df -kTh'
 fi
 
 if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
