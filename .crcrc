@@ -202,7 +202,6 @@ alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
 alias ipynb='ipython notebook'
 alias ipynbinstall='pip install ipython pyzmq jinja2 tornado jsonschema'
-alias work='workon $(basename $PWD)'
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
@@ -220,6 +219,20 @@ alias very=git
 alias xoff='xset dpms force off'
 
 md () { mkdir -p "$@" && cd "$@"; }
+
+function work {
+  # assumes `mkvirtualenv` exists
+  local env_name=$(basename $PWD)
+  workon $env_name
+  if [ $? -ne 0 ]; then
+    echo "Shall I create $env_name it for you? [Yn]"
+    read -n 1 sure
+    if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
+      mkvirtualenv $env_name
+      setvirtualenvproject
+    fi
+  fi
+}
 
 
 # Grunt js shell tab auto-completion
