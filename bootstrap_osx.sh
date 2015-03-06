@@ -25,3 +25,9 @@ brew cask install vagrant
 #
 # Disable updates
 # Hot corners
+
+
+# Play
+#
+# Install Activator https://typesafe.com/get-started
+# move it to my ~/usr/lib/activator then symlink the binary to ~/bin to get it into my path
