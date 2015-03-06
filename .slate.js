@@ -1,5 +1,6 @@
-(function(S){
-  "use strict";
+/* global slate*/
+(function (S) {
+  'use strict';
 
   // move / resize / push / nudge / throw ...
   // https://github.com/jigish/slate/wiki/Operations
@@ -77,23 +78,18 @@
     'pad6:ctrl;alt': S.operation('throw', {screen: 'right'})
   });
 
-  // App specific logic
-  // Sublime Text
-  // should this be a layout?
+  // focused window gets almost the maximum screen
   S.bind('pad+:ctrl;cmd', function(win){
-    var appName = win.app().name();
-    if (appName === "Sublime Text 2"){
-      win.doOperation(S.operation("move", {
-        x: "screenOriginX+screenSizeX*3/10",
-        y: "screenOriginY",
-        width: "screenSizeX*7/10",
-        height: "screenSizeY"
-      }));
-    } else {
-      S.log(appName);
-    }
+    // var appName = win.app().name();
+    var x = counter ? "screenOriginX+screenSizeX*3/10" : "screenOriginX";
+    counter = (counter + 1) % 2;
+    win.doOperation(S.operation("move", {
+      x: x,
+      y: "screenOriginY",
+      width: "screenSizeX*7/10",
+      height: "screenSizeY"
+    }));
   });
-
 
   // Log that we're done configuring
   S.log("[SLATE] -------------- Finished Loading Config --------------");
