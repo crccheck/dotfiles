@@ -180,8 +180,6 @@ alias grepenv='env | grep'
 alias grepdat='env | grep DATABASE'
 alias greprl='env | grep URL'
 
-alias du='du -kh --max-depth=1'
-
 alias wget='wget --no-check-certificate'
 
 alias dphd="phd --postdoc-dry-run"
@@ -243,35 +241,37 @@ function work {
 ###################################################
 
 if [ "$(uname -s)" == "Darwin" ]; then
-    # Mac OS X stuff:
-    alias ls='ls -AFGq'
-    alias sed=gsed
-    prepend_path_if_exists PATH /usr/local/share/python
-    prepend_path_if_exists PATH /usr/local/bin
-    append_path PYTHONPATH ~/Library/Python
+  # Mac OS X stuff:
+  alias ls='ls -AFGq'
+  alias sed=gsed
+  alias du='du -kh'
+  prepend_path_if_exists PATH /usr/local/share/python
+  prepend_path_if_exists PATH /usr/local/bin
+  append_path PYTHONPATH ~/Library/Python
 
-    prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.4/bin'
-    prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
-    alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-    # Fix Backspace/Delete confusion:
-    stty erase ^?
-    # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
-    # Screw it. Just reset the whole thing, cuz the default works.
-    unset MANPATH
+  prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.4/bin'
+  prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
+  alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+  # Fix Backspace/Delete confusion:
+  stty erase ^?
+  # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
+  # Screw it. Just reset the whole thing, cuz the default works.
+  unset MANPATH
 
-    # xcode 4 hack, to get pycrypto to install
-    export ARCHFLAGS='-arch i386 -arch x86_64'
+  # xcode 4 hack, to get pycrypto to install
+  export ARCHFLAGS='-arch i386 -arch x86_64'
 
-    source $HOME/.dotfiles/git-completion.bash
+  source $HOME/.dotfiles/git-completion.bash
 
-    export DOCKER_HOST=tcp://192.168.59.103:2376
-    export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
+  export DOCKER_HOST=tcp://192.168.59.103:2376
+  export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
+  export DOCKER_TLS_VERIFY=1
 else
-    # aliases that don't work in OSX
-    alias ls='ls -F --color=auto'
-    alias netstat='netstat -natp'
-    alias df='df -kTh'
+  # aliases that don't work in OSX
+  alias df='df -kTh'
+  alias du='du -kh --max-depth=1'
+  alias ls='ls -F --color=auto'
+  alias netstat='netstat -natp'
 fi
 
 if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
