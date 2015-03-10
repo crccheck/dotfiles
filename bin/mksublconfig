@@ -2,15 +2,12 @@
 #
 # Helper for generating a sublime text project for the current Python project.
 # Test command is specific to some Django projects for now.
-#
-# Usage:
-#   mksublconfig > ~/Documents/name.sublime-project
 
 # HACK substitute for virtualenvwrapper_get_site_packages_dir to get around
 # "command not found"
 site_packages=$("$VIRTUAL_ENV/bin/python" -c "import distutils; print(distutils.sysconfig.get_python_lib())")
 
-cat << EOF
+CONFIG=$(cat << EOF
 {
     "folders":
     [
@@ -30,5 +27,22 @@ cat << EOF
     }
 }
 EOF
->&2 echo -e "\033[0;35mTo save, run this like:"
->&2 echo -e "\033[0;36mmksublconfig > ~/Documents/$(basename $PWD).sublime-project\033[0m"
+)
+echo "${CONFIG}"
+
+# the name of the project file
+PROJECT="$(basename $PWD).sublime-project"
+
+if [ -f ~/Documents/$PROJECT ]; then
+  echo "Project already exists: $PROJECT Open $PROJECT ? [Yn]"
+  read -n 1 sure
+  if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
+    subl ~/Documents/$PROJECT
+  fi
+else
+  echo "Create $PROJECT ? [Yn]"
+  read -n 1 sure
+  if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
+    echo $CONFIG > ~/Documents/$PROJECT
+  fi
+fi
