@@ -43,7 +43,6 @@
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"vintage_start_in_command_mode": true,
-    // Characters that are considered to separate words
-    "word_separators": "./\\()\"'-─:,.;<>~!@#$%^&*|+=[]{}`~?",
+	"word_separators": "./\\()\"'-─:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": "false"
 }

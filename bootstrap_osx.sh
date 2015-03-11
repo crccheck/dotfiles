@@ -25,6 +25,9 @@ brew cask install vagrant
 #
 # Disable updates
 # Hot corners
+#
+# Disable Mission Control so ^ left/right works
+# System Preferences → Keyboard → Shortcuts → Mission Control
 
 
 # Play
