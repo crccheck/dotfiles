@@ -1,0 +1,3 @@
+source ${SSHHOME}/.sshrc.d/.bash_aliases
+
+export SCREENRC=${SSHHOME}/.sshrc.d/.screenrc

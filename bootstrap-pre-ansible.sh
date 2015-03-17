@@ -145,4 +145,7 @@ sudo apt-get install -y virtualbox vagrant
 # gconf-editor
 # apps/metacity/window_keybindings
 
+sudo add-apt-repository ppa:russell-s-stewart/ppa
+sudo apt-get update
+sudo apt-get install sshrc -y
 
