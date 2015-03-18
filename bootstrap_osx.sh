@@ -9,7 +9,7 @@ brew install python mysql gti ponysay jq macvim bash ack gnu-sed chromedriver
 brew install caskroom/cask/brew-cask
 
 # get started
-brew cask install firefox google-chrome slate karabiner virtualbox iterm2 keepassx
+brew cask install firefox google-chrome slate karabiner virtualbox iterm2 keepassx sshrc
 # dev
 brew cask install postgres sublime-text
 # apps
