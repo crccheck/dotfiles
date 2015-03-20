@@ -149,3 +149,5 @@ sudo add-apt-repository ppa:russell-s-stewart/ppa
 sudo apt-get update
 sudo apt-get install sshrc -y
 
+# arcanist
+sudo apt-get install php5-xsl
