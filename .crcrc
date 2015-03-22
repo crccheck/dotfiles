@@ -171,7 +171,7 @@ alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
 alias ipynb='ipython notebook'
-alias ipynbinstall='pip install ipython pyzmq jinja2 tornado jsonschema'
+alias ipynbinstall='pip install ipython[notebook]'
 
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
