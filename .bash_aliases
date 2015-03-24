@@ -28,6 +28,8 @@ alias fig="docker-compose"
 
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 
+alias npmnuke="rm -rf node_modules && npm install"
+
 # reset and clear
 alias cls='printf "\ec"'
 
