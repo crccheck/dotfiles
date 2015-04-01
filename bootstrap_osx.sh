@@ -13,7 +13,7 @@ brew cask install firefox google-chrome slate karabiner virtualbox iterm2 keepas
 # dev
 brew cask install postgres sublime-text
 # apps
-brew cask install vagrant
+brew cask install vagrant typesafe-activator
 
 # also need to get virtualbox extensions
 
@@ -29,8 +29,9 @@ brew cask install vagrant
 # Disable Mission Control so ^ left/right works
 # System Preferences → Keyboard → Shortcuts → Mission Control
 
-
-# Play
-#
-# Install Activator https://typesafe.com/get-started
-# move it to my ~/usr/lib/activator then symlink the binary to ~/bin to get it into my path
+# Document killing iTunes
+# http://apple.stackexchange.com/questions/87344/how-to-delete-itunes-once-and-for-all-from-the-command-line
+softwareupdate --ignore iTunes
+sudo rm -r /Applications/iTunes.app/
+/Applications/iTunes.app
+hidden /Applications/iTunes.app
