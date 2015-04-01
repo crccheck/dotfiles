@@ -19,22 +19,18 @@
 		"Jedi - Python autocompletion",
 		"Jinja2",
 		"JSHint Gutter",
+		"JSX",
 		"LESS",
-		"LineEndings",
 		"Markdown Preview",
 		"Modific",
-		"MODx Revolution Snippets",
-		"oauthlib",
 		"Origami",
 		"Package Control",
 		"Pretty JSON",
 		"Python Flake8 Lint",
 		"PythonTestRunner",
-		"ReactJS",
 		"Sass",
 		"SCSS",
 		"SublimeLinter",
-		"Tag",
 		"Theme - Soda",
 		"Tomorrow Color Schemes",
 		"Varnish VCL",
@@ -45,7 +41,6 @@
 	],
 	"repositories":
 	[
-		"https://github.com/netpro2k/SublimeBlockCursor",
 		"https://github.com/buymeasoda/soda-theme/"
 	]
 }
