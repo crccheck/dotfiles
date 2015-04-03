@@ -35,6 +35,7 @@
     lp = log --decorate --pretty=oneline --abbrev-commit --first-parent
     p = pull --ff-only
     s = status
+    suir = submodule update --init --recursive
     vi = "!f() { git ls-files -m | cut -f2 | sort -u ; }; $VISUAL -gp `f`"
     whoami = config --get user.name
     standup = !git reflog --since yesterday --decorate --author `git whoami`

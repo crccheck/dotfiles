@@ -5,25 +5,22 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/Users/crc/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/crc/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'scrooloose/nerdtree'
 
 " You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
 " Required:
 call neobundle#end()
@@ -35,3 +32,20 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+
+" NERDTree
+let NERDChristmasTree=1
+let NERDTreeMinimalUI=1
+" single click opens directories
+let NERDTreeMouseMode=2
+let NERDTreeQuitOnOpen=1
+if has("gui_running")
+    let NERDTreeDirArrows=1
+endif
+map <silent> <C-Tab> :NERDTreeToggle %:p:h<CR>
+autocmd BufEnter NERD_tree_* NERDTreeFind
+
+" auto start NERDTree
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
