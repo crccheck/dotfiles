@@ -1,5 +1,6 @@
 ﻿" crccheck's vimrc
 "
+" http://vimdoc.sourceforge.net/htmldoc/map.html
 " all about maps:
 " map KEY_SEQUENCE OPERATION
 " map <F5> dd
@@ -53,8 +54,8 @@ set nowrap
 
 " file completion
 set wildmode=longest,list
-"        trailing space for test       
-" identify and color special keys    
+"        trailing space for test
+" identify and color special keys
 set list listchars=tab:▸-,trail:·,nbsp:·
 highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 
