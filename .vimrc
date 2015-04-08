@@ -40,34 +40,19 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+" Easier includes
+"
+" https://raw.githubusercontent.com/Shougo/shougo-s-github/master/vim/vimrc
+function! s:source_rc(path)
+  execute 'source' fnameescape(expand('~/.vim/rc/' . a:path))
+endfunction
 
-" My Basic Config -----------------------------
-set guifont=Monospace\ 8
-
-set nowrap
-set number
-set relativenumber
-set scrolloff=3
-
-" added in Vim 7.3
-if exists('+colorcolumn')
-    set colorcolumn=79
-endif
-
-" highlight trailing whitespace
-set list listchars=tab:▸-,trail:·,nbsp:·
 
 " Don't make .swp files in the project
 set backupdir=~/tmp,/var/tmp,/tmp
 
-" Keyboard Shortcuts
-" use <Tab> and <S-Tab> to indent/unindent in visual mode
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
 
-" use Ctrl Up/Down to shift a line up/down
-map <C-Down> :m+<CR>
-map <C-Up> :m-2<CR>
+call s:source_rc('mine.vim')
 
 
 " CtrlP ---------------------------------------
