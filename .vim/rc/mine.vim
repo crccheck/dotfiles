@@ -14,6 +14,9 @@ endif
 " highlight trailing whitespace
 set list listchars=tab:▸-,trail:·,nbsp:·
 
+" file completion
+set wildmode=longest,list
+
 " Keyboard Shortcuts
 " use <Tab> and <S-Tab> to indent/unindent in visual mode
 vnoremap <Tab> >gv
