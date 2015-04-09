@@ -1,6 +1,4 @@
 " My Basic Config -----------------------------
-set guifont=Monospace\ 8
-
 set nowrap
 set number
 set relativenumber

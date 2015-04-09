@@ -21,13 +21,6 @@ highlight SpecialKey ctermfg=15 ctermbg=1 guifg=#ce4e4e guibg=#ee6e6e
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 
-" Use CTRL-S for saving, also in Insert mode
-if has("gui_running")
-    noremap <C-S> :update<CR>
-    vnoremap <C-S> <C-C>:update<CR>
-    inoremap <C-S> <C-O>:update<CR>
-endif
-
 " put buffer into clipboard, return cursor to position
 nnoremap <Leader>a ggVG"+y<CR><C-o><C-o>
 

@@ -79,3 +79,8 @@ autocmd BufEnter NERD_tree_* NERDTreeFind
 " auto start NERDTree
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
+
+
+if has('gui_running')
+  call s:source_rc('gui.vim')
+endif
