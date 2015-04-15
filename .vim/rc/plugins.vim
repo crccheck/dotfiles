@@ -30,7 +30,7 @@ fun! VexOpen(dir)
   wincmd H
 
   call VexSize(vex_width)
-end
+endf
 
 fun! VexClose()
   let cur_win_nr = winnr()
