@@ -36,6 +36,7 @@
 	],
 	"repositories":
 	[
-		"https://github.com/buymeasoda/soda-theme/"
+		"https://github.com/buymeasoda/soda-theme/",
+		"https://github.com/srusskih/SublimeJEDI"
 	]
 }
