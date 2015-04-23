@@ -40,6 +40,7 @@
     whoami = config --get user.name
     standup = !git reflog --since yesterday --decorate --author `git whoami`
     t = for-each-ref --sort='authordate' --format='%(authordate:short)\t%(refname:short)' refs/tags
+    unpatch = !git branch -D $(git branch | grep arcpatch)
 
 [merge]
     tool = meld
