@@ -2,21 +2,12 @@
   apt_repository: repo='ppa:fkrull/deadsnakes'
 
 - name: Install various Python versions
-  apt: name=python2.6 state=installed
   apt: name=python2.7 state=installed
   apt: name=python3.3 state=installed
   apt: name=python3.4 state=installed
-
-- name: Install the rest of the Python things from apt
-  apt: name=python-pip
-  apt: name=python-dev
-
-- name: Upgrade pip
-  pip: name=pip state=latest
 
 - name: Install Python tools
   pip: name=virtualenvwrapper
   pip: name=csvkit
   pip: name=awscli
   pip: name=postdoc
-  pip: name=ansible

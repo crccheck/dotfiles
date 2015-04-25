@@ -106,5 +106,5 @@ alias remove="sudo aptitude remove"
 
 alias cls='printf "\ec"'
 
-[ -d ~/.dotfiles/bashmarks ] && source ~/.dotfiles/bashmarks/bashmarks.sh
+[ -f ~/.dotfiles/bashmarks/bashmarks.sh ] && source ~/.dotfiles/bashmarks/bashmarks.sh
 [ -f ~/.crcrc ] && source ~/.crcrc
