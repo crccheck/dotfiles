@@ -3,6 +3,10 @@ So like, these are the dot files I like.
 
 # Installation
 
+```
+wget -qO- https://raw.githubusercontent.com/crccheck/dotfiles/master/install.sh | sh
+```
+
 Install Read-only:
 
     sudo apt-get install git -y
@@ -10,9 +14,7 @@ Install Read-only:
     cd
     git clone git://github.com/crccheck/dotfiles.git .dotfiles
     cd .dotfiles
-    git submodule init
-    git submodule update
-
+    git submodule update --init
     make
     s dot
 
@@ -32,7 +34,3 @@ Re-adding the remote after github has my pub key:
     git remote add origin git@github.com:crccheck/dotfiles.git
     git submodule update
     git push -u origin master
-
-## Initial Setup
-
-See `bootstrap.sh`
