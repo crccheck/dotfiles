@@ -4,7 +4,7 @@
 # test  ansible_ssh_user=myusername
 
 - name: Ubuntu Development Environment
-  hosts: test
+  hosts: localhost
   sudo: yes
 
   roles:
