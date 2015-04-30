@@ -155,10 +155,11 @@ prepend_path_if_exists PATH $HOME/local/node/bin
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias wget='wget --no-check-certificate'
-
 alias dphd="phd --postdoc-dry-run"
 alias qphd="phd --postdoc-quiet"
+
+alias lol="lolcommits --enable --delay=1 --fork"
+alias loll="lolcommits --last"
 
 sssh () { ssh -t $@ "screen -rx -S crc"; }
 
@@ -231,7 +232,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
   source $HOME/.dotfiles/git-completion.bash
 
-  export DOCKER_HOST=tcp://192.168.59.104:2376
+  export DOCKER_HOST=tcp://192.168.59.103:2376
   export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
   export DOCKER_TLS_VERIFY=1
 else
