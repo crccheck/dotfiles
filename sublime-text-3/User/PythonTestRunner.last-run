@@ -1,0 +1,3 @@
+{
+	"last_test_run": "source /Users/crc/env/capi/bin/activate && PATH=\"/Users/crc/projects/capi/lib;/Users/crc/projects/capi/lib/modelo;$PATH\" DJANGO_SETTINGS_MODULE=consumer_services.settings.dev echo $PATH ; echo api.tests.resources.test_venues:VenueResourceTestCase.test_update_venue_with_profile_data"
+}

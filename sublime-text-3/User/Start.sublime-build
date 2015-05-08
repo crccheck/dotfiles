@@ -1,0 +1,8 @@
+{
+    "working_dir": "${project_path}/omnmeta",
+	// "shell": "true",
+    "env": {"PYTHONPATH": "$HOME/env/omnm/bin:$HOME/env/omnm/lib/python2.7/site-packages"},
+	"cmd": ["python", "-u", "start.py"]
+	// "cmd": ["ls"]
+	// "working_dir": "$project_path"
+}

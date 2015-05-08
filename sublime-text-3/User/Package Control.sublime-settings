@@ -20,23 +20,23 @@
 		"JSHint Gutter",
 		"Markdown Preview",
 		"Modific",
+		"MoveTab",
 		"Origami",
 		"Package Control",
 		"Pretty JSON",
 		"Python Flake8 Lint",
-		"PythonTestRunner",
 		"Sass",
 		"SCSS",
 		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
 		"Theme - Soda",
 		"Tomorrow Color Schemes",
-		"VintageEx",
+		"Vintageous",
 		"Wrap Plus",
 		"zenburn"
 	],
 	"repositories":
 	[
-		"https://github.com/buymeasoda/soda-theme/",
-		"https://github.com/srusskih/SublimeJEDI"
+		"https://github.com/buymeasoda/soda-theme/"
 	]
 }

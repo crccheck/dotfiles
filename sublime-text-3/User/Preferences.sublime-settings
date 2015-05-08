@@ -7,7 +7,7 @@
 		"*.gz",
 		"*.png"
 	],
-	"color_scheme": "Packages/User/zenburn (Flake8Lint).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Boron (Flake8Lint) (SL).tmTheme",
 	"default_line_ending": "unix",
 	"detect_slow_plugins": false,
 	"ensure_newline_at_eof_on_save": true,
@@ -32,6 +32,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"Vintage"
 	],
 	"rulers":
 	[
