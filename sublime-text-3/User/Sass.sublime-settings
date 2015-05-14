@@ -1,3 +1,7 @@
 {
-  "tab_size": 2
+	"extensions":
+	[
+		"sass"
+	],
+	"tab_size": 2
 }
