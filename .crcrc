@@ -190,7 +190,7 @@ function work {
   local env_name=$(basename $PWD)
   workon $env_name
   if [ $? -ne 0 ]; then
-    echo "Shall I create $env_name it for you? [Yn]"
+    echo "Shall I create '${env_name}' for you? [Yn]"
     read -n 1 sure
     if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
       mkvirtualenv $env_name
