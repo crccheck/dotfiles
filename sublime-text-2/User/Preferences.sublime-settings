@@ -7,7 +7,7 @@
 		"*.gz",
 		"*.png"
 	],
-	"color_scheme": "Packages/User/zenburn (Flake8Lint).tmTheme",
+	"color_scheme": "Packages/User/Tomorrow-Night (Flake8Lint).tmTheme",
 	"default_line_ending": "unix",
 	"detect_slow_plugins": false,
 	"ensure_newline_at_eof_on_save": true,
