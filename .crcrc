@@ -75,6 +75,7 @@ fi
 
 export EDITOR=vim
 export VISUAL="subl --wait"
+export FPP_EDITOR=$VISUAL
 export HISTCONTROL=ignoredups:erasedups
 # append history (defaults to append anyways)
 shopt -s histappend
