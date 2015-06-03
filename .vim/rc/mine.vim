@@ -1,12 +1,12 @@
 " My Basic Config -----------------------------
 set nowrap
 set number
-set relativenumber
 set scrolloff=3
 
 " added in Vim 7.3
 if exists('+colorcolumn')
-    set colorcolumn=79
+  set relativenumber
+  set colorcolumn=79
 endif
 
 " highlight trailing whitespace
