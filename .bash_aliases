@@ -23,6 +23,7 @@ alias rgrep='rgrep -I'
 alias grepenv='env | grep'
 alias grepdat='env | grep DATABASE'
 alias greprl='env | grep URL'
+alias grepurl='env | grep URL'
 
 alias fig="docker-compose"
 
@@ -34,3 +35,6 @@ alias npmnuke="rm -rf node_modules && npm install"
 alias cls='printf "\ec"'
 
 md () { mkdir -p "$@" && cd "$@"; }
+
+alias dphd="phd --postdoc-dry-run"
+alias qphd="phd --postdoc-quiet"

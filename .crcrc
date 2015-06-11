@@ -156,9 +156,6 @@ prepend_path_if_exists PATH $HOME/local/node/bin
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias dphd="phd --postdoc-dry-run"
-alias qphd="phd --postdoc-quiet"
-
 alias lol="lolcommits --enable --delay=1 --fork"
 alias loll="lolcommits --last"
 
