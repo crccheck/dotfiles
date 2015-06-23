@@ -7,17 +7,17 @@
 
   // Configs
   S.configAll({
-    "defaultToCurrentScreen" : true
-    // "secondsBetweenRepeat" : 0.1,
-    // "checkDefaultsOnLoad" : true,
-    // "focusCheckWidthMax" : 3000,
-    // "orderScreensLeftToRight" : true
+    'defaultToCurrentScreen': true
+    // 'secondsBetweenRepeat' : 0.1,
+    // 'checkDefaultsOnLoad' : true,
+    // 'focusCheckWidthMax' : 3000,
+    // 'orderScreensLeftToRight' : true
   });
 
   // magic to toggle between several widths
   var counter = 0;
   var dynWidth = function(){
-    var widths = ["screenSizeX/2", "screenSizeX*11/20", "screenSizeX*9/20"];
+    var widths = ['screenSizeX/2', 'screenSizeX*11/20', 'screenSizeX*9/20'];
     var width = widths[counter];
     counter = (counter + 1) % widths.length;
     return width;
@@ -36,44 +36,51 @@
   });
 
   // Operations
-  var baseMove = S.operation("move", {
-        x: "screenOriginX",
-        y: "screenOriginY",
-        width: "screenSizeX",
-        height: "screenSizeY"
+  var baseMove = S.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY',
+        width: 'screenSizeX',
+        height: 'screenSizeY'
       });
   var positions = {
-        left: "screenOriginX",
-        top: "screenOriginY",
-        right: "screenSizeX",
-        bottom: "screenSizeY",
-        center: "screenOriginX+screenSizeX/2",  // X
-        middle: "screenOriginY+screenSizeY/2"  // Y
+        left: 'screenOriginX',
+        top: 'screenOriginY',
+        right: 'screenSizeX',
+        bottom: 'screenSizeY',
+        center: 'screenOriginX+screenSizeX/2',  // X
+        middle: 'screenOriginY+screenSizeY/2'  // Y
       },
       move = {
         full: baseMove,
         left: baseMove.dup({width: dynWidth}),
         right: baseMove.dup({x: dynX, width: dynWidth}),
-        top: baseMove.dup({height: "screenSizeY/2"}),
-        bottom: baseMove.dup({y: positions.middle, height: "screenSizeY/2"}),
-        topLeft: baseMove.dup({width: "screenSizeX/2", height: "screenSizeY/2"}),
-        topRight: baseMove.dup({x: positions.center, width: "screenSizeX/2", height: "screenSizeY/2"}),
-        bottomLeft: baseMove.dup({y: positions.middle, width: "screenSizeX/2", height: "screenSizeY/2"}),
-        bottomRight: baseMove.dup({x: positions.center, y: positions.middle, width: "screenSizeX/2", height: "screenSizeY/2"})
+        top: baseMove.dup({height: 'screenSizeY/2'}),
+        bottom: baseMove.dup({y: positions.middle, height: 'screenSizeY/2'}),
+        topLeft: baseMove.dup({width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+        topRight: baseMove.dup({x: positions.center, width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+        bottomLeft: baseMove.dup({y: positions.middle, width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+        bottomRight: baseMove.dup({x: positions.center,
+                                   y: positions.middle,
+                                   width: 'screenSizeX/2',
+                                   height: 'screenSizeY/2'})
       };
 
   // Batch bind everything. Less typing.
   S.bindAll({
     // Basic Location Bindings
-    "pad1:ctrl;cmd": move.bottomLeft,
-    "pad2:ctrl;cmd": move.bottom,
-    "pad3:ctrl;cmd": move.bottomRight,
-    "pad4:ctrl;cmd": move.left,
-    "pad5:ctrl;cmd": move.full,
-    "pad6:ctrl;cmd": move.right,
-    "pad7:ctrl;cmd": move.topLeft,
-    "pad8:ctrl;cmd": move.top,
-    "pad9:ctrl;cmd": move.topRight,
+    'pad1:ctrl;cmd': move.bottomLeft,
+    'pad2:ctrl;cmd': move.bottom,
+    'down:ctrl;cmd': move.bottom,
+    'pad3:ctrl;cmd': move.bottomRight,
+    'pad4:ctrl;cmd': move.left,
+    'left:ctrl;cmd': move.left,
+    'pad5:ctrl;cmd': move.full,
+    'pad6:ctrl;cmd': move.right,
+    'right:ctrl;cmd': move.right,
+    'pad7:ctrl;cmd': move.topLeft,
+    'pad8:ctrl;cmd': move.top,
+    'up:ctrl;cmd': move.top,
+    'pad9:ctrl;cmd': move.topRight,
     'pad4:ctrl;alt': S.operation('throw', {screen: 'left'}),
     'pad6:ctrl;alt': S.operation('throw', {screen: 'right'})
   });
@@ -81,16 +88,16 @@
   // focused window gets almost the maximum screen
   S.bind('pad+:ctrl;cmd', function(win){
     // var appName = win.app().name();
-    var x = counter ? "screenOriginX+screenSizeX*3/10" : "screenOriginX";
+    var x = counter ? 'screenOriginX+screenSizeX*3/10' : 'screenOriginX';
     counter = (counter + 1) % 2;
-    win.doOperation(S.operation("move", {
+    win.doOperation(S.operation('move', {
       x: x,
-      y: "screenOriginY",
-      width: "screenSizeX*7/10",
-      height: "screenSizeY"
+      y: 'screenOriginY',
+      width: 'screenSizeX*7/10',
+      height: 'screenSizeY'
     }));
   });
 
   // Log that we're done configuring
-  S.log("[SLATE] -------------- Finished Loading Config --------------");
+  S.log('[SLATE] -------------- Finished Loading Config --------------');
 })(slate);
