@@ -24,6 +24,7 @@ alias grepenv='env | grep'
 alias grepdat='env | grep DATABASE'
 alias greprl='env | grep URL'
 alias grepurl='env | grep URL'
+alias ttail='tail -n 50 -f'
 
 alias fig="docker-compose"
 
