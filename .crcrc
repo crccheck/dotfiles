@@ -136,12 +136,10 @@ function inv {
   fi
 }
 
-function tth {
-    ssh root@$1 -i ~/scripts/id_ttdev.pem
-}
-
-function ttth {
-    ssh rightscale@$1 -i ~/scripts/id_ttdev.pem
+# Open a Wireshark window to a Docker container
+# Usage: dshark <container>
+function dshark {
+  docker run --rm --net=container:$1 corfr/tcpdump -i any tcp -w - | wireshark -k -i -
 }
 
 # Node.js
@@ -229,6 +227,9 @@ if [ "$(uname -s)" == "Darwin" ]; then
   # xcode 4 hack, to get pycrypto to install
   export ARCHFLAGS='-arch i386 -arch x86_64'
 
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
   source $HOME/.dotfiles/git-completion.bash
 
   export DOCKER_HOST=tcp://192.168.59.103:2376

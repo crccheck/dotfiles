@@ -27,6 +27,7 @@ alias grepurl='env | grep URL'
 alias ttail='tail -n 50 -f'
 
 alias fig="docker-compose"
+alias dm="docker-machine"
 
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 
