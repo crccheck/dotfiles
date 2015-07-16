@@ -139,7 +139,7 @@ function inv {
 # Open a Wireshark window to a Docker container
 # Usage: dshark <container>
 function dshark {
-  docker run --rm --net=container:$1 corfr/tcpdump -i any tcp -w - | wireshark -k -i -
+  docker run --rm --net=container:$1 crccheck/tcpdump -i any tcp --immediate-mode -w - | wireshark -k -i -
 }
 
 # Node.js
