@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+TLD=docker
+
+
 # Messy hack to give all docker containers a *.docker host name locally
 
 set -e
@@ -8,8 +11,8 @@ BACKUP=/tmp/etc_hosts.backup
 
 # Backup existing hosts file
 sudo cp /etc/hosts $BACKUP
-# Strip old .docker hosts out
-sudo BACKUP="$BACKUP" sh -c 'cat $BACKUP | sudo grep -v \.docker > /etc/hosts'
+# Strip old hosts out
+sudo BACKUP="${BACKUP}" sh -c 'cat ${BACKUP} | sudo grep -v "inserted by dockerhosts" > /etc/hosts'
 
 # Get all running docker containers
 #
@@ -17,14 +20,17 @@ docker_hosts=$(docker ps -q)
 
 # Append hosts entry
 for i in $docker_hosts; do
-    ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $i)
-    name=$(docker inspect --format '{{.Name}}' $i)
-    # strip the leading '/'
-    name=${name:1}
-    line="$ip\t$name.docker"
-    sudo line="$line" sh -c 'echo $line >> /etc/hosts'
+  ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $i)
+  name=$(docker inspect --format '{{.Name}}' $i)
+  # strip the leading '/'
+  name=${name:1}
+  # TODO if container specifies domain name, use it
+  # TODO account for containers with an empty domain name
+  # name2=$(docker inspect --format '{{.Config.Hostname}}.{{.Config.Domainname}}' $i)
+  name2=$(docker inspect --format '{{.Config.Hostname}}' $i)
+  line="$ip\t$name.${TLD} ${name2}.${TLD}\t# inserted by dockerhosts"
+  sudo line="$line" sh -c 'echo $line >> /etc/hosts'
 done
 
 echo "******* NEW HOSTS *******"
 cat /etc/hosts
-
