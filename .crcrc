@@ -211,9 +211,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
   alias ls='ls -AFGq'
   alias sed=gsed
   alias du='du -kh'
-  prepend_path_if_exists PATH /usr/local/share/python
   prepend_path_if_exists PATH /usr/local/bin
-  append_path PYTHONPATH ~/Library/Python
 
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.4/bin'
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
@@ -232,9 +230,9 @@ if [ "$(uname -s)" == "Darwin" ]; then
   fi
   source $HOME/.dotfiles/git-completion.bash
 
-  export DOCKER_HOST=tcp://192.168.59.103:2376
-  export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-  export DOCKER_TLS_VERIFY=1
+    export DOCKER_HOST=tcp://192.168.59.105:2376
+    export DOCKER_CERT_PATH=/Users/crc/.boot2docker/certs/boot2docker-vm
+    export DOCKER_TLS_VERIFY=1
 else
   # aliases that don't work in OSX
   alias df='df -kTh'
