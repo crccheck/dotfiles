@@ -36,6 +36,7 @@ prepend_path()
 }
 
 prepend_path_if_exists()
+
 {
     if [ -d "$2" ]
     then
@@ -145,6 +146,7 @@ function dshark {
 # Node.js
 export NODE_PATH=$HOME/local/node
 prepend_path_if_exists PATH $HOME/local/node/bin
+prepend_path_if_exists NODE_PATH $HOME/usr/lib/node_modules
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
