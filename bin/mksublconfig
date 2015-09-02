@@ -37,12 +37,12 @@ if [ -f ~/Documents/$PROJECT ]; then
   echo "Project already exists: $PROJECT Open $PROJECT ? [Yn]"
   read -n 1 sure
   if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-    subl ~/Documents/$PROJECT
+    subl ~/Documents/${PROJECT}
   fi
 else
   echo "Create $PROJECT ? [Yn]"
   read -n 1 sure
   if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-    echo $CONFIG > ~/Documents/$PROJECT
+    echo "${CONFIG}" > ~/Documents/${PROJECT}
   fi
 fi
