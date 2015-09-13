@@ -274,7 +274,8 @@ function mkcodeintelconfig {
     mkdir -p .codeintel
     eval "echo \"$(cat ~/.dotfiles/codeintel)\"" > .codeintel/config
 }
-
+# Workaround for Conda removing /usr/bin from my path
+export CONDA_DEFAULT_ENV=dummy
 ###################################################
 ### rbenv
 ###################################################
