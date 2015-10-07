@@ -15,7 +15,7 @@ brew cask install firefox google-chrome slate karabiner virtualbox iterm2 \
 # dev
 brew cask install postgres sublime-text
 # apps
-brew cask install vagrant typesafe-activator
+brew cask install vagrant typesafe-activator quicklook-json
 
 # also need to get virtualbox extensions
 
