@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 """
-makes sure django settings dir is in the path.
+Lets you run "manage.py" as "django" from anywhere in your Django project.
 
-also has shortcuts for environment based settings.
+TODO: should I just find manage.py and execute that in case your manage.py has
+weird customizations?
 """
 import os
 import sys
 
 
-CONFIGURATION_MODULE = "settings"
+CONFIGURATION_MODULE = 'settings'
 
 
 def in_django_project(some_path):
     joined = os.path.join(some_path, CONFIGURATION_MODULE)
-    return os.path.exists(joined + '.py') or os.path.isdir(joined) and \
-                os.path.exists(os.path.join(joined, '__init__.py'))
+    return (os.path.exists(joined + '.py') or os.path.isdir(joined) and
+            os.path.exists(os.path.join(joined, '__init__.py')))
 
 
 def find_project_dir(path):
@@ -28,29 +29,13 @@ def find_project_dir(path):
     return None
 
 
-project_dir = find_project_dir(os.getcwd())
-if project_dir and project_dir not in sys.path:
-    sys.path.insert(0, project_dir)
-else:
-    sys.path.insert(0, os.getcwd())
-
 if __name__ == "__main__":
     from django.core.management import execute_from_command_line
 
-    # Tweak env variables according to the command
-    if 'migrate' in sys.argv or 'schemamigration' in sys.argv:
-        os.environ['ENVIRONMENT'] = 'migration'
-        print "**** Going into `migration` env ****"
-    if 'test' in sys.argv:
-        os.environ['ENVIRONMENT'] = 'test'
-        # os.environ['ROOT_LOGGING_LEVEL'] = 'CRITICAL'
-        print "**** Going into `test` env ****"
-
-    balls = None
-    if 'balls' in sys.argv:
-        balls = True
-        sys.argv.remove('balls')
-        sys.stderr.write("**** USE PRODUCTION DB ****\n")
-        # os.environ['USE_PRODUCTION_DB'] = '1'
+    project_dir = find_project_dir(os.getcwd())
+    if project_dir and project_dir not in sys.path:
+        sys.path.insert(0, project_dir)
+    else:
+        sys.path.insert(0, os.getcwd())
 
     execute_from_command_line(sys.argv)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TLD=docker
+TLD=${DOCKHOSTS_TLD:-docker}
 
 
 # Messy hack to give all docker containers a *.docker host name locally
