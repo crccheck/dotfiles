@@ -246,7 +246,6 @@ fi
 if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
     # Windows stuff:
     alias subl='/c/Program\ Files/Sublime\ Text\ 2/sublime_text.exe'
-    export GREP_OPTIONS=''
     export PATH=$PATH:/c/Python27
     export PATH=$PATH:/c/Python27/Scripts
 fi

@@ -14,12 +14,6 @@ alias col50="printf '=%.0s' {1..50}"  # 50 column ruler
 alias col72="printf '=%.0s' {1..72}"  # 72 column ruler
 alias col80="printf '=%.0s' {1..80}"  # 80 column ruler
 
-export GREP_OPTIONS='--color=auto'
-alias grep='grep -I'
-alias fgrep='fgrep -I'
-alias egrep='egrep -I'
-alias rgrep='rgrep -I'
-
 alias grepenv='env | grep'
 alias grepdat='env | grep DATABASE'
 alias greprl='env | grep URL'
