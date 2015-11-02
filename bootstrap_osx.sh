@@ -4,7 +4,7 @@
 # apps:
 # * bittorrent sync
 
-brew install python mysql gti ponysay jq macvim bash ack gnu-sed chromedriver
+brew install python mysql gti ponysay jq macvim vim bash ack gnu-sed chromedriver
 
 brew install caskroom/cask/brew-cask
 

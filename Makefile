@@ -42,6 +42,13 @@ gterm:
 	fi
 	@ln -s $(PWD)/gnome-terminal ~/.gconf/apps/gnome-terminal
 
+atom/freeze:
+	@mkdir -p ./.atom
+	apm list --installed --bare > .atom/package-list.txt
+
+atom:
+	apm install --packaged-file .atom/package-list.txt
+
 # Make sure to do this after sublime text is installed
 # https://packagecontrol.io/docs/syncing
 st3:
