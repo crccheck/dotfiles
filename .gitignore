@@ -10,3 +10,9 @@
 sublime-text-?/User/Package Control.last-run
 sublime-text-?/User/PythonTestRunner.last-run
 sublime-text-?/User/*.*-ca-bundle
+
+# atom
+.atom/*-cache
+.atom/.*
+.atom/packages/
+.atom/storage/

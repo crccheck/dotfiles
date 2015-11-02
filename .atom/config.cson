@@ -1,0 +1,39 @@
+"*":
+  "exception-reporting":
+    userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
+  welcome:
+    showOnStartup: false
+  core: {}
+  editor:
+    invisibles:
+      eol: false
+    preferredLineLength: 79
+    showInvisibles: true
+    autoIndentOnPaste: false
+    fontSize: 12
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  "git-diff": {}
+  "linter-flake8": {}
+  "autocomplete-python": {}
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+  wrap: {}
+  tabs:
+    enableVcsColoring: true
+    usePreviewTabs: true
+  linter:
+    lintOnFly: false
+".python.regexp.source":
+  editor:
+    preferredLineLength: 79
+".python.text.traceback":
+  editor:
+    preferredLineLength: 79
+".console.python.text":
+  editor:
+    preferredLineLength: 79
+".python.source":
+  editor:
+    preferredLineLength: 79

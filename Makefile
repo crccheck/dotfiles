@@ -47,6 +47,7 @@ atom/freeze:
 	apm list --installed --bare > .atom/package-list.txt
 
 atom:
+	cd ${HOME} && ln -sf $(PWD)/.atom
 	apm install --packaged-file .atom/package-list.txt
 
 # Make sure to do this after sublime text is installed
