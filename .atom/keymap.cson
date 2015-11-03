@@ -31,3 +31,5 @@
   # Disable non-vim movement
   'cmd-up': null
   'cmd-down': null
+'atom-text-editor[data-grammar="source python"]:not(.mini)':
+  'ctrl-shift-g': 'autocomplete-python:go-to-definition'

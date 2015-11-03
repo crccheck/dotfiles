@@ -3,7 +3,11 @@
     userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
   welcome:
     showOnStartup: false
-  core: {}
+  core:
+    packagesWithKeymapsDisabled: [
+      "emmet"
+      "autocomplete-python"
+    ]
   editor:
     invisibles:
       eol: false
@@ -15,7 +19,8 @@
     useClipboardAsDefaultRegister: true
   "git-diff": {}
   "linter-flake8": {}
-  "autocomplete-python": {}
+  "autocomplete-python":
+    caseInsensitiveCompletion: false
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
@@ -25,6 +30,7 @@
     usePreviewTabs: true
   linter:
     lintOnFly: false
+  emmet: {}
 ".python.regexp.source":
   editor:
     preferredLineLength: 79
