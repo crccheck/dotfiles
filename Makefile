@@ -48,7 +48,9 @@ atom/freeze:
 
 atom:
 	cd ${HOME} && ln -sf $(PWD)/.atom || true
-	apm install --packaged-file .atom/package-list.txt
+	@# apm install --packaged-file .atom/package-list.txt
+	@# workaround for error: ENOPACKAGEJSON
+	cat .atom/package-list.txt | xargs apm install
 
 # Make sure to do this after sublime text is installed
 # https://packagecontrol.io/docs/syncing
