@@ -6,7 +6,9 @@ ex-mode@0.7.0
 file-icons@1.6.11
 hard-wrap@1.0.1
 highlight-selected@0.10.1
+language-apache@1.3.0
 language-docker@1.1.3
+language-scala@1.1.4
 linter@1.10.0
 linter-eslint@4.0.0
 linter-flake8@1.9.1

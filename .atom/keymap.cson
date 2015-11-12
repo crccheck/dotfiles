@@ -33,3 +33,5 @@
   'cmd-down': null
 'atom-text-editor[data-grammar="source python"]:not(.mini)':
   'ctrl-shift-g': 'autocomplete-python:go-to-definition'
+'.platform-darwin atom-text-editor':
+  'cmd-q': 'autoflow:reflow-selection'

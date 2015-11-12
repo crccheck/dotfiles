@@ -30,6 +30,7 @@
     usePreviewTabs: true
   linter:
     lintOnFly: false
+    showErrorPanel: false
   emmet: {}
 ".python.regexp.source":
   editor:
@@ -40,6 +41,15 @@
 ".console.python.text":
   editor:
     preferredLineLength: 79
+".apache-config.mod_perl.source":
+  editor:
+    preferredLineLength: 79
+".scala.source":
+  editor:
+    preferredLineLength: 79
 ".python.source":
+  editor:
+    preferredLineLength: 79
+".apache-config.source":
   editor:
     preferredLineLength: 79
