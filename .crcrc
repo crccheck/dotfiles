@@ -76,6 +76,8 @@ fi
 
 export EDITOR=vim
 export VISUAL=vim
+# XXX whatever my default visual editor happens to be, could be atom or subl too
+alias vi=${VISUAL}
 export FPP_EDITOR="atom --wait"
 export HISTCONTROL=ignoredups:erasedups
 # append history (defaults to append anyways)

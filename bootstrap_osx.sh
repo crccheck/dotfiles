@@ -11,7 +11,8 @@ brew install caskroom/cask/brew-cask
 # get started
 brew cask install firefox google-chrome slate karabiner virtualbox iterm2 \
   keepassx sshrc \
-  pkg-config graphviz
+  pkg-config graphviz \
+  tree
 # dev
 brew cask install postgres sublime-text
 # apps
