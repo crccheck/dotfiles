@@ -10,7 +10,7 @@ set -e
 
 sh_c='sudo -E sh -c'
 
-$sh_c 'apt-get install git -y' > /dev/null
+$sh_c 'apt-get install git-core -y' > /dev/null
 if [ ! -d .dotfiles ]; then
   cd && \
     git clone git://github.com/crccheck/dotfiles.git .dotfiles && \

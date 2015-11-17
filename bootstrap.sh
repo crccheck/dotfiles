@@ -2,6 +2,13 @@
 set -e
 set -x
 
+# Super-size me
+###############
+
+sudo sed -i 's/%sudo.*/%sudo  ALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers
+sudo usermod -aG sudo ${USER}
+
+
 # Remove Ubuntu crap
 ####################
 # remember to edit Unity shortcuts, disable workspace keyboard shortcuts or
@@ -22,47 +29,43 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 #########
 
 sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
-sudo add-apt-repository ppa:webupd8team/sublime-text-2 -y
 
-sudo apt-get update -qq
+# sudo apt-get update -qq
 sudo apt-get install -y \
-  curl athena-jot jq aptitude \
-  sublime-text vim-gnome chromium-browser \
+  curl athena-jot jq \
+  tree \
+  vim-gnome chromium-browser \
   ack-grep silversearcher-ag \
   python2.6 python2.7 python3.3 python3.4 python-dev python-pip \
   libmysqlclient-dev \
-  libpq-dev libgeos-dev
-sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+  libpq-dev libgeos-dev \
+  keepassx \
+  unity-tweak-tool \
+  supervisor
+# sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 
 # Take ownership of `/usr/local`
 ################################
 # ref: http://howtonode.org/introduction-to-npm
-sudo chown -R $USER /usr/local
+sudo chown -R $USER:$USER /usr/local
 
 # Base Python
 #############
-sudo pip install -I "pip<6.0"
-sudo pip install --quiet virtualenvwrapper csvkit awscli ansible postdoc
-# set up virtualenv and python stuff
-source ~/.bashrc  # setup virtualenv env variables
+sudo pip install -U pip
+pip install --quiet virtualenvwrapper csvkit awscli ansible postdoc
+source ~/.bashrc  # Setup virtualenv env variables
 
-# Docker.io
-###########
-# https://get.docker.com/ubuntu/
+# Docker
+########
 # http://docs.docker.io/en/latest/installation/ubuntulinux/
-#
-# Add the Docker repository key to your local keychain
-# using apt-key finger you can check the fingerprint matches 36A1 D786 9245 C895 0F96 6E92 D857 6A8B A88D 21E9
-sudo sh -c "curl https://get.docker.io/gpg | apt-key add -"
-# Add the Docker repository to your apt sources list.
-sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
-update
-sudo apt-get install lxc-docker -y
+if [ -z "$(which docker)" ]; then
+  curl -sSL https://get.docker.com/ | sh
+fi
 
 # Giving non-root access
 sudo usermod -aG docker ${USER}
-sudo pip install docker-compose
+pip install docker-compose
 
 # Autoenv
 #########
@@ -89,7 +92,7 @@ sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
 
 # Node
 ######
-sudo apt-get install nodejs nodejs-legacy npm -y
+# sudo apt-get install nodejs nodejs-legacy npm -y
 # TODO
 
 # Ruby
@@ -105,3 +108,28 @@ heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 # inotify helps other programs watch files
 sudo apt-get install inotify-tools -y
+
+# Manual steps:
+
+# https://fixubuntu.com/
+
+# synergy
+sudo apt-get install -y libavahi-compat-libdnssd1
+# dpkg install -i synergy.deb
+
+# dropbox
+sudo apt-get install -y nautilus-dropbox
+
+# btsync
+# https://www.getsync.com/platforms/desktop#linux
+
+if [ -z $(which syncthing) ]; then
+  # http://apt.syncthing.net/
+  curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+  echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
+  sudo apt-get update
+  sudo apt-get install syncthing
+  sudo adduser syncthing
+fi
+
+# "Show the menues for a window" -> In the window's title bar

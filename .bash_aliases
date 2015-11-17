@@ -20,6 +20,11 @@ alias greprl='env | grep URL'
 alias grepurl='env | grep URL'
 alias ttail='tail -n 50 -f'
 
+alias update="sudo apt-get update"
+alias install="sudo apt-get install"
+alias upgrade="sudo apt-get safe-upgrade"
+alias remove="sudo apt-get remove"
+
 alias fig="docker-compose"
 alias dm="docker-machine"
 

@@ -266,7 +266,6 @@ if [ ! -d $PROJECT_HOME ]; then
     mkdir -p $PROJECT_HOME
 fi
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-export PIP_DOWNLOAD_CACHE="$HOME/.pip"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 # helper for generating codeintel config files

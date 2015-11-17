@@ -97,13 +97,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# aliases suggested by howto guide
-alias free="free -m"
-alias update="sudo aptitude update"
-alias install="sudo aptitude install"
-alias upgrade="sudo aptitude safe-upgrade"
-alias remove="sudo aptitude remove"
-
 alias cls='printf "\ec"'
 
 [ -f ~/.dotfiles/bashmarks/bashmarks.sh ] && source ~/.dotfiles/bashmarks/bashmarks.sh
