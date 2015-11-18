@@ -1,9 +1,8 @@
-PWD:=$(PWD)
+PWD := $(PWD)
 # Where I keep local binaries
-BIN:=$(HOME)/bin
+BIN := $(HOME)/bin
 
 DOTFILES := $(wildcard .*)
-# TODO use target specific variables to reduce duplication
 SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
 
 all: dotfiles bin virtualenv vim gterm
@@ -13,34 +12,27 @@ basic: dotfiles bin
 dotfiles:
 	@echo "* Linking dotfiles"
 	@$(foreach file, $(SRCS), \
-	  ln -sf $(PWD)/$(file) ~/$(file); echo "linking $(file)";)
+	  ln -sf $(PWD)/$(file) ~/$(file); echo "  - linking $(file)";)
 
-# setup my personal global helper scripts
 .PHONY: bin
-bin:
+bin: ## Setup my personal global helper scripts
 	@echo "* Linking personal bin/..."
 	@mkdir -p $(BIN)
 	@$(foreach file, $(wildcard bin/*), \
-	  cd $(BIN) && ln -s $(PWD)/$(file) 2> /dev/null && echo "linking $(file)" || echo "skipping $(file)";)
+	  cd $(BIN) && ln -s $(PWD)/$(file) 2> /dev/null && \
+	  echo "linking $(file)" || \
+	  echo "skipping $(file)";)
 
-# setup virtualenv bin
 .PHONY: virtualenv
-virtualenv:
+virtualenv: # Set up my personal virtualenv script hooks
 	@echo "* Setting up virtualenv hooks..."
 	@if [ -z "$$WORKON_HOME" ]; then echo "missing \$$WORKON_HOME"; exit 1; fi
 	@$(foreach file, $(wildcard virtualenv/*), \
 	  cd $$WORKON_HOME && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
 
-# link gnome terminal config
-# TODO skip if gnome-terminal does not exist
-gterm:
+gterm: # My visual customizations for gterm
 	@echo "* Linking gnome terminal settings"
-	@if [ -d ~/.gconf/apps/gnome-terminal ]; then \
-	  rm -rf ~/.gconf/apps/gnome-terminal; \
-	elif [ -L ~/.gconf/apps/gnome-terminal ]; then \
-	  rm ~/.gconf/apps/gnome-terminal; \
-	fi
-	@ln -s $(PWD)/gnome-terminal ~/.gconf/apps/gnome-terminal
+	@cd ~/.config/gtk-3.0 && ln -sf $(PWD)/.config/gtk-3.0/gtk.css
 
 atom/freeze:
 	@mkdir -p ./.atom
