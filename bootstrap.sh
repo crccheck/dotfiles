@@ -92,8 +92,9 @@ sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
 
 # Node
 ######
-# sudo apt-get install nodejs nodejs-legacy npm -y
-# TODO
+sudo apt-get install nodejs nodejs-legacy npm -y
+npm install -g npm
+n stable
 
 # Ruby
 ######
@@ -132,4 +133,10 @@ if [ -z $(which syncthing) ]; then
   sudo adduser syncthing
 fi
 
+if [ -z $(which atom) ]; then
+  sudo add-apt-repository ppa:webupd8team/atom -y
+  sudo apt-get -qq update
+  sudo apt-get -y install atom
+  make atom
+fi
 # "Show the menues for a window" -> In the window's title bar

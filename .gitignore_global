@@ -5,7 +5,7 @@ README.html
 .DS_Store
 .ipynb_checkpoints
 npm-debug.log
-
+*.swp
 
 # private stuff
 .agignore
