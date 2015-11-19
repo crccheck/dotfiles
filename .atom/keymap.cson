@@ -25,13 +25,22 @@
 # If you are unfamiliar with CSON, you can read more about it in the
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
+
 'body':
+  # WARNING these don't work for the last line https://github.com/atom/atom/issues/7653
   'ctrl-down': 'editor:move-line-down'
   'ctrl-up': 'editor:move-line-up'
-  # Disable non-vim movement
-  'cmd-up': null
-  'cmd-down': null
+  
+  'alt-q': 'autoflow:reflow-selection'
 'atom-text-editor[data-grammar="source python"]:not(.mini)':
   'ctrl-shift-g': 'autocomplete-python:go-to-definition'
+
+'atom-text-editor.vim-mode.normal-mode':
+  'ctrl-t': 'fuzzy-finder:toggle-file-finder'
+
+'.platform-darwin body':
+  # Disable non-vim movement
+  'cmd-up': ''
+  'cmd-down': ''
 '.platform-darwin atom-text-editor':
   'cmd-q': 'autoflow:reflow-selection'
