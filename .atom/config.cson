@@ -16,6 +16,13 @@
       "atom-dark-ui"
       "atom-dark-syntax"
     ]
+    excludeVcsIgnoredPaths: false
+    ignoredNames: [
+      ".git"
+      ".ipynb_checkpoints"
+      "*.pyc"
+      "__pycache__"
+    ]
   editor:
     invisibles:
       eol: false
@@ -31,7 +38,6 @@
     caseInsensitiveCompletion: false
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   wrap: {}
   tabs:
     enableVcsColoring: true
