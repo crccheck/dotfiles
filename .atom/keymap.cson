@@ -30,8 +30,10 @@
   # WARNING these don't work for the last line https://github.com/atom/atom/issues/7653
   'ctrl-down': 'editor:move-line-down'
   'ctrl-up': 'editor:move-line-up'
-  
+
   'alt-q': 'autoflow:reflow-selection'
+  'cmd-q': 'autoflow:reflow-selection'
+
 'atom-text-editor[data-grammar="source python"]:not(.mini)':
   'ctrl-shift-g': 'autocomplete-python:go-to-definition'
 

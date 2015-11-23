@@ -3,14 +3,14 @@ blame@0.8.1
 editorconfig@1.2.2
 emmet@2.3.14
 ex-mode@0.7.0
-file-icons@1.6.11
+file-icons@1.6.12
 hard-wrap@1.0.1
 highlight-selected@0.11.1
 language-apache@1.3.0
 language-docker@1.1.3
 language-scala@1.1.4
 linter@1.11.2
-linter-eslint@5.2.1
+linter-eslint@5.2.3
 linter-flake8@1.9.2
 project-manager@2.6.5
 relative-numbers@0.2.4
