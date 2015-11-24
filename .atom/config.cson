@@ -50,24 +50,24 @@
   emmet: {}
   "bracket-matcher":
     autocompleteBrackets: false
-".apache-config.mod_perl.source":
-  editor:
-    preferredLineLength: 79
-".console.python.text":
+".python.regexp.source":
   editor:
     preferredLineLength: 79
 ".python.text.traceback":
   editor:
     preferredLineLength: 79
-".python.regexp.source":
+".console.python.text":
   editor:
     preferredLineLength: 79
-".apache-config.source":
+".apache-config.mod_perl.source":
+  editor:
+    preferredLineLength: 79
+".scala.source":
   editor:
     preferredLineLength: 79
 ".python.source":
   editor:
     preferredLineLength: 79
-".scala.source":
+".apache-config.source":
   editor:
     preferredLineLength: 79

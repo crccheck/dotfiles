@@ -27,6 +27,8 @@
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 
 'body':
+  'ctrl-shift-pageup': 'pane:move-item-left'
+  'ctrl-shift-pagedown': 'pane:move-item-right'
   # WARNING these don't work for the last line https://github.com/atom/atom/issues/7653
   'ctrl-down': 'editor:move-line-down'
   'ctrl-up': 'editor:move-line-up'
