@@ -32,8 +32,12 @@ alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 
 alias npmnuke="rm -rf node_modules && npm install"
 
-# reset and clear
+# Reset and clear
 alias cls='printf "\ec"'
+# iterm does its own thing
+if [ ! -z "${ITERM_PROFILE}" ]; then
+  alias cls="printf '\e]50;ClearScrollback\a'"
+fi
 
 md () { mkdir -p "$@" && cd "$@"; }
 

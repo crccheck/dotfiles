@@ -22,6 +22,8 @@
       ".ipynb_checkpoints"
       "*.pyc"
       "__pycache__"
+      "coverage"
+      "node_modules"
     ]
   editor:
     invisibles:
