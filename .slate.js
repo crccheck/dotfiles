@@ -86,7 +86,7 @@
   });
 
   // focused window gets almost the maximum screen
-  S.bind('pad+:ctrl;cmd', function(win){
+  function mainify(win) {
     // var appName = win.app().name();
     var x = counter ? 'screenOriginX+screenSizeX*3/10' : 'screenOriginX';
     counter = (counter + 1) % 2;
@@ -96,7 +96,9 @@
       width: 'screenSizeX*7/10',
       height: 'screenSizeY'
     }));
-  });
+  }
+  S.bind('pad+:ctrl;cmd', mainify);
+  S.bind('=:ctrl;cmd', mainify);
 
   // Log that we're done configuring
   S.log('[SLATE] -------------- Finished Loading Config --------------');

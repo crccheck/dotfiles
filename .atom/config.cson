@@ -35,7 +35,8 @@
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "git-diff": {}
-  "linter-flake8": {}
+  "linter-flake8":
+    maxComplexity: 100
   "autocomplete-python":
     caseInsensitiveCompletion: false
   "tree-view":
@@ -50,24 +51,24 @@
   emmet: {}
   "bracket-matcher":
     autocompleteBrackets: false
-".python.regexp.source":
-  editor:
-    preferredLineLength: 79
-".python.text.traceback":
+".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 79
 ".console.python.text":
   editor:
     preferredLineLength: 79
-".apache-config.mod_perl.source":
+".python.text.traceback":
   editor:
     preferredLineLength: 79
-".scala.source":
+".python.regexp.source":
+  editor:
+    preferredLineLength: 79
+".apache-config.source":
   editor:
     preferredLineLength: 79
 ".python.source":
   editor:
     preferredLineLength: 79
-".apache-config.source":
+".scala.source":
   editor:
     preferredLineLength: 79
