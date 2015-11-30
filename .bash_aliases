@@ -27,6 +27,7 @@ alias remove="sudo apt-get remove"
 
 alias fig="docker-compose"
 alias dm="docker-machine"
+alias zz="docker run --rm -v ${PWD}:/data -w /data -it crccheck/zz"
 
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 
