@@ -24,17 +24,19 @@ sudo sed -i 's/"1"/"0"/' /etc/apt/apt.conf.d/10periodic
 sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
   thunderbird banshee gnome-sudoku > /dev/null
 
-
 # Install
 #########
 
 sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
 
-# sudo apt-get update -qq
+sudo apt-get update -qq
+# Important Stuff first
+sudo apt-get install -y vim-gnome git-core
+
 sudo apt-get install -y \
   curl athena-jot jq \
   tree \
-  vim-gnome chromium-browser \
+  chromium-browser \
   ack-grep silversearcher-ag \
   python2.6 python2.7 python3.3 python3.4 python-dev python-pip \
   libmysqlclient-dev \
@@ -42,7 +44,6 @@ sudo apt-get install -y \
   keepassx \
   unity-tweak-tool \
   supervisor
-# sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 
 # Take ownership of `/usr/local`
@@ -82,37 +83,37 @@ fi
 sudo apt-get build-dep lxml -y
 
 # unfuck PIL
-sudo apt-get build-dep pillow -y
-sudo apt-get install libjpeg-dev -y
-sudo ln -s /usr/lib/`uname -i`-linux-gnu/libz.so /usr/lib
-sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
-# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.8 /usr/lib
-# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.62 /usr/lib
-# sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
+if [ ! -f "/usr/lib/$(uname -i)-linux-gnu/libz.so" ]; then
+  sudo apt-get build-dep pillow -y
+  sudo apt-get install libjpeg-dev -y
+  sudo ln -s /usr/lib/$(uname -i)-linux-gnu/libz.so /usr/lib
+  sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
+  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.8 /usr/lib
+  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.62 /usr/lib
+  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
+fi
 
 # Node
 ######
-sudo apt-get install nodejs nodejs-legacy npm -y
-npm install -g npm
-n stable
+if [ -z $(which node) ]; then
+  sudo apt-get install nodejs nodejs-legacy npm -y
+  npm install -g npm
+  n stable
+fi
 
 # Ruby
 ######
 # use rbenv instead of rvm because rvm overwrites `cd`
-sudo apt-get install rbenv heroku-toolbelt -y
-mkdir ~/.rbenv/plugins
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# sudo apt-get install rbenv heroku-toolbelt -y
+# mkdir ~/.rbenv/plugins
+# git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 # use `sudo` becaue I'm too lazy to figure out how to get `ruby-build` to
 # install a recent version of ruby without intalling directly from github
-sudo gem install lolcat bundler
-heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
+# sudo gem install lolcat bundler
+# heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 # inotify helps other programs watch files
 sudo apt-get install inotify-tools -y
-
-# Manual steps:
-
-# https://fixubuntu.com/
 
 # synergy
 sudo apt-get install -y libavahi-compat-libdnssd1
@@ -121,16 +122,12 @@ sudo apt-get install -y libavahi-compat-libdnssd1
 # dropbox
 sudo apt-get install -y nautilus-dropbox
 
-# btsync
-# https://www.getsync.com/platforms/desktop#linux
-
 if [ -z $(which syncthing) ]; then
   # http://apt.syncthing.net/
   curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
   echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
   sudo apt-get update
   sudo apt-get install syncthing
-  sudo adduser syncthing
 fi
 
 if [ -z $(which atom) ]; then
@@ -139,4 +136,9 @@ if [ -z $(which atom) ]; then
   sudo apt-get -y install atom
   make atom
 fi
+
+# Manual steps:
+
+# https://fixubuntu.com/
+
 # "Show the menues for a window" -> In the window's title bar
