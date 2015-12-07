@@ -1,4 +1,6 @@
 " My Basic Config -----------------------------
+scriptencoding utf-8
+set encoding=utf-8
 set nowrap
 set number
 set scrolloff=3
