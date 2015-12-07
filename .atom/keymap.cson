@@ -36,11 +36,15 @@
   'alt-q': 'autoflow:reflow-selection'
   'cmd-q': 'autoflow:reflow-selection'
 
+
 'atom-text-editor[data-grammar="source python"]:not(.mini)':
   'ctrl-shift-g': 'autocomplete-python:go-to-definition'
 
+'atom-text-editor.vim-mode':
+  'ctrl-c': 'core:copy'
 'atom-text-editor.vim-mode.normal-mode':
   'ctrl-t': 'fuzzy-finder:toggle-file-finder'
+  'ctrl-v': 'core:paste'
 
 '.platform-darwin body':
   # Disable non-vim movement
