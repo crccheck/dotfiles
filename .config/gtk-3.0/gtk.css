@@ -1,9 +1,9 @@
 TerminalWindow .notebook tab:active {
-  background-color: #f5f4f3;
-  foreground-color: #000000;
+  background-color: #a2a1a0;
+  foreground-color: #1e1d1c;
 }
 
 TerminalWindow .notebook tab {
-  background-color: #a2a1a0;
-  foreground-color: #1e1d1c;
+  background-color: #f5f4f3;
+  foreground-color: #000000;
 }

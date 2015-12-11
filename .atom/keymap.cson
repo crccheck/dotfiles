@@ -36,12 +36,18 @@
   'alt-q': 'autoflow:reflow-selection'
   'cmd-q': 'autoflow:reflow-selection'
 
+'atom-text-editor':
+  'ctrl-f2': 'bookmarks:toggle-bookmark'
 
 'atom-text-editor[data-grammar="source python"]:not(.mini)':
   'ctrl-shift-g': 'autocomplete-python:go-to-definition'
 
+# vim-mode overrides
 'atom-text-editor.vim-mode':
   'ctrl-c': 'core:copy'
+  'ctrl-v': 'core:paste'
+'atom-text-editor.vim-mode:not(.insert-mode)':
+  'ctrl-d': 'find-and-replace:select-next'
 'atom-text-editor.vim-mode.normal-mode':
   'ctrl-t': 'fuzzy-finder:toggle-file-finder'
   'ctrl-v': 'core:paste'
