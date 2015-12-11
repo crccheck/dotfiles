@@ -43,6 +43,7 @@ sudo apt-get install -y \
   libpq-dev libgeos-dev \
   keepassx \
   unity-tweak-tool \
+  psensor \
   supervisor
 
 
