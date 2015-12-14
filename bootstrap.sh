@@ -22,7 +22,7 @@ sudo chmod -x /etc/cron.daily/mlocate
 sudo sed -i 's/"1"/"0"/' /etc/apt/apt.conf.d/10periodic
 # uninstall bundled packages I never use
 sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
-  thunderbird banshee gnome-sudoku > /dev/null
+  thunderbird banshee gnome-sudoku rhythmbox > /dev/null
 
 # Install
 #########
@@ -40,11 +40,7 @@ sudo apt-get install -y \
   ack-grep silversearcher-ag \
   python2.6 python2.7 python3.3 python3.4 python-dev python-pip \
   libmysqlclient-dev \
-  libpq-dev libgeos-dev \
-  keepassx \
-  unity-tweak-tool \
-  psensor \
-  supervisor
+  libpq-dev libgeos-dev
 
 
 # Take ownership of `/usr/local`
@@ -136,6 +132,21 @@ if [ -z $(which atom) ]; then
   sudo apt-get -qq update
   sudo apt-get -y install atom
   make atom
+fi
+
+# Less important apps
+sudo apt-get install -y \
+  keepassx \
+  graphviz \
+  postgresql-client \
+  psensor \
+  supervisor \
+  unity-tweak-tool
+
+if [ -z $(which sshrc) ]; then
+  sudo add-apt-repository ppa:russell-s-stewart/ppa -y
+  sudo apt-get -qq update
+  sudo apt-get install sshrc
 fi
 
 # Manual steps:

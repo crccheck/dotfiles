@@ -48,6 +48,7 @@
   'ctrl-v': 'core:paste'
 'atom-text-editor.vim-mode:not(.insert-mode)':
   'ctrl-d': 'find-and-replace:select-next'
+  'ctrl-v': 'core:paste'
 'atom-text-editor.vim-mode.normal-mode':
   'ctrl-t': 'fuzzy-finder:toggle-file-finder'
   'ctrl-v': 'core:paste'

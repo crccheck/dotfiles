@@ -17,3 +17,4 @@ sublime-text-?/User/*.*-ca-bundle
 .atom/nohup.out
 .atom/packages/
 .atom/storage/
+.atom/blob-store
