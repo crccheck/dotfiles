@@ -218,6 +218,23 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSTableView Columns KeyBingingTable</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATCG
+		</data>
+		<string>198</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATGG
+		</data>
+		<string>319</string>
+	</array>
+	<key>NSTableView Hidden Columns KeyBingingTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering KeyBingingTable</key>
+	<array/>
 	<key>NSToolbar Configuration Terminal Toolbar</key>
 	<dict>
 		<key>TB Display Mode</key>
@@ -230,11 +247,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>836 382 605 485 0 0 1920 1057 </string>
+	<string>836 352 605 485 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>768 696 384 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>960 529 960 528 0 0 1920 1057 </string>
+	<string>720 503 941 524 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>698 73 585 473 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -664,6 +681,13 @@
 					<key>Text</key>
 					<string>9</string>
 				</dict>
+				<key>0x46-0x120000</key>
+				<dict>
+					<key>Action</key>
+					<integer>23</integer>
+					<key>Text</key>
+					<string></string>
+				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
 					<key>Action</key>
@@ -886,7 +910,7 @@
 				<key>action</key>
 				<string>best editor</string>
 				<key>editor</key>
-				<string>com.sublimetext.2</string>
+				<string>com.sublimetext.3</string>
 				<key>text</key>
 				<string></string>
 			</dict>
@@ -1619,6 +1643,10 @@
 			<string>/Users/crc</string>
 		</dict>
 	</array>
+	<key>NoSyncTimeOfLastPromo</key>
+	<real>465752543.96803999</real>
+	<key>NoSyncTimeOfLastPromoDownload</key>
+	<real>471472143.64670902</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -1679,11 +1707,11 @@
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.com/appcasts/final.xml</string>
+	<string>https://iterm2.com/appcasts/final.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-10-05T15:40:35Z</date>
+	<date>2015-12-10T20:26:39Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2577,6 +2605,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.0</string>
+	<string>2.1.4</string>
 </dict>
 </plist>
