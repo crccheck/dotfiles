@@ -18,13 +18,14 @@
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
+      "*.pyc"
+      ".cache"
       ".git"
       ".ipynb_checkpoints"
-      "*.pyc"
+      ".tox"
       "__pycache__"
       "coverage"
       "node_modules"
-      ".tox"
     ]
   editor:
     invisibles:
@@ -52,24 +53,24 @@
   emmet: {}
   "bracket-matcher":
     autocompleteBrackets: false
-".python.regexp.source":
-  editor:
-    preferredLineLength: 79
-".python.text.traceback":
+".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 79
 ".console.python.text":
   editor:
     preferredLineLength: 79
-".apache-config.mod_perl.source":
+".python.text.traceback":
   editor:
     preferredLineLength: 79
-".scala.source":
+".python.regexp.source":
+  editor:
+    preferredLineLength: 79
+".apache-config.source":
   editor:
     preferredLineLength: 79
 ".python.source":
   editor:
     preferredLineLength: 79
-".apache-config.source":
+".scala.source":
   editor:
     preferredLineLength: 79

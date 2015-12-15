@@ -20,7 +20,7 @@ docker_hosts=$(docker ps -q)
 
 # Append hosts entry
 for i in $docker_hosts; do
-  ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $i)
+  ip=$(dockr ip $i)
   name=$(docker inspect --format '{{.Name}}' $i)
   # strip the leading '/'
   name=${name:1}
