@@ -18,9 +18,10 @@
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
-      "*.pyc"
       ".cache"
+      ".DS_Store"
       ".git"
+      "*.pyc"
       ".ipynb_checkpoints"
       ".tox"
       "__pycache__"
@@ -53,24 +54,27 @@
   emmet: {}
   "bracket-matcher":
     autocompleteBrackets: false
-".apache-config.mod_perl.source":
-  editor:
-    preferredLineLength: 79
-".console.python.text":
+  "linter-eslint":
+    globalNodePath: "/usr/local"
+    useGlobalEslint: true
+".python.regexp.source":
   editor:
     preferredLineLength: 79
 ".python.text.traceback":
   editor:
     preferredLineLength: 79
-".python.regexp.source":
+".console.python.text":
   editor:
     preferredLineLength: 79
-".apache-config.source":
+".apache-config.mod_perl.source":
+  editor:
+    preferredLineLength: 79
+".scala.source":
   editor:
     preferredLineLength: 79
 ".python.source":
   editor:
     preferredLineLength: 79
-".scala.source":
+".apache-config.source":
   editor:
     preferredLineLength: 79
