@@ -136,6 +136,7 @@ fi
 
 # Less important apps
 sudo apt-get install -y \
+  keychain \
   keepassx \
   graphviz \
   postgresql-client \
