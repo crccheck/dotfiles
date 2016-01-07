@@ -5,6 +5,8 @@ BIN := $(HOME)/bin
 DOTFILES := $(wildcard .*)
 SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
 
+help:
+
 all: dotfiles bin virtualenv vim gterm
 
 basic: dotfiles bin
@@ -63,6 +65,8 @@ st3osx:
 vim:
 	@echo "* Linking vim config"
 	@cd $(HOME) && ln -sf $(PWD)/.vim
+	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
+	.vim/bundle/neobundle.vim/bin/neoinstall
 
 
 .PHONY: resources/oui.txt

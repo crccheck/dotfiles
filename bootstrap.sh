@@ -29,7 +29,7 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 
 sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
 
-sudo apt-get update -qq
+sudo apt-get -qq update
 # Important Stuff first
 sudo apt-get install -y vim-gnome git-core
 
@@ -95,6 +95,7 @@ fi
 if [ -z $(which node) ]; then
   sudo apt-get install nodejs nodejs-legacy npm -y
   npm install -g npm
+  sudo npm install -g n
   n stable
 fi
 
@@ -123,7 +124,7 @@ if [ -z $(which syncthing) ]; then
   # http://apt.syncthing.net/
   curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
   echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
-  sudo apt-get update
+  sudo apt-get -qq update
   sudo apt-get install syncthing
 fi
 
@@ -134,21 +135,20 @@ if [ -z $(which atom) ]; then
   make atom
 fi
 
+if [ -z $(which sshrc) ]; then
+  sudo add-apt-repository ppa:russell-s-stewart/ppa -y
+  sudo apt-get -qq update
+  sudo apt-get install sshrc
+fi
+
 # Less important apps
 sudo apt-get install -y \
-  keychain \
   keepassx \
   graphviz \
   postgresql-client \
   psensor \
   supervisor \
   unity-tweak-tool
-
-if [ -z $(which sshrc) ]; then
-  sudo add-apt-repository ppa:russell-s-stewart/ppa -y
-  sudo apt-get -qq update
-  sudo apt-get install sshrc
-fi
 
 # Manual steps:
 
