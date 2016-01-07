@@ -18,6 +18,7 @@ if [ ! -d .dotfiles ]; then
     make basic
 fi
 
-read -p "Press [Enter] to continue bootstrapping..."
+echo "Press [Enter] to continue bootstrapping..."
+read _
 
 ${HOME}/.dotfiles/bootstrap.sh
