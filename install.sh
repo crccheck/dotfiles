@@ -10,12 +10,14 @@ set -e
 
 sh_c='sudo -E sh -c'
 
+INSTALL_DEST=$HOME/projects/dotfiles
+
 $sh_c 'apt-get install git-core -y' > /dev/null
-if [ ! -d .dotfiles ]; then
+if [ ! -d "${INSTALL_DEST}" ]; then
   cd && \
-    git clone git://github.com/crccheck/dotfiles.git .dotfiles && \
-    cd .dotfiles && \
+    git clone git://github.com/crccheck/dotfiles.git "${INSTALL_DEST}" && \
+    cd "${INSTALL_DEST}" && \
     make basic
 fi
 
-${HOME}/.dotfiles/bootstrap.sh
+"${INSTALL_DEST}/bootstrap.sh"
