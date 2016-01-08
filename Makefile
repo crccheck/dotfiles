@@ -5,13 +5,17 @@ BIN := $(HOME)/bin
 DOTFILES := $(wildcard .*)
 SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
 
-help:
+help: ## Shows this help
+	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
-all: dotfiles bin virtualenv vim gterm
-
+basic: ## Just dotfiles and bin
 basic: dotfiles bin
 
-dotfiles:
+all: ## Run this after ./bootstrap.sh
+all: dotfiles bin virtualenv vim gterm
+
+
+dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
 	@$(foreach file, $(SRCS), \
 	  ln -sf $(PWD)/$(file) ~/$(file); echo "  - linking $(file)";)
@@ -61,11 +65,11 @@ st3osx:
 # dumping my other OSX stuff here too for now
 	cd ~/bin && ln -sf /Applications/Karabiner.app/Contents/Library/bin/karabiner
 
-.PHONY: vim
-vim:
+vim: ## Vim
 	@echo "* Linking vim config"
 	@cd $(HOME) && ln -sf $(PWD)/.vim
 	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
+	cd .vim/bundle/neobundle.vim && git checkout ver.3.2
 	.vim/bundle/neobundle.vim/bin/neoinstall
 
 
