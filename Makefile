@@ -8,12 +8,11 @@ SRCS     := $(filter-out . .. .git .gitignore .vim, $(DOTFILES))
 help: ## Shows this help
 	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
-basic: ## Just dotfiles and bin
-basic: dotfiles bin
+basic: ## Just the basics that work everywhere
+basic: dotfiles bin bashmarks
 
 all: ## Run this after ./bootstrap.sh
-all: dotfiles bin virtualenv vim gterm
-
+all: basic virtualenv vim gterm
 
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
@@ -28,6 +27,10 @@ bin: ## Setup my personal global helper scripts
 	  cd $(BIN) && ln -s $(PWD)/$(file) 2> /dev/null && \
 	  echo "linking $(file)" || \
 	  echo "skipping $(file)";)
+
+.PHONY: bashmarks
+bashmarks:
+	git submodule update --init bashmarks
 
 .PHONY: virtualenv
 virtualenv: # Set up my personal virtualenv script hooks
