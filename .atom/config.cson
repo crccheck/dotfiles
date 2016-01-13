@@ -11,6 +11,7 @@
     ]
     disabledPackages: [
       "metrics"
+      "project-manager"
     ]
     themes: [
       "atom-dark-ui"
