@@ -99,5 +99,6 @@ fi
 
 alias cls='printf "\ec"'
 
+[ -f ~/.dotfiles/bashmarks/bashmarks.sh ] && source ~/.dotfiles/bashmarks/bashmarks.sh
 [ -f ~/projects/dotfiles/bashmarks/bashmarks.sh ] && source ~/projects/dotfiles/bashmarks/bashmarks.sh
 [ -f ~/.crcrc ] && source ~/.crcrc
