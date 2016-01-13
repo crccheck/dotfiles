@@ -243,6 +243,14 @@ else
   alias du='du -kh --max-depth=1'
   alias ls='ls -F --color=auto'
   alias netstat='netstat -natp'
+
+  # SSH Agent and keychain
+  if [ -f /usr/bin/keychain ] && [ ! -f /tmp/keychain ]; then
+    ssh-add ~/.ssh/*.pem
+    # /usr/bin/keychain $HOME/.ssh/*.pem
+    # source $HOME/.keychain/$HOSTNAME-sh
+    touch /tmp/keychain
+  fi
 fi
 
 if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
@@ -350,13 +358,6 @@ function mac {
 # https://gist.github.com/jashkenas/5113149
 alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
 alias restore_mac='sudo ifconfig en0 ether YOUR_ORIGINAL_MAC_ADDRESS_GOES_HERE'
-
-# SSH Agent and keychain
-if [ -f /usr/bin/keychain ] && [ ! -f /tmp/keychain ]; then
-  /usr/bin/keychain $HOME/.ssh/*.pem
-  source $HOME/.keychain/$HOSTNAME-sh
-  touch /tmp/keychain
-fi
 
 # Autoenv
 [ -f ~/.autoenv/activate.sh ] && source ~/.autoenv/activate.sh
