@@ -23,7 +23,7 @@ alias ttail='tail -n 50 -f'
 
 alias update="sudo apt-get update"
 alias install="sudo apt-get install"
-alias upgrade="sudo apt-get safe-upgrade"
+alias upgrade="sudo apt-get upgrade"
 alias remove="sudo apt-get remove"
 
 alias fig="docker-compose"
