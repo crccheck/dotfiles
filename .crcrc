@@ -85,6 +85,7 @@ shopt -s histappend
 
 export LC_COLLATE="POSIX"
 export DOCKER_NAMESPACE=crccheck  # my docker username
+export PIP_DISABLE_PIP_VERSION_CHECK=1
 
 if [ "$TERM" == "xterm" ]
 then
@@ -178,7 +179,6 @@ alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
 alias befs="bundle exec foreman start"
 alias dsdamn="find . -name '.DS_Store' -delete"
-alias pip="pip --disable-pip-version-check"
 
 alias wow='git status'
 alias such=git

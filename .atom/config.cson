@@ -1,21 +1,12 @@
 "*":
-  "exception-reporting":
-    userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
-  welcome:
-    showOnStartup: false
+  "autocomplete-python":
+    caseInsensitiveCompletion: false
+  "bracket-matcher":
+    autocompleteBrackets: false
   core:
-    packagesWithKeymapsDisabled: [
-      "emmet"
-      "autocomplete-python"
-      "bracket-matcher"
-    ]
     disabledPackages: [
       "metrics"
       "project-manager"
-    ]
-    themes: [
-      "atom-dark-ui"
-      "atom-dark-syntax"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -29,53 +20,66 @@
       "coverage"
       "node_modules"
     ]
+    packagesWithKeymapsDisabled: [
+      "emmet"
+      "autocomplete-python"
+      "bracket-matcher"
+      "python-yapf"
+    ]
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
   editor:
+    autoIndentOnPaste: false
+    fontSize: 12
     invisibles:
       eol: false
     preferredLineLength: 79
     showInvisibles: true
-    autoIndentOnPaste: false
-    fontSize: 12
-  "vim-mode":
-    useClipboardAsDefaultRegister: true
+  emmet: {}
+  "exception-reporting":
+    userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
   "git-diff": {}
-  "linter-flake8":
-    maxComplexity: 100
-  "autocomplete-python":
-    caseInsensitiveCompletion: false
-  "tree-view":
-    hideIgnoredNames: true
-  wrap: {}
-  tabs:
-    enableVcsColoring: true
-    usePreviewTabs: true
   linter:
     lintOnFly: false
     showErrorPanel: false
-  emmet: {}
-  "bracket-matcher":
-    autocompleteBrackets: false
   "linter-eslint":
     globalNodePath: "/usr/local"
     useGlobalEslint: true
-".python.regexp.source":
+  "linter-flake8":
+    maxComplexity: 100
+  "python-yapf":
+    checkOnSave: false
+    yapfPath: "/usr/local/bin/yapf"
+  tabs:
+    enableVcsColoring: true
+    usePreviewTabs: true
+  "tree-view":
+    hideIgnoredNames: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  welcome:
+    showOnStartup: false
+  wrap: {}
+".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 79
-".python.text.traceback":
+".apache-config.source":
   editor:
     preferredLineLength: 79
 ".console.python.text":
   editor:
     preferredLineLength: 79
-".apache-config.mod_perl.source":
-  editor:
-    preferredLineLength: 79
-".scala.source":
+".python.regexp.source":
   editor:
     preferredLineLength: 79
 ".python.source":
   editor:
     preferredLineLength: 79
-".apache-config.source":
+".python.text.traceback":
+  editor:
+    preferredLineLength: 79
+".scala.source":
   editor:
     preferredLineLength: 79
