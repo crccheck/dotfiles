@@ -26,6 +26,8 @@ alias install="sudo apt-get install"
 alias upgrade="sudo apt-get upgrade"
 alias remove="sudo apt-get remove"
 
+alias adp="arc diff --preview --browse"
+alias cov='coverage report --skip-covered --show-missing'
 alias fig="docker-compose"
 alias dm="docker-machine"
 alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'

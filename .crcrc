@@ -171,7 +171,7 @@ alias djp='django runserver_plus 0.0.0.0:$PORT'
 alias djs="django shell"
 alias djsp="django shell_plus"
 alias djsql="django debugsqlshell"
-alias djadminme='django createsuperuser --username=admin --email=admin@example.com'
+alias djadminme='django createsuperuser --username=admin --email=admin@example.com || django createsuperuser --email=admin@example.com'
 alias ipynb='ipython notebook'
 alias ipynbinstall='pip install ipython[notebook]'
 
