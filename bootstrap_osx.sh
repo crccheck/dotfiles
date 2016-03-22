@@ -1,6 +1,7 @@
 # For OSX 10.11 El Capitan
 
-brew install python gti ponysay jq vim bash ack gnu-sed chromedriver tree sshrc pkg-config typesafe-activator
+brew install python gti ponysay jq vim bash ack gnu-sed chromedriver tree \
+  sshrc pkg-config typesafe-activator the_silver_searcher
 brew install homebrew/versions/mysql55
 
 brew install caskroom/cask/brew-cask
@@ -25,6 +26,7 @@ brew cask install postgres atom
 #
 # ### Keyboard
 # Full Keyboard Access: All controls (or Control F7)
+# * Use all F1, F2, etc. keys as standard function keys
 #
 # Disable updates
 # Hot corners
