@@ -247,11 +247,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>836 352 605 485 0 0 1680 1027 </string>
+	<string>996 371 924 485 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>768 696 384 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>720 503 941 524 0 0 1680 1027 </string>
+	<string>960 531 960 526 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>698 73 585 473 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -1643,10 +1643,12 @@
 			<string>/Users/crc</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveShownPromoWithId_4</key>
+	<true/>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>465752543.96803999</real>
+	<real>477527948.28656203</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>471472143.64670902</real>
+	<real>480030267.66046</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -1658,7 +1660,7 @@
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
-	<true/>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1697,7 +1699,7 @@
 	<key>PromptOnClose</key>
 	<false/>
 	<key>PromptOnQuit</key>
-	<false/>
+	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
 	<key>RightCommand</key>
@@ -1711,7 +1713,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-12-10T20:26:39Z</date>
+	<date>2016-03-18T21:44:26Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
