@@ -93,12 +93,10 @@ alias l='ls -la'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+[ -f /etc/bash_completion ] && source /etc/bash_completion
 
 alias cls='printf "\ec"'
 
 [ -f ~/.dotfiles/bashmarks/bashmarks.sh ] && source ~/.dotfiles/bashmarks/bashmarks.sh
-[ -f ~/projects/dotfiles/bashmarks/bashmarks.sh ] && source ~/projects/dotfiles/bashmarks/bashmarks.sh
+[ -f ~/Sync/dotfiles/bashmarks/bashmarks.sh ] && source ~/Sync/dotfiles/bashmarks/bashmarks.sh
 [ -f ~/.crcrc ] && source ~/.crcrc

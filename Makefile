@@ -1,4 +1,4 @@
-PWD := $(PWD)
+PWD := $(shell echo $$PWD)
 # Where I keep local binaries
 BIN := $(HOME)/bin
 
@@ -52,8 +52,13 @@ atom:
 	@# apm install --packaged-file .atom/package-list.txt
 	@# workaround for error: ENOPACKAGEJSON
 	cat .atom/package-list.txt | grep -v emmet | xargs apm install
+	@$(MAKE) -s .atom/packages/emmet-atom
+
+.atom/packages/emmet-atom:
 	cd .atom/packages && git clone git@github.com:crccheck/emmet-atom
-	cd .atom/packages/emmet-atom && git remote add emmet https://github.com/emmetio/emmet-atom.git
+	cd .atom/packages/emmet-atom && \
+	  git remote add emmet https://github.com/emmetio/emmet-atom.git && \
+	  npm install
 
 # Make sure to do this after sublime text is installed
 # https://packagecontrol.io/docs/syncing
