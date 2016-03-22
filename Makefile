@@ -77,6 +77,8 @@ vim: ## Vim
 	cd .vim/bundle/neobundle.vim && git checkout ver.3.2
 	.vim/bundle/neobundle.vim/bin/neoinstall
 
+osx:
+	echo '[ -f ~/.bashrc ] && source ~/.bashrc\n[ -n "$$TERM_PROGRAM" ] && ponysay --quote' > ~/.bash_profile
 
 .PHONY: resources/oui.txt
 resources/oui.txt:
