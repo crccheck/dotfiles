@@ -217,8 +217,9 @@ if [ "$(uname -s)" == "Darwin" ]; then
   alias du='du -kh'
   prepend_path_if_exists PATH /usr/local/bin
 
-  prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.4/bin'
-  prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/9.3/bin'
+  # http://postgresapp.com/documentation/cli-tools.html
+  prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
+
   alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
   # Fix Backspace/Delete confusion:
   stty erase ^?

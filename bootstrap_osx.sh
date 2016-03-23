@@ -67,6 +67,13 @@ chflags hidden /Applications/iTunes.app
 # TODO: sudoers
 
 
+# Followup
+# --------
+# Run Postgres.app. It'll move itself to /Applications Then see
+# http://postgresapp.com/documentation/cli-tools.html
+# to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH
+
+
 # At this point, you're forced to upgrade to El Capitan
 # Manually install XCode from the App Store or just not do this
 brew install macvim
