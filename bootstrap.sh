@@ -154,4 +154,6 @@ sudo apt-get install -y \
 
 # https://fixubuntu.com/
 
+sudo apt-get install ttf-mscorefonts-installer
+
 # "Show the menues for a window" -> In the window's title bar
