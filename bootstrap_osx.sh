@@ -1,7 +1,8 @@
 # For OSX 10.10 Yosemite
 
 brew install python gti ponysay jq pv vim bash bash_completion ack gnu-sed chromedriver tree \
-  sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform
+  sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
+  imagemagick wget
 
 brew install homebrew/versions/mysql56
 
@@ -24,19 +25,17 @@ brew cask install \
   # Let me edit files
   atom \
   # Internet
-  firefox \
-  # It's paleo
+  firefox google-chrome \
+  # It's paleo, yo
   flux \
-  # Internet
-  google-chrome \
   # Better than Terminal
   iterm2 \
-  # Remap the keys the sensible way
-  karabiner \
   # Shhhhhh!
   keepassx \
   # This installs Postgres.app, NOT the same as `brew install postgres`
   postgres \
+  # Remap the keys the sensible way
+  karabiner \
   # This gives you natural scrolling for the touchpad and normal scrolling for the mousewheel
   scroll-reverser \
   # My window manager

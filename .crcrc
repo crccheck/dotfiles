@@ -266,13 +266,7 @@ fi
 ###################################################
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=$HOME/env
-if [ ! -d $WORKON_HOME ]; then
-    mkdir -p $WORKON_HOME
-fi
-export PROJECT_HOME=$HOME/projects
-if [ ! -d $PROJECT_HOME ]; then
-    mkdir -p $PROJECT_HOME
-fi
+[ ! -d $WORKON_HOME ] && mkdir -p $WORKON_HOME
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 

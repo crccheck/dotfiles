@@ -7,7 +7,7 @@ if [ -z $IPYTHONDIR ]; then
 fi
 
 DST=$IPYTHONDIR/profile_default
-SRC=$HOME/.dotfiles/.ipython/ipython_config.py
+SRC=$HOME/Sync/dotfiles/.ipython/ipython_config.py
 echo "Linking ipython config $DST -> $SRC"
 mkdir -p $DST
 cd $DST

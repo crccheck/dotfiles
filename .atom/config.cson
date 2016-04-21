@@ -49,6 +49,10 @@
     useGlobalEslint: true
   "linter-flake8":
     maxComplexity: 100
+  "linter-js-standard":
+    checkStyleDevDependencies: true
+    honorStyleSettings: true
+    showEslintRules: true
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
