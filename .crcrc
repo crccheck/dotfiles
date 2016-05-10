@@ -189,12 +189,15 @@ alias xoff='xset dpms force off'
 function work {
   # assumes `mkvirtualenv` exists
   local env_name=$(basename $PWD)
-  workon $env_name
+  workon ${env_name}
   if [ $? -ne 0 ]; then
     echo "Shall I create '${env_name}' for you? [Yn]"
     read -n 1 sure
     if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-      mkvirtualenv $env_name
+      echo "Python version? [3.5]"
+      read ver
+      mkvirtualenv ${env_name} --py=python${ver:-3.5}
+      workon ${env_name}
       setvirtualenvproject
     fi
   fi
