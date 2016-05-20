@@ -77,14 +77,14 @@ fi
 # More Python stuff
 ###################
 # if this gives you trouble, you need to add a `deb-src` line to your sources.list
-sudo apt-get build-dep lxml -y
+sudo apt-get build-dep -y lxml
 
 # unfuck PIL
 if [ ! -f "/usr/lib/$(uname -i)-linux-gnu/libz.so" ]; then
-  sudo apt-get build-dep pillow -y
-  sudo apt-get install libjpeg-dev -y
+  sudo apt-get build-dep -y pillow
+  sudo apt-get install -y libjpeg-dev
   sudo ln -s /usr/lib/$(uname -i)-linux-gnu/libz.so /usr/lib
-  sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib
+  sudo ln -s /usr/lib/$(uname -i)-linux-gnu/libjpeg.so /usr/lib
   # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.8 /usr/lib
   # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.62 /usr/lib
   # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
@@ -111,7 +111,7 @@ fi
 # heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
 # inotify helps other programs watch files
-sudo apt-get install inotify-tools -y
+sudo apt-get install -y inotify-tools
 
 # synergy
 sudo apt-get install -y libavahi-compat-libdnssd1
@@ -125,20 +125,20 @@ if [ -z $(which syncthing) ]; then
   curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
   echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
   sudo apt-get -qq update
-  sudo apt-get install syncthing
+  sudo apt-get install -y syncthing
 fi
 
 if [ -z $(which atom) ]; then
   sudo add-apt-repository ppa:webupd8team/atom -y
   sudo apt-get -qq update
-  sudo apt-get -y install atom
+  sudo apt-get install -y atom
   make atom
 fi
 
 if [ -z $(which sshrc) ]; then
   sudo add-apt-repository ppa:russell-s-stewart/ppa -y
   sudo apt-get -qq update
-  sudo apt-get install sshrc
+  sudo apt-get install -y sshrc
 fi
 
 # Less important apps
@@ -153,7 +153,8 @@ sudo apt-get install -y \
 # Manual steps:
 
 # https://fixubuntu.com/
-
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
+    select true | debconf-set-selections
 sudo apt-get install ttf-mscorefonts-installer
 
 # "Show the menues for a window" -> In the window's title bar

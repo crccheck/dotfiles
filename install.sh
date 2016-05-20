@@ -10,7 +10,7 @@ set -e
 
 sh_c='sudo -E sh -c'
 
-INSTALL_DEST=$HOME/projects/dotfiles
+INSTALL_DEST=$HOME/Sync/dotfiles
 
 $sh_c 'apt-get install git-core -y' > /dev/null
 if [ ! -d "${INSTALL_DEST}" ]; then
@@ -20,4 +20,4 @@ if [ ! -d "${INSTALL_DEST}" ]; then
     make basic
 fi
 
-"${INSTALL_DEST}/bootstrap.sh"
+exec "${INSTALL_DEST}/bootstrap.sh"
