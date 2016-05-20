@@ -51,7 +51,7 @@ sudo chown -R $USER:$USER /usr/local
 # Base Python
 #############
 sudo pip install -U pip
-pip install --quiet virtualenvwrapper csvkit awscli ansible postdoc
+pip install --quiet virtualenvwrapper csvkit awscli postdoc
 source ~/.bashrc  # Setup virtualenv env variables
 
 # Docker
