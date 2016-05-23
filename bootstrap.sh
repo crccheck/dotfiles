@@ -51,7 +51,7 @@ sudo chown -R $USER:$USER /usr/local
 # Base Python
 #############
 sudo pip install -U pip
-pip install --quiet virtualenvwrapper csvkit awscli postdoc
+pip install --quiet virtualenvwrapper awscli postdoc
 source ~/.bashrc  # Setup virtualenv env variables
 
 # Docker
@@ -77,7 +77,7 @@ fi
 # More Python stuff
 ###################
 # if this gives you trouble, you need to add a `deb-src` line to your sources.list
-sudo apt-get build-dep -y lxml
+# sudo apt-get build-dep -y lxml
 
 # unfuck PIL
 if [ ! -f "/usr/lib/$(uname -i)-linux-gnu/libz.so" ]; then

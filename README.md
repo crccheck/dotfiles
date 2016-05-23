@@ -36,4 +36,5 @@ Re-adding the remote after github has my pub key:
     git remote rm origin
     git remote add origin git@github.com:crccheck/dotfiles.git
     git submodule update
+    git fetch
     git branch -u origin/master
