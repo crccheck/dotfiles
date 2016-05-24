@@ -178,7 +178,6 @@ alias ipynbinstall='pip install ipython[notebook]'
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias fixssh="source $HOME/bin/fixssh"
 alias befs="bundle exec foreman start"
-alias dsdamn="find . -name '.DS_Store' -delete"
 
 alias wow='git status'
 alias such=git
