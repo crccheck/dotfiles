@@ -97,6 +97,6 @@ alias l='ls -la'
 
 alias cls='printf "\ec"'
 
-[ -f ~/.dotfiles/bashmarks/bashmarks.sh ] && source ~/.dotfiles/bashmarks/bashmarks.sh
-[ -f ~/Sync/dotfiles/bashmarks/bashmarks.sh ] && source ~/Sync/dotfiles/bashmarks/bashmarks.sh
 [ -f ~/.crcrc ] && source ~/.crcrc
+[ -f ~/Sync/dotfiles/bashmarks/bashmarks.sh ] && source ~/Sync/dotfiles/bashmarks/bashmarks.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
