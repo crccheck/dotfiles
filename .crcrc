@@ -146,11 +146,6 @@ function dshark {
   docker run --rm --net=container:$1 crccheck/tcpdump -i any tcp --immediate-mode -w - | wireshark -k -i -
 }
 
-# Node.js
-export NODE_PATH=$HOME/local/node
-prepend_path_if_exists PATH $HOME/local/node/bin
-prepend_path_if_exists NODE_PATH /usr/local/lib/node_modules
-
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # to install ack-grep as ack instead of ack-grep:
@@ -236,10 +231,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
   [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
-
-  if which -s docker-machine; then
-    eval "$(docker-machine env default)"
-  fi
 else
   # aliases that don't work in OSX
   alias df='df -kTh'
@@ -292,6 +283,16 @@ fi
 if [ -d /usr/local/heroku/bin ]; then
     prepend_path PATH /usr/local/heroku/bin
 fi
+
+
+# Node.js
+#########
+
+export NODE_PATH=$HOME/local/node
+prepend_path_if_exists PATH $HOME/local/node/bin
+prepend_path_if_exists NODE_PATH /usr/local/lib/node_modules
+export NVM_DIR=$HOME/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 GREEN="\[\033[1;32m\]"
 BLUE="\[\033[1;34m\]"

@@ -1,6 +1,6 @@
 # For OSX 10.10 Yosemite
 
-brew install python gti ponysay jq pv vim bash bash_completion ack gnu-sed chromedriver tree \
+brew install python gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
   sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
   imagemagick wget
 
