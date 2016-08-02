@@ -2,6 +2,8 @@
 *.pyc
 *.cache
 .DS_Store
+# Generated files with timestamps
+.config/configstore
 # generated docs
 .vim/**/doc/tags
 .vim/bundle/*
