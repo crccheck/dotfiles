@@ -79,7 +79,7 @@ vim: ## Vim
 	@echo "* Linking vim config"
 	@cd $(HOME) && ln -sf $(PWD)/.vim
 	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
-	cd .vim/bundle/neobundle.vim && git checkout ver.3.2
+	cd .vim/bundle/neobundle.vim && git checkout ver.4.0
 	.vim/bundle/neobundle.vim/bin/neoinstall
 
 osx:
