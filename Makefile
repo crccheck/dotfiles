@@ -1,3 +1,6 @@
+# https://terraform.io/downloads.html
+TERRAFORM_VERSION = 0.7.0
+
 PWD := $(shell echo $$PWD)
 # Where I keep local binaries
 BIN := $(HOME)/bin
@@ -84,6 +87,16 @@ vim: ## Vim
 
 osx:
 	echo '[ -f ~/.bashrc ] && source ~/.bashrc\n[ -n "$$TERM_PROGRAM" ] && ponysay --quote' > ~/.bash_profile
+
+terraform:
+	[ ! -d /usr/local/terraform-$(TERRAFORM_VERSION) ]
+	cd /tmp && \
+	  wget https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip
+	unzip /tmp/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip -d /usr/local/terraform-$(TERRAFORM_VERSION)
+	rm -f /usr/local/terraform /usr/local/bin/terraform
+	ln -s /usr/local/terraform-$(TERRAFORM_VERSION) /usr/local/terraform
+	ln -s /usr/local/terraform/terraform /usr/local/bin/terraform
+
 
 .PHONY: resources/oui.txt
 resources/oui.txt:
