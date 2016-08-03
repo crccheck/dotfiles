@@ -20,7 +20,7 @@ all: basic virtualenv vim gterm
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
 	@$(foreach file, $(SRCS), \
-	  ln -sf $(PWD)/$(file) ~/$(file); echo "  - linking $(file)";)
+	  [ ! -e "$(PWD)/$(file)" ] && ln -s $(PWD)/$(file) ~/$(file); echo "  - linking $(file)";)
 
 .PHONY: bin
 bin: ## Setup my personal global helper scripts
@@ -84,9 +84,6 @@ vim: ## Vim
 	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
 	cd .vim/bundle/neobundle.vim && git checkout ver.4.0
 	.vim/bundle/neobundle.vim/bin/neoinstall
-
-osx:
-	echo '[ -f ~/.bashrc ] && source ~/.bashrc\n[ -n "$$TERM_PROGRAM" ] && ponysay --quote' > ~/.bash_profile
 
 terraform:
 	[ ! -d /usr/local/terraform-$(TERRAFORM_VERSION) ]
