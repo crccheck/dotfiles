@@ -36,8 +36,6 @@ brew cask install \
   postgres \
   # Remap the keys the sensible way
   karabiner \
-  # This gives you natural scrolling for the touchpad and normal scrolling for the mousewheel
-  scroll-reverser \
   # My window manager
   slate
 
@@ -64,6 +62,14 @@ chflags hidden /Applications/iTunes.app
 
 
 # TODO: sudoers
+
+# Karabiner settings
+# http://apple.stackexchange.com/questions/116617/how-to-separate-mouse-and-trackpad-settings/197396#197396
+# Karabiner Preferences > Change Key
+# > Karabiner core settings > Exclude devices > Don't remap Apple's pointing devices
+# > Pointing Device > Reverse scrolling direction > Reverse Vertical Scrolling
+# > Change Control_L Key (Left Control) > Control_L to Fn
+# > Change Fn Key > Fn to Control_L
 
 
 # Followup

@@ -47,7 +47,6 @@
     showErrorPanel: false
   "linter-eslint":
     globalNodePath: "/usr/local"
-    useGlobalEslint: true
   "linter-flake8":
     maxComplexity: 100
   "linter-js-standard":

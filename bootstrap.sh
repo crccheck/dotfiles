@@ -69,9 +69,9 @@ pip install docker-compose
 #########
 # Install from `master` because packaged versions are too old and don't support
 # foreman compatible .env files.
-if [ ! -d ~/.autoenv ]; then
-  git clone git://github.com/crccheck/autoenv.git ~/.autoenv
-  touch ~/.autoenv_authorized
+if [ ! -d ~/Sync/autoenv ]; then
+  git clone git://github.com/crccheck/autoenv.git ~/Sync/autoenv
+  touch ~/Sync/.autoenv_authorized
 fi
 
 # More Python stuff
