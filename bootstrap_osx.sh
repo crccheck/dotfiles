@@ -1,8 +1,8 @@
-# For OSX 10.10 Yosemite
+# For OSX 10.11 El Capitan
 
 brew install python gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
   sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
-  imagemagick wget
+  imagemagick wget coway fortune
 
 brew install homebrew/versions/mysql56
 
@@ -70,6 +70,7 @@ chflags hidden /Applications/iTunes.app
 # > Pointing Device > Reverse scrolling direction > Reverse Vertical Scrolling
 # > Change Control_L Key (Left Control) > Control_L to Fn
 # > Change Fn Key > Fn to Control_L
+# > Change Delete Key > Control+Delete to Forward Delete
 
 
 # Followup
@@ -77,8 +78,3 @@ chflags hidden /Applications/iTunes.app
 # Run Postgres.app. It'll move itself to /Applications Then see
 # http://postgresapp.com/documentation/cli-tools.html
 # to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH
-
-
-# At this point, you're forced to upgrade to El Capitan
-# Manually install XCode from the App Store or just not do this
-brew install macvim
