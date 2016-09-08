@@ -33,7 +33,6 @@
     ]
   editor:
     autoIndentOnPaste: false
-    fontSize: 12
     invisibles:
       eol: false
     preferredLineLength: 79
