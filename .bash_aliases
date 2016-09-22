@@ -35,6 +35,7 @@ alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 alias cows='for cow in $(cowsay -l); do cowsay -f $cow "$cow"; done'
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
 
+alias nn="npm run"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
 alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'

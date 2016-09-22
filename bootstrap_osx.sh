@@ -39,6 +39,9 @@ brew cask install \
   # My window manager
   slate
 
+# Gems
+gem install lolcommits
+
 # Preferences
 # -----------
 #

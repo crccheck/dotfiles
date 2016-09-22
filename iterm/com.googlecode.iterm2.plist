@@ -249,7 +249,7 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>269 215 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>536 128 570 452 0 0 1280 777 </string>
+	<string>1440 984 1075 660 1440 -253 1080 1897 </string>
 	<key>NeverWarnAboutShortLivedSessions_6E292A1F-40DF-4A1C-87B9-5B799F80DFC8</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1051,6 +1051,8 @@
 	<integer>0</integer>
 	<key>NoSyncInstallationId</key>
 	<string>5211C670-AB09-4F3D-A933-A99DB7BB1833</string>
+	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
+	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1133,7 +1135,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>

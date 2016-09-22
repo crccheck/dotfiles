@@ -11,6 +11,7 @@
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
+      "lib"
       ".cache"
       ".DS_Store"
       ".git"
@@ -41,6 +42,12 @@
   "exception-reporting":
     userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
   "git-diff": {}
+  "js-hyperclick":
+    extensions: [
+      ".js"
+      ".json"
+      ".jsx"
+    ]
   linter:
     lintOnFly: false
     showErrorPanel: false
@@ -60,6 +67,7 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   welcome:
@@ -71,7 +79,16 @@
 ".apache-config.source":
   editor:
     preferredLineLength: 79
+".coffee.jsx.source":
+  editor:
+    preferredLineLength: 79
 ".console.python.text":
+  editor:
+    preferredLineLength: 79
+".hyperlink.text":
+  editor:
+    preferredLineLength: 79
+".js.jsx.source":
   editor:
     preferredLineLength: 79
 ".python.regexp.source":
