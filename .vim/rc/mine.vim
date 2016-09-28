@@ -25,3 +25,6 @@ vnoremap <S-Tab> <gv
 " use Ctrl Up/Down to shift a line up/down
 map <C-Down> :m+<CR>
 map <C-Up> :m-2<CR>
+
+" http://vim.wikia.com/wiki/Editing_crontab
+set backupskip=/tmp/*,/private/tmp/*
