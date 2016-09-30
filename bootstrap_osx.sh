@@ -67,6 +67,9 @@ gem install lolcommits
 # For some fucking reason, OSX cannot will not let you change brightness unless you do...
 # > Change F1..F19 Key ... > Change F1..F19 Key > F1..F12 to Functional... > F1,F2 to Brightness Adjust
 
+# Das
+# Search for "command_l option_l" and select the options to swap the two
+
 # Kill iTunes
 # http://apple.stackexchange.com/questions/87344/how-to-delete-itunes-once-and-for-all-from-the-command-line
 softwareupdate --ignore iTunes

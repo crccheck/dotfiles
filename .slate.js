@@ -1,4 +1,5 @@
 /* global slate */
+// Use the "console" and search for "Slate" to view logs
 (function (S) {
   'use strict';
 
@@ -17,23 +18,43 @@
     // 'orderScreensLeftToRight' : true
   });
 
-  // Magic to toggle between several widths
-  function dynWidth () {
-    var options = [
+  function getWidthOptions () {
+    // https://github.com/jigish/slate/wiki/Screen-Object
+    var screenWidth = S.screen().rect().width
+    if (screenWidth > 3000) {
+      return [
+        'screenSizeX/3',
+        'screenSizeX*3/12',
+        'screenSizeX*5/12'
+      ]
+    }
+
+    return [
       'screenSizeX/2',
-      'screenSizeX*11/20',
-      'screenSizeX*9/20'
+      'screenSizeX*9/20',
+      'screenSizeX*11/20'
     ]
+  }
+
+  function dynPushWidth () {
+    var options = getWidthOptions()
+    var ret = 'bar-resize:' + options[counter % options.length]
+    counter++
+    return ret
+  }
+
+  function dynWidth () {
+    var options = getWidthOptions()
     var ret = options[counter % options.length]
     counter++
     return ret
   }
-  // The appropriate X that corresponds with the dynWidth
-  function dynX (){
+
+  function dynXMiddle (){
     var options = [
-      'screenOriginX+screenSizeX/2',
-      'screenOriginX+screenSizeX*9/20',
-      'screenOriginX+screenSizeX*11/20'
+      'screenOriginX+screenSizeX*1/3',
+      'screenOriginX+screenSizeX*9/24',
+      'screenOriginX+screenSizeX*7/24'
     ]
     return options[counter % options.length]
   }
@@ -59,9 +80,16 @@
     return options[counter % options.length]
   }
 
+  function chillLeft() {
+    S.log('chillLeft')
+    return S.operation('push', {direction: 'left', style: 'center'})
+    // S.operation('push', {direction: 'left', style: dynPushWidth()})
+  }
+
+
   // Reset the counter every time we change focus
   S.on('appActivated', function () {
-    counter = 0;
+    counter = 0
   });
 
   // Operations
@@ -81,8 +109,10 @@
       },
       move = {
         full: baseMove,
-        left: baseMove.dup({width: dynWidth}),
-        right: baseMove.dup({x: dynX, width: dynWidth}),
+        left: S.operation('push', {direction: 'left', style: dynPushWidth}),
+        // left: chillLeft,
+        middle: baseMove.dup({x: dynXMiddle, width: dynWidth}),
+        right: S.operation('push', {direction: 'right', style: dynPushWidth}),
         top: baseMove.dup({height: dynHeight}),
         bottom: baseMove.dup({y: dynY, height: dynHeight}),
         topLeft: baseMove.dup({width: 'screenSizeX/2', height: 'screenSizeY/2'}),
@@ -103,7 +133,7 @@
     'pad3:ctrl;cmd': move.bottomRight,
     'pad4:ctrl;cmd': move.left,
     'left:ctrl;cmd': move.left,
-    'pad5:ctrl;cmd': move.full,
+    'pad5:ctrl;cmd': move.middle,
     'pad6:ctrl;cmd': move.right,
     'right:ctrl;cmd': move.right,
     'pad7:ctrl;cmd': move.topLeft,
