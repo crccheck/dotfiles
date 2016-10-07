@@ -1,13 +1,12 @@
 /* global slate */
 // Use the "console" and search for "Slate" to view logs
+// move / resize / push / nudge / throw ...
+// https://github.com/jigish/slate/wiki/Operations
 (function (S) {
   'use strict';
 
   // A global counter
   var counter = 0
-
-  // move / resize / push / nudge / throw ...
-  // https://github.com/jigish/slate/wiki/Operations
 
   // Configs
   S.configAll({
@@ -16,17 +15,17 @@
     // 'checkDefaultsOnLoad' : true,
     // 'focusCheckWidthMax' : 3000,
     // 'orderScreensLeftToRight' : true
-  });
+  })
 
-  function getWidthOptions () {
+  function isUltraWide () {
     // https://github.com/jigish/slate/wiki/Screen-Object
     var screenWidth = S.screen().rect().width
-    if (screenWidth > 3000) {
-      return [
-        'screenSizeX/3',
-        'screenSizeX*3/12',
-        'screenSizeX*5/12'
-      ]
+    return screenWidth > 3000
+  }
+
+  function getWidthOptions () {
+    if (isUltraWide()) {
+      return ['screenSizeX/3']
     }
 
     return [
@@ -43,86 +42,51 @@
     return ret
   }
 
-  function dynWidth () {
-    var options = getWidthOptions()
-    var ret = options[counter % options.length]
-    counter++
-    return ret
-  }
-
-  function dynXMiddle (){
-    var options = [
-      'screenOriginX+screenSizeX*1/3',
-      'screenOriginX+screenSizeX*9/24',
-      'screenOriginX+screenSizeX*7/24'
-    ]
-    return options[counter % options.length]
-  }
-
-  // Magic to toggle between several heights
-  function dynHeight () {
-    var options = [
-      'screenSizeY/2',
-      'screenSizeY*13/20',
-      'screenSizeY*7/20'
-    ]
-    var ret = options[counter % options.length]
-    counter++
-    return ret
-  }
-  // The appropriate Y that corresponds with the dynHeight
-  function dynY () {
-    var options = [
-      'screenOriginY+screenSizeY/2',
-      'screenOriginY+screenSizeY*7/20',
-      'screenOriginY+screenSizeY*13/20'
-    ]
-    return options[counter % options.length]
-  }
-
-  function chillLeft() {
-    S.log('chillLeft')
-    return S.operation('push', {direction: 'left', style: 'center'})
-    // S.operation('push', {direction: 'left', style: dynPushWidth()})
-  }
-
-
   // Reset the counter every time we change focus
   S.on('appActivated', function () {
     counter = 0
-  });
+  })
 
   // Operations
   var baseMove = S.operation('move', {
-        x: 'screenOriginX',
-        y: 'screenOriginY',
-        width: 'screenSizeX',
-        height: 'screenSizeY'
-      });
-  var positions = {
-        left: 'screenOriginX',
-        top: 'screenOriginY',
-        right: 'screenSizeX',
-        bottom: 'screenSizeY',
-        center: 'screenOriginX+screenSizeX/2',  // X
-        middle: 'screenOriginY+screenSizeY/2'  // Y
-      },
-      move = {
-        full: baseMove,
-        left: S.operation('push', {direction: 'left', style: dynPushWidth}),
-        // left: chillLeft,
-        middle: baseMove.dup({x: dynXMiddle, width: dynWidth}),
-        right: S.operation('push', {direction: 'right', style: dynPushWidth}),
-        top: baseMove.dup({height: dynHeight}),
-        bottom: baseMove.dup({y: dynY, height: dynHeight}),
-        topLeft: baseMove.dup({width: 'screenSizeX/2', height: 'screenSizeY/2'}),
-        topRight: baseMove.dup({x: positions.center, width: 'screenSizeX/2', height: 'screenSizeY/2'}),
-        bottomLeft: baseMove.dup({y: positions.middle, width: 'screenSizeX/2', height: 'screenSizeY/2'}),
-        bottomRight: baseMove.dup({x: positions.center,
-                                   y: positions.middle,
-                                   width: 'screenSizeX/2',
-                                   height: 'screenSizeY/2'})
-      };
+    x: 'screenOriginX',
+    y: 'screenOriginY',
+    width: 'screenSizeX',
+    height: 'screenSizeY'
+  });
+  var move = {
+    full: baseMove,
+    middle: function (win) {
+      if (isUltraWide()) {
+        win.doOperation(baseMove.dup({x: 'screenOriginX+screenSizeX*1/3', width: 'screenSizeX/3'}))
+      } else {
+        win.doOperation(baseMove)
+      }
+    },
+    left: S.operation('push', {direction: 'left', style: dynPushWidth}),
+    right: S.operation('push', {direction: 'right', style: dynPushWidth}),
+    top: S.operation('resize', {height: '-25%'}),
+    bottom: S.operation('resize', {height: '-25%', anchor: 'bottom-left'}),
+    topLeft: S.operation('corner', {direction: 'top-left', width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+    topRight: S.operation('corner', {direction: 'top-right', width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+    bottomLeft: S.operation('corner', {direction: 'bottom-left', width: 'screenSizeX/2', height: 'screenSizeY/2'}),
+    bottomRight: S.operation('corner', {direction: 'bottom-right', width: 'screenSizeX/2', height: 'screenSizeY/2'})
+  };
+
+  // Almost-maximize the focused window
+  var mainify = S.operation('chain', {
+    operations: [
+      S.operation('push', {
+        direction: 'left',
+        style: 'bar-resize:screenSizeX*7/10'
+      }),
+      S.operation('push', {
+        direction: 'right',
+        style: 'bar-resize:screenSizeX*7/10'
+      }),
+      move.full
+    ]
+  });
 
   // Batch bind everything. Less typing.
   S.bindAll({
@@ -143,36 +107,10 @@
     'pad4:ctrl;alt': S.operation('throw', {screen: 'left'}),
     'left:ctrl;alt': S.operation('throw', {screen: 'left'}),
     'pad6:ctrl;alt': S.operation('throw', {screen: 'right'}),
-    'right:ctrl;alt': S.operation('throw', {screen: 'right'})
+    'right:ctrl;alt': S.operation('throw', {screen: 'right'}),
+    'pad+:ctrl;cmd': mainify,
+    '=:ctrl;cmd': mainify
   });
-
-  // Almost-maximize the focused window
-  function mainify(win) {
-    switch (counter % 3){
-      case 0:
-        win.doOperation(S.operation('move', {
-          x: 'screenOriginX',
-          y: 'screenOriginY',
-          width: 'screenSizeX*7/10',
-          height: 'screenSizeY'
-        }));
-      break;
-      case 1:
-        win.doOperation(S.operation('move', {
-          x: 'screenOriginX+screenSizeX*3/10',
-          y: 'screenOriginY',
-          width: 'screenSizeX*7/10',
-          height: 'screenSizeY'
-        }));
-      break;
-      case 2:
-        win.doOperation(move.full);
-      break;
-    }
-    counter++;
-  }
-  S.bind('pad+:ctrl;cmd', mainify);
-  S.bind('=:ctrl;cmd', mainify);
 
   // Log that we're done configuring
   S.log('[SLATE] -------------- Finished Loading Config --------------');
