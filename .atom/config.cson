@@ -28,6 +28,7 @@
       "bracket-matcher"
       "python-yapf"
     ]
+    telemetryConsent: "limited"
     themes: [
       "atom-dark-ui"
       "atom-dark-syntax"

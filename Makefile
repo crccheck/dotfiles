@@ -31,6 +31,9 @@ bin: ## Setup my personal global helper scripts
 	  echo "linking $(file)" || \
 	  echo "skipping $(file)";)
 
+osx: ## OSX specific things
+	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
+
 .PHONY: bashmarks
 bashmarks:
 	git submodule update --init bashmarks
@@ -62,21 +65,6 @@ atom:
 	cd .atom/packages/emmet-atom && \
 	  git remote add emmet https://github.com/emmetio/emmet-atom.git && \
 	  npm install
-
-# Make sure to do this after sublime text is installed
-# https://packagecontrol.io/docs/syncing
-st3:
-	@echo "* Linking my Sublime Text config"
-	@cd ~/.config/sublime-text-3/Packages && rm -rf User && \
-	  ln -sf $(PWD)/sublime-text-3/User
-
-st3osx:
-	cd ~/bin && ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl
-	cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages && \
-	  rm -rf User && \
-	  ln -sf $(PWD)/sublime-text-3/User
-# dumping my other OSX stuff here too for now
-	cd ~/bin && ln -sf /Applications/Karabiner.app/Contents/Library/bin/karabiner
 
 vim: ## Vim
 	@echo "* Linking vim config"

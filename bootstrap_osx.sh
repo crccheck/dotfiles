@@ -35,7 +35,7 @@ brew cask install \
   # This installs Postgres.app, NOT the same as `brew install postgres`
   postgres \
   # Remap the keys the sensible way
-  karabiner \
+  karabiner hammerspoon \
   # My window manager
   slate
 
