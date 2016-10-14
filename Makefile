@@ -32,7 +32,10 @@ bin: ## Setup my personal global helper scripts
 	  echo "skipping $(file)";)
 
 osx: ## OSX specific things
+osx: bin
+	cd $(BIN) && ln -sf /Applications/Karabiner.app/Contents/Library/bin/karabiner karabiner
 	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
+	cd ~/Library/Preferences/ && ln -sf $(PWD)/.osx/org.pqrs.Karabiner.plist
 
 .PHONY: bashmarks
 bashmarks:
