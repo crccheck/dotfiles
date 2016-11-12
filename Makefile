@@ -1,5 +1,5 @@
 # https://terraform.io/downloads.html
-TERRAFORM_VERSION = 0.7.0
+TERRAFORM_VERSION = 0.7.9
 
 PWD := $(shell echo $$PWD)
 # Where I keep local binaries
@@ -19,8 +19,9 @@ all: basic virtualenv vim gterm
 
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
-	@$(foreach file, $(SRCS), \
-	  [ ! -e "$(PWD)/$(file)" ] && ln -s $(PWD)/$(file) ~/$(file); echo "  - linking $(file)";)
+	cd && $(foreach file, $(SRCS), \
+	  [ ! -h "$(file)" -a -f "$(PWD)/$(file)" ] && \
+	  ln -s $(PWD)/$(file) && echo "  linking $(file)" || echo "  skipping $(file)";)
 
 .PHONY: bin
 bin: ## Setup my personal global helper scripts

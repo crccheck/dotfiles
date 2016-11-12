@@ -41,7 +41,7 @@ alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'
 alias nvm='[ -f .nvmrc ] && n $(cat .nvmrc) || echo "MISSING: .nvmrc"'
 alias dsdamn="find . -name '.DS_Store' -delete"
-alias syndamn='find . -name "*sync.conflict*"'
+alias syndamn='find . -name "*sync-conflict*"'
 
 # Reset and clear
 alias cls='printf "\ec"'

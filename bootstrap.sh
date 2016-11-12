@@ -1,4 +1,6 @@
 #!/bin/bash
+# NOTES: this script assumes that PPAs are updated for your distribution
+# if they aren't, you have to manually edit your /etc/apt/sources.list.d
 set -e
 set -x
 
@@ -11,9 +13,6 @@ sudo usermod -aG sudo ${USER}
 
 # Remove Ubuntu crap
 ####################
-# remember to edit Unity shortcuts, disable workspace keyboard shortcuts or
-# ctrl+alt+up/down won't work
-
 # disable ubuntu's annoying "System Program Problem Detected"...
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 # disable ubuntu's annoying mlocate hog
@@ -22,23 +21,19 @@ sudo chmod -x /etc/cron.daily/mlocate
 sudo sed -i 's/"1"/"0"/' /etc/apt/apt.conf.d/10periodic
 # uninstall bundled packages I never use
 sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
-  thunderbird banshee gnome-sudoku rhythmbox > /dev/null
+  thunderbird banshee gnome-sudoku rhythmbox
 
 # Install
 #########
 
-sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
-
-sudo apt-get -qq update
 # Important Stuff first
-sudo apt-get install -y vim-gnome git-core
+sudo apt-get install -y vim git-core
 
 sudo apt-get install -y \
   curl athena-jot jq \
   tree \
   chromium-browser \
   ack-grep silversearcher-ag \
-  python2.6 python2.7 python3.3 python3.4 python-dev python-pip \
   libmysqlclient-dev \
   libpq-dev libgeos-dev
 
@@ -48,12 +43,6 @@ sudo apt-get install -y \
 # ref: http://howtonode.org/introduction-to-npm
 sudo chown -R $USER:$USER /usr/local
 
-# Base Python
-#############
-sudo pip install -U pip
-pip install --quiet virtualenvwrapper awscli postdoc
-source ~/.bashrc  # Setup virtualenv env variables
-
 # Docker
 ########
 # http://docs.docker.io/en/latest/installation/ubuntulinux/
@@ -62,32 +51,24 @@ if [ -z "$(which docker)" ]; then
 fi
 
 # Giving non-root access
-sudo usermod -aG docker ${USER}
-pip install docker-compose
+# sudo usermod -aG docker ${USER}
+# pip install docker-compose
+
+# Base Python
+#############
+sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
+sudo apt-get -qq update
+sudo apt-get install -y python2.7 python3.5 python3.6 python-dev
+
+sudo pip install -U pip
+pip install --quiet virtualenvwrapper awscli postdoc
+source ~/.bashrc  # Setup virtualenv env variables
 
 # Autoenv
 #########
-# Install from `master` because packaged versions are too old and don't support
-# foreman compatible .env files.
+# Install from my fork
 if [ ! -d ~/Sync/autoenv ]; then
   git clone git://github.com/crccheck/autoenv.git ~/Sync/autoenv
-  touch ~/Sync/.autoenv_authorized
-fi
-
-# More Python stuff
-###################
-# if this gives you trouble, you need to add a `deb-src` line to your sources.list
-# sudo apt-get build-dep -y lxml
-
-# unfuck PIL
-if [ ! -f "/usr/lib/$(uname -i)-linux-gnu/libz.so" ]; then
-  sudo apt-get build-dep -y pillow
-  sudo apt-get install -y libjpeg-dev
-  sudo ln -s /usr/lib/$(uname -i)-linux-gnu/libz.so /usr/lib
-  sudo ln -s /usr/lib/$(uname -i)-linux-gnu/libjpeg.so /usr/lib
-  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.8 /usr/lib
-  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so.62 /usr/lib
-  # sudo ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so.6 /usr/lib
 fi
 
 # Node
@@ -95,8 +76,8 @@ fi
 if [ -z $(which node) ]; then
   sudo apt-get install nodejs nodejs-legacy npm -y
   npm install -g npm
-  sudo npm install -g n
-  n stable
+  npm install -g n
+  n lts
 fi
 
 # Ruby
@@ -123,7 +104,8 @@ sudo apt-get install -y nautilus-dropbox
 if [ -z $(which syncthing) ]; then
   # http://apt.syncthing.net/
   curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
-  echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
+  echo "deb http://apt.syncthing.net/ syncthing release" | \
+    sudo tee /etc/apt/sources.list.d/syncthing.list
   sudo apt-get -qq update
   sudo apt-get install -y syncthing
 fi
@@ -136,6 +118,7 @@ if [ -z $(which atom) ]; then
 fi
 
 if [ -z $(which sshrc) ]; then
+  # TODO install manually because the PPA is not maintained
   sudo add-apt-repository ppa:russell-s-stewart/ppa -y
   sudo apt-get -qq update
   sudo apt-get install -y sshrc
@@ -150,11 +133,18 @@ sudo apt-get install -y \
   supervisor \
   unity-tweak-tool
 
-# Manual steps:
-
-# https://fixubuntu.com/
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
-    select true | debconf-set-selections
-sudo apt-get install ttf-mscorefonts-installer
+  select true | sudo debconf-set-selections
+sudo apt-get install -y ttf-mscorefonts-installer
+
+# Manual steps:
+#
+# https://docs.syncthing.net/users/autostart.html#linux
+# /usr/bin/syncthing -no-browser -home="/home/crc/.config/syncthing"
+#
+# https://fixubuntu.com/
 
 # "Show the menues for a window" -> In the window's title bar
+
+# Edit Unity shortcuts, disable "Navigation" keyboard shortcuts or else
+# ctrl+alt+up/down won't work

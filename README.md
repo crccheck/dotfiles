@@ -19,14 +19,14 @@ Install Read-only:
     git clone git://github.com/crccheck/dotfiles.git
     cd dotfiles
     git submodule update --init
-    make
+    make basic
     s dot
 
 Hey, make a ssh key!
 
     cd
     mkdir --mode=700 .ssh && cd .ssh
-    ssh-keygen -t rsa -b 4096 -C "crc@crc-changethis"
+    ssh-keygen -t rsa -b 4096 -C "$USER@$HOSTNAME"
 
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 
