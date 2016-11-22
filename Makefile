@@ -35,7 +35,7 @@ osx: ## OSX specific things
 osx: bin
 	cd $(BIN) && ln -sf /Applications/Karabiner.app/Contents/Library/bin/karabiner karabiner
 	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
-	cd ~/Library/Preferences/ && ln -sf $(PWD)/.osx/org.pqrs.Karabiner.plist
+	cp ~/Library/Preferences/org.pqrs.Karabiner.plist $(PWD)/.osx/org.pqrs.Karabiner.plist
 
 .PHONY: bashmarks
 bashmarks:

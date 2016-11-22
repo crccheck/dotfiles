@@ -11,7 +11,6 @@
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
-      "lib"
       ".cache"
       ".DS_Store"
       ".git"

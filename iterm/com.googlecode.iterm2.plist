@@ -247,9 +247,9 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 215 606 456 0 0 1280 777 </string>
+	<string>390 318 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1440 984 1075 660 1440 -253 1080 1897 </string>
+	<string>2586 659 1145 694 1440 -64 3440 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_6E292A1F-40DF-4A1C-87B9-5B799F80DFC8</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1022,7 +1022,7 @@
 			<key>Terminal Type</key>
 			<string>xterm</string>
 			<key>Transparency</key>
-			<real>0.24053947855029587</real>
+			<real>0.36945266272189353</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -1057,6 +1057,8 @@
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>491158358.58325303</real>
 	<key>OnlyWhenMoreTabs</key>
@@ -1135,7 +1137,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
@@ -1143,7 +1145,7 @@
 	<key>SmartPlacement</key>
 	<true/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.44775640964508057</real>
+	<real>0.40346053624764466</real>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>

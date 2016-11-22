@@ -2,9 +2,9 @@
 
 brew install python gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
   sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
-  imagemagick wget coway fortune
+  imagemagick wget cowsay fortune
 
-brew install homebrew/versions/mysql56
+# brew install homebrew/versions/mysql56
 
 brew install openssl curl
 brew link --force openssl curl
@@ -13,10 +13,6 @@ brew install caskroom/cask/brew-cask
 
 # utils
 brew cask install \
-  dockertoolbox \
-  virtualbox virtualbox-extension-pack \
-  vagrant \
-  java \
   graphviz \
   quicklook-json
 
@@ -24,6 +20,8 @@ brew cask install \
 brew cask install \
   # Let me edit files
   atom \
+  # Don't sleep
+  caffeine \
   # Internet
   firefox google-chrome \
   # It's paleo, yo
@@ -57,6 +55,7 @@ gem install lolcommits
 # System Preferences → Keyboard → Shortcuts → Mission Control
 
 # Karabiner settings
+# TODO look into http://apple.stackexchange.com/questions/200332/different-key-maps-bindings-for-in-built-keyboard-and-bluetooth-keyboard
 # http://apple.stackexchange.com/questions/116617/how-to-separate-mouse-and-trackpad-settings/197396#197396
 # Karabiner Preferences > Change Key
 # > Karabiner core settings > Exclude devices > Don't remap Apple's pointing devices

@@ -39,6 +39,7 @@ alias nn="npm run"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
 alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'
+alias nvm='[ -f .nvmrc ] && n $(cat .nvmrc) || echo "MISSING: .nvmrc"'
 alias dsdamn="find . -name '.DS_Store' -delete"
 alias syndamn='find . -name "*sync.conflict*"'
 
