@@ -150,35 +150,10 @@ function dshark {
 
 # to install ack-grep as ack instead of ack-grep:
 # sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
-#todo alias rm to move shit to /tmp
-alias mv='mv -iv'
-alias cp='cp -iv'
 
 alias lol="lolcommits --enable --delay=1 --fork"
 alias loll="lolcommits --last"
 
-sssh () { ssh -t $@ "screen -rx -S crc"; }
-
-
-PORT=8000
-alias dj='echo -en "\033]0;dj :$PORT\a"; django runserver 0.0.0.0:$PORT'
-alias djp='django runserver_plus 0.0.0.0:$PORT'
-alias djs="django shell"
-alias djsp="django shell_plus"
-alias djsql="django debugsqlshell"
-alias djadminme='django createsuperuser --username=admin --email=admin@example.com || django createsuperuser --email=admin@example.com'
-alias ipynb='ipython notebook'
-alias ipynbinstall='pip install ipython[notebook]'
-
-alias attach="$HOME/bin/grabssh ; screen -d -r"
-alias fixssh="source $HOME/bin/fixssh"
-alias befs="bundle exec foreman start"
-
-alias wow='git status'
-alias such=git
-alias very=git
-
-alias xoff='xset dpms force off'
 
 function work {
   # assumes `mkvirtualenv` exists
@@ -198,11 +173,6 @@ function work {
 }
 
 
-# Grunt js shell tab auto-completion
-# http://gruntjs.com/frequently-asked-questions#how-do-i-enable-shell-tab-auto-completion
-[ -f /usr/local/bin/grunt ] && eval "$(grunt --completion=bash)"
-
-
 ###################################################
 ### Platform- or system-specific modifications
 ###################################################
@@ -217,7 +187,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
   # http://postgresapp.com/documentation/cli-tools.html
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
 
-  alias dbstart='mysql.server start && pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
   # Fix Backspace/Delete confusion:
   stty erase ^?
   # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
@@ -232,7 +201,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
   fi
   [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
 else
-  # aliases that don't work in OSX
+  # Fix aliases that don't work in OSX
   alias df='df -kTh'
   alias du='du -kh --max-depth=1'
   alias ls='ls -F --color=auto'

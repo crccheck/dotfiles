@@ -54,3 +54,16 @@ md () { mkdir -p "$@" && cd "$@"; }
 
 alias dphd="phd --postdoc-dry-run"
 alias qphd="phd --postdoc-quiet"
+
+sssh () { ssh -t $@ "screen -rx -S crc"; }
+alias mv='mv -iv'
+alias cp='cp -iv'
+PORT=8000
+alias dj='echo -en "\033]0;dj :$PORT\a"; django runserver 0.0.0.0:$PORT'
+alias djp='django runserver_plus 0.0.0.0:$PORT'
+alias djs="django shell"
+alias djsp="django shell_plus"
+alias djsql="django debugsqlshell"
+alias djadminme='django createsuperuser --username=admin --email=admin@example.com || django createsuperuser --email=admin@example.com'
+alias attach="$HOME/bin/grabssh ; screen -d -r"
+alias befs="bundle exec foreman start"

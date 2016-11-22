@@ -2,7 +2,7 @@
 
 brew install python gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
   sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
-  imagemagick wget cowsay fortune
+  imagemagick wget cowsay fortune bash-completion
 
 # brew install homebrew/versions/mysql56
 
