@@ -55,6 +55,7 @@
     globalNodePath: "/usr/local"
   "linter-flake8":
     maxComplexity: 100
+  "linter-flow": {}
   "linter-js-standard":
     checkStyleDevDependencies: true
     honorStyleSettings: true

@@ -60,8 +60,6 @@ gem install lolcommits
 # Karabiner Preferences > Change Key
 # > Karabiner core settings > Exclude devices > Don't remap Apple's pointing devices
 # > Pointing Device > Reverse scrolling direction > Reverse Vertical Scrolling
-# > Change Control_L Key (Left Control) > Control_L to Fn
-# > Change Fn Key > Fn to Control_L
 # > Change Delete Key > Control+Delete to Forward Delete
 # For some fucking reason, OSX cannot will not let you change brightness unless you do...
 # > Change F1..F19 Key ... > Change F1..F19 Key > F1..F12 to Functional... > F1,F2 to Brightness Adjust

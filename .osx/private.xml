@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Swap Win and Option</name>
+    <identifier>private.windows_keyboard</identifier>
+    <device_not>DeviceVendor::APPLE_COMPUTER</device_only>
+    <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+  </item>
+
+  <item>
+    <name>Fix Control placement on built-in</name>
+    <identifier>private.fix_apple</identifier>
+    <device_only>DeviceVendor::APPLE_COMPUTER</device_only>
+    <autogen>__KeyToKey__ KeyCode::FN, KeyCode::CONTROL_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN</autogen>
+  </item>
+</root>
