@@ -179,9 +179,11 @@ function work {
 
 if [ "$(uname -s)" == "Darwin" ]; then
   # Mac OS X stuff:
-  alias ls='ls -AFGq'
+  alias date=gdate
+  alias jdate="echo 'oi' && date"
   alias sed=gsed
   alias du='du -kh'
+  alias ls='ls -AFGq'
   prepend_path_if_exists PATH /usr/local/bin
 
   # http://postgresapp.com/documentation/cli-tools.html

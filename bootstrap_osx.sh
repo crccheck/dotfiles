@@ -61,11 +61,12 @@ gem install lolcommits
 # > Karabiner core settings > Exclude devices > Don't remap Apple's pointing devices
 # > Pointing Device > Reverse scrolling direction > Reverse Vertical Scrolling
 # > Change Delete Key > Control+Delete to Forward Delete
-# For some fucking reason, OSX cannot will not let you change brightness unless you do...
-# > Change F1..F19 Key ... > Change F1..F19 Key > F1..F12 to Functional... > F1,F2 to Brightness Adjust
 
-# Das
-# Search for "command_l option_l" and select the options to swap the two
+# Finder settings
+#################
+# Advanced -> Show all filename extensions
+# Advanced -> Hide warnings from changing an extension
+# Advanced -> Search the Current Folder
 
 # Kill iTunes
 # http://apple.stackexchange.com/questions/87344/how-to-delete-itunes-once-and-for-all-from-the-command-line

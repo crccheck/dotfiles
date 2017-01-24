@@ -1,6 +1,7 @@
 "*":
   "autocomplete-python":
     caseInsensitiveCompletion: false
+    useKite: false
   "bracket-matcher":
     autocompleteBrackets: false
   core:
