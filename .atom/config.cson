@@ -9,6 +9,7 @@
       "metrics"
       "project-manager"
       "python-yapf"
+      "deprecation-cop"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
