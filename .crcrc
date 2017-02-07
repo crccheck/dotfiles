@@ -207,7 +207,8 @@ else
   alias df='df -kTh'
   alias du='du -kh --max-depth=1'
   alias ls='ls -F --color=auto'
-  alias netstat='netstat -natp'
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
 
   # SSH Agent and keychain
   if [ -f /usr/bin/keychain ] && [ ! -f /tmp/keychain ]; then
