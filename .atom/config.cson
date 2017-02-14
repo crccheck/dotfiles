@@ -5,11 +5,16 @@
   "bracket-matcher":
     autocompleteBrackets: false
   core:
+    customFileTypes:
+      "source.shell": [
+        "env"
+      ]
     disabledPackages: [
       "metrics"
       "project-manager"
       "python-yapf"
       "deprecation-cop"
+      "vim-mode"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -70,7 +75,6 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   welcome:

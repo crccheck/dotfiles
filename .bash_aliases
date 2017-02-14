@@ -29,11 +29,13 @@ alias remove="sudo apt-get remove"
 alias adp="arc diff --preview --browse"
 alias cov='coverage report --skip-covered --show-missing'
 alias fig="docker-compose"
+figup () { docker-compose up -d $@ && docker-compose logs -f $@; }
 alias dm="docker-machine"
 alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 
 alias cows='for cow in $(cowsay -l); do cowsay -f $cow "$cow"; done'
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
+alias covit='open coverage/lcov-report/index.html'
 
 alias nn="npm run"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
