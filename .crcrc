@@ -307,7 +307,7 @@ export PS1
 
 # latest can be downloaded: http://standards.ieee.org/develop/regauth/oui/oui.txt
 function mac {
-    OUI=$HOME/.dotfiles/resources/oui.txt
+    OUI=$HOME/Sync/dotfiles/resources/oui.txt
     if [ -z $1 ]; then
         echo "Missing Parameter XX:XX:XX or xxxxxx"
     else
