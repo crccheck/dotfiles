@@ -93,4 +93,5 @@ terraform:
 
 .PHONY: resources/oui.txt
 resources/oui.txt:
+	mkdir -p resources
 	curl -L http://standards.ieee.org/develop/regauth/oui/oui.txt > $@

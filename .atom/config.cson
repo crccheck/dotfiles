@@ -5,14 +5,13 @@
   "bracket-matcher":
     autocompleteBrackets: false
   core:
+    audioBeep: false
     customFileTypes:
       "source.shell": [
         "env"
       ]
     disabledPackages: [
       "metrics"
-      "project-manager"
-      "python-yapf"
       "deprecation-cop"
       "vim-mode"
     ]
@@ -28,19 +27,22 @@
       "coverage"
       "node_modules"
       "target/*"
+      "flow-typed"
     ]
     packagesWithKeymapsDisabled: [
       "autocomplete-python"
       "bracket-matcher"
       "python-yapf"
     ]
-    telemetryConsent: "limited"
+    telemetryConsent: "no"
     themes: [
       "atom-dark-ui"
       "atom-dark-syntax"
     ]
   editor:
     autoIndentOnPaste: false
+    confirmCheckoutHeadRevision: false
+    fontSize: 15
     invisibles:
       eol: false
     preferredLineLength: 79
@@ -56,17 +58,21 @@
       ".jsx"
     ]
   linter:
-    lintOnFly: false
-    showErrorPanel: false
+    lintOnChange: false
+    lintOnOpen: false
+    lintPreviewTabs: false
   "linter-eslint":
     globalNodePath: "/usr/local"
   "linter-flake8":
     maxComplexity: 100
+    maxLineLength: 200
   "linter-flow": {}
   "linter-js-standard":
     checkStyleDevDependencies: true
     honorStyleSettings: true
     showEslintRules: true
+  "linter-ui-default":
+    showPanel: true
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -75,8 +81,11 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
+  "vim-mode-plus-ex-mode":
+    notifiedUseExMode: true
   welcome:
     showOnStartup: false
   wrap: {}

@@ -29,7 +29,8 @@ alias remove="sudo apt-get remove"
 alias adp="arc diff --preview --browse"
 alias cov='coverage report --skip-covered --show-missing'
 alias fig="docker-compose"
-figup () { docker-compose up -d $@ && docker-compose logs -f $@; }
+figup () { docker-compose up -d $@ && docker-compose logs -f --tail 20 $@; }
+alias figlogs='docker-compose logs -f --tail=40'
 alias dm="docker-machine"
 alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 
