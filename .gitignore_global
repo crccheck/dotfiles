@@ -9,6 +9,7 @@ lerna-debug.log
 *.swp
 
 # private stuff
+.ignore
 .agignore
 .env
 env-

@@ -14,6 +14,7 @@
       "metrics"
       "deprecation-cop"
       "vim-mode"
+      "language-python"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -27,7 +28,7 @@
       "coverage"
       "node_modules"
       "target/*"
-      "flow-typed"
+      "flow-typed/npm"
     ]
     packagesWithKeymapsDisabled: [
       "autocomplete-python"
@@ -72,7 +73,7 @@
     honorStyleSettings: true
     showEslintRules: true
   "linter-ui-default":
-    showPanel: true
+    panelHeight: 81
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
