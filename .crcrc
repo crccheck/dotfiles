@@ -49,21 +49,9 @@ prepend_path_if_exists()
 ###################################################
 
 #prepend_path_if_exists PATH $HOME/anaconda3/bin
+prepend_path_if_exists PATH /usr/local/opt/python/libexec/bin
 prepend_path_if_exists PATH $HOME/usr/bin
 prepend_path_if_exists PATH $HOME/bin
-
-for i in $HOME/opt/*/bin
-do
-    prepend_path_if_exists PATH $i
-done
-prepend_path_if_exists PATH "$HOME/opt/android-sdk-linux_x86-1.5_r1/tools"
-
-# Note to self: as of Python 2.6, there is now support for local
-# site-packages in ~/.local/. See PEP-370.
-# Better yet, just use virtualenv.
-#append_path PYTHONPATH $HOME/.python
-
-append_path LD_LIBRARY_PATH $HOME/lib:$HOME/usr/lib
 
 ###################################################
 ### Simple variables
@@ -256,13 +244,6 @@ if [ -d /usr/local/heroku/bin ]; then
     prepend_path PATH /usr/local/heroku/bin
 fi
 
-
-# Node.js
-#########
-
-export NODE_PATH=$HOME/local/node
-prepend_path_if_exists PATH $HOME/local/node/bin
-prepend_path_if_exists NODE_PATH /usr/local/lib/node_modules
 
 GREEN="\[\033[1;32m\]"
 BLUE="\[\033[1;34m\]"
