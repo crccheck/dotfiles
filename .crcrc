@@ -48,8 +48,6 @@ prepend_path_if_exists()
 ### PATH-type list variables
 ###################################################
 
-#prepend_path_if_exists PATH $HOME/anaconda3/bin
-prepend_path_if_exists PATH /usr/local/opt/python/libexec/bin
 prepend_path_if_exists PATH $HOME/usr/bin
 prepend_path_if_exists PATH $HOME/bin
 
@@ -98,34 +96,6 @@ esac
 function tit {
     local title=${@-$(basename $PWD)}
     echo -e "\033];$title\007"
-}
-
-
-# Fabric cheat
-function f {
-    if [ -z $1 ]; then
-        fab -l
-    else
-        fab $@
-    fi
-}
-
-# Invoke cheat
-function inv {
-  # if no parameters, then assume we want to list tasks
-  if [ -z $1 ]; then
-    invoke --list
-  else
-    # invoke expects --help to be first, so move it if it isn't
-    local numargs=$#
-    for ((i=2; i <= numargs ; i++))
-    do
-      if [ ${@:$i:1} == "--help" ]; then
-        set -- "--help" ${@:1:$i - 1} ${@:$i + 1}
-      fi
-    done
-    invoke $@
-  fi
 }
 
 # Open a Wireshark window to a Docker container

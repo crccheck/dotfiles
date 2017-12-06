@@ -73,7 +73,6 @@
     honorStyleSettings: true
     showEslintRules: true
   "linter-ui-default":
-    panelHeight: 81
     showPanel: true
   "python-yapf":
     checkOnSave: false

@@ -1,6 +1,6 @@
 # For OSX 10.11 El Capitan
 
-brew install python gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
+brew install python python3 gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
   sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
   imagemagick wget cowsay fortune bash-completion
 
@@ -36,6 +36,11 @@ brew cask install \
   karabiner hammerspoon \
   # My window manager
   slate
+
+# Use Python3 by default
+cd ~/bin
+ln -s $(which python3) python
+ln -s $(which pip3) pip
 
 # Gems
 gem install lolcommits
