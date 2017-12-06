@@ -74,6 +74,7 @@
     showEslintRules: true
   "linter-ui-default":
     panelHeight: 81
+    showPanel: true
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -82,9 +83,9 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
+  "vim-mode-plus": {}
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true
   welcome:

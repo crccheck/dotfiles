@@ -20,7 +20,8 @@ resources/oui.txt
 # atom
 .atom/*-cache
 .atom/.*
+.atom/blob-store
 .atom/nohup.out
 .atom/packages/
+.atom/recovery
 .atom/storage/
-.atom/blob-store
