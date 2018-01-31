@@ -19,7 +19,7 @@ all: basic virtualenv vim gterm
 
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
-	cd && $(foreach file, $(SRCS), \
+	@cd && $(foreach file, $(SRCS), \
 	  [ ! -h "$(file)" -a -f "$(PWD)/$(file)" ] && \
 	  ln -s $(PWD)/$(file) && echo "  linking $(file)" || echo "  skipping $(file)";)
 

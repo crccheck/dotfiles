@@ -85,18 +85,10 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -la'
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
-alias cls='printf "\ec"'
-
 [ -f ~/Sync/dotfiles/bashmarks/bashmarks.sh ] && source ~/Sync/dotfiles/bashmarks/bashmarks.sh
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 [ -f ~/.crcrc ] && source ~/.crcrc

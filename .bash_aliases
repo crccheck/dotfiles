@@ -3,6 +3,8 @@
 ###################################################
 
 alias l='ls -la'
+alias la='ls -A'
+alias ll='ls -l'
 alias sl='sl -e'
 # alias vi='vim -g'
 
@@ -13,6 +15,7 @@ alias .....='cd ../../../..'
 alias col50="printf '=%.0s' {1..50}"  # 50 column ruler
 alias col72="printf '=%.0s' {1..72}"  # 72 column ruler
 alias col80="printf '=%.0s' {1..80}"  # 80 column ruler
+alias cls='printf "\ec"'
 
 alias rgrep='grep -r'
 alias grepenv='env | grep'
@@ -70,3 +73,4 @@ alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com || django createsuperuser --email=admin@example.com'
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias befs="bundle exec foreman start"
+alias ag='ag --path-to-ignore ~/.ignore_global'
