@@ -76,14 +76,8 @@
   // Almost-maximize the focused window
   var mainify = S.operation('chain', {
     operations: [
-      S.operation('push', {
-        direction: 'left',
-        style: 'bar-resize:screenSizeX*7/10'
-      }),
-      S.operation('push', {
-        direction: 'right',
-        style: 'bar-resize:screenSizeX*7/10'
-      }),
+      S.operation('push', { direction: 'left', style: 'bar-resize:screenSizeX*2/3' }),
+      S.operation('push', { direction: 'right', style: 'bar-resize:screenSizeX*2/3' }),
       move.full
     ]
   });
