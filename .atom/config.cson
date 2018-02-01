@@ -72,8 +72,7 @@
     checkStyleDevDependencies: true
     honorStyleSettings: true
     showEslintRules: true
-  "linter-ui-default":
-    showPanel: true
+  "linter-ui-default": {}
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
