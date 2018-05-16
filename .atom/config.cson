@@ -15,6 +15,7 @@
       "deprecation-cop"
       "vim-mode"
       "language-python"
+      "github"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -72,7 +73,8 @@
     checkStyleDevDependencies: true
     honorStyleSettings: true
     showEslintRules: true
-  "linter-ui-default": {}
+  "linter-ui-default":
+    showPanel: true
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -101,6 +103,9 @@
 ".console.python.text":
   editor:
     preferredLineLength: 79
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
 ".hyperlink.text":
   editor:
     preferredLineLength: 79

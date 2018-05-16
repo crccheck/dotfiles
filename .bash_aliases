@@ -29,23 +29,27 @@ alias install="sudo apt-get install"
 alias upgrade="sudo apt-get upgrade"
 alias remove="sudo apt-get remove"
 
-alias adp="arc diff --preview --browse"
 alias cov='coverage report --skip-covered --show-missing'
+alias covit='open coverage/lcov-report/index.html'
+alias cows='for cow in $(cowsay -l); do cowsay -f $cow "$cow"; done'
+alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
+alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+# Docker
 alias fig="docker-compose"
 figup () { docker-compose up -d $@ && docker-compose logs -f --tail 20 $@; }
 alias figlogs='docker-compose logs -f --tail=40'
 alias dm="docker-machine"
 alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 
-alias cows='for cow in $(cowsay -l); do cowsay -f $cow "$cow"; done'
-alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
-alias covit='open coverage/lcov-report/index.html'
-
+# NodeJS
 alias nn="npm run"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules package-lock.json && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
 alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'
 alias nvm='[ -f .nvmrc ] && n $(cat .nvmrc) || echo "MISSING: .nvmrc"'
+
+# Find shortcuts
 alias dsdamn="find . -name '.DS_Store' -delete"
 alias syndamn='find . -name "*sync-conflict*"'
 
