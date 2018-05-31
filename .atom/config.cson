@@ -74,7 +74,7 @@
     honorStyleSettings: true
     showEslintRules: true
   "linter-ui-default":
-    showPanel: true
+    panelHeight: 81
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"

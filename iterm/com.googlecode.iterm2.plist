@@ -22,6 +22,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -267,7 +269,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>680 157 937 512 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>2294 4 1145 339 0 0 3440 1417 </string>
+	<string>756 4 921 254 0 0 1680 1027 </string>
 	<key>NeverWarnAboutShortLivedSessions_6E292A1F-40DF-4A1C-87B9-5B799F80DFC8</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2051,6 +2053,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.1</string>
+	<string>3.1.6</string>
 </dict>
 </plist>

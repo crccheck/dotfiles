@@ -260,7 +260,7 @@ function active_virtualenv {
 }
 
 # PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
-PS1="\n$CYAN\D{%FT%T}\n$GREEN\u@\h$BLUE \w$UNCOLOR\$(active_virtualenv)\$(parse_git_branch)\n\$ "
+PS1="\n⏳ $CYAN\D{%FT%T}\n$GREEN\u@\h$BLUE \w$UNCOLOR\$(active_virtualenv)\$(parse_git_branch)\n\$ "
 export PS1
 
 
