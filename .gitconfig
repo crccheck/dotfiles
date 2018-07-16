@@ -50,3 +50,5 @@
 	default = upstream
 [rerere]
 	enabled = true
+[rebase]
+	autoStash = true
