@@ -6,8 +6,11 @@ brew install python python3 gti ponysay jq pv vim bash ack gnu-sed chromedriver 
 
 # brew install homebrew/versions/mysql56
 
+# Fucking incompatible OSX BDS piece of shit junkware
 brew install openssl curl
 brew link --force openssl curl
+# GNU find xargs locate
+brew install findutils --with-default-names
 
 brew install caskroom/cask/brew-cask
 

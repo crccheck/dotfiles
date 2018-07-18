@@ -50,6 +50,8 @@ prepend_path_if_exists()
 
 prepend_path_if_exists PATH $HOME/usr/bin
 prepend_path_if_exists PATH $HOME/bin
+# Ubuntu 18.04
+prepend_path_if_exists PATH $HOME/.local/bin
 
 ###################################################
 ### Simple variables
@@ -111,6 +113,14 @@ function dshark {
 
 alias lol="lolcommits --enable --delay=1 --fork"
 alias loll="lolcommits --last"
+# Inspired by https://theptrk.com/2018/07/11/did-txt-file/
+did () {
+  mkdir -p ~/Documents/did
+  if [ -n "$*" ]; then
+    touch ~/Documents/did/"$*";
+  fi
+  find ~/Documents/did -type f -printf "%TY-%Tm-%Td %TH:%TM\t%P\n" | sort -nr | head -n 10
+}
 
 
 function work {
