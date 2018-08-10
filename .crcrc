@@ -131,9 +131,9 @@ function work {
     echo "Shall I create '${env_name}' for you? [Yn]"
     read -n 1 sure
     if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-      echo "Python version? [3.6]"
+      echo "Python version? [3.7]"
       read ver
-      mkvirtualenv ${env_name} --py=python${ver:-3.6}
+      mkvirtualenv ${env_name} --py=python${ver:-3.7}
       workon ${env_name}
       setvirtualenvproject
     fi

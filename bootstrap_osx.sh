@@ -17,7 +17,7 @@ brew install caskroom/cask/brew-cask
 # utils
 brew cask install \
   graphviz \
-  quicklook-json
+  quicklook-json qlvideo
 
 # Get started with some programs
 brew cask install \
@@ -91,3 +91,5 @@ chflags hidden /Applications/iTunes.app
 # Run Postgres.app. It'll move itself to /Applications Then see
 # http://postgresapp.com/documentation/cli-tools.html
 # to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH
+
+# vi ~/.config/configstore/update-notifier-npm.json
