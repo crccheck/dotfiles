@@ -27,13 +27,13 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 #########
 
 # Important Stuff first
-sudo apt-get install -y vim git-core
+sudo apt-get install -y vim git-core build-essential libncurses-dev gawk python
 
 sudo apt-get install -y \
   curl athena-jot jq \
   tree \
   chromium-browser \
-  ack-grep silversearcher-ag \
+  silversearcher-ag \
   libmysqlclient-dev \
   libpq-dev libgeos-dev
 
@@ -54,11 +54,11 @@ fi
 # sudo usermod -aG docker ${USER}
 # pip install docker-compose
 
-# Base Python
-#############
-sudo add-apt-repository ppa:fkrull/deadsnakes -y  # python
+# Modern Python 3
+#################
+sudo add-apt-repository ppa:deadsnakes/ppa -y  # python
 sudo apt-get -qq update
-sudo apt-get install -y python2.7 python3.5 python3.6 python-dev
+sudo apt-get install -y python3.7 python-dev
 
 sudo pip install -U pip
 pip install --quiet virtualenvwrapper awscli postdoc
