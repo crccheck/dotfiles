@@ -12,7 +12,7 @@ sh_c='sudo -E sh -c'
 
 INSTALL_DEST=$HOME/Sync/dotfiles
 
-$sh_c 'apt-get install git-core -y' > /dev/null
+$sh_c 'apt-get install git-core make -y' > /dev/null
 if [ ! -d "${INSTALL_DEST}" ]; then
   cd && \
     git clone git://github.com/crccheck/dotfiles.git "${INSTALL_DEST}" && \
