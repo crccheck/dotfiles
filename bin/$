@@ -1,0 +1,3 @@
+#!/bin/bash
+# https://twitter.com/brandon_rhodes/status/1050580913254526976
+"$@"
