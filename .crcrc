@@ -117,7 +117,8 @@ alias loll="lolcommits --last"
 did () {
   mkdir -p ~/Documents/did
   if [ -n "$*" ]; then
-    touch ~/Documents/did/"$*";
+    # TODO figure out how to escape $*
+    touch ~/Documents/did/"$*"
   fi
   find ~/Documents/did -type f -printf "%TY-%Tm-%Td %TH:%TM\t%P\n" | sort -nr | head -n 10
 }
