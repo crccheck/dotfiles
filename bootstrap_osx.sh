@@ -4,13 +4,12 @@ brew install gti ponysay jq pv vim bash ack gnu-sed tree \
   sshrc pkg-config the_silver_searcher node redis terraform \
   imagemagick wget cowsay fortune bash-completion
 
-# brew install homebrew/versions/mysql56
+# brew install mysql@5.6
 
 # Fucking incompatible OSX BDS piece of shit junkware
 brew install openssl curl
-# brew link --force openssl curl
 # GNU find xargs locate
-brew install findutils --with-default-names
+brew install findutils
 
 # utils
 brew cask install \
@@ -24,8 +23,6 @@ brew cask install iterm2
 
 # Get started with some programs
 brew cask install \
-  # Let me edit files
-  atom \
   # Don't sleep
   caffeine \
   # Internet
@@ -39,8 +36,11 @@ brew cask install \
   # Automation
   hammerspoon
 
+# Atom
+brew cask install atom
+make atom
+
 # Karabiner-Elements and Keyboard customizations
-# TODO look into http://apple.stackexchange.com/questions/200332/different-key-maps-bindings-for-in-built-keyboard-and-bluetooth-keyboard
 brew cask install karabiner-elements
 # Karabiner elements:
 # Devices -> uncheck daskeyboard (makes it so Apple keyboard preferences will work below)
@@ -69,6 +69,9 @@ n lts
 #
 # #### Disable all Mission Control Keyboard Shortcut so ^ left/right works
 # System Preferences → Keyboard → Shortcuts → Mission Control
+#
+# Spotlight
+# Disable Spotlight Suggestions
 
 # Finder settings
 #################
@@ -88,8 +91,6 @@ chflags hidden /Applications/iTunes.app
 
 # Followup
 # --------
-# Run Postgres.app. It'll move itself to /Applications Then see
+# Run Postgres.app. Then see
 # http://postgresapp.com/documentation/cli-tools.html
 # to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH
-
-# vi ~/.config/configstore/update-notifier-npm.json
