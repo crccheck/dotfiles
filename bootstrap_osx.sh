@@ -1,7 +1,7 @@
 # For OSX 10.14 Mojave
 
 brew install gti ponysay jq pv vim bash ack gnu-sed tree \
-  sshrc pkg-config the_silver_searcher node redis terraform \
+  sshrc pkg-config the_silver_searcher redis terraform \
   imagemagick wget cowsay fortune bash-completion
 
 # brew install mysql@5.6
@@ -60,6 +60,8 @@ ln -s $(which pip3) pip
 # Node
 brew install n
 n lts
+# NVM
+# See installation instructions at https://github.com/creationix/nvm
 
 # Preferences
 # -----------
