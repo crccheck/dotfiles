@@ -1,4 +1,9 @@
 "*":
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+    "atom-ide-diagnostics-ui":
+      autoVisibility: true
   "autocomplete-python":
     caseInsensitiveCompletion: false
     useKite: false
@@ -18,6 +23,9 @@
       "github"
       "node-debugger"
       "language-graphql-lb"
+      "linter-flow"
+      "linter"
+      "linter-mypy"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -32,6 +40,7 @@
       "node_modules"
       "target/*"
       "flow-typed/npm"
+      ".mypy_cache"
     ]
     packagesWithKeymapsDisabled: [
       "autocomplete-python"
@@ -55,6 +64,9 @@
   "exception-reporting":
     userId: "92efa8a2-ea08-edd4-697a-efdac8b09d9c"
   "git-diff": {}
+  "ide-flowtype":
+    autoDownloadFlowBinaries: false
+    tryFlowBin: true
   "js-hyperclick":
     extensions: [
       ".js"
@@ -62,11 +74,13 @@
       ".jsx"
     ]
   linter:
-    lintOnChange: false
     lintOnOpen: false
     lintPreviewTabs: false
   "linter-eslint":
-    globalNodePath: "/usr/local"
+    autofix:
+      ignoreFixableRulesWhileTyping: true
+    global:
+      globalNodePath: "/usr/local"
   "linter-flake8":
     maxComplexity: 100
     maxLineLength: 200
@@ -74,8 +88,28 @@
   "linter-js-standard":
     checkStyleDevDependencies: true
     showEslintRules: true
-  "linter-ui-default":
-    showPanel: true
+  "linter-mypy":
+    checkUntypedDefs: false
+    disallowAnyDecorated: false
+    disallowAnyExplicit: false
+    disallowAnyExpr: false
+    disallowAnyGenerics: false
+    disallowAnyUnimported: false
+    disallowIncompleteDefs: false
+    disallowSubclassingAny: false
+    disallowUntypedCalls: false
+    disallowUntypedDecorators: false
+    disallowUntypedDefs: false
+    noImplicitOptional: false
+    strictOptional: false
+    warnIncompleteStub: false
+    warnMissingImports: false
+    warnNoReturn: false
+    warnRedundantCasts: false
+    warnReturnAny: false
+    warnUnusedConfigs: false
+    warnUnusedIgnores: false
+  "linter-ui-default": {}
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -84,6 +118,7 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-mode-plus": {}
