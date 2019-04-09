@@ -93,4 +93,4 @@ chflags hidden /Applications/iTunes.app
 # --------
 # Run Postgres.app. Then see
 # http://postgresapp.com/documentation/cli-tools.html
-# to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH
+# to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH (already done in .crcrc)
