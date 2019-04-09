@@ -269,7 +269,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>680 118 937 512 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>839 263 837 764 0 0 1680 1027 </string>
+	<string>2294 364 1145 1053 0 0 3440 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_6E292A1F-40DF-4A1C-87B9-5B799F80DFC8</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1161,7 +1161,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>

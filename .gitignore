@@ -6,8 +6,10 @@
 # can be pulled from Makefile
 resources/oui.txt
 
-# Generated files with timestamps
+# Config not dotfiles friendly
 .config/configstore
+.config/karabiner/automatic_backups
+.config/wireshark
 
 # generated docs
 .vim/**/doc/tags
@@ -22,6 +24,6 @@ resources/oui.txt
 .atom/.*
 .atom/blob-store
 .atom/nohup.out
-.atom/packages/
+.atom/packages
 .atom/recovery
 .atom/storage/

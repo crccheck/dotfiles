@@ -47,6 +47,7 @@ alias nn="npm run"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules package-lock.json && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
 alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'
+alias npmfix="sed -i -e 's/http:\/\//https:\/\//g' package-lock.json"
 
 # Find shortcuts
 alias dsdamn="find . -name '.DS_Store' -delete"
