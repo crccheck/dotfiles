@@ -1,6 +1,6 @@
 # For OSX 10.14 Mojave
 
-brew install python python3 gti ponysay jq pv vim bash ack gnu-sed tree \
+brew install gti ponysay jq pv vim bash ack gnu-sed tree \
   sshrc pkg-config the_silver_searcher node redis terraform \
   imagemagick wget cowsay fortune bash-completion
 
@@ -17,6 +17,7 @@ brew cask install \
   graphviz \
   quicklook-json qlvideo
 
+# Iterm2
 brew cask install iterm2
 # General -> Preferences
 # Load preference from a custom folder or URL: .../dotfiles/iterm
@@ -35,18 +36,22 @@ brew cask install \
   keepassx \
   # This installs Postgres.app, NOT the same as `brew install postgres`
   postgres \
-  # Remap the keys the sensible way
-  karabiner-elements \
   # Automation
   hammerspoon
 
-# Use Python3 by default
+# Karabiner-Elements
+# TODO look into http://apple.stackexchange.com/questions/200332/different-key-maps-bindings-for-in-built-keyboard-and-bluetooth-keyboard
+brew cask install karabiner-elements
+
+# Python
+brew install python python3
 cd ~/bin
 ln -s $(which python3) python
 ln -s $(which pip3) pip
 
-# Gems
-gem install lolcommits
+# Node
+brew install n
+n lts
 
 # Preferences
 # -----------
@@ -61,14 +66,6 @@ gem install lolcommits
 #
 # #### Disable Mission Control Keyboard Shortcut so ^ left/right works
 # System Preferences → Keyboard → Shortcuts → Mission Control
-
-# Karabiner settings
-# TODO look into http://apple.stackexchange.com/questions/200332/different-key-maps-bindings-for-in-built-keyboard-and-bluetooth-keyboard
-# http://apple.stackexchange.com/questions/116617/how-to-separate-mouse-and-trackpad-settings/197396#197396
-# Karabiner Preferences > Change Key
-# > Karabiner core settings > Exclude devices > Don't remap Apple's pointing devices
-# > Pointing Device > Reverse scrolling direction > Reverse Vertical Scrolling
-# > Change Delete Key > Control+Delete to Forward Delete
 
 # Finder settings
 #################
