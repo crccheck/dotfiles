@@ -1,18 +1,16 @@
-# For OSX 10.11 El Capitan
+# For OSX 10.14 Mojave
 
-brew install python python3 gti ponysay jq pv vim bash ack gnu-sed chromedriver tree \
-  sshrc pkg-config typesafe-activator the_silver_searcher node redis terraform \
+brew install python python3 gti ponysay jq pv vim bash ack gnu-sed tree \
+  sshrc pkg-config the_silver_searcher node redis terraform \
   imagemagick wget cowsay fortune bash-completion
 
 # brew install homebrew/versions/mysql56
 
 # Fucking incompatible OSX BDS piece of shit junkware
 brew install openssl curl
-brew link --force openssl curl
+# brew link --force openssl curl
 # GNU find xargs locate
 brew install findutils --with-default-names
-
-brew install caskroom/cask/brew-cask
 
 # utils
 brew cask install \
@@ -36,7 +34,7 @@ brew cask install \
   # This installs Postgres.app, NOT the same as `brew install postgres`
   postgres \
   # Remap the keys the sensible way
-  karabiner hammerspoon \
+  karabiner-elements \
   # My window manager
   slate
 
