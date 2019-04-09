@@ -34,13 +34,7 @@ bin: ## Setup my personal global helper scripts
 
 osx: ## OSX specific things
 osx: bin
-	cd $(BIN) && ln -sf /Applications/Karabiner.app/Contents/Library/bin/karabiner karabiner
 	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
-	cd ~/Library/Application\ Support/Karabiner && ln -sf $(PWD)/.osx/private.xml
-	@echo "Manually transfer org.pqrs.Karabiner.plist"
-
-osx/freeze:
-	cp ~/Library/Preferences/org.pqrs.Karabiner.plist $(PWD)/.osx/org.pqrs.Karabiner.plist
 
 .PHONY: bashmarks
 bashmarks:
