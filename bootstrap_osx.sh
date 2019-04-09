@@ -17,6 +17,10 @@ brew cask install \
   graphviz \
   quicklook-json qlvideo
 
+brew cask install iterm2
+# General -> Preferences
+# Load preference from a custom folder or URL: .../dotfiles/iterm
+
 # Get started with some programs
 brew cask install \
   # Let me edit files
@@ -27,16 +31,14 @@ brew cask install \
   firefox google-chrome \
   # It's paleo, yo
   flux \
-  # Better than Terminal
-  iterm2 \
   # Shhhhhh!
   keepassx \
   # This installs Postgres.app, NOT the same as `brew install postgres`
   postgres \
   # Remap the keys the sensible way
   karabiner-elements \
-  # My window manager
-  slate
+  # Automation
+  hammerspoon
 
 # Use Python3 by default
 cd ~/bin
