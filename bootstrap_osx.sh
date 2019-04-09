@@ -2,7 +2,8 @@
 
 brew install gti ponysay jq pv vim bash ack gnu-sed tree \
   sshrc pkg-config the_silver_searcher redis terraform \
-  imagemagick wget cowsay fortune bash-completion
+  imagemagick wget cowsay fortune bash-completion \
+  git
 
 # brew install mysql@5.6
 
