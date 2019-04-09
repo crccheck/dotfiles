@@ -39,10 +39,18 @@ brew cask install \
   # Automation
   hammerspoon
 
-# Karabiner-Elements
+# Karabiner-Elements and Keyboard customizations
 # TODO look into http://apple.stackexchange.com/questions/200332/different-key-maps-bindings-for-in-built-keyboard-and-bluetooth-keyboard
 brew cask install karabiner-elements
-
+# Karabiner elements:
+# Devices -> uncheck daskeyboard (makes it so Apple keyboard preferences will work below)
+# Keyboard control panel:
+# check Use F1, F2, etc. keys as standard function keys on external keyboards
+# Modifier Keys...
+# - daskeyboard
+#   - Option to Command
+#   - Command to Option
+ 
 # Python
 brew install python python3
 cd ~/bin
@@ -56,15 +64,10 @@ n lts
 # Preferences
 # -----------
 #
-# ### Keyboard
-#
-# Full Keyboard Access: All controls (or Control F7)
-# * Use all F1, F2, etc. keys as standard function keys
-#
 # Disable updates
 # Hot corners
 #
-# #### Disable Mission Control Keyboard Shortcut so ^ left/right works
+# #### Disable all Mission Control Keyboard Shortcut so ^ left/right works
 # System Preferences → Keyboard → Shortcuts → Mission Control
 
 # Finder settings
