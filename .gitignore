@@ -23,6 +23,7 @@ resources/oui.txt
 .atom/*-cache
 .atom/.*
 .atom/blob-store
+.atom/compile-cache
 .atom/nohup.out
 .atom/packages
 .atom/recovery
