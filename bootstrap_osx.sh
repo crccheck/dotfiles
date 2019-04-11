@@ -69,6 +69,10 @@ n lts
 # The rest
 brew install ffmpeg pv redis terraform imagemagick cowsay fortune
 
+# https://pilotmoon.com/scrollreverser/
+brew cask install scroll-reverser
+# Reverse scroll on the mouse only
+
 # Preferences
 # -----------
 #
@@ -93,7 +97,6 @@ softwareupdate --ignore iTunes
 sudo rm -r /Applications/iTunes.app/
 touch /Applications/iTunes.app
 chflags hidden /Applications/iTunes.app
-
 
 # TODO: sudoers
 
