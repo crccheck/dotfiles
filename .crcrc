@@ -157,12 +157,14 @@ fi
 if [ "$(uname -s)" == "Darwin" ]; then
   # Mac OS X stuff:
   alias date=gdate
-  alias jdate="echo 'oi' && date"
-  alias sed=gsed
   alias du='du -kh'
   alias ls='ls -AFGq'
+  prepend_path_if_exists PATH /usr/local/opt/mysql@5.7/bin
+  prepend_path_if_exists PATH /usr/local/opt/findutils/libexec/gnubin
+  prepend_path_if_exists PATH /usr/local/opt/gnu-sed/libexec/gnubin
+  prepend_path_if_exists PATH /usr/local/opt/curl/bin
+  prepend_path_if_exists PATH /usr/local/opt/openssl/bin
   prepend_path_if_exists PATH /usr/local/bin
-
   # http://postgresapp.com/documentation/cli-tools.html
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
 

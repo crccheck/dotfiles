@@ -18,11 +18,9 @@
     disabledPackages: [
       "metrics"
       "deprecation-cop"
-      "vim-mode"
       "language-python"
       "github"
       "node-debugger"
-      "language-graphql-lb"
       "linter-flow"
       "linter"
       "linter-mypy"

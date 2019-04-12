@@ -79,6 +79,8 @@ if [ -z $(which node) ]; then
   npm install -g n
   n lts
 fi
+# NVM
+# See installation instructions at https://github.com/creationix/nvm
 
 # Ruby
 ######

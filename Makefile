@@ -65,7 +65,7 @@ atom:
 .atom/packages/emmet-atom:
 	cd .atom/packages && git clone git@github.com:crccheck/emmet-atom
 	cd .atom/packages/emmet-atom && \
-	  git remote add emmet https://github.com/emmetio/emmet-atom.git && \
+	  git remote add up https://github.com/emmetio/emmet-atom.git && \
 	  npm install
 
 vim: ## Vim
