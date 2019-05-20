@@ -21,9 +21,9 @@
       "language-python"
       "github"
       "node-debugger"
-      "linter-flow"
-      "linter"
       "linter-mypy"
+      "linter"
+      "linter-ui-default"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -107,7 +107,8 @@
     warnReturnAny: false
     warnUnusedConfigs: false
     warnUnusedIgnores: false
-  "linter-ui-default": {}
+  "linter-ui-default":
+    panelHeight: 170
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -116,7 +117,6 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-mode-plus": {}
