@@ -81,6 +81,7 @@ if [ -z $(which node) ]; then
 fi
 # NVM
 # See installation instructions at https://github.com/creationix/nvm
+# nvm alias default system
 
 # Ruby
 ######

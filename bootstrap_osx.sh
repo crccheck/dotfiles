@@ -55,16 +55,20 @@ brew cask install karabiner-elements
 #   - Command to Option
  
 # Python
-brew install python python3
-cd ~/bin
-ln -s $(which python3) python
-ln -s $(which pip3) pip
+# brew install python python3
+# cd ~/bin
+# ln -s $(which python3) python
+# ln -s $(which pip3) pip
+brew install zlib pyenv
+pyenv init
+pyenv install 3.6.8 3.7.3
 
 # Node
 brew install n
 n lts
 # NVM
 # See installation instructions at https://github.com/creationix/nvm
+# nvm alias default system
 
 # The rest
 brew install ffmpeg pv redis terraform imagemagick cowsay fortune

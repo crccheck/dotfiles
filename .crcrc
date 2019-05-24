@@ -124,24 +124,6 @@ did () {
 }
 
 
-function work {
-  # assumes `mkvirtualenv` exists
-  local env_name=$(basename $PWD)
-  workon ${env_name}
-  if [ $? -ne 0 ]; then
-    echo "Shall I create '${env_name}' for you? [Yn]"
-    read -n 1 sure
-    if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-      echo "Python version? [3.7]"
-      read ver
-      mkvirtualenv ${env_name} --py=python${ver:-3.7}
-      workon ${env_name}
-      setvirtualenvproject
-    fi
-  fi
-}
-
-
 if [ -d ~/.nvm ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -213,6 +195,26 @@ export WORKON_HOME=$HOME/env
 [ ! -d $WORKON_HOME ] && mkdir -p $WORKON_HOME
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
+
+# $(pyenv root)/shims
+prepend_path_if_exists PATH $HOME/.pyenv/shims
+
+function work {
+  # assumes `mkvirtualenv` exists
+  local env_name=$(basename $PWD)
+  workon ${env_name}
+  if [ $? -ne 0 ]; then
+    echo "Shall I create '${env_name}' for you? [Yn]"
+    read -n 1 sure
+    if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
+      echo "Python version? [3.7]"
+      read ver
+      mkvirtualenv ${env_name} --py=python${ver:-3.7}
+      workon ${env_name}
+      setvirtualenvproject
+    fi
+  fi
+}
 
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
