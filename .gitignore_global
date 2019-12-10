@@ -6,9 +6,13 @@ README.html
 __pycache__
 node_modules
 
+# IDE junk
+.vscode
+
 # random junk
 .DS_Store
 .ipynb_checkpoints
+.mypy_cache
 npm-debug.log
 lerna-debug.log
 *.swp

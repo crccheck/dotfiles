@@ -141,11 +141,11 @@ if [ "$(uname -s)" == "Darwin" ]; then
   alias date=gdate
   alias du='du -kh'
   alias ls='ls -AFGq'
-  prepend_path_if_exists PATH /usr/local/opt/mysql@5.7/bin
+  prepend_path_if_exists PATH /usr/local/opt/curl/bin
   prepend_path_if_exists PATH /usr/local/opt/findutils/libexec/gnubin
   prepend_path_if_exists PATH /usr/local/opt/gnu-sed/libexec/gnubin
-  prepend_path_if_exists PATH /usr/local/opt/curl/bin
-  prepend_path_if_exists PATH /usr/local/opt/openssl/bin
+  prepend_path_if_exists PATH /usr/local/opt/mysql@5.7/bin
+  prepend_path_if_exists PATH /usr/local/opt/openssl@1.1/bin
   prepend_path_if_exists PATH /usr/local/bin
   # http://postgresapp.com/documentation/cli-tools.html
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
@@ -190,14 +190,14 @@ fi
 ###################################################
 ### PYTHON, virtualenv(wrapper)
 ###################################################
+# $(pyenv root)/shims
+prepend_path_if_exists PATH $HOME/.pyenv/shims
+
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=$HOME/env
 [ ! -d $WORKON_HOME ] && mkdir -p $WORKON_HOME
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+[ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
-
-# $(pyenv root)/shims
-prepend_path_if_exists PATH $HOME/.pyenv/shims
 
 function work {
   # assumes `mkvirtualenv` exists

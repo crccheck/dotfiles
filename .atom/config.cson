@@ -9,6 +9,8 @@
     useKite: false
   "bracket-matcher":
     autocompleteBrackets: false
+  "conventional-changelog":
+    releaseCount: 2
   core:
     audioBeep: false
     customFileTypes:
@@ -24,6 +26,7 @@
       "linter-mypy"
       "linter"
       "linter-ui-default"
+      "linter-js-standard"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -44,6 +47,8 @@
       "autocomplete-python"
       "bracket-matcher"
       "python-yapf"
+      "python-black"
+      "conventional-changelog"
     ]
     telemetryConsent: "no"
     themes: [
@@ -109,6 +114,9 @@
     warnUnusedIgnores: false
   "linter-ui-default":
     panelHeight: 170
+  "python-black":
+    fmtOnSave: false
+    showErrors: "flash"
   "python-yapf":
     checkOnSave: false
     yapfPath: "/usr/local/bin/yapf"
@@ -117,6 +125,7 @@
     usePreviewTabs: true
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-mode-plus": {}

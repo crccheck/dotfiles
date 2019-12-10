@@ -1,6 +1,6 @@
 # For OSX 10.14 Mojave
 
-brew install gti ponysay jq vim bash ack gnu-sed tree \
+brew install gti sl ponysay jq vim bash ack gnu-sed tree \
   sshrc pkg-config the_silver_searcher \
   wget bash-completion \
   git
@@ -72,6 +72,7 @@ n lts
 
 # The rest
 brew install ffmpeg pv redis terraform imagemagick cowsay fortune
+brew cask install vlc
 
 # https://pilotmoon.com/scrollreverser/
 brew cask install scroll-reverser
