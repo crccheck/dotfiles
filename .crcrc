@@ -191,7 +191,10 @@ fi
 ### PYTHON, virtualenv(wrapper)
 ###################################################
 # $(pyenv root)/shims
-prepend_path_if_exists PATH $HOME/.pyenv/shims
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+prepend_path PATH $HOME/.poetry/bin
 
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=$HOME/env

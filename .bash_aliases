@@ -28,12 +28,15 @@ alias update="sudo apt-get update"
 alias install="sudo apt-get install"
 alias upgrade="sudo apt-get upgrade"
 alias remove="sudo apt-get remove"
+alias digs="dig +short"
 
 alias cov='coverage report --skip-covered --show-missing'
 alias covit='open coverage/lcov-report/index.html'
 alias cows='for cow in $(cowsay -l); do cowsay -f $cow "$cow"; done'
 alias ipchicken="curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g'"
+# curl ipinfo.io
 alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias hurl='curl -sD - -o /dev/null'
 
 # Docker
 alias fig="docker-compose"
@@ -44,7 +47,9 @@ alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 
 # NodeJS
 alias nn="npm run"
+alias npm="npm --no-fund"
 alias npmnuke="[ -f package.json ] && rm -rf node_modules package-lock.json && mkdir node_modules && touch node_modules/.metadata_never_index && npm install"
+alias gitnpmnuke='[ -f package.json ] && rm -rf node_modules package-lock.json && mkdir node_modules && npm install && git commit -am "chore(deps): regenerate package-lock.json"'
 alias nodemont='nodemon --exec npm test'
 alias nodemons='nodemon --exec npm start'
 alias npmfix="sed -i -e 's/http:\/\//https:\/\//g' package-lock.json"

@@ -77,6 +77,8 @@ brew cask install vlc
 # https://pilotmoon.com/scrollreverser/
 brew cask install scroll-reverser
 # Reverse scroll on the mouse only
+# https://superuser.com/questions/382024/reversing-scroll-direction-across-synergy-connection
+defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
 
 # Preferences
 # -----------

@@ -13,6 +13,7 @@ node_modules
 .DS_Store
 .ipynb_checkpoints
 .mypy_cache
+.python-version
 npm-debug.log
 lerna-debug.log
 *.swp
