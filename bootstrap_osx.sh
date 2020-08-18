@@ -55,13 +55,12 @@ brew cask install karabiner-elements
 #   - Command to Option
  
 # Python
-# brew install python python3
-# cd ~/bin
-# ln -s $(which python3) python
-# ln -s $(which pip3) pip
-brew install zlib pyenv
+########
+brew install zlib pyenv pyenv-virtualenv
 pyenv init
-pyenv install 3.6.8 3.7.3
+pyenv install 3.8.1
+# https://github.com/python-poetry/poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
 # Node
 brew install n
