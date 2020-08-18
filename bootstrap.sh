@@ -27,16 +27,21 @@ sudo apt-get remove -y brasero libreoffice-core libreoffice-common \
 #########
 
 # Important Stuff first
-sudo apt-get install -y vim git-core build-essential libncurses-dev gawk python
+sudo apt-get install -y vim git-core build-essential libncurses-dev gawk
 
 sudo apt-get install -y \
   curl athena-jot jq \
   tree \
-  chromium-browser \
   silversearcher-ag \
+
+# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+sudo apt-get update; sudo apt-get install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+# Heavier stuff
+sudo apt-get install -y \
+  chromium-browser \
   libmysqlclient-dev \
   libpq-dev libgeos-dev
-
 
 # Take ownership of `/usr/local`
 ################################
@@ -56,12 +61,14 @@ fi
 
 # Modern Python 3
 #################
-sudo add-apt-repository ppa:deadsnakes/ppa -y  # python
-sudo apt-get -qq update
-sudo apt-get install -y python3.7 python-dev
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+pyenv install 3.8.5
+pyenv global 3.8.5
 
-sudo pip install -U pip
-pip install --quiet virtualenvwrapper awscli postdoc
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+
+pip install --quiet awscli postdoc
 source ~/.bashrc  # Setup virtualenv env variables
 
 # Autoenv

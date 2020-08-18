@@ -197,8 +197,10 @@ if [ -d ~/.pyenv ]; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-prepend_path PATH $HOME/.poetry/bin
-poetry completions bash > $(brew --prefix)/etc/bash_completion.d/poetry.bash-completion
+if [ -d ~/.poetry ]; then
+  prepend_path PATH $HOME/.poetry/bin
+  poetry completions bash > $(brew --prefix)/etc/bash_completion.d/poetry.bash-completion
+fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=$HOME/env
