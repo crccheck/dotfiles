@@ -190,9 +190,12 @@ fi
 ###################################################
 ### PYTHON, virtualenv(wrapper)
 ###################################################
-# $(pyenv root)/shims
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -d ~/.pyenv ]; then
+  # $(pyenv root)/shims
+  prepend_path PATH $HOME/.pyenv/bin
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 prepend_path PATH $HOME/.poetry/bin
 poetry completions bash > $(brew --prefix)/etc/bash_completion.d/poetry.bash-completion
