@@ -1,5 +1,0 @@
-{
-    "popup": false,
-    "ignore": ["E128", "E501", "N802"]
-    // N802: setUp tearDown are valid, stupid flake8
-}
