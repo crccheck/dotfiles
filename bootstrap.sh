@@ -118,13 +118,6 @@ if [ -z $(which syncthing) ]; then
   sudo apt-get install -y syncthing
 fi
 
-if [ -z $(which atom) ]; then
-  sudo add-apt-repository ppa:webupd8team/atom -y
-  sudo apt-get -qq update
-  sudo apt-get install -y atom
-  make atom
-fi
-
 if [ -z $(which sshrc) ]; then
   # TODO install manually because the PPA is not maintained
   sudo add-apt-repository ppa:russell-s-stewart/ppa -y

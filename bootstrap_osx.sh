@@ -37,10 +37,6 @@ brew cask install \
   # Automation
   hammerspoon
 
-# Atom
-brew cask install atom
-make atom
-
 # Karabiner-Elements and Keyboard customizations
 brew cask install karabiner-elements
 # Karabiner elements:

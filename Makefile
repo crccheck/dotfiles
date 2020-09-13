@@ -48,23 +48,6 @@ gterm: # My visual customizations for gterm
 	@echo "* Linking gnome terminal settings"
 	@cd ~/.config/gtk-3.0 && ln -sf $(PWD)/.config/gtk-3.0/gtk.css
 
-atom/freeze:
-	@mkdir -p ./.atom
-	apm list --installed --bare > .atom/package-list.txt
-
-atom:
-	cd ${HOME} && ln -sf $(PWD)/.atom || true
-	@# apm install --packaged-file .atom/package-list.txt
-	@# workaround for error: ENOPACKAGEJSON
-	cat .atom/package-list.txt | grep -v emmet | xargs apm install
-	@$(MAKE) -s .atom/packages/emmet-atom
-
-.atom/packages/emmet-atom:
-	cd .atom/packages && git clone git@github.com:crccheck/emmet-atom
-	cd .atom/packages/emmet-atom && \
-	  git remote add up https://github.com/emmetio/emmet-atom.git && \
-	  npm install
-
 vim: ## Vim
 	@echo "* Linking vim config"
 	@cd $(HOME) && ln -sf $(PWD)/.vim
