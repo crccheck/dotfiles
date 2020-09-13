@@ -1,6 +1,3 @@
-# https://terraform.io/downloads.html
-TERRAFORM_VERSION = 0.7.9
-
 PWD := $(shell echo $$PWD)
 # Where I keep local binaries
 BIN := $(HOME)/bin
@@ -74,16 +71,6 @@ vim: ## Vim
 	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
 	cd .vim/bundle/neobundle.vim && git checkout ver.4.0
 	.vim/bundle/neobundle.vim/bin/neoinstall
-
-terraform:
-	[ ! -d /usr/local/terraform-$(TERRAFORM_VERSION) ]
-	cd /tmp && \
-	  wget https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip
-	unzip /tmp/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip -d /usr/local/terraform-$(TERRAFORM_VERSION)
-	rm -f /usr/local/terraform /usr/local/bin/terraform
-	ln -s /usr/local/terraform-$(TERRAFORM_VERSION) /usr/local/terraform
-	ln -s /usr/local/terraform/terraform /usr/local/bin/terraform
-
 
 .PHONY: resources/oui.txt
 resources/oui.txt:
