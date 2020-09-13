@@ -81,10 +81,8 @@ fi
 # Node
 ######
 if [ -z $(which node) ]; then
-  sudo apt-get install nodejs nodejs-legacy npm -y
-  npm install -g npm
-  npm install -g n
-  n lts
+  curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+  bash n lts
 fi
 # NVM
 # See installation instructions at https://github.com/creationix/nvm
