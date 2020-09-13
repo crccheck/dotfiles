@@ -180,13 +180,6 @@ else
   fi
 fi
 
-if [ "$(uname -s)" == "MINGW32_NT-6.1" ]; then
-    # Windows stuff:
-    alias subl='/c/Program\ Files/Sublime\ Text\ 2/sublime_text.exe'
-    export PATH=$PATH:/c/Python27
-    export PATH=$PATH:/c/Python27/Scripts
-fi
-
 ###################################################
 ### PYTHON, virtualenv(wrapper)
 ###################################################
@@ -199,7 +192,11 @@ fi
 
 if [ -d ~/.poetry ]; then
   prepend_path PATH $HOME/.poetry/bin
-  poetry completions bash > $(brew --prefix)/etc/bash_completion.d/poetry.bash-completion
+  if [ "$(uname -s)" == "Darwin" ]; then
+    if [ ! -f "$(brew --prefix)/etc/bash_completion.d/poetry.bash-completion" ]; then
+      poetry completions bash > $(brew --prefix)/etc/bash_completion.d/poetry.bash-completion
+    fi
+  fi
 fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
