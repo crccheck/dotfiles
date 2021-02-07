@@ -182,13 +182,30 @@ else
 fi
 
 ###################################################
-### PYTHON, virtualenv(wrapper)
+### PYTHON
 ###################################################
 if [ -d ~/.pyenv ]; then
   # $(pyenv root)/shims
   prepend_path PATH $HOME/.pyenv/bin
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+  function work {
+    local env_name=$(basename $PWD)
+    pyenv activate ${env_name}
+    if [ $? -ne 0 ]; then
+      echo "Shall I create '${env_name}' for you? [Yn]"
+      read -n 1 sure
+      if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
+        # echo "Python version? [3.9]"
+        # read ver
+        pyenv virtualenv ${env_name}
+        pyenv activate ${env_name}
+        setvirtualenvproject
+      fi
+    fi
+  }
 fi
 
 if [ -d ~/.poetry ]; then
@@ -199,29 +216,6 @@ if [ -d ~/.poetry ]; then
     fi
   fi
 fi
-
-export VIRTUAL_ENV_DISABLE_PROMPT="True"
-export WORKON_HOME=$HOME/env
-[ ! -d $WORKON_HOME ] && mkdir -p $WORKON_HOME
-[ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-
-function work {
-  # assumes `mkvirtualenv` exists
-  local env_name=$(basename $PWD)
-  workon ${env_name}
-  if [ $? -ne 0 ]; then
-    echo "Shall I create '${env_name}' for you? [Yn]"
-    read -n 1 sure
-    if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-      echo "Python version? [3.7]"
-      read ver
-      mkvirtualenv ${env_name} --py=python${ver:-3.7}
-      workon ${env_name}
-      setvirtualenvproject
-    fi
-  fi
-}
 
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
