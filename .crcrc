@@ -50,8 +50,6 @@ prepend_path_if_exists()
 
 prepend_path_if_exists PATH $HOME/usr/bin
 prepend_path_if_exists PATH $HOME/bin
-# Ubuntu 18.04
-prepend_path_if_exists PATH $HOME/.local/bin
 
 ###################################################
 ### Simple variables
@@ -157,12 +155,15 @@ if [ "$(uname -s)" == "Darwin" ]; then
   unset MANPATH
 
   # xcode 4 hack, to get pycrypto to install
-  export ARCHFLAGS='-arch i386 -arch x86_64'
+  # export ARCHFLAGS='-arch i386 -arch x86_64'
 
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
   [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
+
+  # Autoenv
+  [ -f ~/Sync/autoenv/activate.sh ] && source ~/Sync/autoenv/activate.sh
 else
   # Fix aliases that don't work in OSX
   alias df='df -kTh'
@@ -314,5 +315,5 @@ function mac {
 alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
 alias restore_mac='sudo ifconfig en0 ether YOUR_ORIGINAL_MAC_ADDRESS_GOES_HERE'
 
-# Autoenv
-[ -f ~/Sync/autoenv/activate.sh ] && source ~/Sync/autoenv/activate.sh
+# Ubuntu 18.04 and pipx. This needs to take precedence over pyenv
+prepend_path_if_exists PATH $HOME/.local/bin
