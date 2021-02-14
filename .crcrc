@@ -192,6 +192,12 @@ if [ -d ~/.pyenv ]; then
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
   function work {
+    if [ -f poetry.lock ]; then
+      echo "poetry shell"
+      poetry shell
+      exit
+    fi
+
     local env_name=$(basename $PWD)
     pyenv activate ${env_name}
     if [ $? -ne 0 ]; then
