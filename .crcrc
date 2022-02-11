@@ -185,11 +185,11 @@ fi
 ### PYTHON
 ###################################################
 if [ -d ~/.pyenv ]; then
-  # $(pyenv root)/shims
-  prepend_path PATH $HOME/.pyenv/bin
+  prepend_path PATH $HOME/.pyenv/shims
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
 
   function work {
     if [ -f poetry.lock ]; then

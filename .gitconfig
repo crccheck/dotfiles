@@ -25,7 +25,7 @@
     d = diff -b
     derp = reset --hard HEAD
     initempty = !git init && git commit -m 'initial commit (empty)' --allow-empty
-    empty = commit -m '(empty commit)' --allow-empty
+    empty = commit -m '(empty commit)' --allow-empty --no-verify
     ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     f = fetch

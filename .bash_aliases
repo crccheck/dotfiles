@@ -83,3 +83,4 @@ alias djadminme='django createsuperuser --username=admin --email=admin@example.c
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias befs="bundle exec foreman start"
 alias ag='ag --path-to-ignore ~/.ignore_global'
+alias agit='ag --path-to-ignore ~/.ignore_global --ignore *.it.js --ignore *.spec.js'
