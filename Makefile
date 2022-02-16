@@ -9,7 +9,7 @@ help: ## Shows this help
 	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
 basic: ## Just the basics that work everywhere
-basic: dotfiles bin bashmarks
+basic: dotfiles bin
 
 all: ## Run this after ./bootstrap.sh
 all: basic virtualenv vim gterm
@@ -32,10 +32,6 @@ bin: ## Setup my personal global helper scripts
 osx: ## OSX specific things
 osx: bin
 	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
-
-.PHONY: bashmarks
-bashmarks:
-	git submodule update --init bashmarks
 
 .PHONY: virtualenv
 virtualenv: # Set up my personal virtualenv script hooks
