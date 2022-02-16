@@ -71,8 +71,8 @@ export PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # quick way for me to change my titles
 function tit {
-    local title=${@-$(basename $PWD)}
-    echo -e "\033];$title\007"
+  local title=$(basename $PWD)
+  echo -e "\033];$title\007"
 }
 
 # Open a Wireshark window to a Docker container
