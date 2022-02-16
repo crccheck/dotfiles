@@ -51,8 +51,7 @@ export VISUAL=vim
 # alias vi=${VISUAL}
 
 # export LC_COLLATE="POSIX"
-export DOCKER_NAMESPACE=crccheck  # my docker username
-export PIP_DISABLE_PIP_VERSION_CHECK=1
+# export DOCKER_NAMESPACE=crccheck  # my docker username
 
 # if [ "$TERM" == "xterm" ]
 # then
@@ -155,11 +154,9 @@ else
   fi
 fi
 
-# History
+# HACK to run stuff only in M1 mac with zsh
 if [ -d /opt/homebrew ]; then
-export HISTFILE=~/.histfile
-export HISTSIZE=1000000   # the number of items for the internal history list
-export SAVEHIST=1000000   # maximum number of items for the history file
+  bindkey -e
 fi
 # After each command, save and reload history
 # nevermind, this is too confusing
@@ -169,6 +166,7 @@ fi
 ###################################################
 ### PYTHON
 ###################################################
+export PIP_DISABLE_PIP_VERSION_CHECK=1
 if [ -d ~/.pyenv ]; then
   # Same as $(pyenv init --path)
   prepend_path PATH $HOME/.pyenv/shims
@@ -267,6 +265,7 @@ PROMPT_COMMAND="timer_stop"
 PS1="\n⏳ $CYAN\D{%FT%T} ${UNCOLOR}last: \${timer_show}s exit: \$?\n$GREEN\u@\h$BLUE \w$UNCOLOR\$(active_virtualenv)\$(parse_git_branch)\n\$ "
 export PS1
 fi
+# zsh prompt is in .zshrc
 
 # latest can be downloaded: http://standards.ieee.org/develop/regauth/oui/oui.txt
 function mac {
