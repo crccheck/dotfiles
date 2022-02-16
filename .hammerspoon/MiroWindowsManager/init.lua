@@ -130,6 +130,7 @@ function obj:_moveNextScreenStep()
   end
 end
 
+-- dim: 'h'|'w'
 function obj:_fullDimension(dim)
   if hs.window.focusedWindow() then
     local win = hs.window.frontmostWindow()
