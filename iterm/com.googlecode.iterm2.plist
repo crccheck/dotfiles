@@ -1061,7 +1061,7 @@
 	<key>PromptOnClose</key>
 	<false/>
 	<key>PromptOnQuit</key>
-	<false/>
+	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
 	<key>RightCommand</key>

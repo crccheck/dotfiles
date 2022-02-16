@@ -7,43 +7,33 @@
 # append_path() and prepend_path() adapted from Fink's init.sh
 
 # add to end of path
-append_path()
-{
-    if eval test -z "\$$1"
-    then
-        eval "export $1=$2"
-    fi
+append_path() {
+  if eval test -z "\$$1"; then
+    eval "export $1=$2"
+  fi
 
-    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""
-    then
-        eval "export $1=\$$1:$2"
-    fi
+  if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""; then
+    eval "export $1=\$$1:$2"
+  fi
 }
 
 # add to beginning of path
-prepend_path()
-{
-    if eval test -z "\$$1"
-    then
-      eval "export $1=$2"
-      return
-    fi
+prepend_path() {
+  if eval test -z "\$$1"; then
+    eval "export $1=$2"
+    return
+  fi
 
-    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""
-    then
-      eval "export $1=$2:\$$1"
-    fi
+  if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\""; then
+    eval "export $1=$2:\$$1"
+  fi
 }
 
-prepend_path_if_exists()
-
-{
-    if [ -d "$2" ]
-    then
-        prepend_path $1 $2
-    fi
+prepend_path_if_exists() {
+  if [ -d "$2" ]; then
+    prepend_path $1 $2
+  fi
 }
-
 ###################################################
 ### PATH-type list variables
 ###################################################
@@ -55,42 +45,29 @@ prepend_path_if_exists PATH $HOME/bin
 ### Simple variables
 ###################################################
 
-if [ -z "$HOST" ]
-then
-    HOST=$(hostname | sed 's/\..*//')
-fi
-
 export EDITOR=vim
 export VISUAL=vim
 # XXX whatever my default visual editor happens to be, could be atom or subl too
-alias vi=${VISUAL}
-export FPP_EDITOR="atom --wait"
-export HISTCONTROL=ignoredups:erasedups
-# append history (defaults to append anyways)
-shopt -s histappend
+# alias vi=${VISUAL}
 
-export LC_COLLATE="POSIX"
+# export LC_COLLATE="POSIX"
 export DOCKER_NAMESPACE=crccheck  # my docker username
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 
-if [ "$TERM" == "xterm" ]
-then
-    export TERM="xterm-color"
-fi
+# if [ "$TERM" == "xterm" ]
+# then
+#     export TERM="xterm-color"
+# fi
 
 # Change the window title of X terminals
-case $TERM in
-    # xterm*|rxvt|Eterm|eterm)
-    #     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-    #     ;;
-    screen)
-        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-        ;;
-esac
-
-# After each command, save and reload history
-# nevermind, this is too confusing
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# case $TERM in
+#     # xterm*|rxvt|Eterm|eterm)
+#     #     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+#     #     ;;
+#     screen)
+#         PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+#         ;;
+# esac
 
 # quick way for me to change my titles
 function tit {
@@ -100,17 +77,13 @@ function tit {
 
 # Open a Wireshark window to a Docker container
 # Usage: dshark <container>
-function dshark {
-  docker run --rm --net=container:$1 crccheck/tcpdump -i any tcp --immediate-mode -w - | wireshark -k -i -
-}
+# function dshark {
+#   docker run --rm --net=container:$1 crccheck/tcpdump -i any tcp --immediate-mode -w - | wireshark -k -i -
+# }
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
-
-# to install ack-grep as ack instead of ack-grep:
-# sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
-
-alias lol="lolcommits --enable --delay=1 --fork"
-alias loll="lolcommits --last"
+# alias lol="lolcommits --enable --delay=1 --fork"
+# alias loll="lolcommits --last"
 # Inspired by https://theptrk.com/2018/07/11/did-txt-file/
 did () {
   mkdir -p ~/Documents/did
@@ -120,7 +93,6 @@ did () {
   fi
   find ~/Documents/did -type f -printf "%TY-%Tm-%Td %TH:%TM\t%P\n" | sort -nr | head -n 10
 }
-
 
 if [ -d ~/.nvm ]; then
   export NVM_DIR="$HOME/.nvm"
@@ -134,22 +106,23 @@ fi
 ### Platform- or system-specific modifications
 ###################################################
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if [ "$(uname -s)" = "Darwin" ]; then
   # Mac OS X stuff:
   alias date=gdate
   alias du='du -kh'
   alias ls='ls -AFGq'
-  prepend_path_if_exists PATH /usr/local/opt/curl/bin
-  prepend_path_if_exists PATH /usr/local/opt/findutils/libexec/gnubin
-  prepend_path_if_exists PATH /usr/local/opt/gnu-sed/libexec/gnubin
-  prepend_path_if_exists PATH /usr/local/opt/mysql@5.7/bin
-  prepend_path_if_exists PATH /usr/local/opt/openssl@1.1/bin
   prepend_path_if_exists PATH /usr/local/bin
+  prepend_path_if_exists PATH /opt/homebrew/bin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/curl/bin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/findutils/libexec/gnubin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/gnu-sed/libexec/gnubin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/mysql@5.7/bin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/openssl@1.1/bin
   # http://postgresapp.com/documentation/cli-tools.html
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
 
   # Fix Backspace/Delete confusion:
-  stty erase ^?
+  # stty erase ^?
   # XTerm's $MANPATH gets messed up, and I can't find where it's happening.
   # Screw it. Just reset the whole thing, cuz the default works.
   unset MANPATH
@@ -157,13 +130,14 @@ if [ "$(uname -s)" == "Darwin" ]; then
   # xcode 4 hack, to get pycrypto to install
   # export ARCHFLAGS='-arch i386 -arch x86_64'
 
+  [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
   [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
 
   # Autoenv
-  [ -f ~/Sync/autoenv/activate.sh ] && source ~/Sync/autoenv/activate.sh
+  # [ -f ~/Sync/autoenv/activate.sh ] && source ~/Sync/autoenv/activate.sh
 else
   # Fix aliases that don't work in OSX
   alias df='df -kTh'
@@ -181,13 +155,25 @@ else
   fi
 fi
 
+# History
+if [ -d /opt/homebrew ]; then
+export HISTFILE=~/.histfile
+export HISTSIZE=1000000   # the number of items for the internal history list
+export SAVEHIST=1000000   # maximum number of items for the history file
+fi
+# After each command, save and reload history
+# nevermind, this is too confusing
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export HISTCONTROL=ignoredups:erasedups
+
 ###################################################
 ### PYTHON
 ###################################################
 if [ -d ~/.pyenv ]; then
+  # Same as $(pyenv init --path)
   prepend_path PATH $HOME/.pyenv/shims
   eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+  # eval "$(pyenv virtualenv-init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
@@ -226,25 +212,6 @@ fi
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
 
-# rbenv
-#######
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-###################################################
-### Ruby Gems
-###################################################
-
-if [ -d /var/lib/gems ]; then
-    # export GEM_HOME=$HOME/.gem/ruby/1.8
-    prepend_path PATH $GEM_HOME/bin
-    append_path PATH /var/lib/gems/bin
-fi
-
-if [ -d /usr/local/heroku/bin ]; then
-    prepend_path PATH /usr/local/heroku/bin
-fi
-
-
 GREEN="\[\033[1;32m\]"
 BLUE="\[\033[1;34m\]"
 CYAN="\[\033[1;36m\]"
@@ -252,6 +219,7 @@ UNCOLOR="\[\033[00m\]"
 
 eCYAN="\x1b[1;36m"
 eUNCOLOR="\x1b[0m"
+if [ "$TERM" = "xterm" ]; then
 
 ###################################################
 ### git prompt hack
@@ -298,7 +266,7 @@ PROMPT_COMMAND="timer_stop"
 # PS1="\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]\$(active_virtualenv)\$(parse_git_branch)\n\$ "
 PS1="\n⏳ $CYAN\D{%FT%T} ${UNCOLOR}last: \${timer_show}s exit: \$?\n$GREEN\u@\h$BLUE \w$UNCOLOR\$(active_virtualenv)\$(parse_git_branch)\n\$ "
 export PS1
-
+fi
 
 # latest can be downloaded: http://standards.ieee.org/develop/regauth/oui/oui.txt
 function mac {
