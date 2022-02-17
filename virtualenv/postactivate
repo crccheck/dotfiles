@@ -6,6 +6,3 @@ alias vivirtualenv="$VISUAL $VIRTUAL_ENV/bin/postdeactivate $VIRTUAL_ENV/bin/pos
 
 # change my title, alias in my .crcrc
 tit $(basename $VIRTUAL_ENV)
-
-# Activate autoenv by manually triggering its cd override
-cd $PWD

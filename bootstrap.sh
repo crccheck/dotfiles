@@ -71,13 +71,6 @@ python3 -m pipx ensurepath
 pip install --quiet awscli postdoc
 source ~/.bashrc  # Setup virtualenv env variables
 
-# Autoenv
-#########
-# Install from my fork
-if [ ! -d ~/Sync/autoenv ]; then
-  git clone git://github.com/crccheck/autoenv.git ~/Sync/autoenv
-fi
-
 # Node
 ######
 if [ -z $(which node) ]; then
