@@ -81,6 +81,9 @@ function tit {
 # }
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
+if [ -n "ZSH_VERSION" ]; then
+  alias $=''
+fi
 # alias lol="lolcommits --enable --delay=1 --fork"
 # alias loll="lolcommits --last"
 # Inspired by https://theptrk.com/2018/07/11/did-txt-file/
@@ -210,6 +213,8 @@ fi
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
 
+if [ -n "$BASH_VERSION" ]; then
+
 GREEN="\[\033[1;32m\]"
 BLUE="\[\033[1;34m\]"
 CYAN="\[\033[1;36m\]"
@@ -217,7 +222,6 @@ UNCOLOR="\[\033[00m\]"
 
 eCYAN="\x1b[1;36m"
 eUNCOLOR="\x1b[0m"
-if [ "$TERM" = "xterm" ]; then
 
 ###################################################
 ### git prompt hack

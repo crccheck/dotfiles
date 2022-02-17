@@ -37,19 +37,6 @@ brew install \
   # Automation
   hammerspoon
 
-# Karabiner-Elements and Keyboard customizations
-brew cask install karabiner-elements
-# Karabiner elements:
-# Devices -> uncheck daskeyboard (makes it so Apple keyboard preferences will work below)
-# https://github.com/tekezo/Karabiner-Elements/issues/1700
-# Devices -> check "no product name", Product ID 34304
-# Keyboard control panel:
-# check Use F1, F2, etc. keys as standard function keys on external keyboards
-# Modifier Keys...
-# - daskeyboard
-#   - Option to Command
-#   - Command to Option
- 
 # Python
 ########
 brew install pyenv
@@ -57,6 +44,7 @@ pyenv init
 # This will show you versions, pick the latest
 pyenv install 3.10
 brew install poetry
+brew install pipx
 
 # Node
 brew install n
