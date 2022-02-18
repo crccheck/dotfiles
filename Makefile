@@ -9,10 +9,10 @@ help: ## Shows this help
 	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
 basic: ## Just the basics that work everywhere
-basic: dotfiles bin
+basic: dotfiles bin completion
 
 all: ## Run this after ./bootstrap.sh
-all: basic virtualenv vim gterm
+all: basic virtualenv vim
 
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
@@ -55,3 +55,9 @@ vim: ## Vim
 resources/oui.txt:
 	mkdir -p resources
 	curl -L http://standards.ieee.org/develop/regauth/oui/oui.txt > $@
+
+.PHONY: completion
+completion: ## Get external shell completion scripts
+	mkdir -p completion
+	curl https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh > completion/aws_zsh_completer.sh
+	chmod +x completion/aws_zsh_completer.sh

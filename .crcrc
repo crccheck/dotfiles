@@ -84,6 +84,7 @@ function tit {
 if [ -n "ZSH_VERSION" ]; then
   alias $=''
 fi
+[ -f ~/.work_aliases ] && source ~/.work_aliases
 # alias lol="lolcommits --enable --delay=1 --fork"
 # alias loll="lolcommits --last"
 # Inspired by https://theptrk.com/2018/07/11/did-txt-file/
@@ -212,6 +213,12 @@ fi
 
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
+
+
+# Command Completion
+####################
+
+[ -f $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh ] && source $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh
 
 if [ -n "$BASH_VERSION" ]; then
 
