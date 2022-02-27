@@ -51,7 +51,7 @@ brew install n
 n lts
 # NVM
 # See installation instructions at https://github.com/creationix/nvm
-# nvm alias default system
+nvm alias default system
 
 # The rest
 brew install ffmpeg pv redis terraform imagemagick cowsay fortune
