@@ -113,8 +113,10 @@ function obj:_nextFullScreenStep()
 
     cell.w = self.GRID.w / nextSize
     -- cell.h = self.GRID.h / nextSize
+    cell.h = self.GRID.h / 1
     cell.x = (self.GRID.w - self.GRID.w / nextSize) / 2
-    -- cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
+    cell.x = (self.GRID.w - self.GRID.w / nextSize) / 2
+    cell.y = (self.GRID.h - self.GRID.h / 1) / 2
 
     hs.grid.set(win, cell, screen)
   end
