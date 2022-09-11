@@ -65,8 +65,9 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 pyenv install 3.8.5
 pyenv global 3.8.5
 
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
+# Install pipx via apt to make sure changing pyenv doesn't break pipx
+sudo apt install pipx
+pipx ensurepath
 
 pip install --quiet awscli postdoc
 source ~/.bashrc  # Setup virtualenv env variables
