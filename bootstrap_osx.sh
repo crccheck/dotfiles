@@ -12,19 +12,20 @@ brew install syncthing
 
 # Automation
 brew install hammerspoon
-  
+
 # Basic commands used by my dotfiles
 # findutils: GNU find xargs locate
 # coreutils: gdate
+# bash-completion is required for some zsh completion scripts
 brew install gnu-sed wget \
   openssl curl \
   findutils coreutils \
+  bash-completion \
   direnv
 
 brew install gti sl ponysay
 brew install jq vim bash ack tree \
   sshrc pkg-config the_silver_searcher \
-  bash-completion \
   git
 
 # brew install mysql@5.6

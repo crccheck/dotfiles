@@ -5,17 +5,14 @@
 
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
-# autoload -Uz compinit
-# compinit
+# Command completion
+autoload -Uz compinit
+compinit
 
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -73,7 +70,5 @@ zstyle ':vcs_info:*' enable git
 #   print $LEFT${(l:$RIGHTWIDTH:: :)RIGHT}
 # }
 
-# Fix cursor movement
+# Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
-
-fpath+=~/.zfunc
