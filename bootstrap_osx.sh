@@ -74,6 +74,13 @@ defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
 # Preferences
 # -----------
 #
+# System Preferences → Keyboard → Keyboard → Modifier Keys...
+# Globe to ^Control
+# Control to Globe
+#
+# Use F1, F2, etc. keys as standard function keys
+
+
 # Disable updates
 # Hot corners
 #
