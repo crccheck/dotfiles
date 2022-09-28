@@ -1,26 +1,39 @@
 # For OSX 10.14 Mojave
 
+# See current Homebrew installation instructions at https://brew.sh/ and install
+
+# Get my stuff, install then configure
+brew install syncthing
+
+# Iterm2
+# https://iterm2.com/downloads.html
+# General -> Preferences
+# Load preference from a custom folder or URL: .../dotfiles/iterm
+
+# Automation
+brew install hammerspoon
+
+# Basic commands used by my dotfiles
+# findutils: GNU find xargs locate
+# coreutils: gdate
+# bash-completion is required for some zsh completion scripts
+brew install gnu-sed wget \
+  openssl curl \
+  findutils coreutils \
+  bash-completion \
+  direnv
+
 brew install gti sl ponysay
-brew install jq vim bash ack gnu-sed tree \
+brew install jq vim bash ack tree \
   sshrc pkg-config the_silver_searcher \
-  wget bash-completion \
   git
 
 # brew install mysql@5.6
-
-# Fucking incompatible OSX BDS piece of shit junkware
-brew install openssl curl
-# GNU find xargs locate
-brew install findutils
 
 # utils
 brew cask install \
   graphviz \
   quicklook-json qlvideo
-
-# Iterm2
-# General -> Preferences
-# Load preference from a custom folder or URL: .../dotfiles/iterm
 
 # Get started with some programs
 brew install \
@@ -28,14 +41,11 @@ brew install \
   caffeine \
   # Internet
   # firefox google-chrome \
-  # It's paleo, yo
-  flux \
   # Shhhhhh!
   keepassxc \
   # This installs Postgres.app, NOT the same as `brew install postgres`
-  postgres-unofficial \
-  # Automation
-  hammerspoon
+  postgres-unofficial
+
 
 # Python
 ########
@@ -66,6 +76,13 @@ defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
 # Preferences
 # -----------
 #
+# System Preferences → Keyboard → Keyboard → Modifier Keys...
+# Globe to ^Control
+# Control to Globe
+#
+# Use F1, F2, etc. keys as standard function keys
+
+
 # Disable updates
 # Hot corners
 #

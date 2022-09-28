@@ -15,6 +15,9 @@
 [apply]
     whitespace = nowarn
 [alias]
+    # Interesting reading
+    # https://ses4j.github.io/2020/04/01/git-alias-recent-branches/
+
     b = branch
     bd = for-each-ref --sort='-authordate' --format='%(authordate:iso8601)%09%(refname:short)' refs/heads
     bad = for-each-ref --sort='-authordate' --format='%(authordate:iso8601)%09%(refname:short)' refs/remotes
