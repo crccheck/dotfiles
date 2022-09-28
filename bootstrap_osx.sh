@@ -13,18 +13,21 @@ brew install syncthing
 # Automation
 brew install hammerspoon
   
+# Basic commands used by my dotfiles
+# findutils: GNU find xargs locate
+# coreutils: gdate
+brew install gnu-sed wget \
+  openssl curl \
+  findutils coreutils \
+  direnv
+
 brew install gti sl ponysay
-brew install jq vim bash ack gnu-sed tree \
+brew install jq vim bash ack tree \
   sshrc pkg-config the_silver_searcher \
-  wget bash-completion \
+  bash-completion \
   git
 
 # brew install mysql@5.6
-
-# Fucking incompatible OSX BDS piece of shit junkware
-brew install openssl curl
-# GNU find xargs locate
-brew install findutils
 
 # utils
 brew cask install \
@@ -37,12 +40,10 @@ brew install \
   caffeine \
   # Internet
   # firefox google-chrome \
-  # It's paleo, yo
-  flux \
   # Shhhhhh!
   keepassxc \
   # This installs Postgres.app, NOT the same as `brew install postgres`
-  postgres-unofficial \
+  postgres-unofficial
 
 
 # Python
