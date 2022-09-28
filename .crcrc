@@ -52,6 +52,7 @@ export VISUAL=vim
 
 # export LC_COLLATE="POSIX"
 # export DOCKER_NAMESPACE=crccheck  # my docker username
+prepend_path_if_exists PATH $HOME/.rd/bin
 
 # if [ "$TERM" == "xterm" ]
 # then
@@ -100,7 +101,9 @@ did () {
 if [ -d ~/.nvm ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  if [ -n "$BASH_VERSION" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  fi
 else
   alias nvm='[ -f .nvmrc ] && n $(cat .nvmrc) || echo "MISSING: .nvmrc"'
 fi
@@ -134,13 +137,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
   # export ARCHFLAGS='-arch i386 -arch x86_64'
 
   [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-  [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
-
-  # Autoenv
-  # [ -f ~/Sync/autoenv/activate.sh ] && source ~/Sync/autoenv/activate.sh
 else
   # Fix aliases that don't work in OSX
   alias df='df -kTh'
@@ -165,7 +161,7 @@ fi
 # After each command, save and reload history
 # nevermind, this is too confusing
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-# export HISTCONTROL=ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups
 
 ###################################################
 ### PYTHON
@@ -173,11 +169,13 @@ fi
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 if [ -d ~/.pyenv ]; then
   # Same as $(pyenv init --path)
+  prepend_path_if_exists PATH $HOME/.pyenv/bin
   prepend_path PATH $HOME/.pyenv/shims
   eval "$(pyenv init -)"
   # eval "$(pyenv virtualenv-init -)"
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  # export VIRTUAL_ENV_DISABLE_PROMPT=1
+  export POETRY_VIRTUALENVS_IN_PROJECT=true
 
   function work {
     if [ -f poetry.lock ]; then
@@ -216,6 +214,11 @@ export CONDA_DEFAULT_ENV=dummy
 [ -f $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh ] && source $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh
 
 if [ -n "$BASH_VERSION" ]; then
+
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+  [ -f $HOME/Sync/dotfiles/git-completion.bash ] && source $HOME/Sync/dotfiles/git-completion.bash
 
 GREEN="\[\033[1;32m\]"
 BLUE="\[\033[1;34m\]"
