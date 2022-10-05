@@ -155,8 +155,8 @@ if [ -d ~/.pyenv ]; then
   prepend_path_if_exists PATH $HOME/.pyenv/bin
   prepend_path PATH $HOME/.pyenv/shims
   eval "$(pyenv init -)"
-  # eval "$(pyenv virtualenv-init -)"
-  # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   # export VIRTUAL_ENV_DISABLE_PROMPT=1
   export POETRY_VIRTUALENVS_IN_PROJECT=true
 
@@ -175,7 +175,6 @@ if [ -d ~/.pyenv ]; then
           # read ver
           pyenv virtualenv ${env_name}
           pyenv activate ${env_name}
-          setvirtualenvproject
         fi
       fi
     fi
