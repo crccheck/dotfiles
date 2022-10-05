@@ -42,9 +42,9 @@ brew install \
   # Internet
   # firefox google-chrome \
   # Shhhhhh!
-  keepassxc \
+  keepassxc
   # This installs Postgres.app, NOT the same as `brew install postgres`
-  postgres-unofficial
+  # postgres-unofficial
 
 
 # Python
@@ -53,8 +53,8 @@ brew install pyenv
 pyenv init
 # This will show you versions, pick the latest
 pyenv install 3.10
-brew install poetry
-brew install pipx
+pyenv global 3.10.xx
+brew install poetry pipx
 
 # Node
 brew install n
@@ -72,6 +72,8 @@ brew install scroll-reverser
 # Reverse scroll on the mouse only
 # https://superuser.com/questions/382024/reversing-scroll-direction-across-synergy-connection
 defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
+# https://stackoverflow.com/a/44010683
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # Preferences
 # -----------
