@@ -48,7 +48,7 @@ RIGHTWIDTH=$(($COLUMNS-45))
 # RIGHTWIDTH=$(($COLUMNS-${#LEFT}-2))
 PROMPT="
 %F{6}$LEFT%f%F{blue}${(l:$RIGHTWIDTH:: :)RIGHT}🌍 $(date -u +"%Y-%m-%d %H:%M:%SZ")
-%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%~%f%b \$vcs_info_msg_0_ %F{11}$(virtualenv_info)%f
+%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%~%f%b \$vcs_info_msg_0_ %F{11}\$(virtualenv_info)%f
 %(!.#.$) "
 
 autoload -Uz vcs_info
