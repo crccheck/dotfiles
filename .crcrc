@@ -256,6 +256,7 @@ PS1="\n⏳ $CYAN\D{%FT%T} ${UNCOLOR}last: \${timer_show}s exit: \$?\n$GREEN\u@\h
 export PS1
 fi
 # zsh prompt is in .zshrc
+export STARSHIP_CONFIG=$HOME/Sync/dotfiles/.config/starship/starship.toml
 
 # latest can be downloaded: http://standards.ieee.org/develop/regauth/oui/oui.txt
 function mac {
