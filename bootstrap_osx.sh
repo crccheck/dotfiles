@@ -49,8 +49,9 @@ brew install \
 
 # Python
 ########
-brew install pyenv
-pyenv init
+brew install openssl readline sqlite3 xz zlib
+curl https://pyenv.run | bash
+# Go through pyenv setup
 # This will show you versions, pick the latest
 pyenv install 3.10
 pyenv global 3.10.xx
