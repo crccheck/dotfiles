@@ -7,6 +7,13 @@ alias la='ls -A'
 alias ll='ls -l'
 alias sl='sl -e'
 # alias vi='vim -g'
+if which exa > /dev/null; then
+  alias ls=exa
+  alias l='exa -la'
+  alias la='exa -A'
+  alias ll='exa -l'
+  alias tree=exa --tree
+fi
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -83,4 +90,5 @@ alias djadminme='django createsuperuser --username=admin --email=admin@example.c
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias befs="bundle exec foreman start"
 alias ag='ag --path-to-ignore ~/.ignore_global'
-alias agit='ag --path-to-ignore ~/.ignore_global --ignore "*.it.js" --ignore "*.spec.js" --ignore "*.spec.mjs"'
+alias ,agit='ag --path-to-ignore ~/.ignore_global --ignore "*.it.js" --ignore "*.spec.js" --ignore "*.spec.mjs" --ignore "test_*.py"'
+alias ,youtube-dl='type ,youtube-dl && youtube-dl --cookies ~/Downloads/cookies.txt --output "%(extractor)s/%(uploader)s/%(title)s-%(id)s.%(ext)s"'

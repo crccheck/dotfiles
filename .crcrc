@@ -102,6 +102,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   alias date=gdate
   alias du='du -kh'
   alias ls='ls -AFGq'
+  alias ,lsof="lsof -i -sTCP:LISTEN -P -n"
   prepend_path_if_exists PATH /usr/local/bin
   prepend_path_if_exists PATH /opt/homebrew/bin
   prepend_path_if_exists PATH $(brew --prefix)/opt/curl/bin

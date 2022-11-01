@@ -460,6 +460,8 @@
 			<false/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>Icon</key>
+			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -882,6 +884,8 @@
 			<true/>
 			<key>Shortcut</key>
 			<string></string>
+			<key>Show Timestamps</key>
+			<integer>2</integer>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>

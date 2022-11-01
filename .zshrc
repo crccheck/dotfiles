@@ -74,4 +74,4 @@ zstyle ':vcs_info:*' enable git
 bindkey -e
 
 # Now throw away all the promp work I did above and use Starship if it's installed
-if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
+# if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
