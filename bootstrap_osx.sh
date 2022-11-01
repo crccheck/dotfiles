@@ -69,9 +69,10 @@ brew cask install vlc
 
 # https://pilotmoon.com/scrollreverser/
 brew install scroll-reverser
-# Reverse scroll on the mouse only
+# Reverse scroll on the mouse only, reverse vertical and horizontal
 # https://superuser.com/questions/382024/reversing-scroll-direction-across-synergy-connection
 defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
+# Then restart Scroll Reverser
 # https://stackoverflow.com/a/44010683
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
