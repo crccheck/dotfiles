@@ -160,7 +160,7 @@ if [ -d ~/.pyenv ]; then
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   export POETRY_VIRTUALENVS_IN_PROJECT=true
 
-  function work {
+  function ,work {
     if [ -f poetry.lock ]; then
       echo "$(poetry env info --path)/bin/activate"
       source $(poetry env info --path)/bin/activate
