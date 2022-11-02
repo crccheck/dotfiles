@@ -4,10 +4,98 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character] # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+format = """
+$time
+$status\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$docker_context\
+$package\
+$c\
+$cmake\
+$daml\
+$deno\
+$golang\
+$helm\
+$java\
+$nim\
+$nodejs\
+$python\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$container\
+$shell\
+$character"""
+
+[character]
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[directory]
+truncate_to_repo = false
+style = "white"
+
+[time]
+format = "🌎 [$time]($style)"
+time_format = "%F %T"
+style = "cyan"
+disabled = false
+
+[status]
+disabled = false
+
+[git_branch]
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+symbol = "" # Default: " "
+style = "bold fg:white bg:88"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold fg:white bg:1"
+
+[python]
+format = '[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "bg:22 bold"
+
+[conda]
+disabled = true
+
+[aws]
+disabled = true
+
+[cmd_duration]
+show_milliseconds = true
