@@ -57,8 +57,12 @@ prepend_path_if_exists PATH $HOME/.rd/bin
 
 # A quick way for me to change my terminal titles
 function tit {
-  local title=$(basename $PWD)
-  echo -e "\033];$title\007"
+  if [ -z "$*" ]; then
+    local title=$(basename $PWD)
+  else
+    local title="$*"
+  fi
+  echo -en "\033];$title\007"
 }
 
 # Open a Wireshark window to a Docker container
@@ -140,6 +144,9 @@ fi
 # HACK to run stuff only in M1 mac with zsh
 if [ -d /opt/homebrew ]; then
   bindkey -e
+  # https://apple.stackexchange.com/questions/389525/how-do-i-do-home-and-end-in-iterm2/426075#426075
+  bindkey '\e[H'    beginning-of-line
+  bindkey '\e[F'    end-of-line
 fi
 
 # After each command, save and reload history
