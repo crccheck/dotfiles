@@ -14,6 +14,9 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
+zstyle ':completion:*:*:git:*' script ~/Sync/dotfiles/completion/git-completion.bash
+fpath=(~/.zfunc $fpath)
+
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
 # zstyle ':completion:*' format 'Completing %d'
@@ -73,5 +76,5 @@ zstyle ':vcs_info:*' enable git
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Now throw away all the promp work I did above and use Starship if it's installed
+# Now throw away all the prompt work I did above and use Starship if it's installed
 if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi

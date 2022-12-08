@@ -199,6 +199,7 @@ export CONDA_DEFAULT_ENV=dummy
 
 # TODO move to ~/.zfunc
 [ -f $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh ] && source $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh
+# [ -f $HOME/Sync/dotfiles/completion/git-completion.bash ] && source $HOME/Sync/dotfiles/completion/git-completion.bash
 
 if [ -n "$BASH_VERSION" ]; then
 
