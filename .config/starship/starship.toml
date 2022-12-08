@@ -66,7 +66,8 @@ error_symbol = "[\\$](bold red)"
 disabled = true
 
 [directory]
-truncate_to_repo = false
+truncation_length = 10 # default: 3
+truncate_to_repo = false # default: true
 style = "white"
 
 [time]
@@ -83,9 +84,13 @@ format = "[ $symbol$branch(:$remote_branch) ]($style)"
 symbol = "" # Default: " "
 style = "bold fg:white bg:88"
 
+[git_commit]
+only_detached = false
+style = "bold fg:white bg:88"
+
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "bold fg:white bg:1"
+style = "bold fg:white bg:88"
 
 [python]
 format = '[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
