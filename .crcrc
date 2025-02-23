@@ -124,6 +124,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   export N_PREFIX=~/.local
 
   [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+  export HOMEBREW_NO_AUTO_UPDATE=1
 else
   # Fix aliases that don't work in OSX
   alias df='df -kTh'
@@ -158,9 +159,11 @@ export HISTCONTROL=ignoredups:erasedups
 ### PYTHON
 ###################################################
 export PIP_DISABLE_PIP_VERSION_CHECK=1
+export PIP_REQUIRE_VENV=1
 if [ -d ~/.pyenv ]; then
   export PYENV_ROOT="$HOME/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  prepend_path PATH $PYENV_ROOT/bin
+  # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
   if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -177,18 +180,21 @@ if [ -d ~/.pyenv ]; then
       echo source .venv/bin/activate
       source .venv/bin/activate
     else
-      local env_name=$(basename $PWD)
-      pyenv activate ${env_name}
-      if [ $? -ne 0 ]; then
+      # local env_name=$(basename $PWD)
+      local env_name=.venv
+      # pyenv activate ${env_name}
+      # if [ $? -ne 0 ]; then
         echo "Shall I create '${env_name}' for you? [Yn]"
         read -n 1 sure
         if [ -z "$sure" ] || [ "$sure" = 'y' ] || [ "$sure" = 'Y' ]; then
-          # echo "Python version? [3.9]"
-          # read ver
-          pyenv virtualenv ${env_name}
-          pyenv activate ${env_name}
+          python3 -m venv "${env_name}"
+          source "${env_name}/bin/activate"
+      #     # echo "Python version? [3.9]"
+      #     # read ver
+      #     pyenv virtualenv ${env_name}
+      #     pyenv activate ${env_name}
         fi
-      fi
+      # fi
     fi
   }
 fi
@@ -200,6 +206,10 @@ fi
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
 
+# RUST
+######
+
+prepend_path_if_exists PATH $HOME/.cargo/bin
 
 # Command Completion
 ####################

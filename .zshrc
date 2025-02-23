@@ -13,9 +13,14 @@ HISTFILE=~/.zsh_history
 # Command completion
 autoload -Uz compinit
 compinit
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+# helm completion zsh > "${fpath[1]}/_helm"
+# kubectl completion bash > "${fpath[1]}/_kubectl"
 
 zstyle ':completion:*:*:git:*' script ~/Sync/dotfiles/completion/git-completion.bash
 fpath=(~/.zfunc $fpath)
+# fpath=( ~/.zfunc "${fpath[0]}" )
 
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -78,3 +83,4 @@ bindkey -e
 
 # Now throw away all the prompt work I did above and use Starship if it's installed
 if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
+alias '#'=':'

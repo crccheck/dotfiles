@@ -5,6 +5,7 @@ README.html
 *.pyc
 __pycache__
 node_modules
+.venv*
 
 # IDE junk
 .vscode
@@ -25,3 +26,4 @@ lerna-debug.log
 env-
 .gists
 zzz*
+*fuckfuckfuck*

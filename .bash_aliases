@@ -46,9 +46,9 @@ alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias hurl='curl -sD - -o /dev/null'
 
 # Docker
-alias fig="docker-compose"
-figup () { docker-compose up -d $@ && docker-compose logs -f --tail 20 $@; }
-alias figlogs='docker-compose logs -f --tail=40'
+alias fig="docker compose"
+figup () { docker compose up --detach $@ && docker-compose logs -f --tail 20 $@; }
+alias figlogs='docker compose logs -f --tail=40'
 alias dm="docker-machine"
 alias zz='docker run --rm -v "${PWD}":/data -w /data -it crccheck/zz'
 
@@ -89,6 +89,8 @@ alias djsql="django debugsqlshell"
 alias djadminme='django createsuperuser --username=admin --email=admin@example.com || django createsuperuser --email=admin@example.com'
 alias attach="$HOME/bin/grabssh ; screen -d -r"
 alias befs="bundle exec foreman start"
-alias ag='ag --path-to-ignore ~/.ignore_global'
-alias ,agit='ag --path-to-ignore ~/.ignore_global --ignore "*.it.js" --ignore "*.spec.js" --ignore "*.spec.mjs" --ignore "test_*.py"'
+alias ag='ag --path-to-ignore ~/.ignore_global --width 120'
+alias ,agit='ag --path-to-ignore ~/.ignore_global --ignore "*.it.js" --ignore "*.spec.js" --ignore "*.spec.mjs" --ignore "test_*.py" --ignore "tests"'
 alias ,youtube-dl='type ,youtube-dl && youtube-dl --cookies ~/Downloads/cookies.txt --output "%(extractor)s/%(uploader)s/%(title)s-%(id)s.%(ext)s"'
+alias cdsitepackages='cd $(python -c "import site; print(site.getsitepackages()[0])")'
+# alias #=':'

@@ -3,18 +3,21 @@
 set -e
 
 function _pingbaby {
-    local scale=5
+    local scale=10
     local delay=10
     local out=$(ping -q -c 1 $1)
     local time=$(echo $out | awk -F/ 'END{print $5}')
     if [ $time ]; then
         local ticks=$(echo $time / $scale + 1 | bc)
-        jot -b '' -s '▄' -n $ticks
+        # jot -b '' -s '▄' -n $ticks || && break
+        for (( i=0; i<=ticks; i++)); do
+          echo -n "▄"
+        done
         echo " $time"
         # send time to titlebar
         echo -en "\033]0;${time}ms $1 \a"
     else
-        echo " *  p i n g   t i m e o u t  *"
+        echo "  *  p i n g   t i m e o u t  *"
         echo -en "\033]0;timeout $1 \a"
     fi
     sleep $delay

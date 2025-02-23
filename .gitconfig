@@ -3,11 +3,11 @@
     ui = auto
     diff = auto
     status = auto
+[color "diff"]
+    whitespace = red reverse
 [user]
     name = crccheck
     email = c@crccheck.com
-[color "diff"]
-    whitespace = red reverse
 [core]
     whitespace = fix,-indent-with-non-tabl,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore_global
@@ -25,7 +25,7 @@
     bvv = branch -vv
     caa = commit -a --amend -C HEAD
     co = checkout
-    d = diff -b
+    d = diff --ignore-space-change --color-words
     derp = reset --hard HEAD
     initempty = !git init && git commit -m 'initial commit (empty)' --allow-empty
     empty = commit -m '(empty commit)' --allow-empty --no-verify
@@ -56,3 +56,5 @@
 	enabled = true
 [rebase]
 	autoStash = true
+[advice]
+	detachedHead = false

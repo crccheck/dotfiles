@@ -25,7 +25,7 @@ brew install gnu-sed wget \
 
 brew install gti sl ponysay
 brew install jq vim bash ack tree \
-  sshrc pkg-config the_silver_searcher \
+  pkg-config the_silver_searcher \
   git
 
 # brew install mysql@5.6
@@ -77,6 +77,12 @@ defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
 # https://stackoverflow.com/a/44010683
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
+# SSHRC
+cd /Sync
+git clone git@github.com:cdown/sshrc.git
+cd sshrc
+ln -s ~/Sync/sshrc/sshrc ~/.local/bin
+
 # Preferences
 # -----------
 #
@@ -109,3 +115,7 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 # Run Postgres.app. Then see
 # http://postgresapp.com/documentation/cli-tools.html
 # to add '/Applications/Postgres.app/Contents/Versions/latest/bin' to your PATH (already done in .crcrc)
+
+# Fix stupid Slack asking for permissions all the time
+# https://apple.stackexchange.com/questions/267685/repeatedly-trying-to-add-a-new-helper-tool-on-each-restart-for-same-applicatio/414967#414967
+# rsync -av --delete /Applications/Slack.app/ ~/Applications/Slack.app/ && open ~/Applications/Slack.app
