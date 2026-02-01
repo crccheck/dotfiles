@@ -1,10 +1,26 @@
-local hyper = {"ctrl", "cmd"}
+local hyper = {"ctrl", "alt"}  -- Ctrl+Option (Rectangle standard)
+
+-- Simple window management for laptop use
+-- Ctrl+Option+Enter to maximize window (Rectangle standard)
+hs.hotkey.bind(hyper, "return", function()
+  local win = hs.window.focusedWindow()
+  if win then
+    win:maximize()
+  end
+end)
+
+--[[
+================================================================================
+ARCHIVED: Full window management config for docked setup with external keyboard
+================================================================================
+
+When using external keyboard with numpad and dual monitors, uncomment below:
 
 hs.loadSpoon("MiroWindowsManager")
 
 hs.window.animationDuration = 0.3
--- TODO only enable one set depending on if external keyboard detected
--- TODO need to nudge windows
+
+-- Arrow key bindings
 spoon.MiroWindowsManager:bindHotkeys({
   up = {hyper, "up"},
   right = {hyper, "right"},
@@ -14,6 +30,7 @@ spoon.MiroWindowsManager:bindHotkeys({
   nextscreen = {hyper, "n"}
 })
 
+-- Numpad bindings
 spoon.MiroWindowsManager:bindHotkeys({
   up = {hyper, "pad8"},
   right = {hyper, "pad6"},
@@ -22,6 +39,9 @@ spoon.MiroWindowsManager:bindHotkeys({
   fullscreen = {hyper, "pad5"},
   nextscreen = {hyper, "n"}
 })
+
+================================================================================
+--]]
 
 -- Hammerspoon keycodes:
 -- https://github.com/Hammerspoon/hammerspoon/blob/master/extensions/keycodes/keycodes.lua#L67
