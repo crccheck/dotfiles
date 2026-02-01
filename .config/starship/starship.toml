@@ -104,3 +104,9 @@ disabled = true
 
 [cmd_duration]
 show_milliseconds = true
+
+[docker_context]
+disabled = true
+
+[nodejs]
+symbol = "n "

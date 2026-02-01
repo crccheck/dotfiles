@@ -17,8 +17,7 @@ all: basic virtualenv vim
 dotfiles: ## dotfiles
 	@echo "* Linking dotfiles"
 	@cd && $(foreach file, $(SRCS), \
-	  [ ! -h "$(file)" -a -f "$(PWD)/$(file)" ] && \
-	  ln -s $(PWD)/$(file) && echo "  linking $(file)" || echo "  skipping $(file)";)
+	  ln -s --force $(PWD)/$(file) && echo "  linking $(file)" ;)
 
 .PHONY: bin
 bin: ## Setup my personal global helper scripts

@@ -18,14 +18,14 @@
     # Interesting reading
     # https://ses4j.github.io/2020/04/01/git-alias-recent-branches/
 
-    b = branch
+    b = branch --sort=-committerdate
     bd = for-each-ref --sort='-authordate' --format='%(authordate:iso8601)%09%(refname:short)' refs/heads
     bad = for-each-ref --sort='-authordate' --format='%(authordate:iso8601)%09%(refname:short)' refs/remotes
     ba = branch -ra
     bvv = branch -vv
     caa = commit -a --amend -C HEAD
     co = checkout
-    d = diff --ignore-space-change --color-words
+    d = diff --ignore-space-change
     derp = reset --hard HEAD
     initempty = !git init && git commit -m 'initial commit (empty)' --allow-empty
     empty = commit -m '(empty commit)' --allow-empty --no-verify
@@ -58,3 +58,8 @@
 	autoStash = true
 [advice]
 	detachedHead = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

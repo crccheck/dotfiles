@@ -1,0 +1,8 @@
+# NodeJS
+https://github.com/coreybutler/nvm-windows/releases
+
+nvm install lts
+nvm use lts  (accept UAC prompt)
+
+
+# Install 'uv' for Python

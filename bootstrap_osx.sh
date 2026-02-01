@@ -17,7 +17,7 @@ brew install hammerspoon
 # findutils: GNU find xargs locate
 # coreutils: gdate
 # bash-completion is required for some zsh completion scripts
-brew install gnu-sed wget \
+brew install gnu-sed gawk wget \
   openssl curl \
   findutils coreutils \
   bash-completion \
@@ -119,3 +119,14 @@ ln -s ~/Sync/sshrc/sshrc ~/.local/bin
 # Fix stupid Slack asking for permissions all the time
 # https://apple.stackexchange.com/questions/267685/repeatedly-trying-to-add-a-new-helper-tool-on-each-restart-for-same-applicatio/414967#414967
 # rsync -av --delete /Applications/Slack.app/ ~/Applications/Slack.app/ && open ~/Applications/Slack.app
+cd /Library/LaunchAgents
+sudo rm -rf *Music*
+cd /Library/Caches
+sudo rm -rf *Music*
+cd /Library/Preferences
+sudo rm -rf *Music*
+cd ~/Library/Caches
+sudo rm -rf *Music*
+osascript -e 'tell application "System Events" to get the name of every login item'
+osascript -e 'tell application "System Events" to delete login item "Music"'
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist

@@ -1,6 +1,5 @@
-###################################################
 # Aliases that I want everywhere
-###################################################
+################################
 
 alias l='ls -la'
 alias la='ls -A'
@@ -74,6 +73,8 @@ fi
 
 md () { mkdir -p "$@" && cd "$@"; }
 
+alias ,colordiff="git diff --no-index"
+
 alias dphd="phd --postdoc-dry-run"
 alias qphd="phd --postdoc-quiet"
 
@@ -93,4 +94,5 @@ alias ag='ag --path-to-ignore ~/.ignore_global --width 120'
 alias ,agit='ag --path-to-ignore ~/.ignore_global --ignore "*.it.js" --ignore "*.spec.js" --ignore "*.spec.mjs" --ignore "test_*.py" --ignore "tests"'
 alias ,youtube-dl='type ,youtube-dl && youtube-dl --cookies ~/Downloads/cookies.txt --output "%(extractor)s/%(uploader)s/%(title)s-%(id)s.%(ext)s"'
 alias cdsitepackages='cd $(python -c "import site; print(site.getsitepackages()[0])")'
+# # alias not needed on ZSH
 # alias #=':'

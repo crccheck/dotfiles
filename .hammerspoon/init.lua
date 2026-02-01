@@ -42,3 +42,23 @@ local function remapKey(modifiers, key, keyCode)
 end
 
 remapKey({'ctrl'}, 'delete', keyCode('forwarddelete'))
+
+-- Remap Ctrl+W to Cmd+W in Firefox only
+firefoxCtrlW = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+  local flags = event:getFlags()
+  local keyCode = event:getKeyCode()
+
+  -- Check if it's Ctrl+W (keyCode 13 is 'w')
+  if flags.ctrl and not flags.cmd and not flags.alt and not flags.shift and keyCode == 13 then
+    local app = hs.application.frontmostApplication()
+
+    if app and app:name() == 'Firefox' then
+      -- Replace ctrl with cmd
+      event:setFlags({cmd = true})
+      return false
+    end
+  end
+
+  return false
+end):start()
+

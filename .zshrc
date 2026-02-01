@@ -1,3 +1,7 @@
+if [[ -n "$CLAUDECODE" ]]; then
+  return
+fi
+
 # Set up the prompt
 # autoload -Uz promptinit
 # promptinit
@@ -13,8 +17,8 @@ HISTFILE=~/.zsh_history
 # Command completion
 autoload -Uz compinit
 compinit
-source <(kubectl completion zsh)
-source <(helm completion zsh)
+command -v kubectl > /dev/null && source <(kubectl completion zsh)
+command -v helm > /dev/null && source <(helm completion zsh)
 # helm completion zsh > "${fpath[1]}/_helm"
 # kubectl completion bash > "${fpath[1]}/_kubectl"
 
@@ -39,6 +43,9 @@ fpath=(~/.zfunc $fpath)
 
 # zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# TODO do I need these?
+# [ -f $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh ] && source $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh
+# [ -f $HOME/Sync/dotfiles/completion/git-completion.bash ] && source $HOME/Sync/dotfiles/completion/git-completion.bash
 
 function virtualenv_info {
   [ -n "$VIRTUAL_ENV" ] && echo 'Virtualenv: ('$(basename $VIRTUAL_ENV)') '

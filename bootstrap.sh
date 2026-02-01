@@ -35,9 +35,6 @@ sudo apt-get install -y \
   silversearcher-ag \
   direnv
 
-# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-sudo apt-get update; sudo apt-get install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-
 # Heavier stuff
 sudo apt-get install -y \
   chromium-browser \
@@ -62,9 +59,13 @@ fi
 
 # Modern Python 3
 #################
+sudo apt update; sudo apt install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl git \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-pyenv install 3.8.5
-pyenv global 3.8.5
+pyenv install 3.13
+pyenv global 3.13
 
 # Install pipx via apt to make sure changing pyenv doesn't break pipx
 sudo apt install pipx
@@ -101,23 +102,13 @@ sudo apt-get install -y inotify-tools
 sudo apt-get install -y libavahi-compat-libdnssd1
 # dpkg install -i synergy.deb
 
-# dropbox
-sudo apt-get install -y nautilus-dropbox
-
 if [ -z $(which syncthing) ]; then
   # http://apt.syncthing.net/
-  curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
-  echo "deb http://apt.syncthing.net/ syncthing release" | \
-    sudo tee /etc/apt/sources.list.d/syncthing.list
+  sudo mkdir -p /etc/apt/keyrings
+  sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+  echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
   sudo apt-get -qq update
   sudo apt-get install -y syncthing
-fi
-
-if [ -z $(which sshrc) ]; then
-  # TODO install manually because the PPA is not maintained
-  sudo add-apt-repository ppa:russell-s-stewart/ppa -y
-  sudo apt-get -qq update
-  sudo apt-get install -y sshrc
 fi
 
 # Less important apps
@@ -144,3 +135,7 @@ sudo apt-get install -y ttf-mscorefonts-installer
 
 # Edit Unity shortcuts, disable "Navigation" keyboard shortcuts or else
 # ctrl+alt+up/down won't work
+
+# Samba
+
+sudo apt install cifs-utils smbclient
