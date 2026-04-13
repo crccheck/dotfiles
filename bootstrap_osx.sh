@@ -130,3 +130,11 @@ sudo rm -rf *Music*
 osascript -e 'tell application "System Events" to get the name of every login item'
 osascript -e 'tell application "System Events" to delete login item "Music"'
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
+
+code ~/.claude/settings.json
+# add   "ENABLE_LSP_TOOL": "1"
+npm i -g pyright
+claude plugin marketplace update claude-plugins-official
+claude plugin install pyright-lsp
+npm i -g typescript-language-server typescriptO
+claude plugin install typescript-lsp
