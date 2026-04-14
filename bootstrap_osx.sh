@@ -1,6 +1,44 @@
-# For OSX 10.14 Mojave
+# For OSX 10.16 Tahoe
+
+# Set city/timezone to "Accra - Ghana" (possible Néma - Mauritania?)
+# 24-hour time
+
+# Preferences
+# -----------
+#
+# Keyboard → Keyboard Shortcuts button → scroll down to Modifier Keys...
+# Caps Lock to Escape
+# Globe to ^Control
+# Control to Globe
+#
+# Function Keys ->
+# Use F1, F2, etc. keys as standard function keys
+#
+# Windows -> disable all
+
+# Hot corners
+# bottom left to "Put Display to Sleep" and no other corners
+
+# #### Disable all Mission Control Keyboard Shortcut so ^ left/right works
+# search for "mission", "Keyboard and Mouse Shortcuts"
+# disable "Mission Control", "Application Windows", "Show Desktop"
+
+# Spotlight
+# disable "Show Related Content"
+# disable "Help Apple Improve Search"
+# disable "Spotlight Suggestions"
+# disable all "Results from Apps" but "Calculator" and "System Preferences"
+# add code projects to "Search Privacy..."
+
+# Finder settings
+#################
+# Advanced -> Show all filename extensions
+# Advanced -> Hide warnings from changing an extension
+# Advanced -> Search the Current Folder
+
 
 # See current Homebrew installation instructions at https://brew.sh/ and install
+# Add it to your environment as directed; it'll be replaced by my dotfiles later
 
 # Get my stuff, install then configure
 brew install syncthing
@@ -23,17 +61,17 @@ brew install gnu-sed gawk wget \
   bash-completion \
   direnv
 
-brew install gti sl ponysay
-brew install jq vim bash ack tree \
+# brew install gti sl ponysay
+brew install jq vim bash tree \
   pkg-config the_silver_searcher \
   git
 
 # brew install mysql@5.6
 
 # utils
-brew cask install \
-  graphviz \
-  quicklook-json qlvideo
+# brew cask install \
+#   graphviz \
+#   quicklook-json qlvideo
 
 # Get started with some programs
 brew install \
@@ -41,10 +79,24 @@ brew install \
   caffeine \
   # Internet
   # firefox google-chrome \
-  # Shhhhhh!
   keepassxc
   # This installs Postgres.app, NOT the same as `brew install postgres`
   # postgres-unofficial
+
+# Fix file associations
+brew install duti
+duti -s com.microsoft.VSCode .json all
+
+# SSH
+
+# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+# https://github.com/settings/keys
+
+# At time of writing, condensed version is:
+ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-add --apple-use-keychain
+
+# Install dotfiles
 
 
 # Python
@@ -82,31 +134,6 @@ cd /Sync
 git clone git@github.com:cdown/sshrc.git
 cd sshrc
 ln -s ~/Sync/sshrc/sshrc ~/.local/bin
-
-# Preferences
-# -----------
-#
-# System Preferences → Keyboard → Keyboard → Modifier Keys...
-# Globe to ^Control
-# Control to Globe
-#
-# Use F1, F2, etc. keys as standard function keys
-
-
-# Disable updates
-# Hot corners
-#
-# #### Disable all Mission Control Keyboard Shortcut so ^ left/right works
-# System Preferences → Keyboard → Shortcuts → Mission Control
-#
-# Spotlight
-# Disable Spotlight Suggestions
-
-# Finder settings
-#################
-# Advanced -> Show all filename extensions
-# Advanced -> Hide warnings from changing an extension
-# Advanced -> Search the Current Folder
 
 # TODO: sudoers
 

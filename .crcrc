@@ -75,7 +75,7 @@ function tit {
 if [ -n "ZSH_VERSION" ]; then
   alias $=''
 fi
-[ -f ~/.work_aliases ] && source ~/.work_aliases
+[ -f ~/.local_aliases ] && source ~/.local_aliases
 
 # Inspired by https://theptrk.com/2018/07/11/did-txt-file/
 did () {
