@@ -43,12 +43,11 @@ gterm: # My visual customizations for gterm
 	@echo "* Linking gnome terminal settings"
 	@cd ~/.config/gtk-3.0 && ln -sf $(PWD)/.config/gtk-3.0/gtk.css
 
-vim: ## Vim
-	@echo "* Linking vim config"
-	@cd $(HOME) && ln -sf $(PWD)/.vim
-	-git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
-	cd .vim/bundle/neobundle.vim && git checkout ver.4.0
-	.vim/bundle/neobundle.vim/bin/neoinstall
+.PHONY: vim
+vim: ## Neovim (config auto-linked via dotfiles target)
+	@echo "* Installing neovim plugins"
+	@command -v nvim > /dev/null || (echo "neovim not installed: brew install neovim" && exit 1)
+	nvim --headless -c 'Lazy! sync' -c 'qa'
 
 .PHONY: resources/oui.txt
 resources/oui.txt:

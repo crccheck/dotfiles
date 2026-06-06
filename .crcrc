@@ -45,10 +45,10 @@ prepend_path_if_exists PATH $HOME/bin
 ### Simple variables
 ###################################################
 
-export EDITOR=vim
-export VISUAL=vim
-# XXX whatever my default visual editor happens to be, could be atom or subl too
-# alias vi=${VISUAL}
+export EDITOR=nvim
+export VISUAL=nvim
+alias vi=nvim
+alias vim=nvim
 
 # export LC_COLLATE="POSIX"
 # export DOCKER_NAMESPACE=crccheck  # my docker username

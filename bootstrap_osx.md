@@ -69,7 +69,7 @@ brew install gnu-sed gawk grep wget \
 ```
 
 ```shell
-brew install jq vim bash tree \
+brew install jq neovim bash tree \
   pkg-config the_silver_searcher \
   git
 ```
