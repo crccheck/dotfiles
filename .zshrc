@@ -14,7 +14,14 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+# Let me copy paste "?" url params without globbing
+unsetopt NOMATCH
+
+# Handle comments more gracefully
+alias '#'=':'
+
 # Command completion
+####################
 autoload -Uz compinit
 compinit
 command -v kubectl > /dev/null && source <(kubectl completion zsh)
@@ -23,6 +30,13 @@ command -v helm > /dev/null && source <(helm completion zsh)
 # kubectl completion bash > "${fpath[1]}/_kubectl"
 
 zstyle ':completion:*:*:git:*' script ~/Sync/dotfiles/completion/git-completion.bash
+_gco() {
+  local -a branches
+  branches=(${(f)"$(git branch --format='%(refname:short)' 2>/dev/null)"})
+  compadd -a branches
+}
+compdef _gco gco
+
 fpath=(~/.zfunc $fpath)
 # fpath=( ~/.zfunc "${fpath[0]}" )
 
@@ -47,6 +61,7 @@ fpath=(~/.zfunc $fpath)
 # [ -f $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh ] && source $HOME/Sync/dotfiles/completion/aws_zsh_completer.sh
 # [ -f $HOME/Sync/dotfiles/completion/git-completion.bash ] && source $HOME/Sync/dotfiles/completion/git-completion.bash
 
+# TODO archive this prompt logic now that I only use Starship
 function virtualenv_info {
   [ -n "$VIRTUAL_ENV" ] && echo 'Virtualenv: ('$(basename $VIRTUAL_ENV)') '
 }
@@ -90,4 +105,3 @@ bindkey -e
 
 # Now throw away all the prompt work I did above and use Starship if it's installed
 if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
-alias '#'=':'

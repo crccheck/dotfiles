@@ -93,8 +93,14 @@ format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "bold fg:white bg:88"
 
 [python]
-format = '[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+# default: format = '${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )'
+# default: style = 'yellow bold'
+# default: symbol = '🐍 '
+format = '[${symbol}${version}]($style)'
 style = "bg:22 bold"
+detect_extensions = []
+detect_files = []
+detect_folders = []
 
 [conda]
 disabled = true

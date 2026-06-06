@@ -92,91 +92,91 @@
 
   //   "customCommands" : {
   //     "trustedDirectories" : [
-  // 
+  //
   //     ]
   //   },
 
-  //   "browser" : {
-  //     "defaultSearchEngine" : "google",
-  //     "hostsToOpenInEmbeddedBrowser" : [
-  // 
-  //     ],
-  //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
-  //       "localhost",
-  //       "127.0.0.1",
-  //       "::1",
-  //       "0.0.0.0",
-  //       "*.localtest.me"
-  //     ],
-  //     "interceptTerminalOpenCommandInCmuxBrowser" : true,
-  //     "openTerminalLinksInCmuxBrowser" : true,
-  //     "reactGrabVersion" : "0.1.29",
-  //     "showImportHintOnBlankTabs" : true,
-  //     "showSearchSuggestions" : true,
-  //     "theme" : "system",
-  //     "urlsToAlwaysOpenExternally" : [
-  // 
-  //     ]
-  //   },
+  "browser" : {
+    // "defaultSearchEngine" : "google",
+    // "hostsToOpenInEmbeddedBrowser" : [
+    //
+    // ],
+    // "insecureHttpHostsAllowedInEmbeddedBrowser" : [
+    //   "localhost",
+    //   "127.0.0.1",
+    //   "::1",
+    //   "0.0.0.0",
+    //   "*.localtest.me"
+    // ],
+    // "interceptTerminalOpenCommandInCmuxBrowser" : true,
+    "openTerminalLinksInCmuxBrowser" : false,
+    // "reactGrabVersion" : "0.1.29",
+    // "showImportHintOnBlankTabs" : true,
+    // "showSearchSuggestions" : true,
+    // "theme" : "system",
+    // "urlsToAlwaysOpenExternally" : [
+    //
+    // ]
+  },
 
-  //   "shortcuts" : {
-  //     "bindings" : {
-  //       "browserBack" : "cmd+[",
-  //       "browserForward" : "cmd+]",
-  //       "browserReload" : "cmd+r",
-  //       "browserZoomIn" : "cmd+=",
-  //       "browserZoomOut" : "cmd+-",
-  //       "browserZoomReset" : "cmd+0",
-  //       "closeOtherTabsInPane" : "cmd+opt+t",
-  //       "closeTab" : "cmd+w",
-  //       "closeWindow" : "cmd+ctrl+w",
-  //       "closeWorkspace" : "cmd+shift+w",
-  //       "commandPalette" : "cmd+shift+p",
-  //       "editWorkspaceDescription" : "cmd+shift+e",
-  //       "find" : "cmd+f",
-  //       "findNext" : "cmd+g",
-  //       "findPrevious" : "cmd+opt+g",
-  //       "focusBrowserAddressBar" : "cmd+l",
-  //       "focusDown" : "cmd+opt+↓",
-  //       "focusLeft" : "cmd+opt+←",
-  //       "focusRight" : "cmd+opt+→",
-  //       "focusUp" : "cmd+opt+↑",
-  //       "goToWorkspace" : "cmd+p",
-  //       "hideFind" : "cmd+shift+f",
-  //       "jumpToUnread" : "cmd+shift+u",
-  //       "newSurface" : "cmd+t",
-  //       "newTab" : "cmd+n",
-  //       "newWindow" : "cmd+shift+n",
-  //       "nextSidebarTab" : "cmd+ctrl+]",
-  //       "nextSurface" : "cmd+shift+]",
-  //       "openBrowser" : "cmd+shift+l",
-  //       "openFolder" : "cmd+o",
-  //       "openSettings" : "cmd+,",
-  //       "prevSidebarTab" : "cmd+ctrl+[",
-  //       "prevSurface" : "cmd+shift+[",
-  //       "quit" : "cmd+q",
-  //       "reloadConfiguration" : "cmd+shift+,",
-  //       "renameTab" : "cmd+r",
-  //       "renameWorkspace" : "cmd+shift+r",
-  //       "reopenClosedBrowserPanel" : "cmd+shift+t",
-  //       "selectSurfaceByNumber" : "ctrl+1",
-  //       "selectWorkspaceByNumber" : "cmd+1",
-  //       "sendFeedback" : "cmd+opt+f",
-  //       "showBrowserJavaScriptConsole" : "cmd+opt+c",
-  //       "showNotifications" : "cmd+i",
-  //       "splitBrowserDown" : "cmd+shift+opt+d",
-  //       "splitBrowserRight" : "cmd+opt+d",
-  //       "splitDown" : "cmd+shift+d",
-  //       "splitRight" : "cmd+d",
-  //       "toggleBrowserDeveloperTools" : "cmd+opt+i",
-  //       "toggleFullScreen" : "cmd+ctrl+f",
-  //       "toggleReactGrab" : "cmd+shift+g",
-  //       "toggleSidebar" : "cmd+b",
-  //       "toggleSplitZoom" : "cmd+shift+\r",
-  //       "toggleTerminalCopyMode" : "cmd+shift+m",
-  //       "triggerFlash" : "cmd+shift+h",
-  //       "useSelectionForFind" : "cmd+e"
-  //     },
-  //     "showModifierHoldHints" : true
-  //   },
+  "shortcuts": {
+    "bindings": {
+      // "browserBack" : "cmd+[",
+      // "browserForward" : "cmd+]",
+      // "browserReload" : "cmd+r",
+      // "browserZoomIn" : "cmd+=",
+      // "browserZoomOut" : "cmd+-",
+      // "browserZoomReset" : "cmd+0",
+      // "closeOtherTabsInPane" : "cmd+opt+t",
+      // "closeTab" : "cmd+w",
+      // "closeWindow" : "cmd+ctrl+w",
+      // "closeWorkspace" : "cmd+shift+w",
+      // "commandPalette" : "cmd+shift+p",
+      // "editWorkspaceDescription" : "cmd+shift+e",
+      // "find" : "cmd+f",
+      // "findNext" : "cmd+g",
+      // "findPrevious" : "cmd+opt+g",
+      // "focusBrowserAddressBar" : "cmd+l",
+      "focusDown": ["ctrl+w", "j"],
+      "focusLeft": ["ctrl+w", "h"],
+      "focusRight": ["ctrl+w", "l"],
+      "focusUp": ["ctrl+w", "k"],
+      // "goToWorkspace" : "cmd+p",
+      // "hideFind" : "cmd+shift+f",
+      // "jumpToUnread" : "cmd+shift+u",
+      // "newSurface" : "cmd+t",
+      // "newTab" : "cmd+n",
+      // "newWindow" : "cmd+shift+n",
+      // "nextSidebarTab" : "cmd+ctrl+]",
+      // "nextSurface" : "cmd+shift+]",
+      // "openBrowser" : "cmd+shift+l",
+      // "openFolder" : "cmd+o",
+      // "openSettings" : "cmd+,",
+      // "prevSidebarTab" : "cmd+ctrl+[",
+      // "prevSurface" : "cmd+shift+[",
+      // "quit" : "cmd+q",
+      // "reloadConfiguration" : "cmd+shift+,",
+      // "renameTab" : "cmd+r",
+      // "renameWorkspace" : "cmd+shift+r",
+      // "reopenClosedBrowserPanel" : "cmd+shift+t",
+      "selectSurfaceByNumber": "cmd+1",
+      "selectWorkspaceByNumber": "ctrl+1",
+      // "sendFeedback" : "cmd+opt+f",
+      // "showBrowserJavaScriptConsole" : "cmd+opt+c",
+      // "showNotifications" : "cmd+i",
+      // "splitBrowserDown" : "cmd+shift+opt+d",
+      // "splitBrowserRight" : "cmd+opt+d",
+      "splitDown": ["ctrl+w", "s"],
+      "splitRight": ["ctrl+w", "v"]
+      // "toggleBrowserDeveloperTools" : "cmd+opt+i",
+      // "toggleFullScreen" : "cmd+ctrl+f",
+      // "toggleReactGrab" : "cmd+shift+g",
+      // "toggleSidebar" : "cmd+b",
+      // "toggleSplitZoom" : "cmd+shift+\r",
+      // "toggleTerminalCopyMode" : "cmd+shift+m",
+      // "triggerFlash" : "cmd+shift+h",
+      // "useSelectionForFind" : "cmd+e"
+    }
+    // "showModifierHoldHints" : true
+  }
 }

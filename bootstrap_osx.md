@@ -60,10 +60,11 @@ brew install hammerspoon
 Used by dotfiles. `bash-completion` is required for some zsh completion scripts.
 
 ```shell
-brew install gnu-sed gawk wget \
+brew install gnu-sed gawk grep wget \
   openssl curl \
   findutils coreutils \
   bash-completion \
+  starship \
   direnv
 ```
 
@@ -153,7 +154,6 @@ defaults write com.pilotmoon.scroll-reverser ReverseOnlyRawInput -bool YES
 ```
 
 Then restart Scroll Reverser.
-
 ## VSCode
 
 Fix press-and-hold for accented characters breaking keybindings (https://stackoverflow.com/a/44010683):
@@ -168,6 +168,12 @@ Then restart VSCode.
 
 ```shell
 brew install rust
+```
+
+## Go
+
+```
+brew install golang
 ```
 
 ## TODO: sudoers
@@ -204,4 +210,4 @@ Run Postgres.app, then see http://postgresapp.com/documentation/cli-tools.html t
 
 ## AWS
 
-Install the CLI from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html.
+Just use the "GUI" instructions from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html

@@ -112,7 +112,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   prepend_path_if_exists PATH $(brew --prefix)/opt/curl/bin
   prepend_path_if_exists PATH $(brew --prefix)/opt/findutils/libexec/gnubin
   prepend_path_if_exists PATH $(brew --prefix)/opt/gnu-sed/libexec/gnubin
-  prepend_path_if_exists PATH $(brew --prefix)/opt/mysql@5.7/bin
+  prepend_path_if_exists PATH $(brew --prefix)/opt/mysql-client@8.4/bin
   prepend_path_if_exists PATH $(brew --prefix)/opt/openssl@1.1/bin
   # http://postgresapp.com/documentation/cli-tools.html
   prepend_path_if_exists PATH '/Applications/Postgres.app/Contents/Versions/latest/bin'
@@ -205,6 +205,23 @@ fi
 
 # Workaround for Conda removing /usr/bin from my path
 export CONDA_DEFAULT_ENV=dummy
+
+# 'git checkout'
+gco() {
+  if [[ $# -eq 0 ]]; then
+    git b
+    return
+  fi
+  local worktree_path
+  worktree_path=$(git worktree list | awk -v b="[$1]" '$3 == b {print $1}')
+  if [[ -n "$worktree_path" ]]; then
+    cd "$worktree_path"
+  else
+    git checkout "$@"
+  fi
+}
+
+export ENABLE_CLAUDEAI_MCP_SERVERS=false
 
 # RUST
 ######

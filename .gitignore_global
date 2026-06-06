@@ -2,7 +2,7 @@
 README.html
 
 # WIP
-PLAN_*.md
+PLAN_*.local.md
 
 # So common
 *.pyc
@@ -27,6 +27,7 @@ lerna-debug.log
 .ignore
 .agignore
 .env
+.envrc
 env-
 .gists
 zzz*
