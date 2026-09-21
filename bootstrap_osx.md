@@ -8,6 +8,7 @@ Set city/timezone to "Accra - Ghana" (possible Néma - Mauritania?) and 24-hour 
   - Caps Lock → Escape
   - Globe → ^Control
   - Control → Globe
+- Keyboard > Text Input/Input Sources, uncheck "Add period with double-space"
 - **Function Keys** → Use F1, F2, etc. as standard function keys
 - **Windows** → disable all
 
@@ -128,12 +129,17 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 brew install watchman
 ```
 
-## Node
+## JavaScript
 
 ```shell
 brew install n
 n lts
 ```
+
+```shell
+curl -fsSL https://bun.sh/install | bash
+```
+Then fix `.zshrc`
 
 Alternatively, use NVM — see https://github.com/creationix/nvm.
 
@@ -211,3 +217,9 @@ Run Postgres.app, then see http://postgresapp.com/documentation/cli-tools.html t
 ## AWS
 
 Just use the "GUI" instructions from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+## Extras
+
+```
+brew install actionlint
+```

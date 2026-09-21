@@ -1,3 +1,7 @@
+# Shared with bash and OSX. .zshrc runs for login and non-login interactive shells,
+# so this works in macOS Terminal (login) and Ubuntu terminals (non-login).
+[ -f ~/.crcrc ] && source ~/.crcrc
+
 if [[ -n "$CLAUDECODE" ]]; then
   return
 fi
@@ -28,6 +32,7 @@ command -v kubectl > /dev/null && source <(kubectl completion zsh)
 command -v helm > /dev/null && source <(helm completion zsh)
 # helm completion zsh > "${fpath[1]}/_helm"
 # kubectl completion bash > "${fpath[1]}/_kubectl"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 zstyle ':completion:*:*:git:*' script ~/Sync/dotfiles/completion/git-completion.bash
 _gco() {
@@ -105,3 +110,17 @@ bindkey -e
 
 # Now throw away all the prompt work I did above and use Starship if it's installed
 if command -v starship > /dev/null; then eval "$(starship init zsh)"; fi
+
+# bun completions
+[ -s "/home/kurol/.bun/_bun" ] && source "/home/kurol/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fnm
+FNM_PATH="/home/kurol/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi

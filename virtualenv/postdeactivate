@@ -1,8 +1,0 @@
-#!/bin/bash
-# This hook is run after this virtualenv is deactivated.
-
-unset IPYTHONDIR DATABASE_URL ENVIRONMENT DEBUG DJANGO_SETTINGS_MODULE
-unalias vivirtualenv
-
-# if [[ -f "${VIRTUAL_ENV}/${VIRTUALENVWRAPPER_PROJECT_FILENAME}" ]]; then
-# fi

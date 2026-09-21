@@ -130,8 +130,8 @@ else
   alias df='df -kTh'
   alias du='du -kh --max-depth=1'
   alias ls='ls -F --color=auto'
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
+  alias pbcopy='wl-copy'
+  alias pbpaste='wl-paste'
 
   # SSH Agent and keychain
   if [ -f /usr/bin/keychain ] && [ ! -f /tmp/keychain ]; then
@@ -149,6 +149,9 @@ if [ -d /opt/homebrew ]; then
   bindkey '\e[H'    beginning-of-line
   bindkey '\e[F'    end-of-line
 fi
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
 
 # After each command, save and reload history
 # nevermind, this is too confusing
@@ -227,6 +230,14 @@ export ENABLE_CLAUDEAI_MCP_SERVERS=false
 ######
 
 prepend_path_if_exists PATH $HOME/.cargo/bin
+
+# bun
+#####
+
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
 
 # Command Completion
 ####################
@@ -310,7 +321,7 @@ function mac {
 alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
 alias restore_mac='sudo ifconfig en0 ether YOUR_ORIGINAL_MAC_ADDRESS_GOES_HERE'
 
-if [ -n "ZSH_VERSION" ]; then
+if [ -n "$ZSH_VERSION" ] && command -v direnv >/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 # Ubuntu 18.04 and pipx. This needs to take precedence over pyenv

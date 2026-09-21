@@ -6,3 +6,13 @@ nvm use lts  (accept UAC prompt)
 
 
 # Install 'uv' for Python
+
+
+# git config
+No symlink; instead add to %USERPROFILE%\.gitconfig:
+
+[include]
+    path = C:/Users/crcha/Sync/dotfiles/.gitconfig
+
+[core]
+    excludesFile = C:/Users/crcha/Sync/dotfiles/.gitignore_global

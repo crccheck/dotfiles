@@ -11,7 +11,6 @@ help: ## Shows this help
 basic: ## Just the basics that work everywhere
 basic: dotfiles bin completion
 
-all: ## Run this after ./bootstrap.sh
 all: basic virtualenv vim
 
 dotfiles: ## dotfiles
@@ -32,22 +31,27 @@ osx: ## OSX specific things
 osx: bin
 	cd $(HOME) && ln -sf $(PWD)/.hammerspoon
 
-.PHONY: virtualenv
-virtualenv: # Set up my personal virtualenv script hooks
-	@echo "* Setting up virtualenv hooks..."
-	@if [ -z "$$WORKON_HOME" ]; then echo "missing \$$WORKON_HOME"; exit 1; fi
-	@$(foreach file, $(wildcard virtualenv/*), \
-	  cd $$WORKON_HOME && ln -sf $(PWD)/$(file) && echo "linking $(file)";)
-
-gterm: # My visual customizations for gterm
-	@echo "* Linking gnome terminal settings"
-	@cd ~/.config/gtk-3.0 && ln -sf $(PWD)/.config/gtk-3.0/gtk.css
-
-.PHONY: vim
-vim: ## Neovim (config auto-linked via dotfiles target)
-	@echo "* Installing neovim plugins"
+vim: ## Neovim
 	@command -v nvim > /dev/null || (echo "neovim not installed: brew install neovim" && exit 1)
+	@echo "* Linking neovim config"
+	@mkdir -p ~/.config
+	@ln -sfn $(PWD)/.config/nvim ~/.config/nvim
+	@echo "* Installing neovim plugins"
 	nvim --headless -c 'Lazy! sync' -c 'qa'
+
+ptyxis: ## Load Ptyxis settings into dconf (save: dconf dump /org/gnome/Ptyxis/ > .config/ptyxis/ptyxis.ini)
+	@echo "* Loading ptyxis settings"
+	@dconf load /org/gnome/Ptyxis/ < .config/ptyxis/ptyxis.ini
+
+niri: ## Niri window manager config
+	@echo "* Linking niri config"
+	@mkdir -p ~/.config
+	@ln -sfn $(PWD)/.config/niri ~/.config/niri
+
+ghostty: ## Ghostty terminal config
+	@echo "* Linking ghostty config"
+	@mkdir -p ~/.config
+	@ln -sfn $(PWD)/.config/ghostty ~/.config/ghostty
 
 .PHONY: resources/oui.txt
 resources/oui.txt:

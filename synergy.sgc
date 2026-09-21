@@ -1,17 +1,21 @@
 section: screens
-	r0xl:
+ # Windows: super = Windows
+ # OSX: meta = CMD, alt = Option
+	mr-mac-2026:
+		alt = meta
+    super = alt
 		halfDuplexCapsLock = false
 		halfDuplexNumLock = false
 		halfDuplexScrollLock = false
 		xtestIsXineramaUnaware = false
-		switchCorners = none 
+		switchCorners = none +bottom-left
 		switchCornerSize = 0
 	runr:
 		halfDuplexCapsLock = false
 		halfDuplexNumLock = false
 		halfDuplexScrollLock = false
 		xtestIsXineramaUnaware = false
-		switchCorners = none 
+		switchCorners = none
 		switchCornerSize = 0
 end
 
@@ -19,17 +23,27 @@ section: aliases
 end
 
 section: links
-	r0xl:
+	mr-mac-2026:
 		right = runr
 	runr:
-		left = r0xl
+		left = mr-mac-2026
 end
 
 section: options
 	relativeMouseMoves = false
-	screenSaverSync = true
 	win32KeepForeground = false
-	switchCorners = none 
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 3072
+	switchCorners = none
 	switchCornerSize = 0
+
+#  keystroke(AudioPlay) = keystroke(AudioPlay, runr)
+#  keystroke(AudioStop) = keystroke(AudioStop, runr)
+#  keystroke(AudioNext) = keystroke(AudioNext, runr)
+#  keystroke(AudioPrev) = keystroke(AudioPrev, runr)
+#  keystroke(AudioMute) = keystroke(AudioMute, runr)
+#  keystroke(AudioUp)   = keystroke(AudioUp, runr)
+#  keystroke(AudioDown) = keystroke(AudioDown, runr)
 end
 
