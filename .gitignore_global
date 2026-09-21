@@ -12,7 +12,7 @@ node_modules
 
 # IDE junk
 .vscode
-.claude/settings.local.json
+*.code-workspace
 
 # random junk
 .DS_Store
@@ -31,6 +31,10 @@ lerna-debug.log
 env-
 .gists
 zzz*
+Makefile.local
 *.local.sh
 *.local.md
 *fuckfuckfuck*
+
+**/.claude/settings.local.json
+.claude/worktrees/

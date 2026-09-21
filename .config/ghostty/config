@@ -21,3 +21,7 @@ palette = 12=#59c2ff
 palette = 13=#d2a6ff
 palette = 14=#95e6cb
 palette = 15=#ffffff
+
+# https://omp.sh/docs/quickstart
+keybind = alt+backspace=text:\x1b\x7f
+keybind = shift+enter=text:\n

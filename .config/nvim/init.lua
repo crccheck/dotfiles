@@ -19,6 +19,10 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "▸-", trail = "·", nbsp = "·" }
 vim.opt.wildmode = "longest,list"
 vim.opt.backupskip = "/tmp/*,/private/tmp/*"
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
 
 -- netrw
 vim.g.netrw_preview = 1
